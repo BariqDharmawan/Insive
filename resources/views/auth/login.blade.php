@@ -1,73 +1,70 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.2/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <main>
+      <input type="radio" id="signIn" name="same" checked>
+      <label for="signIn">Sign In</label>
+      <input type="radio" name="same" id="signUp">
+      <label for="signUp">Sign Up</label>
+      <section class="login">
+        <h1>Sign In with your account</h1>
+        <p>To interact with our shop. If you don't have an account, <span>Make your account!</span></p>
+        <form action="{{ route('login') }}" method="post">
+          @csrf
+          <input type="email" placeholder="Input your email" pattern=".{8,}" minlength="8" title="minimal characters 8" autofocus required>
+          <input type="password" placeholder="Input your password" pattern=".{8,}" minlength="8" title="minimal characters 8" required>
+          <a href="{{ route('password.request') }}" id="forgot-password">I'm forgot my password!</a>
+          <button type="submit">Sign In</button>
+        </form>
+        <div class="sosmed-login">
+          <p id="sosmed-label">or maybe you prefer using your social media</p>
+          <a href="" class="sosmed-login__google"><img src="{{ asset('img/logo/glogo.svg') }}" height="40"> Sign In With Google</a>
+          <a href="" class="sosmed-login__fb"><i class='bx bxl-facebook-square' style='color:#ffffff'></i> Sign In With Facebook</a>
         </div>
-    </div>
-</div>
-@endsection
+      </section>
+      <section class="register">
+        <h1>Create your account</h1>
+        <p>For get our bennefit. If you does have an account, <span>Sign in with my account!</span></p>
+        <form action="" method="post">
+          @csrf
+          <input type="text" name="name" placeholder="What's You Full Name">
+          <input type="email" @error ('email') class="is-invalid" @enderror placeholder="Create your email" pattern=".{8,}"
+          minlength="8" title="minimal characters 8" required autofocus>
+          @error('email')
+           <span class="invalid-feedback" role="alert">
+               <strong>{{ $message }}</strong>
+           </span>
+          @enderror
+          <input type="password" @error('password') class="is-invalid" @enderror placeholder="Create your password" pattern=".{8,}"
+          minlength="8" title="minimal characters 8" required>
+          @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+          <textarea name="address" class="form-control" rows="8" placeholder="Where Do You Life?"></textarea>
+          <button type="submit">Sign Up</button>
+        </form>
+     </section>
+    </main>
+    <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
+    <script>
+      $(document).ready(function(){
+        // optional, only for blue link
+        $("main .login p span").click(function(){
+        $("input#signUp").prop("checked", true);
+        });
+        $("main .register p span").click(function(){
+          $("input#signIn").prop("checked", true);
+        });
+      });
+    </script>
+  </body>
+</html>

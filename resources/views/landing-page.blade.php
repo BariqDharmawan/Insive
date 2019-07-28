@@ -6,7 +6,7 @@
       <div id="landing-logo-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ asset('img/logo.png') }}" height="200" alt="Slideshow Image">
+            <img src="{{ asset('img/logo/logo.png') }}" height="200" alt="Slideshow Image">
             <h1>Insive</h1>
           </div>
           <div class="carousel-item">

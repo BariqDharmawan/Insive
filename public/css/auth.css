@@ -1,0 +1,296 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+  outline: none;
+}
+input[type="radio"] {
+  width: 0.1px;
+  opacity: 0;
+  position: absolute;
+  z-index: -999;
+}
+body { /*only for codepen style*/
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212121;
+}
+input#signIn:checked + label {
+  background-color: #DFC790;
+  border-color: #DFC790;
+}
+input#signUp:checked + label {
+  background-color: #F19552;
+  border-color: #F19552;
+}
+input:checked + label, input:checked + label:hover {
+  color: white;
+}
+input#signIn:checked ~ .login {
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+}
+input#signUp:checked ~ .register {
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+}
+
+main {
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+main label {
+  display: block;
+  width: 50%;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  background-color: white;
+  text-align: center;
+  color: #738a8e;
+  transition: all 350ms;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+}
+main label:hover {
+  background-color: #e0e0e0;
+}
+
+main label:first-of-type {
+  border-right: 1px solid #e0e0e0;
+}
+main > section {
+  display: flex;
+  flex-direction: column;
+  transition: all 450ms;
+  position: absolute;
+  top: 40px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: calc(100% - 40px);
+  padding: 0 25px;
+}
+main > section h1 {
+  color: #333333;
+  display: block;
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+main > section > p:first-of-type {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  line-height: 30px;
+  color: #4f4f4f;
+}
+main > section p span {
+  transition: all 250ms;
+  color: #148fbc;
+  cursor: pointer;
+}
+main > section p span:hover {
+  color: #0d7ea8;
+  text-decoration: underline;
+}
+main > section form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main .login {
+  left: 0;
+}
+main .register {
+  right: 0;
+}
+main .register form {
+  flex-grow: 1;
+  margin-bottom: 30px;
+}
+main form input, main .register form textarea {
+  border: 1px solid #cecece;
+  width: 100%;
+  transition: all 250ms;
+  padding: 0 10px;
+  border-radius: 5px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+main .register form textarea {
+  height: 145px;
+  resize: none;
+  padding: 10px;
+}
+main form input:hover, main .register form textarea:hover {
+  box-shadow: 0 0 2px 1px #BABABA inset;
+}
+main form input:focus, main .register form textarea:focus {
+  border-color: transparent;
+  box-shadow: 0 0 2px 1px #148fbc inset;
+}
+main form button {
+  height: 45px;
+  flex-grow: 1;
+  width: 150px;
+  cursor: pointer;
+  color: white;
+  margin: 0 auto;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 250ms;
+}
+main .login form #forgot-password {
+  line-height: 35px;
+  color: #09698c;
+  width: 100%;
+  font-size: 80%;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+main .login form #forgot-password:hover {
+  text-decoration: underline;
+}
+main .login #sosmed-label {
+  color: #494949;
+  margin: 15px 0;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+main .login form button {
+  background-color: #DFC790;
+}
+main .login form button:hover {
+  background-color: #D1B678;
+}
+main .login .sosmed-login {
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main .login .sosmed-login {
+  width: 100%;
+  height: 135px;
+}
+main .login .sosmed-login a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  position: relative;
+  justify-content: center;
+  height: 45px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 2px 5px 5px 2px;
+}
+main .login .sosmed-login .sosmed-login__google {
+  background-color: #4285f4;
+  padding: 0 2px;
+}
+main .login .sosmed-login .sosmed-login__fb {
+  background-color: #4267b2;
+}
+main .login .sosmed-login .sosmed-login__fb .bx {
+  color: #fff;
+}
+main .login .sosmed-login img {
+  background-color: #fff;
+  margin-right: 10px;
+  position: absolute;
+  left: 2.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 5px;
+}
+main .login .sosmed-login .sosmed-login__fb .bx {
+  background-color: transparent;
+  position: absolute;
+  left: -1px;
+  /* height: 30px; */
+  font-size: 48px;
+  top: 0px;
+  margin-right: 10px;
+}
+main .register form button {
+  background-color: #F19552;
+}
+main .register form button:hover {
+  background-color: #E68B48;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    width: 50%;
+    height: calc(450px + 155px + 145px);
+    border-radius: 5px;
+  }
+  main > section h1 {
+    font-size: 2rem;
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+  main > section > p:first-of-type {
+    margin-bottom: 30px;
+  }
+  main .login form {
+    margin: auto 0;
+  }
+  main .login .sosmed-login {
+    margin: auto 0 80px 0;
+  }
+  main > section p span {
+    display: block;
+  }
+  main form input, main .register form textarea {
+    margin-bottom: 30px;
+  }
+  main .login .sosmed-login a {
+    margin-bottom: 20px;
+  }
+  main #sosmed-label::before {
+    left: 0;
+  }
+  main #sosmed-label::after {
+    right: 0;
+  }
+  main #sosmed-label::before, main #sosmed-label::after {
+    max-width: 30%;
+    min-width: 100px;
+    content: '';
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #C9C9C9;
+    position: absolute;
+  }
+  main .login form button {
+    margin: 0;
+    float: right;
+  }
+  main .login form #forgot-password {
+    float: left;
+    width: auto;
+    margin-top: 0;
+  }
+  main .login form button {
+    flex-grow: 0;
+  }
+}
