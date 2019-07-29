@@ -26,7 +26,7 @@
         <div class="sosmed-login">
           <p id="sosmed-label">or maybe you prefer using your social media</p>
           <a href="{{ url('login/google') }}" class="sosmed-login__google"><img src="{{ asset('img/logo/glogo.svg') }}" height="40"> Sign In With Google</a>
-          <a href="" class="sosmed-login__fb"><i class='bx bxl-facebook-square' style='color:#ffffff'></i> Sign In With Facebook</a>
+          {{-- <a href="" class="sosmed-login__fb"><i class='bx bxl-facebook-square' style='color:#ffffff'></i> Sign In With Facebook</a> --}}
           <a href="{{ url()->previous() }}" class="backto-homepage"><i class='bx bx-arrow-back' style="margin-right: 10px"></i> Back To Homepage</a>
         </div>
       </section>

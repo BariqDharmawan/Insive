@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -42,11 +43,7 @@ class LoginController extends Controller
       $users = User::firstOrCreate(
         ['email'           => $userSocial->getEmail()],
         ['name'            => $userSocial->getName()],
-        ['provider_token'  => $userSocial->token],
-        ['email'           => $userSocial->getEmail()],
-        ['image'           => $userSocial->getAvatar()],
-        ['provider_id'     => $userSocial->getId()],
-        ['provider'        => $provider]
+        ['image'           => $userSocial->getAvatar()]
       );
 
       Auth::login($users);

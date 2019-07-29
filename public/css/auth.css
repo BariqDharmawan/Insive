@@ -190,6 +190,7 @@ main .login form button:hover {
 }
 main .login .sosmed-login {
   margin-bottom: 30px;
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -263,7 +264,7 @@ main .register form button:hover {
     margin: auto 0;
   }
   main .login .sosmed-login {
-    margin: auto 0 80px 0;
+    margin: auto 0 40px 0;
   }
   main > section p span {
     display: block;
