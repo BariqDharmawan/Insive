@@ -31,7 +31,6 @@
           <span>or</span>
           <span>Login <i class='bx bx-log-in-circle'></i></span>
         </a>
-        {{-- <a href="{{ route('login') }}">login <i class='bx bx-log-in-circle'></i></a> --}}
       </div>
       <div class="recommend-link">
         <a href="">Custom your SHEET MASK!</a>
