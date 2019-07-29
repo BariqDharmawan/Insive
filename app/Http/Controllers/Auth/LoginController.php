@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
+use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -26,6 +29,30 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    public function redirectToProvider($provider)
+    {
+      return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback($provider)
+    {
+
+      $userSocial = Socialite::driver($provider)->user();
+      $users = User::firstOrCreate(
+        ['email'           => $userSocial->getEmail()],
+        ['name'            => $userSocial->getName()],
+        ['provider_token'  => $userSocial->token],
+        ['email'           => $userSocial->getEmail()],
+        ['image'           => $userSocial->getAvatar()],
+        ['provider_id'     => $userSocial->getId()],
+        ['provider'        => $provider]
+      );
+
+      Auth::login($users);
+      return redirect('home');
+
+    }
 
     /**
      * Create a new controller instance.
