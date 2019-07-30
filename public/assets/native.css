@@ -1,0 +1,877 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import "general.css";
+
+a {
+  color: inherit;
+}
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+section .container {
+  padding: 90px 0;
+}
+section .container > h1:first-child {
+  text-align: center;
+  position: relative;
+  text-transform: uppercase;
+  color: #5b5b5b;
+  font-weight: bolder;
+  font-size: 28px;
+  margin-bottom: 70px;
+}
+header:not(#landingPage) .overlay {
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.27), rgba(41, 151, 214, 0.7));
+}
+header {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+header h1 {
+  width: 100%;
+  color: #fff;
+  font-weight: bolder;
+  letter-spacing: 1.6px;
+}
+header ul {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.modal {
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  border-radius: 8px;
+  overflow: hidden;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #fff;
+}
+.alert-success {
+  position: absolute;
+  top: 80px;
+  text-align: center;
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+  font-size: 24px;
+  padding: .75rem 1.25rem;
+  border: 1px solid #c3e6cb;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: .25rem;
+  box-shadow: 3px 3px 4px rgba(60, 60, 60, 0.5);
+}
+.modal__header {
+  border-left: 1px solid #2d8bcb;
+  border-right: 1px solid #2d8bcb;
+  border-top: 1px solid #2d8bcb;
+}
+.modal__close {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  font-size: 20px;
+  right: 20px;
+}
+.modal__content {
+  border-bottom: 1px solid #868686;
+  border-right: 1px solid #868686;
+  border-left: 1px solid #868686;
+}
+.modal__header, .modal__content {
+  padding: 15px 20px;
+  width: 100%;
+}
+
+.show {
+  padding: 1rem 2rem;
+  max-height: 500vh !important;
+}
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+
+header#landingPage {
+  background-image: url('img/header.jpg');
+}
+#landingPage .overlay {
+  background-color: rgba(46, 139, 201, 0.65);
+}
+nav {
+  background-color: #2a2a2a;
+  box-shadow: 0 3px 4px 2px rgba(34,34,34,.3);
+  position: fixed;
+  z-index: 3;
+  padding: 0 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  text-transform: capitalize;
+}
+nav > a {
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+
+}
+nav #brandNav {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 7px;
+  font-size: 22px;
+  color: #fff;
+  height: 60px;
+  font-weight: 900;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+nav #brandNav box-icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+nav #loginBtn {
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ECA84D;
+}
+#landingPage ul li {
+  height: 30px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  background-position: left;
+  text-indent: 40px;
+  letter-spacing: 1px;
+  background-repeat: no-repeat;
+  background-image: url('img/shield.png');
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+#landingPage #goContent {
+  background-color: #ECA84D;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  width: 70%;
+  height: 44px;
+  max-width: 250px;
+  justify-content: center;
+  border-radius: 53px;
+  text-transform: capitalize;
+  transform: translate(-50%, 50%);
+  box-shadow: 3px 3px 3px rgba(38, 38, 38, 0.2);
+  font-weight: bold;
+}
+#landingPage #goContent .bx {
+  margin-left: 10px;
+  font-size: 25px;
+}
+#landingPage + main #jasaSection figure {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#landingPage + main #jasaSection figcaption {
+  padding: 10px 0;
+}
+#landingPage + main #jasaSection figcaption h2 {
+  color: #636262;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+#landingPage + main #jasaSection figcaption p {
+  text-align: center;
+  color: #727272;
+  margin-bottom: 10px;
+}
+#landingPage + main #klienSection {
+  background-color: #F6F6F6;
+}
+#landingPage + main #klienSection #slideshowDesktop {
+  display: none;
+}
+#landingPage + main #klienSection .klienSlideshow img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: scale-down;
+}
+#landingPage + main #klienSection .klienSlideshow > div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#landingPage + main #klienSection .klienSlideshow figcaption {
+  font-size: 22px;
+  height: 60px;
+  word-wrap: break-word;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  color: #4E4E4E;
+  margin-bottom: 15px;
+}
+#landingPage + main #hargaSection .col-12 {
+  margin-bottom: 30px;
+}
+#landingPage + main #hargaSection .col-12 > div, #landingPage + main #hargaSection #hargaDesktop .row:first-of-type > .col-12 {
+  padding: 15px 20px;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+#landingPage + main #hargaSection .col-12 > div sup,  #landingPage + main #hargaSection #hargaDesktop sup {
+  position: relative;
+  top: -8px;
+}
+#landingPage + main #hargaSection .col-12 > div sub,  #landingPage + main #hargaSection #hargaDesktop sub {
+  letter-spacing: 1px;
+}
+#landingPage + main #hargaSection .col-12 > div var,  #landingPage + main #hargaSection #hargaDesktop var {
+  font-style: normal;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#landingPage + main #hargaSection .col-12 > div h2, #landingPage + main #hargaSection #hargaDesktop h2 {
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+#landingPage + main #hargaSection .col-12 details {
+  background-color: #F2F2F2;
+  border-radius: 0 0 10px 10px;
+}
+#landingPage + main #hargaSection .col-12 details summary {
+  padding: 15px 20px;
+  color: #fff;
+}
+#landingPage + main #hargaSection .col-12 details > ul {
+  padding: 10px 20px;
+}
+#landingPage + main #hargaSection .col-12 details li, #landingPage + main #hargaSection #hargaDesktop li {
+  color: #686868;
+  padding: 5px 0;
+  text-transform: capitalize;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#landingPage + main #hargaSection .col-12 details li b, #landingPage + main #hargaSection #hargaDesktop li b {
+  margin-bottom: 10px;
+  display: block;
+}
+#landingPage + main #hargaSection #hargaDesktop {
+  display: none;
+}
+#landingPage + main #hargaSection .bisnis {
+  background-color: #50AFE7;
+}
+#landingPage + main #hargaSection .bisnis + details summary {
+  background-color: #409acf;
+}
+#landingPage + main #hargaSection .profesional {
+  background-color: #3081C0;
+}
+#landingPage + main #hargaSection .profesional + details summary {
+  background-color: #2d79b4;
+}
+#landingPage + main #hargaSection .pemula {
+  background-color: #67BCEE;
+}
+#landingPage + main #hargaSection .pemula + details summary {
+  background-color: #5cafe0;
+}
+#landingPage + main #hargaSection #showDetails {
+  display: none;
+}
+#landingPage + main #diskonSection h1 + p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#landingPage + main #diskonSection br {
+  display: none;
+  height: 0;
+}
+#landingPage + main #diskonSection form select {
+  background-color: #fff;
+}
+#landingPage + main #diskonSection form input::placeholder {
+  color: #555555;
+  text-transform: capitalize;
+}
+#landingPage + main #diskonSection form button[type='submit'] {
+  align-self: flex-end;
+  border-radius: 8px;
+}
+#landingPage + main #diskonSection form button[type='submit']:hover {
+  background-color: #e4a147;
+}
+#landingPage + main #diskonSection form button[type='submit']:active {
+  background-color: #d9963d;
+}
+#landingPage + main #faqSection {
+  background-color: #3498DB;
+}
+#landingPage + main #faqSection .container > h1:first-child {
+  color: #fff;
+}
+#landingPage + main #faqSection .container div {
+  color: #fff;
+}
+#landingPage + main #faqSection .container div h3 {
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+#landingPage + main #faqSection .container div p {
+  margin-bottom: 15px;
+}
+
+header#supportPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('img/support.jpg');
+}
+header#supportPage .header__caption {
+  text-align: center;
+}
+header#supportPage .header__caption h4 {
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+header#supportPage .header__caption a {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+#supportPage + main section form button {
+  border-radius: 5px;
+}
+
+header#mitraPage {
+  background-image: url('img/mitra.jpg');
+}
+header#mitraPage h1 {
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+header#mitraPage .btn-secondary {
+  position: absolute;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  border-radius: 20px;
+  left: 50%;
+}
+#mitraPage + main #keuntunganSection {
+  background-color: #fff;
+}
+#mitraPage + main #keuntunganSection figure {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#mitraPage + main #keuntunganSection figcaption {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 22px;
+}
+#mitraPage + main #caraBermitra {
+  background-color: #3498DB;
+  color: #fff;
+}
+#mitraPage + main #caraBermitra .row {
+  align-items: center;
+  justify-content: space-between;
+}
+#mitraPage + main #caraBermitra h1, #mitraPage + main #caraBermitra p, #mitraPage + main #caraBermitra small {
+  color: #fff;
+}
+#mitraPage + main #caraBermitra ol {
+  margin-bottom: 30px;
+}
+#mitraPage + main #caraBermitra li {
+  margin-bottom: 8px;
+  font-weight: lighter;
+}
+#mitraPage + main #caraBermitra .btn-secondary {
+  background-color: #5FEB7B;
+  border-color: #4CB962 !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  position: relative;
+}
+#mitraPage + main #caraBermitra .btn-secondary:hover {
+  background-color: #4CB962;
+}
+#mitraPage + main #caraBermitra .modal__header {
+  background-color: #3498DB;
+}
+#mitraPage + main #caraBermitra .modal__header h1 {
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+#mitraPage + main #caraBermitra .modal__content textarea {
+  resize: none;
+}
+
+header#promosiPage {
+  background-image: url('img/promo.jpg');
+}
+header#promosiPage .header__caption {
+  text-align: center;
+}
+#promosiPage + main section figure > img:hover {
+  filter: brightness(80%); /*defaultnya 100%*/
+}
+#promosiPage + main section figure {
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+#promosiPage + main section figure img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+#promosiPage + main section .col-12:not(:first-of-type) {
+  margin-top: 40px;
+}
+#promosiPage + main section figcaption {
+  border-right: 1px solid #a2a2a2;
+  border-radius: 0 0 8px 8px;
+  border-left: 1px solid #a2a2a2;
+  border-bottom: 1px solid #a2a2a2;
+  color: #4D4D4D;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#promosiPage + main section figcaption time {
+  font-weight: lighter;
+  display: block;
+  color: #909090;
+}
+
+body#peraturanPage main h1 {
+  margin-bottom: 40px;
+}
+body#peraturanPage main h1, body#peraturanPage main h2, body#peraturanPage main p {
+  color: #595959;
+}
+body#peraturanPage main h2, body#peraturanPage main p {
+  margin-bottom: 20px;
+}
+body#peraturanPage main p {
+  font-weight: normal;
+}
+#peraturanPage nav {
+  position: static;
+}
+#peraturanPage .row {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #b3b3b3;
+}
+#peraturanPage .row .col-md-3 {
+  border-right: 1px solid #707070;
+}
+#peraturanPage .row .nav-pills a {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+}
+
+header#profilPage {
+  background-image: url('img/profil.png');
+}
+header#profilPage .container {
+  position: relative;
+  height: 100%;
+  overflow: visible;
+  padding-top: 60px;
+}
+#profilPage figure {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, calc(100% - 75px));
+}
+#profilPage figcaption {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 20px 0;
+}
+#profilPage figcaption h1 {
+  color: #525252;
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+#profilPage figcaption small:first-of-type {
+  color: #A8A8A8;
+  margin-bottom: 10px;
+}
+#profilPage figcaption small:last-of-type {
+  color: #CE7C3D;
+}
+#profilPage figcaption small a {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+#profilPage figcaption small box-icon {
+  margin-left: 0;
+}
+#profilPage + main section li {
+  margin-bottom: 30px;
+}
+#profilPage + main section li span {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+#profilPage + main section li address, #profilPage + main section li a {
+  color: #A8A8A8;
+}
+
+header#aboutPage {
+  background-image: url('img/about.jpg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header#aboutPage h1, header#promosiPage h1 {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+#aboutPage + main {
+  min-height: 100vh;
+}
+#aboutPage + main section:first-of-type p {
+  text-align: center;
+}
+#aboutPage + main section:last-of-type figure {
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+#aboutPage + main section:last-of-type figure img {
+  width: 100%;
+  display: block;
+  border-radius: 5px 5px 0 0;
+  object-fit: cover;
+}
+#aboutPage + main section:last-of-type figcaption {
+  background-color: #EFEFEF;
+  border: 1px solid #D4D4D4;
+  display: flex;
+  color: #828282;
+  flex-direction: column;
+  padding: 10px 5px;
+  text-transform: capitalize;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px 5px;
+}
+#aboutPage + main section:last-of-type figcaption p:first-child {
+  font-weight: bold;
+}
+
+footer {
+  background-color: #328AC5;
+  color: #fff;
+  height: 60px;
+  text-transform: capitalize;
+}
+footer small {
+  font-size: 16px;
+  margin-right: auto;
+}
+footer a {
+  font-size: 12px;
+  margin-left: 10px;
+}
+footer .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+footer time {
+  margin: 0 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal__header, .modal__content {
+    padding: 20px 60px;
+  }
+  .modal {
+    width: 50%;
+  }
+  section .container > h1:first-child::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    background-color: #ECA84D;
+    width: 15%;
+    max-width: 120px;
+  }
+  header#aboutPage h1, header#mitraPage h1, header#promosiPage h1 {
+    font-size: 50px;
+  }
+  body#peraturanPage nav {
+    background-color: #3498DB;
+  }
+
+  nav {
+    align-items: center;
+    height: 80px;
+    padding: 0 5%;
+    background-color: transparent;
+    box-shadow: none;
+    flex-direction: row;
+    font-size: 16px;
+  }
+  .navScrolled {
+    box-shadow: 0 3px 4px 2px rgba(34,34,34,.3);
+    background-color: #323232;
+    height: 70px;
+  }
+  nav #brandNav {
+    margin-right: auto;
+  }
+  nav #brandNav box-icon {
+    display: none;
+  }
+  nav a {
+    max-height: none;
+    opacity: 1;
+  }
+  nav > a {
+    position: relative;
+  }
+  nav > a:not(#loginBtn):hover::before {
+    width: 100%;
+  }
+  nav > a:not(#loginBtn)::before {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    background-color: #fff;
+    height: 2px;
+    width: 0;
+    content: '';
+
+  }
+  nav #loginBtn {
+    padding: 10px 30px;
+  }
+  nav a:not(#loginBtn) {
+    margin-right: 15px;
+  }
+  nav a:nth-child(4) {
+    position: relative;
+    margin-right: 30px !important;
+  }
+  nav a:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
+    width: 3px;
+  }
+  #landingPage .header__caption ul {
+    height: 80px;
+  }
+  #landingPage + main #klienSection #slideshowMobile {
+    display: none;
+  }
+  #landingPage + main #klienSection #slideshowDesktop {
+    display: block;
+  }
+  #landingPage + main #hargaSection .bisnis {
+    border-radius: 10px 0 0 0 !important;
+  }
+  #landingPage + main #hargaSection .profesional {
+    border-radius: 10px 10px 0 0 !important;
+    position: relative;
+    margin-top: -35px;
+    height: calc(300px + 35px) !important;
+  }
+  #landingPage + main #hargaSection .pemula {
+    border-radius: 0 10px 0 0 !important;
+  }
+  #landingPage + main #hargaMobile {
+    display: none;
+  }
+  #landingPage + main #hargaSection #hargaDesktop {
+    display: flex;
+  }
+  #landingPage + main #hargaSection #hargaDesktop .row:first-of-type .col-12 {
+    padding: 30px !important;
+  }
+  #landingPage + main #hargaSection #hargaDesktop .row:nth-of-type(2) {
+    background-color: #F2F2F2;
+    border: 1px solid #c1c1c1;
+    overflow: hidden;
+    transition: max-height 400ms;
+    max-height: 0;
+  }
+  #landingPage + main #hargaSection .col-12 {
+    margin-bottom: 0;
+  }
+  #landingPage + main #hargaSection #hargaDesktop .row:first-of-type > div:nth-child(-n+3) {
+    margin-bottom: 0 !important;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #landingPage + main #hargaSection #hargaDesktop .row:first-of-type > div:nth-child(-n+3) h2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+  #landingPage + main #hargaSection .col-md-4 div {
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #landingPage + main #hargaSection .container > h1:first-child {
+    margin-bottom: 105px;
+  }
+  #landingPage + main #hargaSection .col-12 > div h2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+  #landingPage + main #hargaSection .col-12 > div {
+    color: #686868 !important;
+  }
+  #landingPage + main #hargaSection .col-12 > div var {
+    font-size: 40px;
+  }
+  #landingPage + main #hargaSection .col-md-4 details {
+    display: none;
+  }
+  #landingPage + main #hargaSection #showDetails {
+    display: flex;
+    background-color: #FCC36A;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 0 0 5px 5px;
+  }
+  #landingPage + main #hargaSection #showDetails:hover {
+    background-color: #e9b25a;
+  }
+  #landingPage + main #hargaSection #showDetails .bx {
+    margin-left: 10px;
+  }
+  #landingPage + main #diskonSection br {
+    display: block;
+  }
+
+  #promosiPage + main section .col-12:not(:first-of-type) {
+    margin-top: 0px;
+  }
+  #promosiPage + main section .col-12:nth-of-type(n+4) {
+    margin-top: 40px;
+  }
+
+  header#profilPage nav {
+    background-color: rgba(0, 0, 0, 0.56);
+  }
+  header#profilPage .container {
+    padding-top: 80px;
+  }
+  #profilPage figcaption {
+    flex-direction: row;
+    justify-content: center;
+  }
+  #profilPage figcaption h1 {
+    font-size: 30px;
+    width: 100%;
+  }
+  #profilPage figcaption small:first-of-type {
+    margin-bottom: 0;
+  }
+  #profilPage figcaption small:last-of-type {
+    margin-left: 40px;
+  }
+
+  #supportPage .header__caption {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  #supportPage .header__caption h1 {
+    width: 100%;
+    font-size: 40px;
+  }
+  #supportPage .header__caption h4 {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  #aboutPage + main section:first-of-type p {
+    width: 50%;
+    margin: 0 auto;
+  }
+  #aboutPage + main section:last-of-type figure {
+    padding: 1rem 5rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #supportPage .header__caption h1 {
+    font-size: 60px;
+  }
+}
