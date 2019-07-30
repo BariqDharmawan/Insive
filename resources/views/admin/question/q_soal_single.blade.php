@@ -12,15 +12,18 @@
 </div>
 <div class="card-body">
     <div class="col-12">
-        <p><label for="">{{$question->no_question}}. </label>{{$question->question}}</p>
-        
+        <p><label for="">{{$question->no_question}}. </label>{{$question->question}}
+            <span class="invalid-feedback" id="errorMsg">
+                <strong>You must select first!</strong>
+            </span>
+        </p>
     </div>
     <div class="col-12">
         <div class="form-group">
             @if ($question->category == 'single')
             @foreach ($question->options as $item)
             <label for="">
-                <input type="radio" class="minimal" name="option_id">
+                <input type="radio" class="minimal option_id" name="option_id" value="{{$item->id}}">
                 {{$item->text}}
             </label>
             <br>
@@ -28,13 +31,13 @@
             @elseif ($question->category == 'multiple')
             @foreach ($question->options as $item)
             <label for="">
-                <input type="checkbox" class="minimal" name="option_id[]">
+                <input type="checkbox" class="minimal" name="option_id[]" value="{{$item->id}}">
                 {{$item->text}}
             </label>
             <br>
             @endforeach
             @elseif ($question->category == 'dropdown')
-            <select name="option_id" id="" class="form-control">
+            <select name="option_id" id="" class="form-control select_option_id">
                 @foreach ($question->options as $item)
                 <option value="{{$item->id}}">{{$item->text}}</option>
                 @endforeach

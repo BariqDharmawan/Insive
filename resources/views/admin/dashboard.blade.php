@@ -16,8 +16,10 @@
     </div>
 </div>
 @endif
+<div class="col-12">
+    <p>{{Auth::user()}}</p>
+</div>
 @endsection
-
 @section('script')
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.js') }}"></script>
