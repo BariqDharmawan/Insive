@@ -17,6 +17,7 @@ body {
 #show-menu {
   position: absolute;
   left: 15px;
+  z-index: 2;
   display: inline-block;
 }
 #show-menu:hover {
@@ -90,7 +91,7 @@ a:hover {
   font-size: 18px;
 }
 nav {
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
@@ -146,7 +147,7 @@ header {
   justify-content: center;
 }
 header .page-title {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bolder;
   text-transform: uppercase;
   color: #F6E1B2;
@@ -215,22 +216,24 @@ footer a {
   margin: 20px 0 50px;
   justify-content: center;
 }
-#landing-page .landing-link small {
-  color: #EDEDED;
-  margin: 0 10px;
+#landing-page .landing-link a {
   display: flex;
   align-items: center;
 }
-#landing-page .landing-link a {
+#landing-page .landing-link a span:nth-child(2) {
+  color: #EDEDED;
+  margin: 0 10px;
+  font-size: 100%;
+}
+#landing-page .landing-link a span {
   display: flex;
-  text-transform: capitalize;
   align-items: center;
   color: #fff;
 }
-#landing-page .landing-link a:first-child .bx {
+#landing-page .landing-link a span:first-child .bx {
   margin-right: 10px;
 }
-#landing-page .landing-link a:last-child .bx {
+#landing-page .landing-link a span:last-child .bx {
   margin-left: 10px;
 }
 #landing-page .recommend-link {
@@ -238,6 +241,7 @@ footer a {
   align-items: center;
   flex-direction: column;
   text-transform: uppercase;
+  margin-bottom: 40px;
 }
 #landing-page .recommend-link small {
   color: #F6E1B2;
@@ -344,6 +348,12 @@ footer a {
   font-size: 20px;
 }
 /*end of face-result-page css*/
+/*catalog-selected-page css*/
+#catalog-selected-page .product-selected p {
+  font-size: 24px;
+  color: #F4F4F4;
+}
+/*end of catalog-selected-page css*/
 @media screen and (min-width: 768px) {
   #show-menu {
     left: 40px;

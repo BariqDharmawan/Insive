@@ -6,13 +6,21 @@
   text-decoration: none;
   outline: none;
 }
+.backto-homepage {
+  color: #319FAD !important;
+  display: flex;
+  width: 100%;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+}
 input[type="radio"] {
   width: 0.1px;
   opacity: 0;
   position: absolute;
   z-index: -999;
 }
-body { /*only for codepen style*/
+body {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -182,6 +190,7 @@ main .login form button:hover {
 }
 main .login .sosmed-login {
   margin-bottom: 30px;
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -230,6 +239,7 @@ main .login .sosmed-login .sosmed-login__fb .bx {
   margin-right: 10px;
 }
 main .register form button {
+  margin-bottom: 10px;
   background-color: #F19552;
 }
 main .register form button:hover {
@@ -254,7 +264,7 @@ main .register form button:hover {
     margin: auto 0;
   }
   main .login .sosmed-login {
-    margin: auto 0 80px 0;
+    margin: auto 0 40px 0;
   }
   main > section p span {
     display: block;
@@ -292,5 +302,13 @@ main .register form button:hover {
   }
   main .login form button {
     flex-grow: 0;
+  }
+  .login .backto-homepage, .register .backto-homepage {
+    color: #fff !important;
+    position: fixed !important;
+    left: 30px;
+    top: 20px;
+    display: inline-flex !important;
+    width: auto !important;
   }
 }

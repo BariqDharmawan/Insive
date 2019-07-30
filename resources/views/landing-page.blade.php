@@ -26,9 +26,11 @@
         </a>
       </div>
       <div class="landing-link">
-        <a href="{{ route('register') }}"><i class='bx bx-user-plus'></i> register</a>
-        <small>or</small>
-        <a href="{{ route('login') }}">login <i class='bx bx-log-in-circle'></i></a>
+        <a href="{{ route('login') }}">
+          <span><i class='bx bx-user-plus'></i>Register</span>
+          <span>or</span>
+          <span>Login <i class='bx bx-log-in-circle'></i></span>
+        </a>
       </div>
       <div class="recommend-link">
         <a href="">Custom your SHEET MASK!</a>

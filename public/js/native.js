@@ -13,4 +13,7 @@ $(document).ready(function(){
   else {
     $("body").attr("id", window.location.pathname.replace('/', '') + '-page');
   }
+  if (window.location.pathname == '/catalog/selected') {
+    $("body").attr("id", "catalog-selected-page");
+  }
 });
