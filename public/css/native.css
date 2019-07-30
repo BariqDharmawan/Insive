@@ -147,7 +147,7 @@ header {
   justify-content: center;
 }
 header .page-title {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: bolder;
   text-transform: uppercase;
   color: #F6E1B2;
@@ -348,6 +348,12 @@ footer a {
   font-size: 20px;
 }
 /*end of face-result-page css*/
+/*catalog-selected-page css*/
+#catalog-selected-page .product-selected p {
+  font-size: 24px;
+  color: #F4F4F4;
+}
+/*end of catalog-selected-page css*/
 @media screen and (min-width: 768px) {
   #show-menu {
     left: 40px;
