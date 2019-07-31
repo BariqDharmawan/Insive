@@ -10,7 +10,7 @@
     <title>Insive | @yield('title')</title>
   </head>
   <body>
-    <nav style="z-index: 1050;">
+    <nav>
       <ul>
         <li>
           <a href="">how to order</a>
