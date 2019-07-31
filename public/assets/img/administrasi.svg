@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="72" viewBox="0 0 80 72">
+  <g id="bx-id-card" transform="translate(-2 -3)">
+    <path id="Path_18" data-name="Path 18" d="M15.715,25a7.774,7.774,0,0,0,8-8,7.774,7.774,0,0,0-8-8,7.774,7.774,0,0,0-8,8A7.771,7.771,0,0,0,15.715,25Z" transform="translate(17.145 18)"/>
+    <path id="Path_19" data-name="Path 19" d="M74,3H10a8.008,8.008,0,0,0-8,8V67a8.008,8.008,0,0,0,8,8H74a8.008,8.008,0,0,0,8-8V11A8.008,8.008,0,0,0,74,3ZM10,67V19H74V11l0,56Z"/>
+    <path id="Path_20" data-name="Path 20" d="M38,10H54v8H38Zm4,16H54v8H42ZM20.86,25C12.7,25,6,30.648,6,36.144V38H35.72V36.144C35.72,30.648,29.016,25,20.86,25Z" transform="translate(12 21)"/>
+  </g>
+</svg>
