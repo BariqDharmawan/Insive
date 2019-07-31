@@ -35,7 +35,7 @@
       <div class="recommend-link">
         <a href="">Custom your SHEET MASK!</a>
         <small>or</small>
-        <a href="">buy from our catalog!</a>
+        <a href="{{ route('catalog.default') }}">buy from our catalog!</a>
       </div>
     </div>
   </main>

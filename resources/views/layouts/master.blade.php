@@ -20,7 +20,7 @@
         <li><a href="">buy from catalog</a></li>
         <li><a href="">FAQ</a></li>
         <li><a href="">beauty tips</a></li>
-        <li><a href="">contact us</a></li>
+        <li><a href="{{ route('contactus') }}">contact us</a></li>
         <li><a href="">about us</a></li>
       </ul>
     </nav>
