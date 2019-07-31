@@ -29,6 +29,11 @@
       <h1 class="page-title">@yield('page-title')</h1>
     </header>
     @yield('content')
+    <footer>
+      <div class="container text-center">
+        Copyright (c) 2018 Copyright Holder All Rights Reserved.
+      </div>
+    </footer>
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/popper.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
