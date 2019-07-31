@@ -9,6 +9,10 @@ Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 Route::view('custom/sheet', 'custom.sheet');
 Route::view('contact-us', 'contact')->name('contactus');
 
+Route::prefix('home')->namespace('Home')->name('home.')->group(function () {
+    Route::get('/face-result', 'HomeController@faceResult')->name('home.face.result');
+    Route::resource('home', 'HomeController');
+});
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     Route::get('dashboard', 'AdminController@index')->name('dashboard');
     Route::resource('admin', 'AdminController');
