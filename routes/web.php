@@ -6,6 +6,10 @@ Route::view('/', 'landing-page');
 Route::view('catalog', 'catalog.default');
 Route::view('face-result', 'face-result');
 
+Route::prefix('home')->namespace('Home')->name('home.')->group(function () {
+    Route::get('/face-result', 'HomeController@faceResult')->name('home.face.result');
+    Route::resource('home', 'HomeController');
+});
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
     Route::resource('admin', 'AdminController');
