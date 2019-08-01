@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Laravolt\Indonesia\ServiceProvider::class
+        Laravolt\Indonesia\ServiceProvider::class,
 
         /*
          * Application Service Providers...

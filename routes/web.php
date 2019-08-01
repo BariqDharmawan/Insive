@@ -8,9 +8,8 @@ Route::view('face-result', 'face-result');
 Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 Route::view('custom/sheet', 'custom.sheet');
 Route::view('contact-us', 'contact')->name('contactus');
-// Route::view('question', 'question');
-Route::get('/questions', 'Home\MainController@question')->name('main.question');
-Route::get('question', 'Home\HomeController@index');
+Route::get('/question', 'Home\MainController@question')->name('main.question');
+Route::post('question/soal/ajax/{id?}', 'Home\MainController@getSoal')->name('main.question.get.soal');
 
 Route::prefix('home')->namespace('Home')->name('home.')->group(function () {
     Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');

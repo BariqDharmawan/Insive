@@ -14,8 +14,6 @@ use Indonesia;
 class MainController extends Controller
 {
     /**
-<<<<<<< HEAD:app/Http/Controllers/Home/MainController.php
-=======
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
@@ -27,7 +25,6 @@ class MainController extends Controller
     }
 
     /**
->>>>>>> b5fb27d219afe707d45da2e229cfed593f01bdcb:app/Http/Controllers/Home/HomeController.php
     * Display face result of the resource.
     *
     * @return \Illuminate\Http\Response
@@ -55,24 +52,43 @@ class MainController extends Controller
     }
 
     /**
-    * Display face result of the resource.
+    * Display question of the resource.
     *
     * @return \Illuminate\Http\Response
     */
     public function question()
     {
-        return view('home.question_page');
+        $data['question'] = Question::findOrfail(1);
+        return view('home.question_page')->with($data);
     }
 
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index()
+    public function getSoal(Request $request, $id)
     {
-        //
+        $option = $request->option_id;
+        $question = Question::findOrfail($id);
+        if($question['status'] == "logic" && $option != null) {
+            $match = ['user_id' => Auth::user()->id, 'question_id' => $id];
+            Answer::updateOrCreate(
+                $match,
+                ['option_id' => $option]
+            );
+        }
+        if($id == 17) {
+            return response()->json([
+            ], 201);
+        }
+        else {
+            $data['question'] = Question::findOrfail(($id+1));
+            if($id == 16) {
+                $data['allCities'] = Indonesia::allProvinces();
+            }
+            return response()->json([
+                'type' => $data['question']->type,
+                'view' => view('home.question_soal_single')->with($data)->render()
+            ], 200);
+        }
     }
+
     
     /**
     * Show the form for creating a new resource.

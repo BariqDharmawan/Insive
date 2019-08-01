@@ -126,7 +126,7 @@ class QuestionSeeder extends Seeder
             'no_question' => 6,
             'question' => "What shows up most often on your plate? (Select all that apply)",
             'type' => 'lifestyle',
-            'category' => 'single',
+            'category' => 'multiple',
             'status' => 'dummy'
         ]);
 
