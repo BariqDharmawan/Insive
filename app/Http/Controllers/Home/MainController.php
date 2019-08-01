@@ -10,18 +10,8 @@ use App\Models\Answer;
 use App\Models\Logic;
 use Auth;
 
-class HomeController extends Controller
+class MainController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index()
-    {
-        //
-    }
-    
     /**
     * Display face result of the resource.
     *
@@ -47,6 +37,26 @@ class HomeController extends Controller
         $data['result'] = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
         // dd($result);
         return view('home.face_result')->with($data);
+    }
+    
+    /**
+    * Display face result of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function question()
+    {
+        return view('home.question_page');
+    }
+
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
+    {
+        //
     }
     
     /**
@@ -115,3 +125,4 @@ class HomeController extends Controller
         //
     }
 }
+

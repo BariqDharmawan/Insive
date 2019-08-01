@@ -175,7 +175,7 @@
                     }
                     else if(xhr.status === 201) {
                         // window.location.replace("http://stackoverflow.com");
-                        window.location.href = "{{route('home.home.face.result')}}";
+                        window.location.href = "{{route('home.main.face.result')}}";
                     }
                 },
                 'error': function (xhr, textStatus, other) {
