@@ -129,14 +129,8 @@ nav li:first-child {
   justify-content: space-between;
   flex-direction: row;
 }
-main, footer {
+aside, main, footer {
   width: 100%;
-}
-aside {
-  width: 30%;
-}
-aside ~ main, aside ~ footer {
-  width: 70%;
 }
 header {
   position: relative;
@@ -153,12 +147,9 @@ header .page-title {
   color: #F6E1B2;
   margin-bottom: 0;
 }
-main {
-  flex-grow: 1;
-}
 footer {
   height: 65px;
-  width: 100%;
+  margin-top: 30px;
   background-color: #181818;
   color: #DFDFDF;
   display: flex;
@@ -415,7 +406,126 @@ footer a {
   font-size: 18px;
 }
 /*end of contact-us-page css*/
+/*question-page css*/
+#question-page nav ~ * {
+  color: #fff;
+}
+#question-page aside {
+  display: flex;
+  flex-direction: row;
+  background-color: #212121;
+  padding: 0 15px;
+  justify-content: space-around;
+  counter-reset: customlistcounter;
+}
+#question-page aside a {
+  color: #4a4a4a;
+  text-transform: uppercase;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  counter-increment: customlistcounter;
+}
+#question-page aside a::before {
+  display: inline-flex;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #4a4a4a;
+  font-weight: bold;
+  content: counter(customlistcounter) " ";
+}
+#question-page aside a.active {
+  color: #F6E1B2;
+  font-weight: bold;
+}
+#question-page aside a.active::before {
+  color: #F6E1B2;
+}
+#question-page aside a img {
+  display: none;
+}
+#question-page .carousel-item {
+  padding: 30px 0;
+  background-color: #212121;
+}
+#question-page .carousel-item h1 {
+  font-size: 45px;
+  margin-bottom: 30px;
+}
+#question-page main .carousel-item li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#question-page main .carousel-item li input {
+  display: none;
+}
+#question-page main .carousel-item li input[type='radio']:checked + label::before {
+  background-color: #fff;
+}
+#question-page main .carousel-item li input[type='checkbox'] + label .bx {
+  position: absolute;
+  left: -27px;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  top: 5px;
+  transition: all 250ms;
+}
+#question-page main .carousel-item li input[type='checkbox']:checked + label .bx {
+  opacity: 1;
+  visibility: visible;
+}
+#question-page main .carousel-item li label {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-size: 24px;
+  text-indent: 35px;
+}
+#question-page main .carousel-item li input + label::before {
+  content: '';
+  background-color: transparent;
+  width: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  border: 1px solid #fff;
+}
+#question-page main .carousel-item li input[type='radio'] + label::before {
+  border-radius: 50%;
+}
+#question-page [class*=carousel-control] {
+  opacity: 1;
+  bottom: 0 !important;
+  top: auto !important;
+  width: auto;
+}
+#question-page .carousel-control-next-icon, .carousel-control-prev-icon {
+  background-image: none !important;
+  background: initial;
+  left: 0;
+}
+#question-page .carousel-control-next-icon .bx, .carousel-control-prev-icon .bx {
+  font-size: 40px;
+}
+/*end of question-page css*/
 @media screen and (min-width: 768px) {
+  aside {
+    width: 30%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  aside ~ main {
+    width: 70%;
+    float: right;
+  }
   #show-menu {
     left: 40px;
   }
@@ -425,9 +535,6 @@ footer a {
     box-shadow: 6px 0px 8px 3px rgba(182,182,182,.25);
     width: 30%;
   }
-  /* nav.menu-visible ~ main, nav.menu-visible ~ footer {
-    width: 70% !important;
-  } */
   header {
     height: 110px;
   }
@@ -483,4 +590,35 @@ footer a {
     margin-right: 10px;
   }
   /*end of catalog-page width more than phone css*/
+  /*question-page width more than phone css*/
+  #question-page aside {
+    padding: 0 45px;
+    height: calc(100vh - 65px - 110px);
+    top: 110px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  #question-page aside a.active::before {
+    background-color: #F6E1B2;
+    color: #363636;
+  }
+  #question-page aside a {
+    margin-bottom: 40px;
+  }
+  #question-page aside a::before {
+    width: 40px;
+    height: 40px;
+    background-color: #E0DACB;
+  }
+  #question-page main {
+    height: calc(100vh - 110px - 65px);
+  }
+  #question-page aside a.active img {
+    filter: grayscale(0);
+  }
+  #question-page aside a img {
+    display: inline-flex;
+    filter: grayscale(100%);
+  }
+  /*end of question-page width more than phone css*/
 }
