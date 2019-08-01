@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('title', 'Pertanyaan')
+@section('css')
+  <style media="screen">
+    .custom-select {
+      background-color: #F6E1B2;
+    }
+  </style>
+@endsection
 @section('content')
   <aside>
     <a href="" class="active"><img src="{{ asset('img/logo/skin.png') }}" class="mr-2" height="150"><span>skin</span></a>
@@ -236,59 +243,175 @@
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>1. Let’s talk about everyday life. What’s your commute like? </h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_tenth" id="qtenth_a_option">
+                <label for="qtenth_a_option">Bike / motorcycle</label>
+              </li>
+              <li>
+                <input type="radio" name="question_tenth" id="qtenth_b_option">
+                <label for="qtenth_b_option">Bus</label>
+              </li>
+              <li>
+                <input type="radio" name="question_tenth" id="qtenth_c_option">
+                <label for="qtenth_c_option">Subway/train</label>
+              </li>
+              <li>
+                <input type="radio" name="question_tenth" id="qtenth_d_option">
+                <label for="qtenth_d_option">Walk</label>
+              </li>
+              <li>
+                <input type="radio" name="question_tenth" id="qtenth_e_option">
+                <label for="qtenth_e_option">Car</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>2. How often do you smoke cigarettes? </h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_eleventh" id="qeleventh_a_option">
+                <label for="qeleventh_a_option">Daily</label>
+              </li>
+              <li>
+                <input type="radio" name="question_eleventh" id="qeleventh_b_option">
+                <label for="qeleventh_b_option">Rarely</label>
+              </li>
+              <li>
+                <input type="radio" name="question_eleventh" id="qeleventh_c_option">
+                <label for="qeleventh_c_option">I’m around smokers</label>
+              </li>
+              <li>
+                <input type="radio" name="question_eleventh" id="qeleventh_d_option">
+                <label for="qeleventh_d_option">I don’t smoke</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>3. How many caffeinated beverages do you drink daily? (Coffee, tea, soda, and energy drinks count)</h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_twelveth" id="qtwelveth_a_option">
+                <label for="qtwelveth_a_option">0-2</label>
+              </li>
+              <li>
+                <input type="radio" name="question_twelveth" id="qtwelveth_b_option">
+                <label for="qtwelveth_b_option">3-4</label>
+              </li>
+              <li>
+                <input type="radio" name="question_twelveth" id="qtwelveth_c_option">
+                <label for="qtwelveth_c_option">5-7</label>
+              </li>
+              <li>
+                <input type="radio" name="question_twelveth" id="qtwelveth_d_option">
+                <label for="qtwelveth_d_option">7+</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>4. How often do you feel overwhelmed by stress?</h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_thirteenth" id="qthirteenth_a_option">
+                <label for="qthirteenth_a_option">Rarely</label>
+              </li>
+              <li>
+                <input type="radio" name="question_thirteenth" id="qthirteenth_b_option">
+                <label for="qthirteenth_b_option">Few times</label>
+              </li>
+              <li>
+                <input type="radio" name="question_thirteenth" id="qthirteenth_c_option">
+                <label for="qthirteenth_c_option">Twice a week</label>
+              </li>
+              <li>
+                <input type="radio" name="question_thirteenth" id="qthirteenth_d_option">
+                <label for="qthirteenth_d_option">All day, literally every day</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>5. How many glasses of water do you drink each day?</h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_fourteenth" id="qfourteenth_a_option">
+                <label for="qfourteenth_a_option">4 or less</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fourteenth" id="qfourteenth_b_option">
+                <label for="qfourteenth_b_option">5 to 7</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fourteenth" id="qfourteenth_c_option">
+                <label for="qfourteenth_c_option">8 to 10</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fourteenth" id="qfourteenth_d_option">
+                <label for="qfourteenth_d_option">11 to 13</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fourteenth" id="qfourteenth_e_option">
+                <label for="qfourteenth_e_option">14 or more</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>6. What shows up most often on your plate? (Select all that apply)</h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_a_option">
+                <label for="qfifteenth_a_option">Cheese</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_b_option">
+                <label for="qfifteenth_b_option">Eggs</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_c_option">
+                <label for="qfifteenth_c_option">Poultry</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_d_option">
+                <label for="qfifteenth_d_option">Fruits & veggies</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_e_option">
+                <label for="qfifteenth_e_option">Grains & breads</label>
+              </li>
+              <li>
+                <input type="radio" name="question_fifteenth" id="qfifteenth_f_option">
+                <label for="qfifteenth_f_option">None of these</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
+            <h1>7. How often do you workout?</h1>
             <ul>
-              <li></li>
-              <li></li>
+              <li>
+                <input type="radio" name="question_sixteenth" id="qsixteenth_a_option">
+                <label for="qsixteenth_a_option">Rarely</label>
+              </li>
+              <li>
+                <input type="radio" name="question_sixteenth" id="qsixteenth_b_option">
+                <label for="qsixteenth_b_option">Few times</label>
+              </li>
+              <li>
+                <input type="radio" name="question_sixteenth" id="qsixteenth_c_option">
+                <label for="qsixteenth_c_option">Twice a week</label>
+              </li>
+              <li>
+                <input type="radio" name="question_sixteenth" id="qsixteenth_d_option">
+                <label for="qsixteenth_d_option">Every day</label>
+              </li>
             </ul>
           </div>
           <div class="carousel-item">
-            <h1></h1>
-            <ul>
-              <li></li>
-              <li></li>
+            <h1>Last! We want detect climate & pollution level in your area! Please insert your specific city! </h1>
+            <select class="custom-select" name="question_seventeenth">
+              <option value="" selected>Jakarta Selatan, DKI Jakarta</option>
+              <option value="">Jakarta Timur, DKI Jakarta</option>
+              <option value="">Jakarta Barat, DKI Jakarta</option>
+            </select>
             </ul>
           </div>
         </div>
@@ -314,9 +437,16 @@
       $(".carousel").carousel({
         interval: false
       });
-
       $(".carousel-control-prev").hide();
       $(".carousel-control-next").click(function(){
+        if ($(".carousel-item:nth-of-type(9)").hasClass("active")) {
+          $("aside a:first-child").removeClass("active");
+          $("aside a:nth-child(2)").addClass("active");
+        }
+        if ($(".carousel-item:nth-of-type(15)").hasClass("active")) {
+          $("aside a:nth-child(2)").removeClass("active");
+          $("aside a:last-child").addClass("active");
+        }
         $(".carousel-control-prev").show();
       });
       $("#pageInsive").on('slid.bs.carousel', function(){
