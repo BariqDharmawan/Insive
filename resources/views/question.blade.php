@@ -407,10 +407,10 @@
           </div>
           <div class="carousel-item">
             <h1>Last! We want detect climate & pollution level in your area! Please insert your specific city! </h1>
-            <select class="custom-select" name="question_seventeenth">
-              <option value="" selected>Jakarta Selatan, DKI Jakarta</option>
-              <option value="">Jakarta Timur, DKI Jakarta</option>
-              <option value="">Jakarta Barat, DKI Jakarta</option>
+            <select class="custom-select" id="city" name="question_seventeenth">
+              @foreach ($allCities as $city)
+                <option>{{ $city->name }}</option>
+              @endforeach
             </select>
             </ul>
           </div>
@@ -443,7 +443,7 @@
           $("aside a:first-child").removeClass("active");
           $("aside a:nth-child(2)").addClass("active");
         }
-        if ($(".carousel-item:nth-of-type(15)").hasClass("active")) {
+        if ($(".carousel-item:nth-of-type(16)").hasClass("active")) {
           $("aside a:nth-child(2)").removeClass("active");
           $("aside a:last-child").addClass("active");
         }
@@ -466,4 +466,8 @@
       });
     });
   </script>
+@endsection
+
+@section('script')
+  <script src="{{ asset('js/jquery-indonesia-regions.js') }}" charset="utf-8"></script>
 @endsection

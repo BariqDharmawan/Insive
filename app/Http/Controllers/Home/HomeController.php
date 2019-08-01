@@ -9,6 +9,7 @@ use App\Models\Option;
 use App\Models\Answer;
 use App\Models\Logic;
 use Auth;
+use Indonesia;
 
 class HomeController extends Controller
 {
@@ -19,9 +20,10 @@ class HomeController extends Controller
     */
     public function index()
     {
-        //
+        $allCities = Indonesia::allProvinces();
+        return view('question', compact('allCities'));
     }
-    
+
     /**
     * Display face result of the resource.
     *
@@ -48,7 +50,7 @@ class HomeController extends Controller
         // dd($result);
         return view('home.face_result')->with($data);
     }
-    
+
     /**
     * Show the form for creating a new resource.
     *
@@ -58,7 +60,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -69,7 +71,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     /**
     * Display the specified resource.
     *
@@ -80,7 +82,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     /**
     * Show the form for editing the specified resource.
     *
@@ -91,7 +93,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     /**
     * Update the specified resource in storage.
     *
@@ -103,7 +105,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     /**
     * Remove the specified resource from storage.
     *
