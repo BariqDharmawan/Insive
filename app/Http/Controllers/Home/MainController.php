@@ -9,10 +9,25 @@ use App\Models\Option;
 use App\Models\Answer;
 use App\Models\Logic;
 use Auth;
+use Indonesia;
 
 class MainController extends Controller
 {
     /**
+<<<<<<< HEAD:app/Http/Controllers/Home/MainController.php
+=======
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
+    {
+        $allCities = Indonesia::allProvinces();
+        return view('question', compact('allCities'));
+    }
+
+    /**
+>>>>>>> b5fb27d219afe707d45da2e229cfed593f01bdcb:app/Http/Controllers/Home/HomeController.php
     * Display face result of the resource.
     *
     * @return \Illuminate\Http\Response
@@ -38,7 +53,7 @@ class MainController extends Controller
         // dd($result);
         return view('home.face_result')->with($data);
     }
-    
+
     /**
     * Display face result of the resource.
     *
@@ -68,7 +83,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -79,7 +94,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Display the specified resource.
     *
@@ -90,7 +105,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Show the form for editing the specified resource.
     *
@@ -101,7 +116,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Update the specified resource in storage.
     *
@@ -113,7 +128,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Remove the specified resource from storage.
     *

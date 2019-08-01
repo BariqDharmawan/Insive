@@ -10,6 +10,7 @@ Route::view('custom/sheet', 'custom.sheet');
 Route::view('contact-us', 'contact')->name('contactus');
 // Route::view('question', 'question');
 Route::get('/questions', 'Home\MainController@question')->name('main.question');
+Route::get('question', 'Home\HomeController@index');
 
 Route::prefix('home')->namespace('Home')->name('home.')->group(function () {
     Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');
