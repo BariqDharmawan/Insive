@@ -16,4 +16,7 @@ $(document).ready(function(){
   if (window.location.pathname == '/catalog/selected') {
     $("body").attr("id", "catalog-selected-page");
   }
+  else if (window.location.href.indexOf('fragrance')) {
+    $("body").attr("id", "custom-fragrance-page");
+  }
 });
