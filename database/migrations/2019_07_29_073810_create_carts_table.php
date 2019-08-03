@@ -15,6 +15,15 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('shipping_id')->unsigned();
+            $table->integer('logic_id')->unsigned();
+            $table->string('cart_code', 100);
+            $table->string('formula_code', 100);
+            $table->integer('total_qty')->default(0);
+            $table->integer('total_price')->default(0);
+            $table->string('tracking_number')->nullable();
+            $table->enum('status', ['unpaid', 'process', 'hold', 'paid']);
             $table->timestamps();
         });
     }

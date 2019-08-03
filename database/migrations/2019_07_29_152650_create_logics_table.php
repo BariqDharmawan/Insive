@@ -18,6 +18,7 @@ class CreateLogicsTable extends Migration
             $table->string('option_3', 255);
             $table->string('option_4', 255);
             $table->string('face_result', 50);
+            $table->string('face_title', 100);
             $table->text('face_description');
             $table->string('special_ingredients', 100);
             $table->string('no_formula', 20);

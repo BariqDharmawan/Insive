@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class QuestionSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+            'name' => 'Admin Tester',
+            'email' => 'admin@insive.com',
+            'address' => '-',
+            'password' => Hash::make('admininsive')
+        ]);
         DB::table('questions')->insert([
             'no_question' => 1,
             'question' => "What is your current age?",

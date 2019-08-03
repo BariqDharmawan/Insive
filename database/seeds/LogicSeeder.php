@@ -14,6 +14,32 @@ class LogicSeeder extends Seeder
         $opt3 = ['Dry or rough', 'Oily all over', 'Excess oil on t-zone', 'Uneven tone', 'Lines and creases', 'All is well'];
         $opt4 = ['Rarely see a spot', 'Few times a month', 'Seems forever', 'All clear here'];
         $face_result = ['Dry', 'Dry', 'Sensitive & acne', 'Dry', 'Oily', 'Acne', 'Acne', 'Oily', 'Oily', 'Acne', 'Acne', 'Oily', 'Unbright', 'Unbright', 'Super black spot & acne', 'Unbright', 'Wrinkle', 'Wrinkle', 'Sensitive wrinkle & acne', 'Wrinkle', 'Normal', 'Normal', 'Acne', 'Normal'];
+        $face_title = [
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!', 
+        'Your acne was very terrible!',
+        'Your acne was very terrible!'
+        ];
         $face_desc = [
             'Dry skin can be itchy, and it may look flaky and bumpy or have red patches. Dehydrated skin lacks water and appears dull or rough.
             It’s better to use moisturizers in the sheet mask. Our formula can lock the hydration to prevent you from dryness.',
@@ -55,6 +81,7 @@ class LogicSeeder extends Seeder
                     'option_3' => $value,
                     'option_4' => $value_2,
                     'face_result' => $face_result[$row],
+                    'face_title' => $face_title[$row],
                     'face_description' => $face_desc[$row],
                     'special_ingredients' => $special[$row],
                     'no_formula' => $formula[$row],
