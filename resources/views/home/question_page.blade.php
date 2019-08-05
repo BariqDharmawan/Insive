@@ -1,7 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Pertanyaan')
 @section('css')
+<link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}">
 <style type="text/css">
+  span.select2-container .select2-results__option {
+    color: #000 !important;
+  }
   #loader-wrapper {
     display: none;
     position: absolute;
@@ -135,6 +139,7 @@
 </main>
 @endsection
 @section('script')
+<script src="{{asset('plugins/select2/select2.full.min.js')}}"></script>
 <script>
   $(document).ready(function(){
   });
@@ -175,6 +180,7 @@
                 $('.logo-question').removeClass('active');
                 $('.logo-question.logo-environment').addClass('active');
               }
+              $('.select2').select2();
             }, 2000);
           }
           else if(xhr.status === 201) {

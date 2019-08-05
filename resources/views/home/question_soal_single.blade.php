@@ -24,9 +24,9 @@
                 </li>
                 @endforeach
                 @elseif ($question->category == 'dropdown')
-                <select class="custom-select select_option_id" id="city">
-                    @foreach ($question->options as $item)
-                    <option value="{{$item->id}}">{{$item->text}}</option>
+                <select class="form-control select2 select_option_id text-black">
+                    @foreach ($allCities as $item)
+                    <option >{{$item['city_name']}}</option>
                     @endforeach
                 </select>
                 @endif

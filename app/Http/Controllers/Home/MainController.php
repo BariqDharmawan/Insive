@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client as GuzzleClient;
 use App\Models\Question;
 use App\Models\Option;
 use App\Models\Answer;
 use App\Models\Logic;
+use App\Models\Fragrance;
+use App\Models\Sheet;
+use App\Models\Pricing;
 use Auth;
 use Indonesia;
 
@@ -23,7 +28,40 @@ class MainController extends Controller
         $allCities = Indonesia::allProvinces();
         return view('question', compact('allCities'));
     }
-
+    
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function fragrance()
+    {
+        $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
+        return view('home.fragrance_page')->with($data);
+    }
+    
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function sheet()
+    {
+        $data['sheet'] = Sheet::where('qty', '>', 0)->get();
+        return view('home.sheet_page')->with($data);
+    }
+    
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function pricing()
+    {
+        $data['pricing'] = Pricing::all();
+        return view('question')->with($data);
+    }
+    
     /**
     * Display face result of the resource.
     *
@@ -36,21 +74,25 @@ class MainController extends Controller
         ->join('options', 'options.id', 'answers.option_id')
         ->where('answers.user_id' , '=', $user_id)
         ->get()->toArray();
-        $option_3;
-        $option_4;
-        foreach ($answers as $key => $value) {
-            if($value['question_id'] == 3) {
-                $option_3 = $value['text'];
+        if(empty($answers)) {
+            return redirect()->route('main.question');
+        } else {
+            $option_3;
+            $option_4;
+            foreach ($answers as $key => $value) {
+                if($value['question_id'] == 3) {
+                    $option_3 = $value['text'];
+                }
+                else if($value['question_id'] == 4){
+                    $option_4 = $value['text'];
+                }
             }
-            else if($value['question_id'] == 4){
-                $option_4 = $value['text'];
-            }
+            $data['result'] = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
+            // dd($result);
+            return view('home.face_result')->with($data);
         }
-        $data['result'] = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
-        // dd($result);
-        return view('home.face_result')->with($data);
     }
-
+    
     /**
     * Display question of the resource.
     *
@@ -61,7 +103,7 @@ class MainController extends Controller
         $data['question'] = Question::findOrfail(1);
         return view('home.question_page')->with($data);
     }
-
+    
     public function getSoal(Request $request, $id)
     {
         $option = $request->option_id;
@@ -80,7 +122,17 @@ class MainController extends Controller
         else {
             $data['question'] = Question::findOrfail(($id+1));
             if($id == 16) {
-                $data['allCities'] = Indonesia::allProvinces();
+                $client = new GuzzleClient([
+                    'headers' => ['key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
+                ]);
+                $request = $client->get('https://api.rajaongkir.com/starter/city');
+                $response = json_decode($request->getBody()->getContents(), true);
+                if($response['rajaongkir']['status']['code'] === 200) {
+                    $data['allCities'] = $response['rajaongkir']['results'];
+                }
+                else {
+                    $data['allCities'] = Indonesia::allProvinces();
+                }
             }
             return response()->json([
                 'type' => $data['question']->type,
@@ -88,7 +140,7 @@ class MainController extends Controller
             ], 200);
         }
     }
-
+    
     
     /**
     * Show the form for creating a new resource.
@@ -97,9 +149,17 @@ class MainController extends Controller
     */
     public function create()
     {
-        //
+        $client = new GuzzleClient([
+            'headers' => ['key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
+        ]);
+        $request = $client->get('https://api.rajaongkir.com/starter/city');
+        // $response = $request->getBody()->getContents();
+        $response = json_decode($request->getBody()->getContents(), true);
+        if($response['rajaongkir']['status']['code'] === 200) {
+            dd($$response['rajaongkir']['results']);
+        }
     }
-
+    
     /**
     * Store a newly created resource in storage.
     *
@@ -110,7 +170,7 @@ class MainController extends Controller
     {
         //
     }
-
+    
     /**
     * Display the specified resource.
     *
@@ -121,7 +181,7 @@ class MainController extends Controller
     {
         //
     }
-
+    
     /**
     * Show the form for editing the specified resource.
     *
@@ -132,7 +192,7 @@ class MainController extends Controller
     {
         //
     }
-
+    
     /**
     * Update the specified resource in storage.
     *
@@ -144,7 +204,7 @@ class MainController extends Controller
     {
         //
     }
-
+    
     /**
     * Remove the specified resource from storage.
     *
@@ -154,6 +214,12 @@ class MainController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect(url('/'));
     }
 }
 

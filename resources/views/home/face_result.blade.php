@@ -30,7 +30,7 @@
     </div>
     <div class="row py-5 justify-content-center justify-content-md-end align-items-center">
       <div class="col-12 col-md-6 row mx-0 justify-content-center">
-        <a href="javascript:void(0)" class="btn bg--cream text-capitalize">
+        <a href="{{ route('main.fragrance') }}" class="btn bg--cream text-capitalize">
           Choose your sheet & fragrance! <i class='bx bx-chevron-right' ></i>
         </a>
       </div>

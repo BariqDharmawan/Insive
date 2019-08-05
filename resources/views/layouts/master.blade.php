@@ -9,7 +9,7 @@
     @yield('css') {{-- for css on each page --}}
     <title>Insive | @yield('title')</title>
   </head>
-  <body>
+  <body id="@yield('body-id')">
     <nav>
       <ul>
         <li>

@@ -557,8 +557,8 @@ footer a {
     width: 45px;
     height: 45px;
   }
-  nav {
-  }
+  /* nav {
+  } */
   nav.menu-visible {
     box-shadow: 6px 0px 8px 3px rgba(182,182,182,.25);
     width: 30%;
