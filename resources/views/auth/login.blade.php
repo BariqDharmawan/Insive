@@ -17,7 +17,7 @@
       <section class="login">
         <h1>Sign In with your account</h1>
         <p>To interact with our shop. If you don't have an account, <span>Make your account!</span></p>
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ url('login') }}" method="post">
           @csrf
           <input type="email" placeholder="Input your email" name="email" autocomplete="email" pattern=".{8,}" minlength="8" title="minimal characters 8" autofocus required>
           <input type="password" placeholder="Input your password" name="password" pattern=".{8,}" minlength="8" title="minimal characters 8" required>
@@ -37,7 +37,7 @@
         <p>For get our bennefit. If you does have an account, <span>Sign in with my account!</span></p>
         <form action="{{ route('register') }}" method="post">
           @csrf
-          <input type="text" name="name" placeholder="What's You Full Name">
+          <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name">
           <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="Create your email" pattern=".{8,}"
           minlength="8" title="minimal characters 8" required autofocus>
           @error('email')
