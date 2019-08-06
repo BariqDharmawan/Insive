@@ -528,12 +528,12 @@ footer a {
   background-color: #121212;
 }
 #custom-fragrance-page .row .row img {
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   margin-right: auto;
   margin-left: auto;
 }
-#custom-fragrance-page .row .row figure:last-child img {
+#custom-fragrance-page .unscented-fragrance {
   background-color: #F6E1B2;
   border-radius: 50%;
 }

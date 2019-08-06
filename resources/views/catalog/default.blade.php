@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Our Catalog')
 @section('page-title', 'OUR CATALOG')
+@section('body-id', 'catalog-page')
 @section('content')
   <main>
     <div class="container">

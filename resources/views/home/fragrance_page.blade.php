@@ -5,7 +5,8 @@
 @section('content')
 <main>
     <div class="container py-5">
-        <form action="" method="post">
+        <form action="{{ route('main.fragrance.store') }}" method="post">
+            @csrf
             <div class="row">
                 <div class="col-12 col-md-4">
                     <img src="{{ asset('img/product.png') }}" height="350" class="d-block mx-auto" alt="Product">
@@ -16,9 +17,9 @@
                     <div class="row mx-0 px-2 justify-content-between">
                         @foreach ($fragrance as $item)
                         <figure class="fragrance text-center col-6 py-3 col-md-auto  {{($item->fragrance_name == 'Unscented')? 'selected' : ''}}">
-                            <img src="{{ asset('img/fragrance/'.$item->fragrance_img) }}" height="100" width="100" alt="Fragrance Item">
+                            <img src="{{ asset('img/fragrance/'.$item->fragrance_img) }}" height="100" width="100" alt="Fragrance Item" class="{{($item->fragrance_name == 'Unscented')? 'unscented-fragrance' : ''}}">
                             <figcaption class="text--cream">
-                                <input type="checkbox" name="fragrance[]" class="d-none" value="{{$item->id}}" id="fragrance_{{Str::slug($item->fragrance_name, '_')}}" {{($item->fragrance_name == "Unscented")? "checked" : ""}}>
+                                <input type="checkbox" name="fragrance[]" class="d-none" value="{{$item->id}}" id="fragrance_{{Str::slug($item->fragrance_name, '_')}}" {{($item->fragrance_name == "Unscented")? "checked='checked'" : ""}}>
                                 <label class="m-0" for="fragrance_{{Str::slug($item->fragrance_name, '_')}}">{{$item->fragrance_name}}</label>
                             </figcaption>
                         </figure>

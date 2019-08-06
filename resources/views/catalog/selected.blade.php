@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Your Selected')
 @section('page-title', 'CATALOG SELECTED')
+@section('body-id', 'catalog-selected-page')
 @section('content')
   <main>
     <div class="container py-5">
