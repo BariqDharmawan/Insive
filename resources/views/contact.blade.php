@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Contact Us')
 @section('page-title', 'Contact Us')
+@section('body-id', 'contact-us-page')
 @section('css')
   <style media="screen">
     footer {

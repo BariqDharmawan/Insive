@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Pertanyaan')
+@section('body-id', 'question-page')
 @section('css')
 <link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}">
 <style type="text/css">

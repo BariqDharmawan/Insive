@@ -12,7 +12,10 @@ Route::view('contact-us', 'contact')->name('contactus');
 Route::get('/force/logout', 'Home\MainController@logout');
 Route::namespace('Home')->middleware('auth')->group(function () {
 Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
+Route::post('custom/fragrance', 'MainController@storeFragrance')->name('main.fragrance.store');
 Route::get('custom/sheet', 'MainController@sheet')->name('main.sheet');
+Route::post('custom/sheet', 'MainController@storeSheet')->name('main.sheet.store');
+Route::get('/custom/sheet-fragrance', 'MainController@sheetAndFragrance');
 Route::get('/pricing', 'MainController@pricing')->name('main.pricing');
 Route::get('/question', 'MainController@question')->name('main.question');
 Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');

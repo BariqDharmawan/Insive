@@ -14,7 +14,4 @@ $(document).ready(function(){
   else if (window.location.href.indexOf('catalog/selected') > -1) {
     $("body").attr("id", "catalog-selected-page");
   }
-  else {
-    $("body").attr("id", window.location.pathname.replace('/', '') + '-page');
-  }
 });
