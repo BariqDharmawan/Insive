@@ -31,7 +31,7 @@
     @yield('content')
     <footer>
       <div class="container text-center">
-        &copy; {{ date('Y') }} Insive | All Rights Reserved
+        &copy; {{ date('Y') }} Insive | All Rights Reserved.
       </div>
     </footer>
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
