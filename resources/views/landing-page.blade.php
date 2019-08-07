@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Landing Page')
+@section('id', 'landing-page')
 @section('content')
 <main>
   <div class="container">

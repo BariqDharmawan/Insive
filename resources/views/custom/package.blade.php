@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Custom Package')
+@section('body-id', 'custom-package-page')
 @section('page-title', 'Custom Your Own')
 @section('content')
   <main>

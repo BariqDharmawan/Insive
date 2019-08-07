@@ -73,6 +73,16 @@ body {
 .text--cream {
   color: #F6E1B2;
 }
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: #F6E1B2;
+  background-color: transparent;
+  transition: background-color 999999999s ease-in-out 0s;
+}
+textarea {
+  min-height: 200px;
+}
 a:hover {
   text-decoration: none;
 }
@@ -603,6 +613,22 @@ footer a {
   transform: translateY(-50%);
 }
 /*end of cart-page css*/
+/*shipping-address-page css*/
+#shipping-address-page .form-control {
+  background-color: transparent;
+  color: #F6E1B2;
+  border-color: #F6E1B2;
+}
+#shipping-address-page .form-control::placeholder {
+  color: #585858;
+}
+#shipping-address-page .form-control:focus::placeholder {
+  color: rgba(246,225,178, 0.4);
+}
+#shipping-address-page .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(246,225,178,.09) inset;
+}
+/*end of shipping-address-page*/
 @media screen and (min-width: 768px) {
   aside {
     width: 30%;
