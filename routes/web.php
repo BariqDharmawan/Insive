@@ -7,7 +7,7 @@ Route::view('face-result', 'face-result');
 Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 // Route::view('custom/sheet', 'custom.sheet');
 Route::view('contact-us', 'contact')->name('contactus');
-// Route::view('custom/fragrance', 'custom.fragrance');
+Route::view('cart', 'cart');
 Route::view('custom/package', 'custom.package');
 Route::get('/force/logout', 'Home\MainController@logout');
 Route::namespace('Home')->middleware('auth')->group(function () {

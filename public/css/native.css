@@ -90,6 +90,50 @@ a:hover {
   margin-bottom: 10px;
   font-size: 18px;
 }
+.product__action {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product__action input {
+  background-color: transparent;
+  border: 1px solid #F6E1B2;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  transition: all 250ms;
+  color: #F6E1B2;
+}
+.product__action input:focus {
+  border-color: #E6D1A2 !important;
+  box-shadow: 0 0 0 0.2rem rgba(230,209,162,.27) inset;
+}
+.product__action input[type=number]::-webkit-inner-spin-button,
+.product__action input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}
+.product__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  color: #F6E1B2;
+  border: 1px solid transparent;
+  width: 40px;
+  transition: all 250ms;
+}
+.product__button:hover {
+  background-color: #F6E1B2;
+}
+.product__button:hover .bx {
+  color: #212121;
+}
+.product__button:active {
+  background-color: #DDC797;
+}
 nav {
   z-index: 3;
   position: fixed;
@@ -251,50 +295,6 @@ footer a {
 }
 /*end of landing-page css*/
 /*catalog-page css*/
-#catalog-page .product__price {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#catalog-page .product__price input {
-  background-color: transparent;
-  border: 1px solid #F6E1B2;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  transition: all 250ms;
-  color: #F6E1B2;
-}
-#catalog-page .product__price input:focus {
-  border-color: #E6D1A2 !important;
-  box-shadow: 0 0 0 0.2rem rgba(230,209,162,.27) inset;
-}
-#catalog-page .product__price input[type=number]::-webkit-inner-spin-button,
-#catalog-page .product__price input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-  margin: 0;
-}
-#catalog-page .product__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  color: #F6E1B2;
-  border: 1px solid transparent;
-  width: 40px;
-  transition: all 250ms;
-}
-#catalog-page .product__button:hover {
-  background-color: #F6E1B2;
-}
-#catalog-page .product__button:hover .bx {
-  color: #212121;
-}
-#catalog-page .product__button:active {
-  background-color: #DDC797;
-}
 #catalog-page .row:last-of-type .btn {
   background-color: #F6E1B2;
   transition: all 250ms;
@@ -561,6 +561,48 @@ footer a {
   color: #d06526;
 }
 /*end of custom-package-page*/
+/*cart-page css*/
+#cart-page .product__action {
+  justify-content: flex-start;
+}
+#cart-page select {
+  background-color: transparent;
+  border: 1px solid #F6E1B2;
+  color: #F6E1B2;
+  cursor: pointer;
+  background-image: none;
+}
+#cart-page select:hover {
+  background-color: #181818;
+}
+#cart-page select:focus {
+  box-shadow: none;
+}
+#cart-page .product__action li {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+#cart-page .product__action li option {
+  background-color: #212121;
+}
+#cart-page .product__action li input {
+  order: -1;
+}
+#cart-page .product__action li .product__button {
+  border: 1px solid #F6E1B2;
+}
+#cart-page .product__action li .product__button--decrease + div {
+  margin: 0 20px;
+}
+#cart-page .product__action li .product__button--decrease ~ div .bx {
+  position: absolute;
+  right: .75rem;
+  top: 50%;
+  color: #F6E1B2;
+  transform: translateY(-50%);
+}
+/*end of cart-page css*/
 @media screen and (min-width: 768px) {
   aside {
     width: 30%;
@@ -591,6 +633,10 @@ footer a {
   }
   header .page-title {
     font-size: 35px;
+  }
+  .product__action input {
+    order: -1;
+    margin-right: 15px;
   }
   /*landing-page width more than phone css*/
   #landing-page main {
@@ -633,12 +679,6 @@ footer a {
   #landing-page .recommend-link a:hover::after {
     background-color: #F6E1B2;
     width: 80%;
-  }
-  /*end of landing-page width more than phone css*/
-  /*catalog-page width more than phone css*/
-  #catalog-page .product__price input {
-    order: -1;
-    margin-right: 10px;
   }
   /*end of catalog-page width more than phone css*/
   /*question-page width more than phone css*/
