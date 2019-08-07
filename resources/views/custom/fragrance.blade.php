@@ -33,10 +33,10 @@
                 <label class="m-0" for="fragrance_coffee">Coffee</label>
               </figcaption>
             </figure>
-            <figure class="fragrance text-center col-6 py-3 col-md-auto selected">
+            <figure class="fragrance text-center col-6 py-3 col-md-auto">
               <img src="{{ asset('img/fragrance/Unscented.png') }}" height="100" width="100" alt="Fragrance Item">
               <figcaption class="text--cream">
-                <input type="radio" name="fragrance" class="d-none" id="fragrance_unscented" checked>
+                <input type="radio" name="fragrance" class="d-none" id="fragrance_unscented">
                 <label class="m-0" for="fragrance_unscented">Unscented</label>
               </figcaption>
             </figure>
@@ -54,7 +54,8 @@
     $(document).ready(function() {
       $(".fragrance").click(function() {
         //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
-        $(this).addClass("selected").siblings().removeClass("selected");
+        $(this).addClass("selected");
+        $(this).siblings().removeClass("selected");
         //saat fragrance di klik, trigger input di dlm nya jd checked
         $(this).children("figcaption").find("input[type='radio']").prop("checked", true);
       });

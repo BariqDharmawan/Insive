@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <figure class="result mb-5 mb-md-0">
-            <img height="350" src="{{ asset('img/muka/skin_acne.png') }}" alt="Hasil Muka">
+            <img height="350" class="d-block mx-auto" src="{{ asset('img/muka/skin_acne.png') }}" alt="Hasil Muka">
             <figcaption class="result__caption text-light">
               <p class="text--cream">Your acne was very terrible!</p>
               <p class="mb-0">

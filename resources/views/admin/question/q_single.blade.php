@@ -22,11 +22,11 @@
         border-radius: 50%;
         border: 5px solid transparent;
         border-top-color: #F6E1B2;
-        
+
         -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
         animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
     }
-    
+
     #loader:before {
         content: "";
         position: absolute;
@@ -37,11 +37,11 @@
         border-radius: 50%;
         border: 5px solid transparent;
         border-top-color: #FEC66E;
-        
+
         -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
         animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
     }
-    
+
     #loader:after {
         content: "";
         position: absolute;
@@ -52,13 +52,13 @@
         border-radius: 50%;
         border: 5px solid transparent;
         border-top-color: #C7763E;
-        
+
         -webkit-animation: spin 1s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
         animation: spin 1s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
     }
-    
+
     @-webkit-keyframes spin {
-        0%   { 
+        0%   {
             -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
             -ms-transform: rotate(0deg);  /* IE 9 */
             transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
@@ -70,7 +70,7 @@
         }
     }
     @keyframes spin {
-        0%   { 
+        0%   {
             -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
             -ms-transform: rotate(0deg);  /* IE 9 */
             transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
@@ -87,7 +87,7 @@
 @section ('title-body', 'Manage')
 
 @section('content')
-<div class="col-md-8 mx-auto">
+<div class="col-lg-8 mx-auto">
     <div class="card" id="containerSoal">
         <div id="loader-wrapper">
             <div id="loader"></div>
@@ -192,7 +192,7 @@
                         $('#loader-wrapper').hide();
                     }, 2000);
                 }
-            }); 
+            });
         }
     });
 </script>

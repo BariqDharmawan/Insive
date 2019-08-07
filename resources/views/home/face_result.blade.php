@@ -9,7 +9,7 @@
       <div class="col-12 col-md-6">
         <figure class="result mb-5 mb-md-0">
           <div class="nav justify-content-center">
-            <img height="350" src="{{ asset('img/muka/'.$result->face_icon) }}" alt="Hasil Muka">
+            <img height="350" class="d-block mx-auto" src="{{ asset('img/muka/'.$result->face_icon) }}" alt="Hasil Muka">
           </div>
           <figcaption class="result__caption text-light">
             <h4 class="text--cream text-center"><b>{{$result->face_title}}</b></h4>

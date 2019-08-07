@@ -7,8 +7,4 @@ $(document).ready(function(){
     e.preventDefault();
     $("nav").removeClass("menu-visible");
   });
-
-  if (window.location.pathname === '/') {
-    $("body").attr("id", "landing-page");
-  }
 });
