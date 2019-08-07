@@ -21,8 +21,8 @@
                                 <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" alt="Fragrance Item" width="80" height="80">
                               </div>
                             <figcaption class="text--cream">
-                                <input type="checkbox" name="sheet[]" class="d-none" value="{{$item->id}}" id="sheet_{{Str::slug($item->sheet_name, '_')}}" {{($key == 0)? "checked='checked'" : ""}}>
-                                <label class="m-0" for="sheet_{{Str::slug($item->sheet_name, '_')}}">{{$item->sheet_name}}</label>
+                                <input type="checkbox" name="sheet[]" class="d-none" value="{{$item->id}}" id="sheet_{{Str::slug($item->sheet_name, '_')}}" {{($key == 0)? 'checked="checked"' : ''}}>
+                                <label class="m-0">{{$item->sheet_name}}</label>
                             </figcaption>
                         </figure>
                         @endforeach

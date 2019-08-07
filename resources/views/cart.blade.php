@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Your Cart')
 @section('page-title', 'Your Cart')
+@section('body-id', 'cart-page')
 @section('content')
   <main>
     <div class="container py-5">

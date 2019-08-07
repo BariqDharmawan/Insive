@@ -25,6 +25,7 @@ Route::namespace('Home')->middleware('auth')->group(function () {
 
 Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->group(function () {
   Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');
+  Route::resource('cart', 'CartController');
   Route::resource('main', 'MainController');
 });
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {

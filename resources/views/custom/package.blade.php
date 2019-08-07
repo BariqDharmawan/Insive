@@ -14,24 +14,24 @@
           <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">Package:</p>
           <div class="row mx-0 px-2 justify-content-between">
             <figure class="fragrance text-center col-6 py-3 col-lg-auto">
-              <img src="{{ asset('img/package/trial.png') }}" height="100" width="100" alt="Fragrance Item">
+              <img src="{{ asset('img/package/trial.png') }}" height="100" width="100" alt="Trial">
               <figcaption class="text--cream">
-                <input type="radio" name="fragrance" class="d-none" id="fragrance_rose">
-                <label class="m-0" for="fragrance_rose"><var>1-2 pcs</var> (Rp 29,900)​</label>
+                <input type="radio" name="fragrance" class="d-none" id="pricing_trial">
+                <label class="m-0" for="pricing_trial"><var>1-2 pcs</var> (Rp 29,900)​</label>
               </figcaption>
             </figure>
             <figure class="fragrance text-center col-6 py-3 col-lg-auto">
               <h4 class="text-center text--cream">Medium <small class="d-block">Package</small></h4>
               <figcaption class="text--cream">
-                <input type="radio" name="fragrance" class="d-none" id="fragrance_strawberry">
-                <label class="m-0" for="fragrance_strawberry"><var>3-6 pcs</var> ​<del>(Rp 29,900)</del> (Rp 25,000)​</label>
+                <input type="radio" name="fragrance" class="d-none" id="pricing_medium">
+                <label class="m-0" for="pricing_medium"><var>3-6 pcs</var> ​<del>(Rp 29,900)</del> (Rp 25,000)​</label>
               </figcaption>
             </figure>
             <figure class="fragrance text-center col-6 py-3 col-lg-auto">
               <h4 class="text-center text--cream">Large <small class="d-block">Package</small></h4>
               <figcaption class="text--cream">
-                <input type="radio" name="fragrance" class="d-none" id="fragrance_coffee">
-                <label class="m-0" for="fragrance_coffee"><var> > 7pcs</var> <del>(Rp 29,900)</del> (Rp 22,000)​</label>
+                <input type="radio" name="fragrance" class="d-none" id="pricing_large">
+                <label class="m-0" for="pricing_large"><var> > 7pcs</var> <del>(Rp 29,900)</del> (Rp 22,000)​</label>
               </figcaption>
             </figure>
           </div>
