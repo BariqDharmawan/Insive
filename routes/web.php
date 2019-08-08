@@ -7,6 +7,7 @@ Route::view('face-result', 'face-result');
 Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 Route::view('contact-us', 'contact')->name('contactus');
 Route::view('cart', 'cart');
+Route::view('payment', 'payment');
 Route::view('thank-you', 'thanks');
 Route::view('fill-address', 'shipping-address');
 Route::view('custom/package', 'custom.package');
