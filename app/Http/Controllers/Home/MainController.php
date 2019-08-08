@@ -97,8 +97,8 @@ class MainController extends Controller
     */
     public function pricing()
     {
-        $data['pricing'] = Pricing::all();
-        return view('question')->with($data);
+        $data['price'] = Pricing::all();
+        return view('home.pricing_page')->with($data);
     }
     
     /**

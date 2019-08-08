@@ -18,8 +18,9 @@ Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('custom/sheet', 'MainController@sheet')->name('main.sheet');
   Route::post('custom/sheet', 'MainController@storeSheet')->name('main.sheet.store');
   Route::get('/custom/sheet-fragrance', 'MainController@sheetAndFragrance');
-  Route::get('/pricing', 'MainController@pricing')->name('main.pricing');
+  Route::get('/custom/packages', 'MainController@pricing')->name('main.pricing');
   Route::get('/question', 'MainController@question')->name('main.question');
+  Route::get('/address/user', 'CartController@indexShipping')->name('cart.fill.address');
   Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
 

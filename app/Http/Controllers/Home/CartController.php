@@ -37,7 +37,29 @@ class CartController extends Controller
         }
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
+        $data['price'] = Pricing::all();
         return view('home.cart_page')->with($data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexShipping()
+    {
+        $client = new GuzzleClient([
+            'headers' => ['key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
+        ]);
+        $request = $client->get('https://api.rajaongkir.com/starter/city');
+        $response = json_decode($request->getBody()->getContents(), true);
+        if($response['rajaongkir']['status']['code'] === 200) {
+            $data['allCities'] = $response['rajaongkir']['results'];
+        }
+        else {
+            $data['allCities'] = Indonesia::allProvinces();
+        }
+        return view('home.shipping_page')->with($data);
     }
 
     /**
@@ -71,7 +93,7 @@ class CartController extends Controller
                 CustomProduct::where('id', $value)->delete();
             }
         }
-        return redirect(url('fill-address'));
+        return redirect(url('address/user'));
     }
 
     /**
