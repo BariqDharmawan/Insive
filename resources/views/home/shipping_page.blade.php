@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('title', 'shipping address')
 @section('page-title', 'shipping address')
+@section('css')
+<link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}">
+<style type="text/css">
+    span.select2-container .select2-results__option {
+        color: #000 !important;
+    }
+</style>
+@endsection
 @section('body-id', 'shipping-address-page')
 @section('content')
 <main>
@@ -31,10 +39,10 @@
                             name="customer_phone" placeholder="Please Fill With Your Active Number" required>
                         </div>
                     </div>
-                    <div class="form-group form-row" id="cart-page">
+                    <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream">City:​​</label>
                         <div class="col-12 col-lg-10">
-                            <select class="custom-select" style="transition: none !important;" required>
+                            <select class="form-control select2" required>
                                 @foreach ($allCities as $item)
                                 <option value="{{$item['city_name']}}">{{$item['city_name']}}</option>
                                 @endforeach
@@ -56,4 +64,12 @@
         </div>
     </div>
 </main>
+@endsection
+@section('script')
+<script src="{{asset('plugins/select2/select2.full.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2(); 
+    });
+</script>
 @endsection

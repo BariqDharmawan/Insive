@@ -25,6 +25,14 @@
         </li>
         <li class="nav-header text-uppercase">Menu</li>
         <li class="nav-item">
+          <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ (Request::is('admin/pricing'))? 'active' : '' }}">
+            <i class="nav-icon fa fa-credit-card"></i>
+            <p>
+              Pricing
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('admin.question.index') }}" class="nav-link {{ (Request::is('admin/question'))? 'active' : '' }}">
             <i class="nav-icon fa fa-question"></i>
             <p>

@@ -17,7 +17,6 @@
 </div>
 @endif
 <div class="col-12">
-    <p>{{Auth::user()}}</p>
 </div>
 @endsection
 @section('script')

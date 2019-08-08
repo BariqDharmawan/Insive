@@ -32,6 +32,7 @@ Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->gro
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
   Route::resource('admin', 'AdminController');
+  Route::resource('pricing', 'PricingController');
   Route::resource('cart', 'CartController');
 
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
