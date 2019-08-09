@@ -25,11 +25,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #F6E1B2;
-    
+
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   #loader:before {
     content: "";
     position: absolute;
@@ -40,11 +40,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #FEC66E;
-    
+
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   #loader:after {
     content: "";
     position: absolute;
@@ -55,13 +55,13 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #C7763E;
-    
+
     -webkit-animation: spin 1s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   @-webkit-keyframes spin {
-    0%   { 
+    0%   {
       -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
       -ms-transform: rotate(0deg);  /* IE 9 */
       transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
@@ -73,7 +73,7 @@
     }
   }
   @keyframes spin {
-    0%   { 
+    0%   {
       -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
       -ms-transform: rotate(0deg);  /* IE 9 */
       transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
@@ -193,7 +193,7 @@
           console.log(xhr.status);
           var err = eval("(" + xhr.responseText + ")");
           console.log(xhr.responseText);
-          
+
           if(xhr.status === 406) {
             alert('You must select first!');
             $('#errorMsg').show();
@@ -204,7 +204,7 @@
             $('#loader-wrapper').hide();
           }, 2000);
         }
-      }); 
+      });
     }
   });
 </script>

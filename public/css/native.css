@@ -67,6 +67,11 @@ body {
   align-items: center;
   transition: background-color 250ms;
 }
+.custom-select {
+  background-color: transparent;
+  border-color: #F6E1B2;
+  color: #F6E1B2;
+}
 .bg--cream {
   background-color: #F6E1B2;
 }
