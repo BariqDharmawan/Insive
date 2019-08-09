@@ -22,12 +22,14 @@ Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('/custom/packages', 'MainController@pricing')->name('main.pricing');
   Route::get('/question', 'MainController@question')->name('main.question');
   Route::get('/address/user', 'CartController@indexShipping')->name('cart.fill.address');
+  Route::get('/custom/payment', 'CartController@indexPayment')->name('cart.custom.payment');
   Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
 
 Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->group(function () {
   Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');
   Route::resource('cart', 'CartController');
+  Route::resource('shipping', 'ShippingController');
   Route::resource('main', 'MainController');
 });
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {

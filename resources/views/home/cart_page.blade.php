@@ -94,7 +94,7 @@
         </div>
         <div class="row justify-content-center justify-content-lg-end py-5">
             <button type="submit" form="nextCart" class="btn bg--cream">
-                <b>Next, </b> choose your mask type​ <i class='bx bx-caret-right'></i>
+                <b>Next, </b> shipping address​ <i class='bx bx-caret-right'></i>
             </button>
         </div>
     </div>

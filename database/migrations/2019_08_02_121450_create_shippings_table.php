@@ -20,7 +20,9 @@ class CreateShippingsTable extends Migration
             $table->string('email');
             $table->string('phone', 50);
             $table->string('city');
+            $table->integer('city_id')->unsigned();
             $table->text('address');
+            $table->enum('status', ['unactive', 'active'])->default('unactive');
             $table->timestamps();
         });
     }

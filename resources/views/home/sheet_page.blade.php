@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="row justify-content-center justify-content-md-end py-5">
-                <button type="submit" class="btn bg--cream"><b>Next</b>, Go to cart <i class='bx bx-caret-right'></i></button>
+                <button type="submit" class="btn bg--cream"><b>Next</b>, Go to fragrance <i class='bx bx-caret-right'></i></button>
             </div>
         </form>
     </div>

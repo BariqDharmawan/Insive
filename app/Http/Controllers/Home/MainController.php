@@ -84,10 +84,10 @@ class MainController extends Controller
     */
     public function sheetAndFragrance()
     {
-        $user_id = Auth::user()->id;
-        $cart_id = Cart::where([['user_id', '=', $user_id], ['status', '=', 'waiting']])->firstOrFail()->id;
-        $data['product'] = CustomProduct::where('cart_id', '=', $cart_id)->get();
-        return view('home.sheet_and_fragrance_page')->with($data);
+        // $user_id = Auth::user()->id;
+        // $cart_id = Cart::where([['user_id', '=', $user_id], ['status', '=', 'waiting']])->firstOrFail()->id;
+        // $data['product'] = CustomProduct::where('cart_id', '=', $cart_id)->get();
+        // return view('home.sheet_and_fragrance_page')->with($data);
     }
     
     /**
@@ -164,8 +164,8 @@ class MainController extends Controller
                 $client = new GuzzleClient([
                     'headers' => ['key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
                     ]);
-                    $request = $client->get('https://api.rajaongkir.com/starter/city');
-                    $response = json_decode($request->getBody()->getContents(), true);
+                    $requester = $client->get('https://api.rajaongkir.com/starter/city');
+                    $response = json_decode($requester->getBody()->getContents(), true);
                     if($response['rajaongkir']['status']['code'] === 200) {
                         $data['allCities'] = $response['rajaongkir']['results'];
                     }

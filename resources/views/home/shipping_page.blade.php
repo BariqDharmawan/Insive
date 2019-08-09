@@ -19,7 +19,8 @@
             </div>
             <div class="col">
                 <p class="bg--cream mt-3 mb-5 py-1 px-2 d-lg-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
-                <form action="index.html" method="post">
+                <form action="{{route('home.shipping.store')}}" method="post">
+                    @csrf
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="fullname">Name:​</label>
                         <div class="col-12 col-lg-10">
@@ -42,9 +43,9 @@
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream">City:​​</label>
                         <div class="col-12 col-lg-10">
-                            <select class="form-control select2" required>
+                            <select class="form-control select2" name="customer_city" required>
                                 @foreach ($allCities as $item)
-                                <option value="{{$item['city_name']}}">{{$item['city_name']}}</option>
+                                <option value="{{$item['city_id']}}">{{$item['city_name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -52,7 +53,7 @@
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="address">Address:​​</label>
                         <div class="col-12 col-lg-10">
-                            <textarea class="form-control" name="adcustomer_address" id="address"
+                            <textarea class="form-control" name="customer_address" id="address"
                             rows="8" placeholder="Please Fill Your Address" required></textarea>
                         </div>
                     </div>
