@@ -11,7 +11,7 @@
         </div>
         <div class="col-12 col-md-8">
           <form action="index.html" method="post">
-            <p class="bg--cream my-4 my-md-2 py-1 px-2 d-md-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
+            <p class="bg--cream my-4 my-md-2 py-1 px-2 d-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
             <p class="text--cream px-2 px-md-0 mb-5 my-md-4">Total Payment:​</p>
             <div class="form-group form-row">
               <label class="text--cream col-auto col-form-label">3 Days Package = </label>
@@ -43,7 +43,7 @@
           </form>
         </div>
       </div>
-      <div class="row justify-content-end mx-0">
+      <div class="row justify-content-center justify-content-lg-end mx-0">
         <button type="submit" class="btn bg--cream float-right">Choose your payment method​</button>
       </div>
     </div>
