@@ -97,8 +97,8 @@ class MainController extends Controller
     */
     public function pricing()
     {
-        $data['pricing'] = Pricing::all();
-        return view('question')->with($data);
+        $data['price'] = Pricing::all();
+        return view('home.pricing_page')->with($data);
     }
     
     /**
@@ -256,7 +256,7 @@ class MainController extends Controller
                         CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$i]->sheet_id]])
                                     ->update(['fragrance_id' => ($i <= ($count_fragrance-1))? $fragrance[$i] : last($fragrance)]);
                     }
-                    return redirect(url('custom/sheet-fragrance'));
+                    return redirect(url('/home/cart'));
                 } elseif($count_sheet <= $count_fragrance) {
                     for ($j=0; $j < $count_fragrance; $j++) {
                         if($j <= ($count_sheet-1)) {
@@ -266,7 +266,7 @@ class MainController extends Controller
                             CustomProduct::create(['cart_id' => $cart_id, 'sheet_id' => $last_sheet_id, 'fragrance_id' => $fragrance[$j], 'qty' => 1, 'created_at' => $date_now, 'updated_at' => $date_now]);
                         }
                     }
-                    return redirect(url('custom/sheet-fragrance'));
+                    return redirect(url('/home/cart'));
                 } else {
                     return redirect(url('/'));
                 }

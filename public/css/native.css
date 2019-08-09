@@ -551,9 +551,8 @@ footer a {
 /*custom-package-page*/
 #custom-package-page figure:first-of-type img {
   filter: saturate(8);
-  background-color: #212121;
 }
-#custom-package-page figure > h4 {
+#custom-package-page figure > h2 {
   height: 100px;
   margin-bottom: 0;
   display: flex;

@@ -17,13 +17,13 @@
           <div class="row mx-0 px-2 justify-content-between">
             @foreach ($fragrance as $item)
             <figure class="fragrance text-center col-6 py-3 col-lg-auto  {{($item->fragrance_name == 'Unscented')? 'selected' : ''}}">
-                <img src="{{ asset('img/fragrance/'.$item->fragrance_img) }}" height="100" width="100"
-                alt="Fragrance Item" class="{{($item->fragrance_name == 'Unscented')? 'unscented-fragrance' : ''}}">
-                <figcaption class="text--cream">
-                  <input type="checkbox" name="fragrance[]" class="d-none" value="{{$item->id}}"
-                  id="fragrance_{{Str::slug($item->fragrance_name, '_')}}" {{($item->fragrance_name == "Unscented")? "checked='checked'" : ""}}>
-                  <label class="m-0" for="fragrance_{{Str::slug($item->fragrance_name, '_')}}">{{$item->fragrance_name}}</label>
-                </figcaption>
+              <img src="{{ asset('img/fragrance/'.$item->fragrance_img) }}" height="100" width="100"
+              alt="Fragrance Item" class="{{($item->fragrance_name == 'Unscented')? 'unscented-fragrance' : ''}}">
+              <figcaption class="text--cream">
+                <input type="checkbox" name="fragrance[]" class="d-none" value="{{$item->id}}"
+                id="fragrance_{{Str::slug($item->fragrance_name, '_')}}" {{($item->fragrance_name == "Unscented")? 'checked="checked"' : ''}}>
+                <label class="m-0">{{$item->fragrance_name}}</label>
+              </figcaption>
             </figure>
             @endforeach
           </div>
@@ -40,11 +40,17 @@
 <script>
   $(document).ready(function() {
     $(".fragrance").click(function() {
-      //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
-      $(this).addClass("selected");
-      $(this).siblings().removeClass("selected");
-      //saat fragrance di klik, trigger input di dlm nya jd checked
-      $(this).children("figcaption").find("input[type='radio']").prop("checked", true);
+      if($(this).hasClass('selected')) {
+        //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
+        $(this).removeClass("selected");
+        //saat fragrance di klik, trigger input di dlm nya jd checked
+        $(this).children("figcaption").find("input[type='checkbox']").removeAttr("checked");
+      } else {
+        //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
+        $(this).addClass("selected");
+        //saat fragrance di klik, trigger input di dlm nya jd checked
+        $(this).children("figcaption").find("input[type='checkbox']").attr("checked", "checked");
+      }
     });
   });
 </script>
