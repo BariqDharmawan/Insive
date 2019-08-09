@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function redirectToProvider($provider)
     {
@@ -47,7 +47,7 @@ class LoginController extends Controller
       );
 
       Auth::login($users);
-      return redirect('home');
+      return redirect('/');
 
     }
 

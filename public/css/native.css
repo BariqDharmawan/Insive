@@ -220,6 +220,10 @@ footer a {
 }
 
 /*landing-page css*/
+#landing-page footer a:hover {
+  color: #cdcbcb;
+  text-decoration: underline;
+}
 #landing-page main {
   height: calc(100% - 80px - 65px);
 }
@@ -670,7 +674,7 @@ footer a {
   }
   /*landing-page width more than phone css*/
   #landing-page main {
-    height: calc(100% - 110px - 65px);
+    height: calc(100% - 110px - 65px - 60px);
   }
   #landing-page .carousel-item:first-child {
     justify-content: center;

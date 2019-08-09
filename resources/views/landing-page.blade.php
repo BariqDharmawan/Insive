@@ -22,7 +22,16 @@
     @endif
     <div class="landing-link">
       @auth
-        <h4 class="text-white text-capitalize text-center">Welcome, {{Auth::user()->name}}</h4>
+        <h4 class="text-white text-capitalize text-center">
+          Welcome, {{Auth::user()->name}}
+          <a href="{{ route('logout') }}" class="d-block mt-2 text-warning"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            logout now <i class='bx bxs-log-out' ></i>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </h4>
       @endauth
       @guest
         <a href="{{ route('login') }}">
