@@ -12,12 +12,6 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin Tester',
-            'email' => 'admin@insive.com',
-            'address' => '-',
-            'password' => Hash::make('admininsive')
-        ]);
         DB::table('questions')->insert([
             'no_question' => 1,
             'question' => "What is your current age?",
@@ -25,7 +19,7 @@ class QuestionSeeder extends Seeder
             'category' => 'single',
             'status' => 'dummy'
         ]);
-        
+
         DB::table('questions')->insert([
             'no_question' => 2,
             'question' => "What is your gender?",
@@ -96,7 +90,7 @@ class QuestionSeeder extends Seeder
             'category' => 'single',
             'status' => 'dummy'
         ]);
-        
+
         DB::table('questions')->insert([
             'no_question' => 2,
             'question' => "How often do you smoke cigarettes? (Select one)",
