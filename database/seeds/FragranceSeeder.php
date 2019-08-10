@@ -13,7 +13,7 @@ class FragranceSeeder extends Seeder
     {
         $fragrance_name = ['Rose', 'Strawberry', 'Coffe', 'Unscented'];
         $fragrance_img = ['rose3.png', 'strawberry.png', 'coffee.png', 'Unscented.png'];
-        $qty = 10;
+        $qty = 1;
 
         foreach ($fragrance_name as $key => $value) {
             DB::table('fragrances')->insert([

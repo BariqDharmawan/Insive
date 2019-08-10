@@ -17,7 +17,7 @@ class CreateSheetsTable extends Migration
             $table->bigIncrements('id');
             $table->string('sheet_name');
             $table->string('sheet_img');
-            $table->integer('qty')->default(0);
+            $table->integer('qty')->default(1);
             $table->timestamps();
         });
     }

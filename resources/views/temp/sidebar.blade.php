@@ -25,6 +25,22 @@
         </li>
         <li class="nav-header text-uppercase">Menu</li>
         <li class="nav-item">
+          <a href="{{ route('admin.sheet.index') }}" class="nav-link {{ (Request::is('admin/sheet'))? 'active' : '' }}">
+            <i class="nav-icon fa fa-credit-card"></i>
+            <p>
+              Sheet
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.fragrance.index') }}" class="nav-link {{ (Request::is('admin/fragrance'))? 'active' : '' }}">
+            <i class="nav-icon fa fa-credit-card"></i>
+            <p>
+              Fragrance
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ (Request::is('admin/pricing'))? 'active' : '' }}">
             <i class="nav-icon fa fa-credit-card"></i>
             <p>

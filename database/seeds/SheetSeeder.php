@@ -13,7 +13,7 @@ class SheetSeeder extends Seeder
     {
         $sheet_name = ['Coconut bio-cellulose', 'Activated charcoal', 'Super silk', 'Panda animal printed', 'Sheep animal printed'];
         $sheet_img = ['coconut-bio-cellulose.png', 'activated-charcoal.png', 'activated-charcoal.png', 'activated-charcoal.png', 'activated-charcoal.png'];
-        $qty = 10;
+        $qty = 1;
 
         foreach ($sheet_name as $key => $value) {
             DB::table('sheets')->insert([

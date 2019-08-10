@@ -37,6 +37,10 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');
   Route::resource('cart', 'CartController');
+  Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
+  Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('fragrance.update.api');
+  Route::resource('sheet', 'SheetController');
+  Route::resource('fragrance', 'FragranceController');
 
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
   Route::resource('question', 'QuestionController');
