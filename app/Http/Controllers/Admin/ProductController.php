@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.list');
+        $products = Product::orderBy('created_at', 'DESC')->paginate(30);
+        return view('admin.product.list', compact('products'));
     }
 
     /**
@@ -35,7 +41,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $addProduct = new Product;
+      $addProduct->product_name = $request->product_name;
+      $addProduct->price = $request->price;
+      $addProduct->qty = $request->qty;
+      $addProduct->type = $request->type;
+      $getProductImg = $request->file('product_img');
+      $path = $getProductImg->store('public/files');
+      $addProduct->product_img = $path;
+      // $addProduct->product_img = $request->product_img;
+      $addProduct->save();
+      return redirect()->back()->with('success', 'New Product Added');
     }
 
     /**
