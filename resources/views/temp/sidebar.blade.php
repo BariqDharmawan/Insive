@@ -1,20 +1,6 @@
 <div class="sidebar mySimpleBar"  data-simplebar data-simplebar-auto-hide="true">
-  <!-- Sidebar user panel (optional) -->
-  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="image">
-      <img src="{{ asset('img/logo/IS icon png.png') }}" class="img-circle elevation-2" alt="User Image">
-    </div>
-    <div class="info">
-      <a href="#" class="d-block text-capitalize">Admin</a>
-    </div>
-  </div>
-
-  <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      <!-- Add icons to the links using the .nav-icon class
-        with font-awesome or any other icon font library -->
-
         <li class="nav-item">
           <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (Request::is('admin/dashboard'))? 'active' : '' }}">
             <i class="nav-icon fas fa-home"></i>
@@ -23,7 +9,6 @@
             </p>
           </a>
         </li>
-        <li class="nav-header text-uppercase">Menu</li>
         <li class="nav-item">
           <a href="{{ route('admin.sheet.index') }}" class="nav-link {{ (Request::is('admin/sheet'))? 'active' : '' }}">
             <i class="nav-icon fa fa-credit-card"></i>
@@ -64,6 +49,26 @@
             </p>
           </a>
         </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link {{ (Request::is('admin/product')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-table"></i>
+            <p>Product</p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.product.index') }}" class="nav-link {{ (Request::is('admin/product')) ? 'active' : '' }}">
+                <i class="fas fa-list-ol"></i>
+                <p>List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.product.trashed') }}" class="nav-link {{ (Request::is('admin/product/trash')) ? 'active' : '' }}">
+                <i class="fas fa-trash"></i>
+                <p>Removed</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         {{-- <li class="nav-item has-treeview {{ (Request::segment(1) == "transaction")? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (Request::segment(1) == "transaction")? 'active' : '' }}">
             <i class="nav-icon fa fa-opencart"></i>
@@ -89,5 +94,4 @@
         </li> --}}
       </ul>
     </nav>
-    <!-- /.sidebar-menu -->
   </div>

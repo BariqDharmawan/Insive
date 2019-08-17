@@ -12,6 +12,7 @@ Route::view('thank-you', 'thanks');
 Route::view('fill-address', 'shipping-address');
 Route::view('custom/package', 'custom.package');
 Route::get('/force/logout', 'Home\MainController@logout');
+Route::resource('faq', 'Home\FaqController');
 
 Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');

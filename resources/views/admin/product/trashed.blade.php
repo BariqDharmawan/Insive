@@ -1,14 +1,12 @@
-@extends('layouts.admin_master')
-@section('title', 'Product Removed')
-@section('body-id', 'product-removed')
-@section('header-app', 'Trashed')
+@extends('temp.main')
+@section('title-page', 'Admin | Product Trashed')
 @section('content')
-  @if (session('deleted'))
-    <div class="alert alert-danger" role="alert">
-      Succesfull Deleted Product Permanently
-    </div>
-  @endif
-  <div class="row">
+  <div class="col-12">
+    @if (session('deleted'))
+      <div class="alert alert-danger" role="alert">
+        Succesfull Deleted Product Permanently
+      </div>
+    @endif
     @if (count($removed) > 0)
       <table class="table table-striped table-valign-middle">
         <thead>
