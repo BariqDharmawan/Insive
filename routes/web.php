@@ -44,6 +44,10 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
 
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
   Route::resource('question', 'QuestionController');
+  Route::get('product/trash', 'ProductController@trashed')->name('product.trashed');
+  Route::post('product/restored/{id}', 'ProductController@restored')->name('product.restored');
+  Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
+  Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
   Route::resource('product', 'ProductController');
   Route::resource('logic', 'LogicController');
 });

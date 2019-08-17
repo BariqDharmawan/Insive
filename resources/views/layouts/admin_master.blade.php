@@ -56,7 +56,7 @@
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link @if (\Request::is('admin/product/*')) @endif">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
                   Product
@@ -65,13 +65,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link active">
+                  <a href="{{ route('admin.product.index') }}" class="nav-link {{ \Request::is('admin/product') ? 'active' : '' }}">
                     <i class="fas fa-list-ol"></i>
                     <p>List</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/tables/jsgrid.html" class="nav-link">
+                  <a href="{{ route('admin.product.trashed') }}" class="nav-link {{ \Request::is('admin/product/trash') ? 'active' : '' }}">
                     <i class="fas fa-trash"></i>
                     <p>Removed</p>
                   </a>

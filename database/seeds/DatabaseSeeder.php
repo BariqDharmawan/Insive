@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
           SheetSeeder::class,
           FragranceSeeder::class,
           PriceSeeder::class,
-          UserSeeder::class
+          UserSeeder::class,
+          ProductSeeder::class
         ]);
     }
 }
