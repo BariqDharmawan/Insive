@@ -13,13 +13,16 @@
     <nav>
       <ul>
         <li>
-          <a href="">how to order</a>
+          <a href="{{ url('/') }}">Homepage</a>
           <a href="" id="close-menu"><i class='bx bx-x' ></i></a>
         </li>
-        <li><a href="">custom sheet mask</a></li>
+        <li>
+          <a href="">how to order</a>
+        </li>
+        <li><a href="{{ url('question') }}">custom sheet mask</a></li>
         <li><a href="{{ route('catalog.default') }}">buy from catalog</a></li>
         <li><a href="{{ route('faq.index') }}">FAQ</a></li>
-        <li><a href="">beauty tips</a></li>
+        <li><a href="" class="disabled">beauty tips <small>(coming soon)</small></a></li>
         <li><a href="{{ route('contactus') }}">contact us</a></li>
         <li><a href="">about us</a></li>
       </ul>

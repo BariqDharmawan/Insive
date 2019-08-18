@@ -72,6 +72,10 @@ body {
   border-color: #F6E1B2;
   color: #F6E1B2;
 }
+a.disabled {
+  color: #929292;
+  pointer-events: none;
+}
 .bg--cream {
   background-color: #F6E1B2;
 }
