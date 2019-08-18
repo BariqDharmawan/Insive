@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.logic.index') }}" class="nav-link {{ (Request::is('admin/logic'))? 'active' : '' }}">
-            <i class="nav-icon fa fa-question"></i>
+            <i class="nav-icon fas fa-atom"></i>
             <p>
               Logic
             </p>
@@ -57,17 +57,23 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('admin.product.index') }}" class="nav-link {{ (Request::is('admin/product')) ? 'active' : '' }}">
-                <i class="fas fa-list-ol"></i>
+                <i class="nav-icon fas fa-list-ol"></i>
                 <p>List</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('admin.product.trashed') }}" class="nav-link {{ (Request::is('admin/product/trash')) ? 'active' : '' }}">
-                <i class="fas fa-trash"></i>
+                <i class="nav-icon fas fa-trash"></i>
                 <p>Removed</p>
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.faq.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-tasks"></i>
+            <p>Faq</p>
+          </a>
         </li>
         {{-- <li class="nav-item has-treeview {{ (Request::segment(1) == "transaction")? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (Request::segment(1) == "transaction")? 'active' : '' }}">

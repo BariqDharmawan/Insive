@@ -51,6 +51,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
   Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
   Route::resource('product', 'ProductController');
   Route::resource('logic', 'LogicController');
+  Route::resource('faq', 'FaqController');
 });
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');

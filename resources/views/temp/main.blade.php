@@ -21,7 +21,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
-                  <a href="">Home</a>
+                  <a href="{{ url('admin/dashboard') }}">Home</a>
                   <li class="breadcrumb-item active">@yield('title-body')</li>
                 </li>
               </ol>
