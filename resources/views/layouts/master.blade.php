@@ -18,7 +18,7 @@
         </li>
         <li><a href="">custom sheet mask</a></li>
         <li><a href="{{ route('catalog.default') }}">buy from catalog</a></li>
-        <li><a href="">FAQ</a></li>
+        <li><a href="{{ route('faq.index') }}">FAQ</a></li>
         <li><a href="">beauty tips</a></li>
         <li><a href="{{ route('contactus') }}">contact us</a></li>
         <li><a href="">about us</a></li>

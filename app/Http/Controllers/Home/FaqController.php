@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
-use App\Faq;
+use App\Models\Faq;
 use App\Http\Controllers\Controller;
 
 class FaqController extends Controller
@@ -15,7 +15,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::all();
+        $faqs = Faq::paginate(5);
         return view('faq.index', compact('faqs'));
     }
 

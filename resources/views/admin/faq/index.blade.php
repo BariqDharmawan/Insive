@@ -20,11 +20,15 @@
       @foreach ($faqs as $faq)
         <div class="card">
           <div class="card-header" id="heading{{ $faq->id }}">
-            <h2 class="mb-0">
+            <h2 class="mb-0 d-flex justify-content-between align-items-center">
               <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $faq->id }}"
                 aria-expanded="@if ($faq->id == 1) true @endif" aria-controls="collapse{{ $faq->id }}">
                 {{ $faq->pertanyaan }}
               </button>
+              <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="post">
+                @csrf @method('DELETE')
+                <button type="submit" class="btn btn-link text-danger"><i class="fas fa-trash"></i></button>
+              </form>
             </h2>
           </div>
           <div id="collapse{{ $faq->id }}" class="collapse @if ($faq->id == 1) show @endif"
