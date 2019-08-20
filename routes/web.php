@@ -13,6 +13,9 @@ Route::view('fill-address', 'shipping-address');
 Route::view('custom/package', 'custom.package');
 Route::get('/force/logout', 'Home\MainController@logout');
 Route::resource('faq', 'Home\FaqController');
+Route::get('payment/finish', 'PaymentController@finish');
+Route::get('payment/unfinish', 'PaymentController@unfinish');
+Route::get('payment/error', 'PaymentController@error');
 
 Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
@@ -34,6 +37,9 @@ Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->gro
   Route::resource('main', 'MainController');
 });
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
+  Route::view('invoice', 'admin.invoice')->name('invoice'); //NEW CREATED ON 8/20/2019
+  Route::view('recipe', 'admin.recipe')->name('recipe'); //NEW CREATED ON 8/20/2019
+  Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');

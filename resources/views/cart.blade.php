@@ -11,33 +11,87 @@
         </div>
         <div class="col-12 col-lg-8 d-flex d-lg-block flex-wrap justify-content-center">
           <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
-          <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">Qty:</p>
+          <p class="text--cream px-2 px-lg-0 mb-3 my-lg-4 w-100 text-center text-lg-left">Qty:</p>
           <form id="nextCart" action="index.html" method="post">
             <ul class="product__action">
-                <li>
+              <li>
+                <div class="increase_number">
                   <a href="#" class="product__button product__button--increase"><i class='bx bx-plus' ></i></a>
                   <input type="number" min="1" value="1" required>
                   <a href="#" class="product__button product__button--decrease"><i class='bx bx-minus'></i></a>
-                  <div class="col px-0">
-                    <select name="" class="custom-select">
-                      <option value="super silk">Super silk</option>
-                      <option value="Coconut ​bio-cellulose">Coconut ​bio-cellulose</option>
-                      <option value="activated charcoal​">Activated charcoal​</option>
-                      <option value="panda animal printed​">Panda animal printed​</option>
-                      <option value="sheep animal printed​">Sheep animal printed​</option>
-                    </select>
-                    <i class='bx bx-chevron-down'></i>
-                  </div>
-                  <div class="col px-0">
-                    <select name="" class="custom-select">
-                      <option value="coffee​">Coffee​</option>
-                      <option value="rose​">Rose​</option>
-                      <option value="strawberry​">Strawberry​</option>
-                      <option value="unscented​">Unscented​</option>
-                    </select>
-                    <i class='bx bx-chevron-down'></i>
-                  </div>
-                </li>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="super silk" selected>Super silk</option>
+                    <option value="Coconut ​bio-cellulose">Coconut ​bio-cellulose</option>
+                    <option value="activated charcoal​">Activated charcoal​</option>
+                    <option value="panda animal printed​">Panda animal printed​</option>
+                    <option value="sheep animal printed​">Sheep animal printed​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="coffee​" selected>Coffee​</option>
+                    <option value="rose​">Rose​</option>
+                    <option value="strawberry​">Strawberry​</option>
+                    <option value="unscented​">Unscented​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+              </li>
+              <li>
+                <div class="increase_number">
+                  <a href="#" class="product__button product__button--increase"><i class='bx bx-plus' ></i></a>
+                  <input type="number" min="1" value="1" required>
+                  <a href="#" class="product__button product__button--decrease"><i class='bx bx-minus'></i></a>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="super silk">Super silk</option>
+                    <option value="Coconut ​bio-cellulose" selected>Coconut ​bio-cellulose</option>
+                    <option value="activated charcoal​">Activated charcoal​</option>
+                    <option value="panda animal printed​">Panda animal printed​</option>
+                    <option value="sheep animal printed​">Sheep animal printed​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="coffee​">Coffee​</option>
+                    <option value="rose​">Rose​</option>
+                    <option value="strawberry​" selected>Strawberry​</option>
+                    <option value="unscented​">Unscented​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+              </li>
+              <li>
+                <div class="increase_number">
+                  <a href="#" class="product__button product__button--increase"><i class='bx bx-plus' ></i></a>
+                  <input type="number" min="1" value="1" required>
+                  <a href="#" class="product__button product__button--decrease"><i class='bx bx-minus'></i></a>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="super silk">Super silk</option>
+                    <option value="Coconut ​bio-cellulose" selected>Coconut ​bio-cellulose</option>
+                    <option value="activated charcoal​">Activated charcoal​</option>
+                    <option value="panda animal printed​">Panda animal printed​</option>
+                    <option value="sheep animal printed​">Sheep animal printed​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="col px-0">
+                  <select name="" class="custom-select">
+                    <option value="coffee​">Coffee​</option>
+                    <option value="rose​">Rose​</option>
+                    <option value="strawberry​">Strawberry​</option>
+                    <option value="unscented​" selected>Unscented​</option>
+                  </select>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+              </li>
             </ul>
           </form>
         </div>

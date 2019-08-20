@@ -112,6 +112,7 @@ a:hover {
 .product__action {
   margin-top: 10px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -604,6 +605,20 @@ footer a {
   display: flex;
   flex-grow: 1;
   align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+#cart-page .product__action li .increase_number {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#cart-page .product__action li .increase_number > * {
+  flex-grow: 1;
+}
+#cart-page .product__action li select {
+  border-radius: 0;
 }
 #cart-page .product__action li option {
   background-color: #212121;
@@ -614,10 +629,11 @@ footer a {
 #cart-page .product__action li .product__button {
   border: 1px solid #F6E1B2;
 }
-#cart-page .product__action li .product__button--decrease + div {
-  margin: 0 20px;
+#cart-page .product__action li div:nth-child(2), #cart-page .product__action li div:nth-child(3) {
+  width: 100%;
+  flex-grow: 1;
 }
-#cart-page .product__action li .product__button--decrease ~ div .bx {
+#cart-page .product__action li div:not(.increase_number) .bx {
   position: absolute;
   right: .75rem;
   top: 50%;
@@ -641,6 +657,151 @@ footer a {
   box-shadow: 0 0 0 0.2rem rgba(246,225,178,.09) inset;
 }
 /*end of shipping-address-page*/
+/*finish-page css*/
+#finish-page main {
+  height: calc(100% - 80px - 65px - 60px);
+}
+#finish-page main .container, #unfinish-page main .container, #error-page main .container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#finish-page main h1, #unfinish-page main h1, #error-page main h1 {
+  text-align: center;
+  line-height: 60px;
+  font-size: 35px;
+}
+#finish-page main h1 span, #unfinish-page main h1 span {
+  padding-bottom: 7px;
+  border-bottom: 4px solid #F6E1B2;
+}
+/*end of finish-page*/
+/*unfinish-page css*/
+#unfinish-page {
+  background-color: #fff !important;
+}
+#unfinish-page main, #error-page main {
+  height: calc(100% - 65px - 60px);
+}
+#unfinish-page header, #error-page header {
+  display: none;
+}
+#unfinish-page main h1 {
+  color: #d94040;
+}
+#unfinish-page footer {
+  background-color: #d94040 !important;
+}
+/*end of unfinish-page css*/
+/*error-page css*/
+#error-page {
+  background-color: #d94040;
+}
+#error-page main h1 {
+  color: #fff;
+}
+#error-page footer {
+  background-color: #cc3939;
+}
+/*end of error-page css*/
+/*invoice page admin css*/
+#invoice-page-admin main, #order-today-page-admin main {
+  min-height: calc(100% - 80px - 65px - 60px);
+}
+#invoice-page-admin main .col-12, #recipe-page-admin main .col-12 {
+  margin-bottom: 40px;
+  color: #fff;
+  border: 1px solid #F6E1B2;
+  padding: 10px 15px;
+}
+#invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time {
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+}
+#invoice-page-admin main .col-12 ul {
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+#invoice-page-admin main .col-12 ul li {
+   margin-bottom: 10px;
+ }
+#invoice-page-admin main .col-12 ul li * {
+  margin: 0 0 0 10px;
+  display: inline;
+  font-weight: bold;
+}
+#invoice-page-admin .page-title, #recipe-page-admin .page-title, #order-today-page-admin .page-title {
+  text-align: center;
+}
+#invoice-page-admin .pagination, #recipe-page-admin .pagination, #order-today-page-admin .pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+#invoice-page-admin .pagination li .page-link, #recipe-page-admin .pagination li .page-link,
+#order-today-page-admin .pagination li .page-link {
+  background-color: #212121;
+  color: #F6E1B2;
+}
+#invoice-page-admin .pagination .disabled .page-link, #recipe-page-admin .pagination .disabled .page-link,
+#order-today-page-admin .pagination .disabled .page-link {
+  background-color: #212121;
+  color: #f0e8d5;
+}
+#invoice-page-admin .pagination li .page-link:hover, #recipe-page-admin .pagination li .page-link:hover,
+#order-today-page-admin .pagination li .page-link:hover {
+  background-color: #1b1a1a;
+}
+#invoice-page-admin .pagination li.active .page-link, #recipe-page-admin .pagination li.active .page-link,
+#order-today-page-admin .pagination li.active .page-link {
+  background-color: #F6E1B2;
+  color: #212121;
+  border-color: #e7d19f;
+}
+/*end of invoice page admin css*/
+/*recipe-page admin css*/
+#recipe-page-admin main .col-12 {
+  padding: 0;
+}
+#recipe-page-admin main .col-12 div {
+  padding: 20px;
+}
+#recipe-page-admin main .col-12 div:last-child {
+  border-top: 1px solid #F6E1B2;
+}
+/*end of recipe-page admin css*/
+/*order-today-admin page css*/
+#order-today-page-admin main .container {
+  height: 100%;
+}
+#order-today-page-admin main .card {
+  background-color: transparent;
+  color: #F6E1B2;
+}
+#order-today-page-admin main .col-12 {
+  display: flex;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+#order-today-page-admin main .col-12 span {
+  background-color: #F6E1B2;
+  padding: 10px;
+  flex-grow: 2;
+}
+#order-today-page-admin main .col-12 var {
+  color: #F6E1B2;
+  flex-grow: 1;
+  justify-content: center;
+  border: 1px solid #F6E1B2;
+  display: inline-flex;
+  margin-left: 40px;
+  padding: 10px;
+}
+/*end of order-today-admin page css*/
 @media screen and (min-width: 768px) {
   aside {
     width: 30%;
@@ -706,7 +867,6 @@ footer a {
     content: '';
     transition: all 0.3s cubic-bezier(0.85, 0.54, 0.13, 0.59) 0s;
     position: relative;
-    /* left: 0; */
     bottom: -10px;
     width: 0;
     display: block;
@@ -719,6 +879,21 @@ footer a {
     width: 80%;
   }
   /*end of catalog-page width more than phone css*/
+  /*cart page more than phone css*/
+  #cart-page .product__action li {
+    flex-direction: row;
+  }
+  #cart-page .product__action li .increase_number {
+    justify-content: flex-start;
+    width: auto;
+  }
+  #cart-page .product__action li div:nth-child(2) {
+    margin: 0 10px 0 20px;
+  }
+  #cart-page .product__action li .increase_number > * {
+    flex-grow: 0;
+  }
+  /*end of cart page more than phone css*/
   /*question-page width more than phone css*/
   #question-page aside {
     padding: 0 45px;
@@ -750,4 +925,29 @@ footer a {
     filter: grayscale(100%);
   }
   /*end of question-page width more than phone css*/
+  /*finish-page css*/
+  #finish-page main {
+    height: calc(100% - 65px - 60px - 110px);
+  }
+  #finish-page main h1 br {
+    display: none;
+  }
+  /*end of finish-page css*/
+  /*invoice-page admin css*/
+  #invoice-page-admin header h1 br, #recipe-page-admin header h1 br {
+    display: none;
+  }
+  #invoice-page-admin main, #order-today-page-admin main {
+    min-height: calc(100% - 110px - 65px - 60px);
+  }
+  /*end of invoice-page admin css*/
+  /*order-today-page-admin css*/
+  #order-today-page-admin main .col-12 {
+    justify-content: space-between;
+  }
+  #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var {
+    flex-grow: 0;
+    padding: 10px 40px;
+  }
+  /*end of order-today-page-admin css*/
 }

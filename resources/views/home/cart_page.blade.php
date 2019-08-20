@@ -139,7 +139,7 @@
             var value = $(this).val();
             if(value > 0) {
                 totalQty += parseInt(value);
-            } 
+            }
         });
         if(totalQty >= trial.data('min') && totalQty <= trial.data('max')) {
             $('figure.fragrance').removeClass('selected');
