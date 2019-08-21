@@ -30,6 +30,9 @@
     <header>
       <a href="" id="show-menu"><i class='bx bx-menu'></i></a>
       <h1 class="page-title">@yield('page-title')</h1>
+      @if (\Request::is('catalog'))
+        <a href="javascript:void(0);" class="bg--cream" id="cartBtn"><i class='bx bxs-cart'></i></a>
+      @endif
     </header>
     @yield('content')
     <footer>

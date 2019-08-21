@@ -56,6 +56,9 @@ body {
 #close-menu {
   color: #8C8C8C !important;
 }
+.not-scroll {
+  overflow: hidden;
+}
 .btn.bg--cream:hover {
   background-color: #EBD5A5;
 }
@@ -63,6 +66,7 @@ body {
   background-color: #CDB581;
 }
 .btn {
+  justify-content: center;
   display: flex;
   align-items: center;
   transition: background-color 250ms;
@@ -112,7 +116,6 @@ a:hover {
 .product__action {
   margin-top: 10px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -319,6 +322,63 @@ footer a {
 }
 /*end of landing-page css*/
 /*catalog-page css*/
+#catalog-page header #cartBtn {
+  color: #212121;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  position: absolute;
+  right: 15px;
+}
+#catalog-page aside {
+  position: fixed;
+  top: 0;
+  width: 0;
+  right: 0;
+  z-index: 3;
+  height: 100%;
+  transition: all 250ms;
+  background-color: #212121;
+  overflow: hidden;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+#catalog-page aside.show {
+  padding: 20px 15px 10px;
+  opacity: 1;
+  visibility: visible;
+}
+#catalog-page aside .btn-close {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+  top: 44px;
+  transform: translateY(-50%);
+}
+#catalog-page aside form .form-group {
+  overflow: hidden;
+}
+#catalog-page aside form .form-group .input-group-text {
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  border-color: transparent;
+  color: #F6E1B2;
+}
+#catalog-page aside form .form-group input {
+  color: #F6E1B2;
+}
+#catalog-page aside h1 {
+  text-align: center;
+}
+#catalog-page aside .product__action {
+  margin-top: 0;
+}
+#catalog-page aside .product__action .product__button, #catalog-page aside .product__action input {
+  width: 30px;
+  height: 30px;
+}
 #catalog-page .row:last-of-type .btn {
   background-color: #F6E1B2;
   transition: all 250ms;
@@ -801,20 +861,77 @@ footer a {
   margin-left: 40px;
   padding: 10px;
 }
+#order-today-page-admin main .accordion .card-body {
+  padding-left: 40px;
+}
+#order-today-page-admin main .accordion .card-body > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#order-today-page-admin main .accordion .card-body > div p:first-child {
+  margin-right: 10px;
+}
+#order-today-page-admin main .accordion .card-body > div p {
+  background-color: #F6E1B2;
+  flex-grow: 1;
+  color: #212121;
+  padding: 5px 10px;
+}
+#order-today-page-admin main .accordion .card-body > ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+#order-today-page-admin main .accordion .card-body > ul li {
+  display: flex;
+  flex-wrap: wrap;
+}
+#order-today-page-admin main .accordion .card-body > ul li * {
+  padding: 5px 10px;
+  border: 1px solid #F6E1B2;
+}
+#order-today-page-admin main .accordion .card-body > ul li span:first-child {
+  margin-right: 10px;
+}
+#order-today-page-admin main .accordion .card-body > ul li span:first-child,
+#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
+  flex-grow: 1;
+  width: calc(50% - 10px);
+}
+#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+#order-today-page-admin main .accordion .card-body > ul li var {
+  display: block;
+  width: 100%;
+}
+#order-today-page-admin main .accordion .card-body > ul li a:first-of-type {
+  margin-top: 10px;
+}
+#order-today-page-admin main .accordion .card-body > ul li var ~ * {
+  width: 100%;
+  background-color: #F6E1B2;
+  color: #212121;
+  margin: 5px 0;
+}
 /*end of order-today-admin page css*/
 @media screen and (min-width: 768px) {
-  aside {
+  #question-page aside {
     width: 30%;
     position: fixed;
     top: 0;
     left: 0;
   }
-  aside ~ main {
+  #question-page aside ~ main {
     width: 70%;
     float: right;
   }
   #show-menu {
     left: 40px;
+  }
+  #cartBtn {
+    right: 40px !important;
   }
   #show-menu, #close-menu {
     font-size: 30px;
@@ -950,4 +1067,12 @@ footer a {
     padding: 10px 40px;
   }
   /*end of order-today-page-admin css*/
+  /*catalog-page more than phone css*/
+  #catalog-page aside form button {
+    margin-right: 40px;
+  }
+  #catalog-page aside form img {
+    height: 150px;
+  }
+  /*end of catalog-page more than phone css*/
 }

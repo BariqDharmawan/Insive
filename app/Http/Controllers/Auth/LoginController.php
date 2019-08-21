@@ -29,7 +29,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    public function redirectTo()
+    {
+      if (Auth::user()->email == 'admin@insive.com') {
+        return 'admin/dashboard';
+      }
+      else {
+        return '/';
+      }
+    }
 
     public function redirectToProvider($provider)
     {

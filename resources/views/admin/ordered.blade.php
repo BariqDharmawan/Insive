@@ -22,7 +22,22 @@
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
-                
+                <div>
+                  <p>Formula Code: #02139</p>
+                  <p>Acne​</p>
+                </div>
+                <ul>
+                  <li>
+                    <span>Super silk​</span>
+                    <span>Coffee​</span>
+                    <var>1 pcs</var>
+                    <a href="#">Print Recipe & Invoice​</a>
+                    <a href="">Update status order​</a>
+                    <a href="">Input tracking number​</a>
+                  </li>
+                  <li></li>
+                  <li></li>
+                </ul>
               </div>
             </div>
           </div>
@@ -38,7 +53,21 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <div class="card-body">
-                
+                <div>
+                  <p>Formula Code: #02139</p>
+                  <p>Acne​</p>
+                </div>
+                <ul>
+                  <li>
+                    <span>Super silk​</span>
+                    <span>Coffee​</span>
+                    <var>1 pcs</var>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                  </li>
+                  <li></li>
+                  <li></li>
+                </ul>
               </div>
             </div>
           </div>
@@ -54,7 +83,22 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <div class="card-body">
-                
+                <div>
+                  <p>Formula Code: #02139</p>
+                  <p>Acne​</p>
+                </div>
+                <ul>
+                  <li>
+                    <span>Super silk​</span>
+                    <span>Coffee​</span>
+                    <var>1 pcs</var>
+                    <a href="#"></a>
+                    <a href=""></a>
+                    <a href="#"></a>
+                  </li>
+                  <li></li>
+                  <li></li>
+                </ul>
               </div>
             </div>
           </div>
