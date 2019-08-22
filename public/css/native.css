@@ -13,6 +13,9 @@ body {
   background-color: #212121;
   overflow-x: hidden;
 }
+main, footer, header {
+  transition: all 250ms;
+}
 
 #show-menu {
   position: absolute;
@@ -55,9 +58,6 @@ body {
 }
 #close-menu {
   color: #8C8C8C !important;
-}
-.not-scroll {
-  overflow: hidden;
 }
 .btn.bg--cream:hover {
   background-color: #EBD5A5;
@@ -338,14 +338,15 @@ footer a {
   z-index: 3;
   height: 100%;
   transition: all 250ms;
-  background-color: #212121;
-  overflow: hidden;
+  background-color: #1c1c1c;
+  overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
+  padding: 20px 15px 10px;
   opacity: 0;
   visibility: hidden;
 }
 #catalog-page aside.show {
-  padding: 20px 15px 10px;
   opacity: 1;
   visibility: visible;
 }
@@ -373,7 +374,7 @@ footer a {
   text-align: center;
 }
 #catalog-page aside .product__action {
-  margin-top: 0;
+  margin-top: auto;
 }
 #catalog-page aside .product__action .product__button, #catalog-page aside .product__action input {
   width: 30px;
@@ -1068,11 +1069,38 @@ footer a {
   }
   /*end of order-today-page-admin css*/
   /*catalog-page more than phone css*/
-  #catalog-page aside form button {
-    margin-right: 40px;
-  }
   #catalog-page aside form img {
     height: 150px;
   }
+  #catalog-page aside {
+    opacity: 1;
+    visibility: visible;
+    box-shadow: -5px 0px 5px 1px rgba(246,225,178,.19);
+    transform: translateX(calc(100% + 11px));
+  }
+  #catalog-page aside.show {
+    transform: translateX(0) !important;
+  }
+  #catalog-page aside .product {
+    display: flex;
+  }
+  #catalog-page aside .product img {
+    width: auto;
+  }
+  #catalog-page aside .product figcaption {
+    display: flex;
+    flex-direction: column;
+  }
+  #catalog-page main {
+    transition: all 250ms;
+  }
   /*end of catalog-page more than phone css*/
+}
+@media screen and (min-width: 960px) {
+  #catalog-page aside {
+    width: 40%;
+  }
+  #catalog-page header.aside-showed, #catalog-page footer.aside-showed, #catalog-page main.aside-showed {
+    width: 60%;
+  }
 }
