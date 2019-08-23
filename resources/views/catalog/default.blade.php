@@ -3,7 +3,7 @@
 @section('page-title', 'OUR CATALOG')
 @section('body-id', 'catalog-page')
 @section('content')
-  <aside class="show">
+  <aside>
     <h1 class="text--cream">Your Cart</h1>
     <a href="javascript:void(0);" class="btn btn-link text--cream btn-close"><i class='bx bx-x'></i></a>
     <form action="" class="py-4" method="post">
@@ -145,12 +145,9 @@
           <li class="page-item disabled">
             <span class="page-link">Previous</span>
           </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item" aria-current="page">
-            <span class="page-link">
-              2
-              <span class="sr-only">(current)</span>
-            </span>
+          <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
           </li>
           <li class="page-item"><a class="page-link" href="#">3</a></li>
           <li class="page-item">
