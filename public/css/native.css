@@ -802,21 +802,21 @@ footer a {
   margin-top: 20px;
 }
 #invoice-page-admin .pagination li .page-link, #recipe-page-admin .pagination li .page-link,
-#order-today-page-admin .pagination li .page-link {
+#order-today-page-admin .pagination li .page-link, #catalog-page .pagination li .page-link {
   background-color: #212121;
   color: #F6E1B2;
 }
 #invoice-page-admin .pagination .disabled .page-link, #recipe-page-admin .pagination .disabled .page-link,
-#order-today-page-admin .pagination .disabled .page-link {
+#order-today-page-admin .pagination .disabled .page-link, #catalog-page .pagination .disabled .page-link {
   background-color: #212121;
   color: #f0e8d5;
 }
 #invoice-page-admin .pagination li .page-link:hover, #recipe-page-admin .pagination li .page-link:hover,
-#order-today-page-admin .pagination li .page-link:hover {
+#order-today-page-admin .pagination li .page-link:hover, #catalog-page .pagination li .page-link:hover {
   background-color: #1b1a1a;
 }
 #invoice-page-admin .pagination li.active .page-link, #recipe-page-admin .pagination li.active .page-link,
-#order-today-page-admin .pagination li.active .page-link {
+#order-today-page-admin .pagination li.active .page-link, #catalog-page .pagination li.active .page-link {
   background-color: #F6E1B2;
   color: #212121;
   border-color: #e7d19f;
@@ -1114,6 +1114,10 @@ footer a {
   }
   #catalog-page main {
     transition: all 250ms;
+  }
+  #catalog-page main .row:last-child .pagination {
+    justify-content: center;
+    margin-top: 20px;
   }
   /*end of catalog-page more than phone css*/
 }
