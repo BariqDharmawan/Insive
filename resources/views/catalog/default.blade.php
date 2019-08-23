@@ -10,9 +10,9 @@
       @csrf
       <div class="form-row">
         <div class="form-group col-12">
-          <div class="row mx-0 justify-content-between">{{-- tambah element lwt js --}}</div>
+          <div class="row mx-0 justify-content-between"></div> {{-- tambah element lwt js --}}
         </div>
-        <div class="col-12">{{-- tambah button submit lwt js --}}</div>
+        <div class="col-12"></div> {{-- tambah button submit lwt js --}}
       </div>
     </form>
   </aside>
@@ -161,16 +161,33 @@
 @section('script')
   <script>
     $(document).ready(function(){
-      defaultValue = 1;
+      //add to cart product only once
       $("main .product__action .btn").one('click', function() {
         var productnya = $(this).parents(".product").clone();
         $("aside .form-group .row").append(productnya);
         $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="0" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
+        $("aside .form-group .row .product figcaption").append('<a href="javascript:void(0);" class="btnRemove"><i class="bx bx-trash-alt"></i></a>')
         $("aside").addClass('show');
         $("header, footer, main").addClass("aside-showed");
         if ($("aside .form-row > div:last-child button").length === 0) {
           $("aside .form-row > div:last-child").append('<button type="submit" class="btn bg--cream w-100 text-center float-right">Proceed Checkout</button>');
         }
+      });
+      //remove per-product
+      $(document).on('click', 'aside .product figcaption .btnRemove', function() {
+        $(this).parents(".product").remove();
+        //unbind one click that make add to cart work again
+        $("main .product__action .btn").unbind('click').one('click', function() {
+          var productnya = $(this).parents(".product").clone();
+          $("aside .form-group .row").append(productnya);
+          $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="0" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
+          $("aside .form-group .row .product figcaption").append('<a href="javascript:void(0);" class="btnRemove"><i class="bx bx-trash-alt"></i></a>')
+          $("aside").addClass('show');
+          $("header, footer, main").addClass("aside-showed");
+          if ($("aside .form-row > div:last-child button").length === 0) {
+            $("aside .form-row > div:last-child").append('<button type="submit" class="btn bg--cream w-100 text-center float-right">Proceed Checkout</button>');
+          }
+        });
       });
       $(document).on('keydown', 'aside .product .product__action input', function() {
         // var jumlahbeli = parseFloat($(this).val());
@@ -180,6 +197,7 @@
         $(this).parent().prev().find("input").val(hargabeli);
       });
       //tambahin jumlah beli
+      defaultValue = 1;
       $(document).on('click', '.product__button--increase', function() {
         $(this).next().trigger("keydown"); //inputan dianggap berubah value
         $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
