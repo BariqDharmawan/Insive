@@ -176,7 +176,7 @@
       //remove per-product
       $(document).on('click', 'aside .product figcaption .btnRemove', function() {
         $(this).parents(".product").remove();
-        //unbind one click that make add to cart work again
+        //unbind one click that will make add to cart work again
         $("main .product__action .btn").unbind('click').one('click', function() {
           var productnya = $(this).parents(".product").clone();
           $("aside .form-group .row").append(productnya);
