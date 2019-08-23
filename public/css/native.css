@@ -1081,6 +1081,29 @@ footer a {
   #catalog-page aside.show {
     transform: translateX(0) !important;
   }
+  #catalog-page aside .form-row .form-group .row {
+    position: relative;
+    min-height: 30px;
+  }
+  #catalog-page aside .form-row .form-group .row .product {
+    width: 100%;
+    position: relative;
+  }
+  #catalog-page aside .form-row .form-group .row .product figcaption .btnRemove {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    color: #F6E1B2;
+  }
+  #catalog-page aside .form-row .form-group .row:empty::before {
+    content: 'No Item Added';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: red;
+  }
   #catalog-page aside .product {
     display: flex;
   }
