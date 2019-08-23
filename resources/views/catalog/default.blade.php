@@ -18,14 +18,16 @@
   </aside>
   <main>
     <div class="container">
-      <form class="row" id="shopCart" action="/post" method="post">
-        @csrf
+      <div class="row">
         <div class="col-12 col-md-6 col-lg-3">
           <figure class="product">
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 19,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -37,7 +39,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 20,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -49,7 +54,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 19,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -61,7 +69,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 30,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -73,7 +84,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 16,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -85,7 +99,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 19,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -97,7 +114,10 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 19,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
@@ -109,17 +129,15 @@
             <img src="{{ asset('img/product.png') }}" alt="Our Product">
             <figcaption>
               <p class="text--cream">Nama Produk</p>
-              <var class="text--cream">Rp. 19,999</var>
+              <div class="product__price">
+                <span class="text--cream">Rp. </span>
+                <input type="number" name="hargaproduct" value="150000" readonly>
+              </div>
               <div class="product__action">
                 <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
               </div>
             </figcaption>
           </figure>
-        </div>
-      </form>
-      <div class="row justify-content-center justify-content-md-end my-5">
-        <div class="col-auto">
-          <button type="submit" form="shopCart" class="btn">Go To Shopping Chart <i class='bx bx-caret-right'></i></button>
         </div>
       </div>
     </div>
@@ -139,8 +157,16 @@
           $("aside .form-row > div:last-child").append('<button type="submit" class="btn bg--cream w-100 text-center float-right">Proceed Checkout</button>');
         }
       });
+      $(document).on('keydown', 'aside .product .product__action input', function() {
+        // var jumlahbeli = parseFloat($(this).val());
+        $(this).parent().prev().find("input").data('value', $(this).parent().prev().find("input").val());
+        var hargaawal = $(this).parent().prev().find("input").data("value");
+        var hargabeli = hargaawal * $(this).val();
+        $(this).parent().prev().find("input").val(hargabeli);
+      });
       //tambahin jumlah beli
       $(document).on('click', '.product__button--increase', function() {
+        $(this).next().trigger("keydown"); //inputan dianggap berubah value
         $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
         defaultValue += parseInt($(this).next('input').val(), 10) + 1;
       });
@@ -157,7 +183,7 @@
         $("aside").toggleClass("show");
         $("header, footer, main").toggleClass("aside-showed");
       });
-      //perkecil width element saat aside nongol
+      //perkecil width element saat aside muncul
       $("aside.show").siblings("main, header, footer").addClass("aside-showed");
     });
   </script>

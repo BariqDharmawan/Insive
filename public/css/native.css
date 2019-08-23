@@ -1091,6 +1091,27 @@ footer a {
     display: flex;
     flex-direction: column;
   }
+  #catalog-page .product figcaption input {
+    background-color: transparent;
+    position: relative;
+    border: none;
+    color: #F6E1B2;
+    text-align: center;
+  }
+  #catalog-page .product figcaption .product__price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #catalog-page .product figcaption .product__price span {
+    width: 25px;
+    display: block;
+    overflow: hidden;
+  }
+  #catalog-page .product figcaption .product__price input {
+    width: 90px;
+    text-align: center;
+  }
   #catalog-page main {
     transition: all 250ms;
   }
