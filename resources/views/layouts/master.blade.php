@@ -22,7 +22,7 @@
         <li><a href="{{ route('faq.index') }}">FAQ</a></li>
         <li><a href="" class="disabled">beauty tips <small>(coming soon)</small></a></li>
         <li><a href="{{ route('contactus') }}">contact us</a></li>
-        <li><a href="">about us</a></li>
+        <li><a href="{{ route('profile.index') }}">My Profile</a></li>
       </ul>
     </nav>
     <header>

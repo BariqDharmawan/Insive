@@ -7,6 +7,29 @@
     span.select2-container .select2-results__option {
         color: #000 !important;
     }
+    .select2-selection__rendered {
+      background-color: #212121;
+      border: 1px solid #F6E1B2;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      color: #F6E1B2;
+    }
+    .select2-results {
+      background-color: #212121;
+    }
+    span.select2-container .select2-results__option {
+      color: #F6E1B2 !important;
+    }
+    .select2-container--default .select2-results__option[aria-selected=true] {
+      background-color: #F6E1B2;
+      color: #212121 !important;
+    }
+    .select2-search--dropdown {
+      background-color: #212121 !important;
+    }
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+      background-color: #363434 !important;
+    }
 </style>
 @endsection
 @section('body-id', 'shipping-address-page')
@@ -24,20 +47,22 @@
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="fullname">Name:​</label>
                         <div class="col-12 col-lg-10">
-                            <input class="form-control" type="text"  id="fullname" name="customer_fullname" placeholder="Please Fill Your Fullname" required>
+                          <input class="form-control" type="text"  id="fullname" name="customer_fullname"
+                          placeholder="Please Fill Your Fullname" @auth value="{{ Auth::user()->name }}" @endauth required>
                         </div>
                     </div>
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="email">Email:​​</label>
                         <div class="col-12 col-lg-10">
-                            <input class="form-control" type="text" id="email" name="customer_email" placeholder="Please Fill Your Email" required>
+                            <input class="form-control" type="email" id="email"
+                            name="customer_email" placeholder="Please Fill Your Email" @auth value="{{ Auth::user()->email }}" @endauth required>
                         </div>
                     </div>
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="phone">Phone:​​</label>
                         <div class="col-12 col-lg-10">
                             <input class="form-control" type="tel" pattern="[0-9]*" inputmode="tel" id="phone"
-                            name="customer_phone" placeholder="Please Fill With Your Active Number" required>
+                            name="customer_phone" value="{{ Auth::user()->phone }}" placeholder="Please Fill With Your Active Number" required>
                         </div>
                     </div>
                     <div class="form-group form-row">
@@ -54,7 +79,7 @@
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="address">Address:​​</label>
                         <div class="col-12 col-lg-10">
                             <textarea class="form-control" name="customer_address" id="address"
-                            rows="8" placeholder="Please Fill Your Address" required></textarea>
+                            rows="8" placeholder="Please Fill Your Address" required>{{ Auth::user()->address }}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn bg--cream float-right mt-3">
@@ -70,7 +95,7 @@
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('.select2').select2(); 
+        $('.select2').select2();
     });
 </script>
 @endsection

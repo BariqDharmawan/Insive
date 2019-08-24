@@ -227,6 +227,50 @@ footer a {
   color: #DFDFDF;
 }
 
+/*profile-page css*/
+#profile-page .profile img {
+  margin: 0 auto;
+  display: block;
+}
+#profile-page .profile .profile__details {
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+#profile-page .profile .modal-content {
+  background-color: #212121;
+}
+#profile-page .profile .profile__details p:first-child {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+#profile-page .profile .profile__details .form-control {
+  border: 1px solid #F6E1B2;
+  color: #F6E1B2;
+  background-color: #212121;
+}
+#profile-page input[type=number]::-webkit-inner-spin-button,
+#profile-page input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#profile-page .profile .profile__details address {
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+}
+#profile-page .profile .profile__details .form-control::placeholder {
+  color: #666;
+}
+#profile-page .profile .profile__details .form-control:focus {
+  background-color: #1a1919;
+}
+#profile-page .profile .profile__details .modal-footer {
+  border-top: 1px solid transparent;
+}
+/*end of profile-page css*/
 /*landing-page css*/
 #landing-page footer a:hover {
   color: #cdcbcb;
