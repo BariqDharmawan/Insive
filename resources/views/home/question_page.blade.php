@@ -2,7 +2,7 @@
 @section('title', 'Pertanyaan')
 @section('body-id', 'question-page')
 @section('css')
-<link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <style type="text/css">
   span.select2-container .select2-results__option {
     color: #000 !important;
@@ -140,7 +140,7 @@
 </main>
 @endsection
 @section('script')
-<script src="{{asset('plugins/select2/select2.full.min.js')}}"></script>
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
   $(document).ready(function(){
   });
