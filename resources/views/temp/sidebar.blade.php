@@ -50,9 +50,9 @@
           </a>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link {{ (Request::is('admin/product')) ? 'active' : ''  }}">
+          <a href="#" class="nav-link {{ (Request::is('admin/product*')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-table"></i>
-            <p>Product</p>
+            <p>Product <i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -76,7 +76,7 @@
           </a>
         </li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link {{ (Request::is('admin/how-to-order*')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-atlas"></i>
             <p>
               How To Order
@@ -85,14 +85,14 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.how-to-order.index') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <a href="{{ route('admin.how-to-order.index') }}" class="nav-link {{ (Request::is('admin/how-to-order')) ? 'active' : ''  }}">
+                <i class="nav-icon fas fa-book-open"></i>
                 <p>Index</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin.how-to-order.create') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <a href="{{ route('admin.how-to-order.create') }}" class="nav-link {{ (Request::is('admin/how-to-order/create')) ? 'active' : ''  }}">
+                <i class="nav-icon fas fa-plus-square"></i>
                 <p>Create Page</p>
               </a>
             </li>

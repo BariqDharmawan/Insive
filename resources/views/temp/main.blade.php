@@ -4,14 +4,14 @@
 <body class="hold-transition sidebar-mini pr-0">
   <div class="wrapper">
     @include('temp.navbar')
-    <aside class="main-sidebar sidebar-light-info elevation-4" style="z-index: 1040 !important;">
+    <aside class="main-sidebar sidebar-light-info elevation-4">
       <a href="{{ url('/') }}" class="brand-link bg-info">
         <img src="{{ asset('img/logo/IS icon jpg.jpg') }}" alt="Insive Logo" class="brand-image img-circle elevation-1">
         <span class="brand-text font-weight-light">Admin Insive</span>
       </a>
       @include('temp.sidebar')
     </aside>
-    <div class="content-wrapper">
+    <div class="content-wrapper pb-4">
       <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -37,9 +37,7 @@
         </div>
       </div>
     </div>
-    <footer class="main-footer text-center">
-      Copyright {{ date('Y') }} | Insive
-    </footer>
+    <footer class="main-footer text-center">Copyright {{ date('Y') }} | Insive</footer>
   </div>
   @include('temp.scripts')
 </body>
