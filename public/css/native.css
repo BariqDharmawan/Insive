@@ -997,9 +997,6 @@ footer a {
     margin-right: 15px;
   }
   /*landing-page width more than phone css*/
-  #landing-page main {
-    height: calc(100% - 110px - 65px - 60px);
-  }
   #landing-page .carousel-item:first-child {
     justify-content: center;
   }

@@ -2,14 +2,6 @@
 @section('title', 'Contact Us')
 @section('page-title', 'Contact Us')
 @section('body-id', 'contact-us-page')
-@section('css')
-  <style media="screen">
-    footer {
-      position: fixed;
-      bottom: 0;
-    }
-  </style>
-@endsection
 @section('content')
   <main>
     <div class="container py-5">
