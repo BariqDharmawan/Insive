@@ -16,9 +16,7 @@
           <a href="{{ url('/') }}">Homepage</a>
           <a href="" id="close-menu"><i class='bx bx-x' ></i></a>
         </li>
-        <li>
-          <a href="">how to order</a>
-        </li>
+        <li><a href="{{ route('how-to-order') }}">how to order</a></li>
         <li><a href="{{ url('question') }}">custom sheet mask</a></li>
         <li><a href="{{ route('catalog.default') }}">buy from catalog</a></li>
         <li><a href="{{ route('faq.index') }}">FAQ</a></li>

@@ -16,6 +16,7 @@ Route::resource('faq', 'Home\FaqController');
 Route::get('payment/finish', 'PaymentController@finish');
 Route::get('payment/unfinish', 'PaymentController@unfinish');
 Route::get('payment/error', 'PaymentController@error');
+Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order');
 
 Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
@@ -58,6 +59,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
   Route::resource('product', 'ProductController');
   Route::resource('logic', 'LogicController');
   Route::resource('faq', 'FaqController');
+  Route::resource('how-to-order', 'HowToOrderController');
 });
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');

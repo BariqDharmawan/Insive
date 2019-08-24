@@ -165,7 +165,7 @@
       $("main .product__action .btn").one('click', function() {
         var productnya = $(this).parents(".product").clone();
         $("aside .form-group .row").append(productnya);
-        $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="0" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
+        $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="1" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
         $("aside .form-group .row .product figcaption").append('<a href="javascript:void(0);" class="btnRemove"><i class="bx bx-trash-alt"></i></a>')
         $("aside").addClass('show');
         $("header, footer, main").addClass("aside-showed");
@@ -180,7 +180,7 @@
         $("main .product__action .btn").unbind('click').one('click', function() {
           var productnya = $(this).parents(".product").clone();
           $("aside .form-group .row").append(productnya);
-          $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="0" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
+          $("aside .form-group .row .product__action .btn").replaceWith('<a href="javascript:void(0);" class="product__button product__button--increase"><i class="bx bx-plus"></i></a><input type="number" name="jumlah_beli" min="1" value="1" required><a href="#" class="product__button product__button--decrease"><i class="bx bx-minus"></i></a>');
           $("aside .form-group .row .product figcaption").append('<a href="javascript:void(0);" class="btnRemove"><i class="bx bx-trash-alt"></i></a>')
           $("aside").addClass('show');
           $("header, footer, main").addClass("aside-showed");
@@ -205,8 +205,13 @@
       });
       //kurangin jumlah beli
       $(document).on('click', '.product__button--decrease', function(){
-        $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
-        defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
+        if ($(this).prev('input').val() > 1) {
+          $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
+          defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
+        }
+        else {
+          $(this).prev('input').val(1);
+        }
     	});
       $(".btn-close").click(function() {
         $(this).parent().removeClass("show");

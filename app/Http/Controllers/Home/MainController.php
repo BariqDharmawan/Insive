@@ -16,6 +16,7 @@ use App\Models\Pricing;
 use App\Models\Cart;
 use App\Models\CustomProduct;
 use Auth;
+use App\Models\HowToOrder;
 use Indonesia;
 
 class MainController extends Controller
@@ -30,7 +31,7 @@ class MainController extends Controller
         $allCities = Indonesia::allProvinces();
         return view('question', compact('allCities'));
     }
-    
+
     /**
     * Display a listing of the resource.
     *
@@ -41,7 +42,7 @@ class MainController extends Controller
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
         return view('home.fragrance_page')->with($data);
     }
-    
+
     /**
     * Display a listing of the resource.
     *
@@ -76,7 +77,7 @@ class MainController extends Controller
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
         return view('home.sheet_page')->with($data);
     }
-    
+
     /**
     * Display a listing of the resource.
     *
@@ -89,7 +90,7 @@ class MainController extends Controller
         // $data['product'] = CustomProduct::where('cart_id', '=', $cart_id)->get();
         // return view('home.sheet_and_fragrance_page')->with($data);
     }
-    
+
     /**
     * Display a listing of the resource.
     *
@@ -100,7 +101,7 @@ class MainController extends Controller
         $data['price'] = Pricing::all();
         return view('home.pricing_page')->with($data);
     }
-    
+
     /**
     * Display face result of the resource.
     *
@@ -131,7 +132,7 @@ class MainController extends Controller
             return view('home.face_result')->with($data);
         }
     }
-    
+
     /**
     * Display question of the resource.
     *
@@ -142,7 +143,7 @@ class MainController extends Controller
         $data['question'] = Question::findOrfail(1);
         return view('home.question_page')->with($data);
     }
-    
+
     public function getSoal(Request $request, $id)
     {
         $option = $request->option_id;
@@ -179,8 +180,8 @@ class MainController extends Controller
             ], 200);
         }
     }
-    
-    
+
+
     /**
     * Show the form for creating a new resource.
     *
@@ -196,7 +197,7 @@ class MainController extends Controller
             dd($$response['rajaongkir']['results']);
         }
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -207,7 +208,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -231,7 +232,7 @@ class MainController extends Controller
             return redirect()->back();
         }
     }
-    
+
     /**
     * Store a newly created resource in storage.
     *
@@ -252,7 +253,7 @@ class MainController extends Controller
                 $sheet = CustomProduct::where('cart_id', '=', $cart_id)->get();
                 $last_sheet_id = $sheet->last()->sheet_id;
                 if($count_sheet >= $count_fragrance) {
-                    for ($i=0; $i < $count_sheet; $i++) { 
+                    for ($i=0; $i < $count_sheet; $i++) {
                         CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$i]->sheet_id]])
                                     ->update(['fragrance_id' => ($i <= ($count_fragrance-1))? $fragrance[$i] : last($fragrance)]);
                     }
@@ -277,7 +278,7 @@ class MainController extends Controller
             return redirect()->back();
         }
     }
-    
+
     /**
     * Display the specified resource.
     *
@@ -288,7 +289,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Show the form for editing the specified resource.
     *
@@ -299,7 +300,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Update the specified resource in storage.
     *
@@ -311,7 +312,7 @@ class MainController extends Controller
     {
         //
     }
-    
+
     /**
     * Remove the specified resource from storage.
     *
@@ -322,11 +323,16 @@ class MainController extends Controller
     {
         //
     }
-    
+
+    public function HowToOrder()
+    {
+        $howToOrder = HowToOrder::first();
+        return view('how-to', compact('howToOrder'));
+    }
+
     public function logout(Request $request)
     {
         $request->session()->flush();
         return redirect(url('/'));
     }
 }
-
