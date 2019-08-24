@@ -18,6 +18,7 @@ class ProductSeeder extends Seeder
             'price' => '20000',
             'qty' => '29',
             'type' => 'A',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -25,6 +26,7 @@ class ProductSeeder extends Seeder
             'price' => '30000',
             'qty' => '39',
             'type' => 'C',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -32,6 +34,7 @@ class ProductSeeder extends Seeder
             'price' => '70000',
             'qty' => '9',
             'type' => 'C',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -39,6 +42,7 @@ class ProductSeeder extends Seeder
             'price' => '50000',
             'qty' => '19',
             'type' => 'A',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -46,6 +50,7 @@ class ProductSeeder extends Seeder
             'price' => '90000',
             'qty' => '29',
             'type' => 'A',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -53,6 +58,7 @@ class ProductSeeder extends Seeder
             'price' => '20000',
             'qty' => '69',
             'type' => 'A',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -60,6 +66,7 @@ class ProductSeeder extends Seeder
             'price' => '30000',
             'qty' => '59',
             'type' => 'C',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -67,6 +74,7 @@ class ProductSeeder extends Seeder
             'price' => '70000',
             'qty' => '99',
             'type' => 'C',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -74,6 +82,7 @@ class ProductSeeder extends Seeder
             'price' => '50000',
             'qty' => '129',
             'type' => 'B',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ],
           [
@@ -81,6 +90,7 @@ class ProductSeeder extends Seeder
             'price' => '90000',
             'qty' => '69',
             'type' => 'B',
+            'category' => 'mask',
             'created_at' => Carbon::now()
           ]
         ]);

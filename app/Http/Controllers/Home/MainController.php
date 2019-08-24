@@ -70,8 +70,8 @@ class MainController extends Controller
         }
         $logic_id = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail()->id;
         $table = Cart::firstOrCreate(
-            ['user_id' => $user_id, 'status' => 'waiting'],
-            ['user_id' => $user_id, 'logic_id' => $logic_id, 'cart_code' => 'C'.date('HisYmd'), 'formula_code' => '#02319', 'status' => 'waiting']
+            ['user_id' => $user_id, 'type_cart' => 'custom', 'status' => 'waiting'],
+            ['user_id' => $user_id, 'logic_id' => $logic_id, 'cart_code' => 'C'.date('HisYmd'), 'formula_code' => '#02319', 'type_cart' => 'custom', 'status' => 'waiting']
         );
         CustomProduct::where('cart_id', $table->id)->delete();
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
@@ -221,7 +221,7 @@ class MainController extends Controller
         $user_id = Auth::user()->id;
         $date_now = date('Y-m-d H:i:s');
         if($sheet !== null) {
-            $cart_id = Cart::where([['user_id', '=', $user_id],['status', '=', 'waiting']])->firstOrFail()->id;
+            $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail()->id;
             $data = [];
             foreach ($sheet as $key => $value) {
                 $data[] = ['cart_id' => $cart_id, 'sheet_id' => $value, 'qty' => 1, 'created_at' => $date_now, 'updated_at' => $date_now];
@@ -245,7 +245,7 @@ class MainController extends Controller
         $user_id = Auth::user()->id;
         $date_now = date('Y-m-d H:i:s');
         if($fragrance !== null) {
-            $cart_id = Cart::where([['user_id', '=', $user_id],['status', '=', 'waiting']])->firstOrFail()->id;
+            $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail()->id;
             $count_sheet = CustomProduct::where('cart_id', '=', $cart_id)->count();
             $count_fragrance = count($fragrance);
             if($count_sheet > 0) {
