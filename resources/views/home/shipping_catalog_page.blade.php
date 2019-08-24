@@ -19,7 +19,7 @@
             </div>
             <div class="col">
                 <p class="bg--cream mt-3 mb-5 py-1 px-2 d-lg-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
-                <form action="{{route('home.shipping.store')}}" method="post">
+                <form action="{{route('home.shipping.store.catalog')}}" method="post">
                     @csrf
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="fullname">Name:​</label>
