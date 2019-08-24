@@ -2,7 +2,8 @@
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing-page');
-Route::view('catalog', 'catalog.default')->name('catalog.default');
+// Route::view('catalog', 'catalog.default')->name('catalog.default');
+Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default');
 Route::view('face-result', 'face-result');
 Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 Route::view('contact-us', 'contact')->name('contactus');
@@ -20,6 +21,7 @@ Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order
 
 Route::namespace('Home')->middleware('auth')->group(function () {
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
+  Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');
   Route::post('custom/fragrance', 'MainController@storeFragrance')->name('main.fragrance.store');
   Route::get('custom/sheet', 'MainController@sheet')->name('main.sheet');
   Route::post('custom/sheet', 'MainController@storeSheet')->name('main.sheet.store');
