@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
           'name' => 'Admin Tester',
           'email' => 'admin@insive.com',
           'address' => '-',
+          'role' => 'admin',
           'password' => Hash::make('admininsive')
       ]);
       DB::table('users')->insert([
