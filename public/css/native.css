@@ -686,10 +686,6 @@ footer a {
 }
 /*end of catalog-page css*/
 /*custom-fragrance-page css*/
-#custom-fragrance-page footer {
-  position: fixed;
-  bottom: 0;
-}
 #custom-fragrance-page .row figure:hover {
   background-color: #1F1E1E;
   cursor: pointer;

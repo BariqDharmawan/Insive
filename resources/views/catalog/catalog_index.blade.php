@@ -38,20 +38,8 @@
             </div>
             @endforeach
         </div>
-        <div class="row mx-0">
-            <ul class="pagination col-12">
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
+        <div class="row mx-0 justify-content-center">
+          {{ $product->links() }}
         </div>
     </div>
 </main>
@@ -132,4 +120,3 @@
         });
     </script>
     @endsection
-    

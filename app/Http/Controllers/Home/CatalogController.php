@@ -13,7 +13,7 @@ class CatalogController extends Controller
 {
     public function index()
     {
-        $data['product'] = Product::where('qty', '>', 0)->get();
+        $data['product'] = Product::where('qty', '>', 0)->paginate(20);
         return view('catalog.catalog_index')->with($data);
     }
 
@@ -48,6 +48,6 @@ class CatalogController extends Controller
 
     public function cartIndex()
     {
-        
+
     }
 }

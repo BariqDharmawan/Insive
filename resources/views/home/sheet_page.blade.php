@@ -8,15 +8,15 @@
         <form action="{{ route('main.sheet.store') }}" method="post">
             @csrf
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-lg-4">
                     <img src="{{ asset('img/product.png') }}" height="350" class="d-block mx-auto" alt="Product">
                 </div>
-                <div class="col-12 col-md-8 d-flex d-md-block flex-wrap justify-content-center">
-                    <p class="bg--cream my-4 my-md-2 py-1 px-2 d-md-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
-                    <p class="text--cream px-2 px-md-0 mb-5 my-md-4">Choose your sheet:</p>
+                <div class="col-12 col-lg-8 d-flex d-lg-block flex-wrap justify-content-center">
+                    <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
+                    <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">Choose your sheet:</p>
                     <div class="row mx-0 px-2 justify-content-between">
                         @foreach ($sheet as $key => $item)
-                        <figure class="sheet text-center col-6 py-3 col-md-auto  {{($key == 0)? 'selected' : ''}}">
+                        <figure class="sheet text-center col-6 py-3 col-lg-auto  {{($key == 0)? 'selected' : ''}}">
                             <div class="mx-auto d-flex align-items-center" style="border-radius: 100%;background-color: navajowhite;width: 110px; height: 110px;">
                                 <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" alt="Fragrance Item" width="80" height="80">
                               </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center justify-content-md-end py-5">
+            <div class="row justify-content-center justify-content-lg-end py-5">
                 <button type="submit" class="btn bg--cream"><b>Next</b>, Go to fragrance <i class='bx bx-caret-right'></i></button>
             </div>
         </form>
@@ -41,15 +41,15 @@
     $(document).ready(function() {
         $(".sheet").click(function() {
             if($(this).hasClass('selected')) {
-                //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-            $(this).removeClass("selected");
-            //saat sheet di klik, trigger input di dlm nya jd checked
-            $(this).children("figcaption").find("input[type='checkbox']").removeAttr("checked");
+              //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
+              $(this).removeClass("selected");
+              //saat sheet di klik, trigger input di dlm nya jd checked
+              $(this).children("figcaption").find("input[type='checkbox']").prop("checked", false);
             } else {
-                //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-            $(this).addClass("selected");
-            //saat sheet di klik, trigger input di dlm nya jd checked
-            $(this).children("figcaption").find("input[type='checkbox']").attr("checked", "checked");
+              //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
+              $(this).addClass("selected");
+              //saat sheet di klik, trigger input di dlm nya jd checked
+              $(this).children("figcaption").find("input[type='checkbox']").prop("checked", true);
             }
         });
     });

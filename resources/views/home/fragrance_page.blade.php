@@ -44,12 +44,12 @@
         //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
         $(this).removeClass("selected");
         //saat fragrance di klik, trigger input di dlm nya jd checked
-        $(this).children("figcaption").find("input[type='checkbox']").removeAttr("checked");
+        $(this).children("figcaption").find("input[type='checkbox']").prop("checked", false);
       } else {
         //saat fragrance di klik, tambah class selected dan hapus class selected di fragrance lain
         $(this).addClass("selected");
         //saat fragrance di klik, trigger input di dlm nya jd checked
-        $(this).children("figcaption").find("input[type='checkbox']").attr("checked", "checked");
+        $(this).children("figcaption").find("input[type='checkbox']").prop("checked", true);
       }
     });
   });
