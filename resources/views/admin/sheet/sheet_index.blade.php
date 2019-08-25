@@ -36,7 +36,6 @@
                             <th>Name</th>
                             <th>status</th>
                             <th>action</th>
-                            {{-- <th class="text-left">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +49,7 @@
                                 <small class="badge badge-success"><i class="fa fa-check"></i> available</small>
                                 @else
                                 <small class="badge badge-danger"><i class="fa fa-times"></i> not available</small>
-                                
+
                                 @endif
                             </td>
                             <td style="width:180px">

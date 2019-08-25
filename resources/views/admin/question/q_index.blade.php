@@ -21,9 +21,6 @@
         <div class="card-header no-border">
             <div class="d-flex justify-content-between">
                 <h3 class="card-title">List of Question</h3>
-                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Add New Question
-                </button> --}}
             </div>
         </div>
         <div class="card-body">
@@ -35,7 +32,6 @@
                             <th>Question</th>
                             <th>Options</th>
                             <th>Type</th>
-                            {{-- <th class="text-left">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -49,14 +45,6 @@
                                 @endforeach
                             </td>
                             <td>{{ $value->type }}</td>
-                            {{-- <td>
-                                <form action="" method="POST">
-                                    @csrf	@method('DELETE')
-                                    <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Question">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

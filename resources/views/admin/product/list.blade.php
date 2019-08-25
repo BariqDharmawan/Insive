@@ -97,7 +97,7 @@
                               <input class="form-control" name="qty" type="number" min="1" max="1000000000" placeholder="Qty" value="{{ $product->qty }}" autocomplete="off" required>
                             </div>
                             <div class="form-group">
-                              <select class="form-control select2" name="type" style="width: 100%;" required>
+                              <select class="form-control select2 w-100" name="type" required>
                                 <option @if ($product->type == 'Alabama') selected @endif>Alabama</option>
                                 <option @if ($product->type == 'Alaska') selected @endif>Alaska</option>
                                 <option @if ($product->type == 'California') selected @endif>California</option>
@@ -207,7 +207,7 @@
                   <input class="form-control" name="qty" type="number" min="1" max="1000000000" placeholder="Qty" required>
                 </div>
                 <div class="form-group">
-                  <select class="form-control select2" name="type" style="width: 100%;" required>
+                  <select class="form-control select2 w-100" name="type" required>
                     <option selected>Alabama</option>
                     <option>Alaska</option>
                     <option>California</option>

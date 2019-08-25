@@ -98,29 +98,6 @@
             </li>
           </ul>
         </li>
-        {{-- <li class="nav-item has-treeview {{ (Request::segment(1) == "transaction")? 'menu-open' : '' }}">
-          <a href="#" class="nav-link {{ (Request::segment(1) == "transaction")? 'active' : '' }}">
-            <i class="nav-icon fa fa-opencart"></i>
-            <p>
-              Transaction
-              <i class="right fa fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="" class="nav-link {{ (Request::segment(1) == "transaction" && Request::segment(2) == null)? 'active' : '' }}">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>List</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link {{ (Request::segment(2) == "create")? 'active' : '' }}">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>Create</p>
-              </a>
-            </li>
-          </ul>
-        </li> --}}
       </ul>
     </nav>
   </div>

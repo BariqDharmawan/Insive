@@ -5,9 +5,6 @@
 <div class="card-header no-border">
     <div class="d-flex justify-content-between">
         <h3 class="card-title">Soal <small>{{$question->type}} {{$question->status}}</small></h3>
-        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Add New Question
-        </button> --}}
     </div>
 </div>
 <div class="card-body">

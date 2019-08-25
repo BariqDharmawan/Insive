@@ -10,7 +10,9 @@
           <img src="{{ asset('img/product.png') }}" height="350" class="d-block mx-auto" alt="Product">
         </div>
         <div class="col-12 col-lg-8 d-flex d-lg-block flex-wrap justify-content-center">
-          <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">Formula Code: <var class="font-weight-bold">#02139</var></p>
+          <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">
+            Formula Code: <var class="font-weight-bold">#02139</var>
+          </p>
           <p class="text--cream px-2 px-lg-0 mb-3 my-lg-4 w-100 text-center text-lg-left">Qty:</p>
           <form id="nextCart" action="index.html" method="post">
             <ul class="product__action">

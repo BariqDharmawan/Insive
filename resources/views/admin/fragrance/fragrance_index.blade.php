@@ -4,6 +4,15 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
+<style media="screen">
+  td {
+    width: 50px;
+    height: 50px;
+  }
+  td:last-child {
+    width: 180px;
+  }
+</style>
 @endsection
 
 @section ('title-body', 'Manage')
@@ -36,28 +45,27 @@
                             <th>Name</th>
                             <th>status</th>
                             <th>action</th>
-                            {{-- <th class="text-left">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($fragrance as $key => $value)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><img class="bg-success" src="{{ asset('img/fragrance/'.$value->fragrance_img) }}" style="width: 50px; height: 50px;" alt="{{$value->fragrance_img}}"></td>
+                            <td><img class="bg-success" src="{{ asset('img/fragrance/'.$value->fragrance_img) }}" alt="{{$value->fragrance_img}}"></td>
                             <td>{{ $value->fragrance_name }}</td>
                             <td>
                                 @if ($value->qty > 0)
                                 <small class="badge badge-success"><i class="fa fa-check"></i> available</small>
                                 @else
                                 <small class="badge badge-danger"><i class="fa fa-times"></i> not available</small>
-                                
+
                                 @endif
                             </td>
-                            <td style="width:180px">
+                            <td>
                                 <button class="btn btn-sm btn-warning btn-edit" data-id="{{$value->id}}" data-name="{{$value->fragrance_name}}" data-status="{{$value->qty}}" data-toggle="tooltip" data-placement="bottom" title="Edit Fragrance">
                                     <i class="fa fa-edit"></i> Edit
                                 </button>
-                                <form action="{{ route('admin.fragrance.destroy', ['fragrance'=>$value->id]) }}" onsubmit="return confirm('Are you sure?')" method="POST" style="display:inline">
+                                <form action="{{ route('admin.fragrance.destroy', ['fragrance'=>$value->id]) }}" onsubmit="return confirm('Are you sure?')" method="POST" class="d-inline">
                                     @csrf	@method('DELETE')
                                     <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Fragrance">
                                         <i class="fa fa-trash"></i> Delete
@@ -104,7 +112,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" style="width: 100px;">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
@@ -143,7 +151,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" style="width: 100px;">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
