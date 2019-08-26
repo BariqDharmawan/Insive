@@ -10,10 +10,12 @@
   </style>
 @endsection
 @section('content')
-  @if (session('success'))
-    <div class="alert alert-success" role="alert">
-      Succesfully added new faq
-    </div>
+  @if (session('success_message'))
+  <div class="col-12 message-session">
+      <div class="alert alert-{{(Session::has('success_message'))? 'success' : 'danger'}} text-center">
+          {{ session('success_message') }}
+      </div>
+  </div>
   @endif
   <div class="col-12">
     <div class="accordion" id="accordionFaq">
@@ -78,6 +80,7 @@
   <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
   <script>
     $(document).ready(function() {
+      $('.message-session').delay(3000).slideUp(600);
       $('.textarea').summernote({
         minHeight: 200
       })

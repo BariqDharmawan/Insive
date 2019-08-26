@@ -51,7 +51,7 @@
                         @foreach($fragrance as $key => $value)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><img class="bg-success" src="{{ asset('img/fragrance/'.$value->fragrance_img) }}" alt="{{$value->fragrance_img}}"></td>
+                            <td><img class="bg-success img-fluid" src="{{ asset('img/fragrance/'.$value->fragrance_img) }}" alt="{{$value->fragrance_img}}"></td>
                             <td>{{ $value->fragrance_name }}</td>
                             <td>
                                 @if ($value->qty > 0)

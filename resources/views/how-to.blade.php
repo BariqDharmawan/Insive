@@ -8,7 +8,7 @@
       padding-right: 20px;
     }
     .col-12, .col-12 * {
-      color: #F6E1B2;
+      color: #f6f6f6;
     }
     .col-12:last-child div {
       position: relative;

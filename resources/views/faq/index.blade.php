@@ -11,31 +11,25 @@
     .card {
       background-color: #1e1e1e;
     }
-    .card-header .btn-link {
-      color: #F6E1B2;
-    }
-    .card-body {
-      background-color: #F6E1B2;
-    }
     .page-item.disabled .page-link {
       border-color: #1e1e1e;
       background-color: #1e1e1e;
       color: rgba(246,225,178,.4);
     }
     .page-item.active .page-link {
-      background-color: #F6E1B2;
+      background-color: #E2CCC1;
       color: #1e1e1e;
       border-color: #1e1e1e;
     }
     .page-link:hover {
-      color: #F6E1B2;
+      color: #d1baaf;
       border-color: #171717;
       background-color: #171717;
     }
     .page-link {
       border-color: transparent;
       background-color: #1e1e1e;
-      color: #F6E1B2;
+      color: #E2CCC1;
     }
   </style>
 @endsection
@@ -54,7 +48,7 @@
               <div class="card">
                 <div class="card-header" id="heading{{ $faq->id }}">
                   <h2 class="mb-0 d-flex justify-content-between align-items-center">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $faq->id }}"
+                    <button class="btn btn-link text--cream" type="button" data-toggle="collapse" data-target="#collapse{{ $faq->id }}"
                       aria-expanded="@if ($faq->id == 1) true @endif" aria-controls="collapse{{ $faq->id }}">
                       {{ $faq->pertanyaan }}
                     </button>
@@ -66,7 +60,7 @@
                 </div>
                 <div id="collapse{{ $faq->id }}" class="collapse @if ($faq->id == 1) show @endif"
                   aria-labelledby="heading{{ $faq->id }}" data-parent="#accordionFaq">
-                  <div class="card-body">
+                  <div class="card-body bg--cream">
                     {!! $faq->isi !!}
                   </div>
                 </div>

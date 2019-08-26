@@ -11,7 +11,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.sheet.index') }}" class="nav-link {{ (Request::is('admin/sheet'))? 'active' : '' }}">
-            <i class="nav-icon fa fa-credit-card"></i>
+            <i class="nav-icon far fa-newspaper"></i>
             <p>
               Sheet
             </p>
@@ -27,7 +27,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.pricing.index') }}" class="nav-link {{ (Request::is('admin/pricing'))? 'active' : '' }}">
-            <i class="nav-icon fa fa-credit-card"></i>
+            <i class="nav-icon fas fa-funnel-dollar"></i>
             <p>
               Pricing
             </p>

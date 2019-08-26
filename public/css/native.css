@@ -24,7 +24,7 @@ main, footer, header {
   display: inline-block;
 }
 #show-menu:hover {
-  background-color: #F6E1B2;
+  background-color: #d4bdb2;
 }
 #show-menu:hover .bx {
   color: #383838;
@@ -33,7 +33,7 @@ main, footer, header {
   background-color: #383838;
 }
 #close-menu:hover .bx {
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #show-menu, #close-menu {
   border-radius: 50%;
@@ -60,10 +60,10 @@ main, footer, header {
   color: #8C8C8C !important;
 }
 .btn.bg--cream:hover {
-  background-color: #EBD5A5;
+  background-color: #d0b9ae;
 }
 .btn.bg--cream:active {
-  background-color: #CDB581;
+  background-color: #c6aea2;
 }
 .btn {
   justify-content: center;
@@ -73,23 +73,26 @@ main, footer, header {
 }
 .custom-select {
   background-color: transparent;
-  border-color: #F6E1B2;
-  color: #F6E1B2;
+  border-color: #E2CCC1;
+  color: #E2CCC1;
 }
 a.disabled {
   color: #929292;
   pointer-events: none;
 }
 .bg--cream {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
 }
 .text--cream {
-  color: #F6E1B2;
+  color: #E2CCC1;
+}
+.text--cream:hover {
+  color: #d0b9ae;
 }
 .form-control:-webkit-autofill,
 .form-control:-webkit-autofill:hover,
 .form-control:-webkit-autofill:focus {
-  -webkit-text-fill-color: #F6E1B2;
+  -webkit-text-fill-color: #E2CCC1;
   background-color: transparent;
   transition: background-color 999999999s ease-in-out 0s;
 }
@@ -121,12 +124,12 @@ a:hover {
 }
 .product__action input {
   background-color: transparent;
-  border: 1px solid #F6E1B2;
+  border: 1px solid #E2CCC1;
   width: 40px;
   height: 40px;
   text-align: center;
   transition: all 250ms;
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 .product__action input:focus {
   border-color: #E6D1A2 !important;
@@ -143,13 +146,13 @@ a:hover {
   align-items: center;
   justify-content: center;
   height: 40px;
-  color: #F6E1B2;
+  color: #E2CCC1;
   border: 1px solid transparent;
   width: 40px;
   transition: all 250ms;
 }
 .product__button:hover {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
 }
 .product__button:hover .bx {
   color: #212121;
@@ -165,7 +168,7 @@ nav {
   overflow: hidden;
   width: 0;
   height: 100%;
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   transition: width 800ms;
 }
 nav ul {
@@ -211,7 +214,7 @@ header .page-title {
   font-size: 22px;
   font-weight: bolder;
   text-transform: uppercase;
-  color: #F6E1B2;
+  color: #E2CCC1;
   margin-bottom: 0;
 }
 footer {
@@ -247,8 +250,8 @@ footer a {
   font-size: 24px;
 }
 #profile-page .profile .profile__details .form-control {
-  border: 1px solid #F6E1B2;
-  color: #F6E1B2;
+  border: 1px solid #E2CCC1;
+  color: #E2CCC1;
   background-color: #212121;
 }
 #profile-page input[type=number]::-webkit-inner-spin-button,
@@ -298,7 +301,7 @@ footer a {
   object-fit: scale-down;
 }
 #landing-page .carousel-item:first-child img {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -306,7 +309,7 @@ footer a {
 #landing-page .carousel-item:first-child h1 {
   font-size: 30px;
   text-transform: uppercase;
-  color: #F6E1B2;
+  color: #E2CCC1;
   position: relative;
   top: 48%;
   transform: translateY(-50%);
@@ -350,19 +353,16 @@ footer a {
   margin-bottom: 40px;
 }
 #landing-page .recommend-link small {
-  color: #F6E1B2;
+  color: #E2CCC1;
   margin: 10px 0;
   font-weight: 200;
 }
 #landing-page .recommend-link a {
   font-size: 20px;
-  color: #F6E1B2;
+  color: #E2CCC1;
   font-weight: bold;
   position: relative;
   transition: color 250ms;
-}
-#landing-page .recommend-link a:hover {
-  color: #E7D09E;
 }
 /*end of landing-page css*/
 /*catalog-page css*/
@@ -421,10 +421,10 @@ footer a {
   padding-left: 0;
   padding-right: 0;
   border-color: transparent;
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #catalog-page aside form .form-group input {
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #catalog-page aside h1 {
   text-align: center;
@@ -437,7 +437,7 @@ footer a {
   height: 30px;
 }
 #catalog-page .row:last-of-type .btn {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   transition: all 250ms;
   color: #212121;
 }
@@ -579,11 +579,11 @@ footer a {
   content: counter(customlistcounter) " ";
 }
 #question-page aside a.active {
-  color: #F6E1B2;
+  color: #E2CCC1;
   font-weight: bold;
 }
 #question-page aside a.active::before {
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #question-page aside a img {
   display: none;
@@ -661,7 +661,7 @@ footer a {
   position: absolute;
   top: 12px;
   right: 0;
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #catalog-page aside .form-row .form-group .row:empty::before {
   content: 'No Item Added';
@@ -681,7 +681,7 @@ footer a {
   background-color: transparent;
   position: relative;
   border: none;
-  color: #F6E1B2;
+  color: #E2CCC1;
   text-align: center;
 }
 /*end of catalog-page css*/
@@ -700,7 +700,7 @@ footer a {
   margin-left: auto;
 }
 #custom-fragrance-page .unscented-fragrance {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   border-radius: 50%;
 }
 /*end of custom-fragrance-page*/
@@ -732,8 +732,8 @@ footer a {
 }
 #cart-page select {
   background-color: transparent;
-  border: 1px solid #F6E1B2;
-  color: #F6E1B2;
+  border: 1px solid #E2CCC1;
+  color: #E2CCC1;
   cursor: pointer;
   background-image: none;
 }
@@ -769,7 +769,7 @@ footer a {
   order: -1;
 }
 #cart-page .product__action li .product__button {
-  border: 1px solid #F6E1B2;
+  border: 1px solid #E2CCC1;
 }
 #cart-page .product__action li div:nth-child(2), #cart-page .product__action li div:nth-child(3) {
   width: 100%;
@@ -779,15 +779,15 @@ footer a {
   position: absolute;
   right: .75rem;
   top: 50%;
-  color: #F6E1B2;
+  color: #E2CCC1;
   transform: translateY(-50%);
 }
 /*end of cart-page css*/
 /*shipping-address-page css*/
 #shipping-address-page .form-control {
   background-color: transparent;
-  color: #F6E1B2;
-  border-color: #F6E1B2;
+  color: #E2CCC1;
+  border-color: #E2CCC1;
 }
 #shipping-address-page .form-control::placeholder {
   color: #585858;
@@ -816,7 +816,7 @@ footer a {
 }
 #finish-page main h1 span, #unfinish-page main h1 span {
   padding-bottom: 7px;
-  border-bottom: 4px solid #F6E1B2;
+  border-bottom: 4px solid #E2CCC1;
 }
 /*end of finish-page*/
 /*unfinish-page css*/
@@ -854,7 +854,7 @@ footer a {
 #invoice-page-admin main .col-12, #recipe-page-admin main .col-12 {
   margin-bottom: 40px;
   color: #fff;
-  border: 1px solid #F6E1B2;
+  border: 1px solid #E2CCC1;
   padding: 10px 15px;
 }
 #invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time {
@@ -885,7 +885,7 @@ footer a {
 #invoice-page-admin .pagination li .page-link, #recipe-page-admin .pagination li .page-link,
 #order-today-page-admin .pagination li .page-link, #catalog-page .pagination li .page-link {
   background-color: #212121;
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #invoice-page-admin .pagination .disabled .page-link, #recipe-page-admin .pagination .disabled .page-link,
 #order-today-page-admin .pagination .disabled .page-link, #catalog-page .pagination .disabled .page-link {
@@ -898,7 +898,7 @@ footer a {
 }
 #invoice-page-admin .pagination li.active .page-link, #recipe-page-admin .pagination li.active .page-link,
 #order-today-page-admin .pagination li.active .page-link, #catalog-page .pagination li.active .page-link {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   color: #212121;
   border-color: #e7d19f;
 }
@@ -911,7 +911,7 @@ footer a {
   padding: 20px;
 }
 #recipe-page-admin main .col-12 div:last-child {
-  border-top: 1px solid #F6E1B2;
+  border-top: 1px solid #E2CCC1;
 }
 /*end of recipe-page admin css*/
 /*order-today-admin page css*/
@@ -920,7 +920,7 @@ footer a {
 }
 #order-today-page-admin main .card {
   background-color: transparent;
-  color: #F6E1B2;
+  color: #E2CCC1;
 }
 #order-today-page-admin main .col-12 {
   display: flex;
@@ -930,15 +930,15 @@ footer a {
   justify-content: flex-start;
 }
 #order-today-page-admin main .col-12 span {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   padding: 10px;
   flex-grow: 2;
 }
 #order-today-page-admin main .col-12 var {
-  color: #F6E1B2;
+  color: #E2CCC1;
   flex-grow: 1;
   justify-content: center;
-  border: 1px solid #F6E1B2;
+  border: 1px solid #E2CCC1;
   display: inline-flex;
   margin-left: 40px;
   padding: 10px;
@@ -955,7 +955,7 @@ footer a {
   margin-right: 10px;
 }
 #order-today-page-admin main .accordion .card-body > div p {
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   flex-grow: 1;
   color: #212121;
   padding: 5px 10px;
@@ -970,7 +970,7 @@ footer a {
 }
 #order-today-page-admin main .accordion .card-body > ul li * {
   padding: 5px 10px;
-  border: 1px solid #F6E1B2;
+  border: 1px solid #E2CCC1;
 }
 #order-today-page-admin main .accordion .card-body > ul li span:first-child {
   margin-right: 10px;
@@ -993,7 +993,7 @@ footer a {
 }
 #order-today-page-admin main .accordion .card-body > ul li var ~ * {
   width: 100%;
-  background-color: #F6E1B2;
+  background-color: #E2CCC1;
   color: #212121;
   margin: 5px 0;
 }
@@ -1071,7 +1071,7 @@ footer a {
     background-color: transparent;
   }
   #landing-page .recommend-link a:hover::after {
-    background-color: #F6E1B2;
+    background-color: #E2CCC1;
     width: 80%;
   }
   /*end of catalog-page width more than phone css*/
@@ -1099,7 +1099,7 @@ footer a {
     justify-content: flex-start;
   }
   #question-page aside a.active::before {
-    background-color: #F6E1B2;
+    background-color: #E2CCC1;
     color: #363636;
   }
   #question-page aside a {

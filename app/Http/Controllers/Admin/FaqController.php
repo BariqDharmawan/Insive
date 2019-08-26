@@ -86,6 +86,8 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteFaq = Faq::findOrFail($id);
+        $deleteFaq->delete();
+        return redirect('admin/faq')->with('success_message', 'Succesfully Removed A Faq');
     }
 }
