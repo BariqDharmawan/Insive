@@ -35,7 +35,12 @@ class LoginController extends Controller
         return 'admin/dashboard';
       }
       else {
-        return '/';
+        if (Auth::user()->email_verified_at == '') {
+          return 'home';
+        }
+        else {
+          return '/';
+        }
       }
     }
 
@@ -55,8 +60,7 @@ class LoginController extends Controller
       );
 
       Auth::login($users);
-      return redirect('/');
-
+      return redirect('/home');
     }
 
     /**

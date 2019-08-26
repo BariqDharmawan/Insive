@@ -19,7 +19,7 @@ Route::get('payment/unfinish', 'PaymentController@unfinish');
 Route::get('payment/error', 'PaymentController@error');
 Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order');
 
-Route::namespace('Home')->middleware('auth')->group(function () {
+Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::resource('profile', 'ProfileController');
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
   Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');
