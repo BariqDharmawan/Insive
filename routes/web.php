@@ -43,7 +43,7 @@ Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->gro
   Route::resource('shipping', 'ShippingController');
   Route::resource('main', 'MainController');
 });
-Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'adminRole'])->name('admin.')->group(function () {
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->name('admin.')->group(function () {
   Route::view('invoice', 'admin.invoice')->name('invoice'); //NEW CREATED ON 8/20/2019
   Route::view('recipe', 'admin.recipe')->name('recipe'); //NEW CREATED ON 8/20/2019
   Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019
