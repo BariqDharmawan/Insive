@@ -13,7 +13,7 @@
       </div>
       @endif
       <figure class="profile">
-        <img src="{{ asset('img/muka/people.png') }}" height="150" alt="Profile Photo">
+        <img src="{{ Storage::url($myprofile->image) }}" height="150" alt="Profile Photo">
         <figcaption class="profile__details text--cream">
           <p>{{ Auth::user()->name }}</p>
           <small class="mb-2">{{ Auth::user()->email }}</small>
@@ -21,7 +21,7 @@
           <address>{{ Auth::user()->address }}</address>
           <button type="button" class="btn btn-link text-info" data-toggle="modal" data-target="#fillProfile">
             @if (Auth::user()->phone == '' OR Auth::user()->address == '')
-              Please Comlete Your Profile
+              Please Complete Your Profile
             @else
               Update Your Profile
             @endif
@@ -37,7 +37,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{ route('profile.update', Auth::user()->id) }}" id="completeProfile" method="post">
+                  <form action="{{ route('profile.update', Auth::user()->id) }}" id="completeProfile" enctype="multipart/form-data" method="post">
                     @csrf @method('PUT')
                     <div class="form-group">
                       <input type="text" name="name_customer" class="form-control"
@@ -54,6 +54,10 @@
                     <div class="form-group">
                       <textarea name="address_customer" rows="8" class="form-control"
                       placeholder="Your Address">@if (Auth::user()->address <> ''){{ Auth::user()->address }}@endif</textarea>
+                    </div>
+                    <div class="form-group text-left">
+                      <label for="avatarCustomer" class="mb-2">Change Your Avatar</label>
+                      <input type="file" class="form-control-file" id="avatarCustomer" name="avatarCustomer">
                     </div>
                   </form>
                 </div>
@@ -72,6 +76,7 @@
   <script>
     $(document).ready(function() {
       $(".message-session").delay(400).fadeOut('slow');
+      bsCustomFileInput.init();
     });
   </script>
 @endsection

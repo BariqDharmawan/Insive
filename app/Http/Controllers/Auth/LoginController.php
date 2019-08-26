@@ -55,8 +55,7 @@ class LoginController extends Controller
       $userSocial = Socialite::driver($provider)->user();
       $users = User::firstOrCreate(
         ['email'           => $userSocial->getEmail()],
-        ['name'            => $userSocial->getName()],
-        ['image'           => $userSocial->getAvatar()]
+        ['name'            => $userSocial->getName()]
       );
 
       Auth::login($users);

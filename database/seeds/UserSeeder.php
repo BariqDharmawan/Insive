@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
       ]);
       DB::table('users')->insert([
           'name' => 'Bariq Dharmawan',
-          'email' => 'sanchez77rodriguez@gmail.com',
+          'email' => 'test@gmail.com',
+          'email_verified_at' => '2019-08-26 13:28:52',
           'address' => 'Swadaya Gudang Baru, Jakarta Selatan',
           'password' => Hash::make('insive_member')
       ]);

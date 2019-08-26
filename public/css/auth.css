@@ -199,7 +199,7 @@ main .login .sosmed-login {
   width: 100%;
   height: 135px;
 }
-main .login .sosmed-login a {
+main .login .sosmed-login .sosmed-login__google {
   display: flex;
   align-items: center;
   color: #fff;
@@ -262,7 +262,7 @@ main .register form button:hover {
   main > section > p:first-of-type {
     margin-bottom: 10px;
   }
-  main .login form {
+  main .login > form {
     margin: auto 0;
   }
   main .login .sosmed-login {
@@ -271,7 +271,7 @@ main .register form button:hover {
   main form input, main .register form textarea {
     margin-bottom: 20px;
   }
-  main .login .sosmed-login a {
+  main .login .sosmed-login .sosmed-login__google {
     margin-bottom: 20px;
   }
   main #sosmed-label::before {
@@ -290,17 +290,15 @@ main .register form button:hover {
     background-color: #C9C9C9;
     position: absolute;
   }
-  main .login form button {
+  main .login > form button {
     margin: 0;
     float: right;
+    flex-grow: 0;
   }
   main .login form #forgot-password {
     float: left;
     width: auto;
     margin-top: 0;
-  }
-  main .login form button {
-    flex-grow: 0;
   }
   .login .backto-homepage, .register .backto-homepage {
     color: #fff !important;

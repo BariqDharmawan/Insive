@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+use Socialite;
 
 class ProfileController extends Controller
 {
@@ -77,7 +78,10 @@ class ProfileController extends Controller
         $update->email = $request->email_customer;
         $update->phone = $request->phone_customer;
         $update->address = $request->address_customer;
-        
+        if ($request->has('avatarCustomer')) {
+          $update->image = $request->file('avatarCustomer')->store('public/files');
+        }
+
         $update->save();
         return redirect()->back()->with('success_message', 'Succesfully Updated Profile');
     }
