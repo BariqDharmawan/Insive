@@ -32,4 +32,8 @@ class HomeController extends Controller
           return redirect()->back();
         }
     }
+    public function storeContact()
+    {
+      // code...
+    }
 }

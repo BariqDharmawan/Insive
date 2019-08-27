@@ -2,19 +2,31 @@
 @section('title', 'Contact Us')
 @section('page-title', 'Contact Us')
 @section('body-id', 'contact-us-page')
+@section('css')
+  <style media="screen">
+    input[type='email'].form-control {
+      text-transform: none !important;
+    }
+  </style>
+@endsection
 @section('content')
   <main>
     <div class="container py-5">
+      @if (Session::has('success_message'))
+        <div class="alert alert-success">
+          {{ Session::get('success_message') }}
+        </div>
+      @endif
       <div class="row">
         <div class="col-12 col-lg-6 pr-lg-5">
-          <form class="d-block mb-3 mb-lg-0" action="" method="post">
+          <form class="d-block mb-3 mb-lg-0" action="{{ route('contactus.store') }}" method="post">
             @csrf
             <div class="form-group">
-              <input type="text" class="form-control" id="peopleName" placeholder=" &nbsp; ">
+              <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; ">
               <label for="peopleName">What is your name</label>
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" id="peopleEmail" placeholder=" &nbsp; ">
+              <input type="email" name="peopleEmail" class="form-control" id="peopleEmail" placeholder=" &nbsp; ">
               <label for="peopleEmail">What is your email</label>
             </div>
             <div class="form-group">
@@ -44,4 +56,11 @@
       </div>
     </div>
   </main>
+@endsection
+@section('script')
+  <script>
+    $(document).ready(function() {
+      $(".alert").delay(400).fadeOut("slow");
+    });
+  </script>
 @endsection

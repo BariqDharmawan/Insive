@@ -18,6 +18,8 @@ use App\Models\CustomProduct;
 use Auth;
 use App\Models\HowToOrder;
 use Indonesia;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -198,15 +200,15 @@ class MainController extends Controller
         }
     }
 
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    public function store(Request $request)
+    public function contact()
     {
-        //
+      return view('contact');
+    }
+
+    public function ContactStore(Request $request)
+    {
+      Mail::send(new ContactMail($request));
+      return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
     }
 
     /**

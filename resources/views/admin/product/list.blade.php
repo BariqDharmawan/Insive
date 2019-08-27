@@ -22,13 +22,12 @@
 @endsection
 @section('title-body', 'Product')
 @section('content')
-  @if (session('added'))
-    <div class="alert alert-success" role="alert">
+  @if (Session::has('added'))
+    <div class="alert alert-success">
       Product Has Been Added
     </div>
-  @endif
-  @if (session('success'))
-    <div class="alert alert-danger" role="alert">
+  @elseif (Session::has('success'))
+    <div class="alert alert-danger">
       Product Has Been Removed
     </div>
   @endif

@@ -2,11 +2,11 @@
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing-page');
-// Route::view('catalog', 'catalog.default')->name('catalog.default');
-Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default');
+Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default')->middleware(['auth', 'verified']);
 Route::view('face-result', 'face-result');
-Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
-Route::view('contact-us', 'contact')->name('contactus');
+Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected')->middleware(['auth', 'verified']);
+Route::get('contact-us', 'Home\MainController@contact')->name('contactus');
+Route::post('contact-us/store', 'Home\MainController@ContactStore')->name('contactus.store');
 Route::view('cart', 'cart');
 Route::view('payment', 'payment');
 Route::view('thank-you', 'thanks');
