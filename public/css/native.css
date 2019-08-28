@@ -10,7 +10,7 @@ html, body {
   height: 100%;
 }
 body {
-  background-color: #212121;
+  background-color: #141313;
   overflow-x: hidden;
 }
 main, footer, header {
@@ -155,7 +155,7 @@ a:hover {
   background-color: #E2CCC1;
 }
 .product__button:hover .bx {
-  color: #212121;
+  color: #141313;
 }
 .product__button:active {
   background-color: #DDC797;
@@ -242,7 +242,7 @@ footer a {
   flex-direction: column;
 }
 #profile-page .profile .modal-content {
-  background-color: #212121;
+  background-color: #141313;
 }
 #profile-page .profile .profile__details p:first-child {
   font-weight: bold;
@@ -252,7 +252,7 @@ footer a {
 #profile-page .profile .profile__details .form-control {
   border: 1px solid #E2CCC1;
   color: #E2CCC1;
-  background-color: #212121;
+  background-color: #141313;
 }
 #profile-page input[type=number]::-webkit-inner-spin-button,
 #profile-page input[type=number]::-webkit-outer-spin-button {
@@ -278,9 +278,6 @@ footer a {
 #landing-page footer a:hover {
   color: #cdcbcb;
   text-decoration: underline;
-}
-#landing-page main {
-  height: calc(100% - 80px - 65px);
 }
 #landing-page main > .container {
   height: 100%;
@@ -375,7 +372,7 @@ footer a {
   flex-wrap: wrap;
 }
 #catalog-page header #cartBtn {
-  color: #212121;
+  color: #141313;
   padding: 5px 10px;
   font-size: 20px;
   border-radius: 5px;
@@ -439,7 +436,7 @@ footer a {
 #catalog-page .row:last-of-type .btn {
   background-color: #E2CCC1;
   transition: all 250ms;
-  color: #212121;
+  color: #141313;
 }
 #catalog-page .row:last-of-type .btn:hover {
   background-color: #D5C298;
@@ -554,7 +551,7 @@ footer a {
 #question-page aside {
   display: flex;
   flex-direction: row;
-  background-color: #212121;
+  background-color: #141313;
   padding: 0 15px;
   justify-content: space-around;
   counter-reset: customlistcounter;
@@ -590,7 +587,7 @@ footer a {
 }
 #question-page .carousel-item {
   padding: 30px 0;
-  background-color: #212121;
+  background-color: #141313;
 }
 #question-page .carousel-item h1 {
   font-size: 45px;
@@ -763,7 +760,7 @@ footer a {
   border-radius: 0;
 }
 #cart-page .product__action li option {
-  background-color: #212121;
+  background-color: #141313;
 }
 #cart-page .product__action li input {
   order: -1;
@@ -884,12 +881,12 @@ footer a {
 }
 #invoice-page-admin .pagination li .page-link, #recipe-page-admin .pagination li .page-link,
 #order-today-page-admin .pagination li .page-link, #catalog-page .pagination li .page-link {
-  background-color: #212121;
+  background-color: #141313;
   color: #E2CCC1;
 }
 #invoice-page-admin .pagination .disabled .page-link, #recipe-page-admin .pagination .disabled .page-link,
 #order-today-page-admin .pagination .disabled .page-link, #catalog-page .pagination .disabled .page-link {
-  background-color: #212121;
+  background-color: #141313;
   color: #f0e8d5;
 }
 #invoice-page-admin .pagination li .page-link:hover, #recipe-page-admin .pagination li .page-link:hover,
@@ -899,7 +896,7 @@ footer a {
 #invoice-page-admin .pagination li.active .page-link, #recipe-page-admin .pagination li.active .page-link,
 #order-today-page-admin .pagination li.active .page-link, #catalog-page .pagination li.active .page-link {
   background-color: #E2CCC1;
-  color: #212121;
+  color: #141313;
   border-color: #e7d19f;
 }
 /*end of invoice page admin css*/
@@ -957,7 +954,7 @@ footer a {
 #order-today-page-admin main .accordion .card-body > div p {
   background-color: #E2CCC1;
   flex-grow: 1;
-  color: #212121;
+  color: #141313;
   padding: 5px 10px;
 }
 #order-today-page-admin main .accordion .card-body > ul {
@@ -994,21 +991,11 @@ footer a {
 #order-today-page-admin main .accordion .card-body > ul li var ~ * {
   width: 100%;
   background-color: #E2CCC1;
-  color: #212121;
+  color: #141313;
   margin: 5px 0;
 }
 /*end of order-today-admin page css*/
 @media screen and (min-width: 768px) {
-  #question-page aside {
-    width: 30%;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  #question-page aside ~ main {
-    width: 70%;
-    float: right;
-  }
   #show-menu {
     left: 40px;
   }
@@ -1037,6 +1024,9 @@ footer a {
     margin-right: 15px;
   }
   /*landing-page width more than phone css*/
+  #landing-page main {
+    height: calc(100% - 110px);
+  }
   #landing-page .carousel-item:first-child {
     justify-content: center;
   }
@@ -1091,7 +1081,14 @@ footer a {
   }
   /*end of cart page more than phone css*/
   /*question-page width more than phone css*/
+  #question-page aside ~ main {
+    width: 70%;
+    float: right;
+  }
   #question-page aside {
+    width: 30%;
+    position: fixed;
+    left: 0;
     padding: 0 45px;
     height: calc(100vh - 65px - 110px);
     top: 110px;
@@ -1134,7 +1131,7 @@ footer a {
     display: none;
   }
   #invoice-page-admin main, #order-today-page-admin main {
-    min-height: calc(100% - 110px - 65px - 60px);
+    min-height: calc(100% - 110px);
   }
   /*end of invoice-page admin css*/
   /*order-today-page-admin css*/

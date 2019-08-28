@@ -2,6 +2,20 @@
 @section('title', 'Your Profile')
 @section('page-title', 'My Profile')
 @section('body-id', 'profile-page')
+@section('css')
+  <style media="screen">
+    main {
+      display: flex;
+      align-items: center;
+      height: calc(100vh - 80px - 65px - 60px);
+    }
+    @media screen and (min-width: 768px) {
+      main {
+        height: calc(100vh - 110px);
+      }
+    }
+  </style>
+@endsection
 @section('content')
   <main>
     <div class="container">
@@ -17,15 +31,17 @@
         <figcaption class="profile__details text--cream">
           <p>{{ Auth::user()->name }}</p>
           <small class="mb-2">{{ Auth::user()->email }}</small>
+          @if (Auth::user()->email <> 'admin@insive.com')
           <small class="d-block mb-2">{{ Auth::user()->phone }}</small>
           <address>{{ Auth::user()->address }}</address>
-          <button type="button" class="btn btn-link text-info" data-toggle="modal" data-target="#fillProfile">
-            @if (Auth::user()->phone == '' OR Auth::user()->address == '')
-              Please Complete Your Profile
-            @else
-              Update Your Profile
-            @endif
-          </button>
+            <button type="button" class="btn btn-link text-info" data-toggle="modal" data-target="#fillProfile">
+              @if (Auth::user()->phone == '' OR Auth::user()->address == '')
+                Please Complete Your Profile
+              @else
+                Update Your Profile
+              @endif
+            </button>
+          @endif
           <div class="modal fade" id="fillProfile" tabindex="-1" role="dialog"
           aria-labelledby="fillProfileLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

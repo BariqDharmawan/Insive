@@ -15,12 +15,13 @@ class UserSeeder extends Seeder
           'name' => 'Admin Tester',
           'email' => 'admin@insive.com',
           'address' => '-',
+          'email_verified_at' => date('Y-m-d H:i:s'),
           'password' => Hash::make('admininsive')
       ]);
       DB::table('users')->insert([
           'name' => 'Bariq Dharmawan',
           'email' => 'test@gmail.com',
-          'email_verified_at' => '2019-08-26 13:28:52',
+          'email_verified_at' => date('Y-m-d H:i:s'),
           'address' => 'Swadaya Gudang Baru, Jakarta Selatan',
           'password' => Hash::make('insive_member')
       ]);

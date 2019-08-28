@@ -33,11 +33,6 @@
       @endif
     </header>
     @yield('content')
-    <footer>
-      <div class="container text-center">
-        &copy; {{ date('Y') }} <a href="{{ url('/') }}">Insive</a> | All Rights Reserved.
-      </div>
-    </footer>
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/popper.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
