@@ -688,7 +688,7 @@ footer a {
   cursor: pointer;
 }
 #custom-fragrance-page .row figure.selected {
-  background-color: #121212;
+  background-color: #282828;
 }
 #custom-fragrance-page .row .row img {
   object-fit: contain;

@@ -31,7 +31,7 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-      if (Auth::user()->email == 'admin@insive.com') {
+      if (Auth::user()->role == 'admin') {
         return 'admin/dashboard';
       }
       else {

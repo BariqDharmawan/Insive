@@ -60,7 +60,7 @@
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="phone">Phone:​​</label>
                         <div class="col-12 col-lg-10">
                             <input class="form-control" type="tel" pattern="[0-9]*" inputmode="tel" id="phone"
-                            name="customer_phone" @auth value="{{ Auth::user()->phone }}" @endauth placeholder="Please Fill With Your Active Number" required>
+                            name="customer_phone" value="{{ Auth::user()->phone }}" placeholder="Please Fill With Your Active Number" required>
                         </div>
                     </div>
                     <div class="form-group form-row">
