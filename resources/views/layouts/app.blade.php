@@ -51,7 +51,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  <img src="{{ asset('img/muka/' . Auth::user()->image) }}" alt="photo" width="32" height="32" style="margin-right: 8px;">
+                                  <img src="{{ Storage::url(Auth::user()->image) }}" alt="photo" width="32" height="32" style="margin-right: 8px;">
                                   {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

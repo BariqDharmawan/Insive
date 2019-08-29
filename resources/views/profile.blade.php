@@ -27,7 +27,7 @@
       </div>
       @endif
       <figure class="profile">
-        <img src="{{ Storage::url($myprofile->image) }}" height="150" alt="Profile Photo">
+        <img src="{{ Storage::url(Auth::user()->image) }}" height="150" alt="Profile Photo">
         <figcaption class="profile__details text--cream">
           <p>{{ Auth::user()->name }}</p>
           <small class="mb-2">{{ Auth::user()->email }}</small>

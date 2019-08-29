@@ -57,9 +57,13 @@ class LoginController extends Controller
         ['email'           => $userSocial->getEmail()],
         ['name'            => $userSocial->getName()]
       );
-
       Auth::login($users);
-      return redirect('/home');
+      if (Auth::user()->email_verified_at == '') {
+        return redirect('home');
+      }
+      else {
+        return redirect('/');
+      }
     }
 
     /**
