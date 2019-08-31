@@ -31,6 +31,11 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::get('/address/user', 'CartController@indexShipping')->name('cart.fill.address');
   Route::get('/address/user/catalog', 'CartController@indexShippingCatalog')->name('cart.fill.address.catalog');
   Route::get('/custom/payment', 'CartController@indexPayment')->name('cart.custom.payment');
+
+  Route::redirect('finish/payment', '/');
+
+  Route::post('custom/payment/store', 'CartController@postPayment')->name('cart.custom.payment.store');
+  Route::post('notification/handler', 'CartController@notificationHandler')->name('notification.handler');
   Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
   Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
 });

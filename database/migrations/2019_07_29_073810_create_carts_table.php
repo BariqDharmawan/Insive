@@ -21,9 +21,10 @@ class CreateCartsTable extends Migration
             $table->string('cart_code', 100);
             $table->string('formula_code', 100);
             $table->integer('total_qty')->default(0);
-            $table->integer('total_price')->default(0);
             $table->string('tracking_number')->nullable();
             $table->enum('type_cart', ['catalog', 'custom']);
+            $table->integer('total_price')->default(0);
+            $table->string('snap_token')->nullable();
             $table->enum('status', ['waiting', 'process', 'hold', 'paid']);
             $table->timestamps();
         });
