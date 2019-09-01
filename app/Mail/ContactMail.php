@@ -31,9 +31,8 @@ class ContactMail extends Mailable
      */
     public function build(Request $request)
     {
-      return $this->from($request->peopleEmail)
+      return $this->from('sanchez77rodriguez@gmail.com')
                   ->subject('Message From Customer')
-                  ->to('yollamiranda@gmail.com')
                   ->view('partial.contact_mail');
     }
 }
