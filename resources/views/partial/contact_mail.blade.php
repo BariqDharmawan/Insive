@@ -1,1 +1,1 @@
-{{ $email->message }}
+<p>{{ $pesan }}</p>

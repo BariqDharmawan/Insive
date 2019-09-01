@@ -18,6 +18,7 @@ use App\Models\CustomProduct;
 use Auth;
 use App\Models\HowToOrder;
 use Indonesia;
+use App\Models\ContactUs;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -213,7 +214,15 @@ class MainController extends Controller
 
     public function ContactStore(Request $request)
     {
-      Mail::send(new ContactMail($request));
+      // Mail::to('dharmawan.muhammad03@gmail.com')->send(new ContactMail($request));
+      $to_name = 'Admin Insive';
+      $to_email = 'dharmawan.muhammad03@gmail.com';
+      $data = array("pesan" => $request->message);
+      Mail::send('partial.contact_mail', $data, function($message) use ($to_name, $to_email) {
+          $message->to($to_email, $to_name)
+                  ->subject('Message From Insive Customer');
+          $message->from(Auth::user()->email, Auth::user()->email);
+      });
       return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
     }
 
