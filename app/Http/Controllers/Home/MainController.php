@@ -71,9 +71,15 @@ class MainController extends Controller
             }
         }
         $logic_id = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail()->id;
+        $code_cart = Cart::orderBy('id', 'desc')->first();
+        if(empty($code_cart)) {
+            $code = 'C'.date('HisYmd').$user_id.sprintf('%05d', 1);
+        } else {
+            $code = 'C'.date('HisYmd').$user_id.sprintf('%05d', substr($code_cart->cart_code, -1)+1);
+        }
         $table = Cart::firstOrCreate(
             ['user_id' => $user_id, 'type_cart' => 'custom', 'status' => 'waiting'],
-            ['user_id' => $user_id, 'logic_id' => $logic_id, 'cart_code' => 'C'.date('HisYmd'), 'formula_code' => '#02319', 'type_cart' => 'custom', 'status' => 'waiting']
+            ['user_id' => $user_id, 'logic_id' => $logic_id, 'cart_code' => $code, 'formula_code' => '#02319', 'type_cart' => 'custom', 'status' => 'waiting']
         );
         CustomProduct::where('cart_id', $table->id)->delete();
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();

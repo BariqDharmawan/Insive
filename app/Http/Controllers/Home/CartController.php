@@ -45,7 +45,7 @@ class CartController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where([['user_id', '=', $user_id], ['status', '=', 'waiting']])->first();
+        $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->first();
         if(empty($cart)) {
             return redirect(url('/'));
         }
@@ -134,7 +134,8 @@ class CartController extends Controller
         $data['city_name'] = $city_name;
         $data['total_price'] = ($data['price']+$data['shipping_cost']);
         $cart->total_qty = $qty_package;
-        $cart->total_price = $qty_package*$price_package+$data['shipping_cost'];
+        $cart->total_price = $qty_package*$price_package;
+        $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
         return view('home.payment_page')->with($data);
     }
@@ -272,7 +273,8 @@ class CartController extends Controller
         $data['city_name'] = $city_name;
         $data['total_price'] = ($data['price']+$data['shipping_cost']);
         $cart->total_qty = $qty_package;
-        $cart->total_price = $price_package+$data['shipping_cost'];
+        $cart->total_price = $price_package;
+        $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
         return view('home.payment_catalog_page')->with($data);
     }

@@ -18,6 +18,11 @@ Route::get('payment/finish', 'PaymentController@finish');
 Route::get('payment/unfinish', 'PaymentController@unfinish');
 Route::get('payment/error', 'PaymentController@error');
 Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order');
+Route::post('/finish', 'MidtransController@index')->name('transaction.finish');
+Route::post('/submit/payment', 'MidtransController@submitPayment')->name('submit.payment');
+Route::post('/submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.payment.catalog');
+Route::post('/notification/handler', 'MidtransController@notificationHandler')->name('notification.handler');
+
 Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::resource('profile', 'ProfileController');
   Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
@@ -35,7 +40,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::redirect('finish/payment', '/');
 
   Route::post('custom/payment/store', 'CartController@postPayment')->name('cart.custom.payment.store');
-  Route::post('notification/handler', 'CartController@notificationHandler')->name('notification.handler');
+  // Route::post('notification/handler', 'CartController@notificationHandler')->name('notification.handler');
   Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
   Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
 });

@@ -19,6 +19,7 @@ class CreateSubCartsTable extends Migration
             $table->integer('cart_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('qty');
+            $table->integer('price');
             $table->integer('total_price');
             $table->timestamps();
         });

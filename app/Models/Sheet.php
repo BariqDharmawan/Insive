@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Sheet extends Model
 {
     protected $table = 'sheets';
+    protected $primaryKey = 'id';
 }

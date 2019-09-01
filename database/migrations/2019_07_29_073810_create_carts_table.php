@@ -24,8 +24,9 @@ class CreateCartsTable extends Migration
             $table->string('tracking_number')->nullable();
             $table->enum('type_cart', ['catalog', 'custom']);
             $table->integer('total_price')->default(0);
+            $table->integer('shipping_cost')->default(0);
             $table->string('snap_token')->nullable();
-            $table->enum('status', ['waiting', 'process', 'hold', 'paid']);
+            $table->enum('status', ['waiting', 'pending', 'success', 'failed', 'expired']);
             $table->timestamps();
         });
     }
