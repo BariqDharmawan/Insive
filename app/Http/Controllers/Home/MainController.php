@@ -18,6 +18,7 @@ use App\Models\CustomProduct;
 use Auth;
 use App\Models\HowToOrder;
 use Indonesia;
+use App\Models\ContactUs;
 use App\Mail\ContactMail;
 use App\Models\ContactUs;
 use Illuminate\Support\Facades\Mail;

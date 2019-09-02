@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.1",
+        "veritrans/veritrans-php": "dev-master",
         "laravel/tinker": "^1.0",
         "laravolt/indonesia": "^0.10.0"
     },

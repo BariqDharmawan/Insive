@@ -27,5 +27,14 @@ class UserSeeder extends Seeder
           'address' => 'Swadaya Gudang Baru, Jakarta Selatan',
           'password' => Hash::make('insive_member')
       ]);
+      DB::table('users')->insert([
+        'name' => 'Bariq Dharmawan',
+        'role' => 'customer',
+        'email' => 'sanchez77rodriguez@gmail.com',
+        'phone' => '087776196047',
+        'email_verified_at' => date('Y-m-d H:i:s'),
+        'address' => 'Swadaya Gudang Baru, Jakarta Selatan',
+        'password' => Hash::make('insive_member')
+      ]);
     }
 }
