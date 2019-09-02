@@ -214,16 +214,18 @@ class MainController extends Controller
 
     public function ContactStore(Request $request)
     {
-      // Mail::to('dharmawan.muhammad03@gmail.com')->send(new ContactMail($request));
-      $to_name = 'Admin Insive';
-      $to_email = 'dharmawan.muhammad03@gmail.com';
-      $data = array("pesan" => $request->message);
-      Mail::send('partial.contact_mail', $data, function($message) use ($to_name, $to_email) {
-          $message->to($to_email, $to_name)
-                  ->subject('Message From Insive Customer');
-          $message->from(Auth::user()->email, Auth::user()->email);
-      });
-      return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
+      // Mail::send(new ContactMail($request));
+      if ($request->has('email_customer') <> 'admin@insive.com') {
+        $contactUs = new ContactUs;
+        $contactUs->nama_customer = $request->peopleName;
+        $contactUs->email_customer = $request->peopleEmail;
+        $contactUs->pesan = $request->message;
+        $contactUs->save();
+        return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
+      }
+      else {
+        return redirect()->back()->with('error_message', "Admin can't contact to itself");
+      }
     }
 
     /**

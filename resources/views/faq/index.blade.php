@@ -37,9 +37,9 @@
   <main>
     <div class="container">
       <div class="row">
-        @if (session('success'))
+        @if (Session::has('success_message'))
           <div class="alert alert-success" role="alert">
-            Succesfully added new faq
+            {{ Session::get('success_message') }}
           </div>
         @endif
         <div class="col-12">
@@ -79,6 +79,7 @@
   <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
   <script>
     $(document).ready(function() {
+      $('.message-session').delay(3000).slideUp(600);
       $('.textarea').summernote({
         minHeight: 200
       })

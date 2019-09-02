@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
 
-class FaqController extends Controller
+class ContactusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::paginate(20);
-        return view('admin.faq.index', compact('faqs'));
+        //
     }
 
     /**
@@ -37,11 +35,7 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $faq = new Faq;
-        $faq->pertanyaan = $request->pertanyaan;
-        $faq->isi = $request->isi;
-        $faq->save();
-        return redirect()->back()->with('success_message', 'Succesfully Added A New Faq');
+        //
     }
 
     /**
@@ -86,8 +80,6 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        $deleteFaq = Faq::findOrFail($id);
-        $deleteFaq->delete();
-        return redirect('admin/faq')->with('success_message', 'Succesfully Removed A Faq');
+        //
     }
 }

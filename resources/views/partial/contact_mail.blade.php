@@ -1,1 +1,1 @@
-<p>{{ $pesan }}</p>
+{{ $email_balasan->balasan }}
