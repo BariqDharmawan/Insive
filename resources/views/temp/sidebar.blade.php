@@ -1,4 +1,4 @@
-<div class="sidebar mySimpleBar"  data-simplebar data-simplebar-auto-hide="true">
+<div class="sidebar mySimpleBar" data-simplebar data-simplebar-auto-hide="true">
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
@@ -70,9 +70,16 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.faq.index') }}" class="nav-link">
+          <a href="{{ route('admin.faq.index') }}" class="nav-link {{ (Request::is('admin/faq')) ? 'active' : ''  }}">
             <i class="nav-icon fas fa-tasks"></i>
             <p>Faq</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.pesan-dari-customer.index') }}"
+          class="nav-link {{ (Request::is('admin/pesan-dari-customer*')) ? 'active' : ''  }}">
+            <i class="nav-icon fas fa-envelope"></i>
+            <p>Message From Customer</p>
           </a>
         </li>
         <li class="nav-item has-treeview">
@@ -85,13 +92,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('admin.how-to-order.index') }}" class="nav-link {{ (Request::is('admin/how-to-order')) ? 'active' : ''  }}">
+              <a href="{{ route('admin.how-to-order.index') }}"
+              class="nav-link{{ (Request::is('admin/how-to-order')) ? 'active' : ''  }}">
                 <i class="nav-icon fas fa-book-open"></i>
                 <p>Index</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin.how-to-order.create') }}" class="nav-link {{ (Request::is('admin/how-to-order/create')) ? 'active' : ''  }}">
+              <a href="{{ route('admin.how-to-order.create') }}"
+              class="nav-link {{ (Request::is('admin/how-to-order/create')) ? 'active' : ''  }}">
                 <i class="nav-icon fas fa-plus-square"></i>
                 <p>Create Page</p>
               </a>

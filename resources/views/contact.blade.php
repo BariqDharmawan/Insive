@@ -16,17 +16,21 @@
         <div class="alert alert-success">
           {{ Session::get('success_message') }}
         </div>
+      @elseif (Session::has('error_message'))
+        <div class="alert alert-danger">
+          {{ Session::get('error_message') }}
+        </div>
       @endif
       <div class="row">
         <div class="col-12 col-lg-6 pr-lg-5">
           <form class="d-block mb-3 mb-lg-0" action="{{ route('contactus.store') }}" method="post">
             @csrf
             <div class="form-group">
-              <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; ">
+              <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; " @auth value="{{ Auth::user()->name }}" readonly @endauth>
               <label for="peopleName">What is your name</label>
             </div>
             <div class="form-group">
-              <input type="email" name="peopleEmail" class="form-control" id="peopleEmail" placeholder=" &nbsp; ">
+              <input type="email" name="peopleEmail" class="form-control" id="peopleEmail" placeholder=" &nbsp; " @auth value="{{ Auth::user()->email }}" readonly @endauth>
               <label for="peopleEmail">What is your email</label>
             </div>
             <div class="form-group">

@@ -1,1 +1,1 @@
-{{ $email->message }}
+{{ $email_balasan->balasan }}

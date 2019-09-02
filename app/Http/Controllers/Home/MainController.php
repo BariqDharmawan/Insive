@@ -19,6 +19,7 @@ use Auth;
 use App\Models\HowToOrder;
 use Indonesia;
 use App\Mail\ContactMail;
+use App\Models\ContactUs;
 use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
@@ -207,8 +208,18 @@ class MainController extends Controller
 
     public function ContactStore(Request $request)
     {
-      Mail::send(new ContactMail($request));
-      return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
+      // Mail::send(new ContactMail($request));
+      if ($request->has('email_customer') <> 'admin@insive.com') {
+        $contactUs = new ContactUs;
+        $contactUs->nama_customer = $request->peopleName;
+        $contactUs->email_customer = $request->peopleEmail;
+        $contactUs->pesan = $request->message;
+        $contactUs->save();
+        return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
+      }
+      else {
+        return redirect()->back()->with('error_message', "Admin can't contact to itself");
+      }
     }
 
     /**

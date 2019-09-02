@@ -7,12 +7,13 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $email;
+    public $email_balasan;
 
     /**
      * Create a new message instance.
@@ -21,7 +22,7 @@ class ContactMail extends Mailable
      */
     public function __construct(Request $request)
     {
-        $this->email = $request;
+        $this->email_balasan = $request;
     }
 
     /**
@@ -31,9 +32,9 @@ class ContactMail extends Mailable
      */
     public function build(Request $request)
     {
-      return $this->from($request->peopleEmail)
-                  ->subject('Message From Customer')
-                  ->to('yollamiranda@gmail.com')
-                  ->view('partial.contact_mail');
+        return $this->subject('Balasan Dari Insive')
+                    ->from('bariq.2nd.rodriguez@gmail.com')
+                    ->to($request->from_customer)
+                    ->view('partial.contact_mail');
     }
 }
