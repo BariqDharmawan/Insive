@@ -41,7 +41,7 @@ class FaqController extends Controller
         $faq->pertanyaan = $request->pertanyaan;
         $faq->isi = $request->isi;
         $faq->save();
-        return redirect()->back()->with('success');
+        return redirect()->back()->with('success_message', 'Succesfully Added A New Faq');
     }
 
     /**

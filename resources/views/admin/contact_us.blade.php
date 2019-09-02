@@ -11,6 +11,11 @@
 @endsection
 @section('content')
   <div class="col-12">
+    @if (Session::has('success_message'))
+      <div class="alert alert-success message-session" role="alert">
+        {{ Session::get('success_message') }}
+      </div>
+    @endif
     @if(count($contactUs) > 0)
       <div class="accordion" id="accordionFaq">
         @foreach ($contactUs as $pesan)

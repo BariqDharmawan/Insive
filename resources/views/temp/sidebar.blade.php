@@ -93,7 +93,7 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('admin.how-to-order.index') }}"
-              class="nav-link{{ (Request::is('admin/how-to-order')) ? 'active' : ''  }}">
+              class="nav-link {{ (Request::is('admin/how-to-order')) ? 'active' : ''  }}">
                 <i class="nav-icon fas fa-book-open"></i>
                 <p>Index</p>
               </a>
