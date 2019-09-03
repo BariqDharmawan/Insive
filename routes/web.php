@@ -40,7 +40,6 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::redirect('finish/payment', '/');
 
   Route::post('custom/payment/store', 'CartController@postPayment')->name('cart.custom.payment.store');
-  // Route::post('notification/handler', 'CartController@notificationHandler')->name('notification.handler');
   Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
   Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
