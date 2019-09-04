@@ -45,7 +45,7 @@ class AdminController extends Controller
                                         ->leftJoin('products', 'products.id', 'sub_carts.product_id')
                                         ->where('sub_carts.cart_id', $value->id)
                                         ->get();
-            } 
+            }
             else if ($value->type_cart == 'custom') {
                 $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
                                               ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
@@ -56,7 +56,8 @@ class AdminController extends Controller
             $list_order[] = $value;
         }
         $data['list_order'] = $list_order;
-        return response()->json($data);
+        // return response()->json($data);
+        return view('admin.all_order', compact('list_order'));
     }
 
     /**

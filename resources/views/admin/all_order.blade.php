@@ -10,50 +10,54 @@
       <div class="row pt-4">
         <div class="col-12">
           <div class="accordion w-100" id="accordionExample">
-            <div class="card">
-              <div class="card-header d-flex align-items-center" id="headingOne">
-                <h2 class="mb-0">
-                  <button class="btn bg--cream" type="button" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                    Cathy
-                  </button>
-                </h2>
-                <var>3 pcs​</var>
-              </div>
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                  <div class="mb-4">
-                    <p class="mb-0">Formula Code: #02139</p>
-                    <p class="mb-0">Acne​</p>
+            @foreach ($list_order as $order)
+              @if ($order->type_cart === 'catalog')
+                <div class="card">
+                  <div class="card-header d-flex align-items-center" id="heading{{ $order->id }}">
+                    <h2 class="mb-0">
+                      <button class="btn bg--cream" type="button" data-toggle="collapse" data-target="#collapse{{ $order->id }}"
+                      aria-expanded="true" aria-controls="collapse{{ $order->id }}">
+                        {{ $order->getCustomer->name }}
+                      </button>
+                    </h2>
+                    <var>3 pcs​</var>
                   </div>
-                  <ul>
-                    {{-- ini dinamis --}}
-                    <li>
-                      <span>Super silk​</span>
-                      <span>Coffee​</span>
-                      <var>1 pcs</var>
-                    </li>
-                    <li>
-                      <span>Super silk​</span>
-                      <span>Coffee​</span>
-                      <var>1 pcs</var>
-                    </li>
-                    <li>
-                      <span>Super silk​</span>
-                      <span>Coffee​</span>
-                      <var>1 pcs</var>
-                    </li>
-                    {{-- ini akhir dari dinamis --}}
-                    {{-- ini statis --}}
-                    <li><a href=""><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
-                    <li><a href=""><i class='bx bx-sync' ></i> Update status order​</a></li>
-                    <li><a href=""><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                    {{-- ini akhir dari statis --}}
-                  </ul>
+                  <div id="collapse{{ $order->id }}" class="collapse show" aria-labelledby="heading{{ $order->id }}" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="mb-4">
+                        <p class="mb-0">Formula Code: #02139</p>
+                        <p class="mb-0">Acne​</p>
+                      </div>
+                      <ul>
+                        {{-- ini dinamis --}}
+                        <li>
+                          <span>Super silk​</span>
+                          <span>Coffee​</span>
+                          <var>1 pcs</var>
+                        </li>
+                        <li>
+                          <span>Super silk​</span>
+                          <span>Coffee​</span>
+                          <var>1 pcs</var>
+                        </li>
+                        <li>
+                          <span>Super silk​</span>
+                          <span>Coffee​</span>
+                          <var>1 pcs</var>
+                        </li>
+                        {{-- ini akhir dari dinamis --}}
+                        {{-- ini statis --}}
+                        <li><a href=""><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
+                        <li><a href=""><i class='bx bx-sync' ></i> Update status order​</a></li>
+                        <li><a href=""><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
+                        {{-- ini akhir dari statis --}}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="card">
+              @endif
+            @endforeach
+            {{-- <div class="card">
               <div class="card-header d-flex align-items-center" id="headingTwo">
                 <h2 class="mb-0">
                   <button class="btn bg--cream collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
@@ -70,7 +74,7 @@
                     <p>Acne​</p>
                   </div>
                   <ul>
-                    {{-- ini dinamis --}}
+
                     <li>
                       <span>Super silk​</span>
                       <span>Coffee​</span>
@@ -86,17 +90,15 @@
                       <span>Coffee​</span>
                       <var>1 pcs</var>
                     </li>
-                    {{-- ini akhir dari dinamis --}}
-                    {{-- ini statis --}}
                     <li><a href=""><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
                     <li><a href=""><i class='bx bx-sync' ></i> Update status order​</a></li>
                     <li><a href=""><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                    {{-- ini akhir dari statis --}}
+
                   </ul>
                 </div>
               </div>
-            </div>
-            <div class="card">
+            </div> --}}
+            {{-- <div class="card">
               <div class="card-header d-flex align-items-center" id="headingThree">
                 <h2 class="mb-0">
                   <button class="btn bg--cream collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
@@ -113,7 +115,6 @@
                     <p>Acne​</p>
                   </div>
                   <ul>
-                    {{-- ini dinamis --}}
                     <li>
                       <span>Super silk​</span>
                       <span>Coffee​</span>
@@ -129,17 +130,15 @@
                       <span>Coffee​</span>
                       <var>1 pcs</var>
                     </li>
-                    {{-- ini akhir dari dinamis --}}
-                    {{-- ini statis --}}
                     <li><a href=""><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
                     <li><a href=""><i class='bx bx-sync' ></i> Update status order​</a></li>
                     <li><a href=""><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                    {{-- ini akhir dari statis --}}
+
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="card">
+            {{-- <div class="card">
               <div class="card-header d-flex align-items-center" id="headingFourth">
                 <h2 class="mb-0">
                   <button class="btn bg--cream collapsed" type="button" data-toggle="collapse" data-target="#collapseFourth"
@@ -156,7 +155,6 @@
                     <p>Acne​</p>
                   </div>
                   <ul>
-                    {{-- ini dinamis --}}
                     <li>
                       <span>Super silk​</span>
                       <span>Coffee​</span>
@@ -172,16 +170,13 @@
                       <span>Coffee​</span>
                       <var>1 pcs</var>
                     </li>
-                    {{-- ini akhir dari dinamis --}}
-                    {{-- ini statis --}}
                     <li><a href=""><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
                     <li><a href=""><i class='bx bx-sync' ></i> Update status order​</a></li>
                     <li><a href=""><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                    {{-- ini akhir dari statis --}}
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
