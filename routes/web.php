@@ -56,6 +56,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::view('recipe', 'admin.recipe')->name('recipe'); //NEW CREATED ON 8/20/2019
   Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
+  Route::get('order/all', 'AdminController@indexOrder')->name('admin.order.all');
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');
   Route::resource('cart', 'CartController');

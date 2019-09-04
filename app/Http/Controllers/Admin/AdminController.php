@@ -4,6 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Question;
+use App\Models\Option;
+use App\Models\Answer;
+use App\Models\Logic;
+use App\Models\Fragrance;
+use App\Models\Sheet;
+use App\Models\Pricing;
+use App\Models\Cart;
+use App\Models\CustomProduct;
+use App\Models\SubCart;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -15,6 +27,36 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.dashboard');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexOrder()
+    {
+        $order = Cart::all();
+        $list_order = [];
+        foreach ($order as $key => $value) {
+            $value->user_id = User::find($value->user_id);
+            if ($value->type_cart == 'catalog') {
+                $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+                                        ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+                                        ->where('sub_carts.cart_id', $value->id)
+                                        ->get();
+            } 
+            else if ($value->type_cart == 'custom') {
+                $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+                                              ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+                                              ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+                                              ->where('custom_products.cart_id', $value->id)
+                                              ->get();
+            }
+            $list_order[] = $value;
+        }
+        $data['list_order'] = $list_order;
+        return response()->json($data);
     }
 
     /**

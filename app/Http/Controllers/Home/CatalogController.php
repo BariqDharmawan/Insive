@@ -32,7 +32,7 @@ class CatalogController extends Controller
         }
         $table = Cart::firstOrCreate(
             ['user_id' => $user_id, 'type_cart' => 'catalog', 'status' => 'waiting'],
-            ['user_id' => $user_id, 'cart_code' => $code, 'formula_code' => '#02319', 'type_cart' => 'catalog', 'status' => 'waiting']
+            ['user_id' => $user_id, 'cart_code' => $code, 'formula_code' => '#01234', 'type_cart' => 'catalog', 'status' => 'waiting']
         );
         SubCart::where('cart_id', $table->id)->delete();
         $qty = $request->jumlah_beli;
