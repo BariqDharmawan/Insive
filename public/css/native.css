@@ -809,7 +809,7 @@ footer a {
 #finish-page main h1, #unfinish-page main h1, #error-page main h1 {
   text-align: center;
   line-height: 60px;
-  font-size: 35px;
+  font-size: 40px;
 }
 #finish-page main h1 span, #unfinish-page main h1 span {
   padding-bottom: 7px;

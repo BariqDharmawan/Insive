@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Payment Finished')
 @section('body-id', 'finish-page')
-@section('page-title', 'Payment Finished')
 @section('content')
   <main>
     <div class="container py-4">

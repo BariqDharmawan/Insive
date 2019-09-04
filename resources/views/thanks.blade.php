@@ -20,7 +20,7 @@
 @section('content')
   <main>
     <div class="container">
-      <h1 class="text-capitalize text--cream">thanks <strong>Cathy</strong> for your ordering!​</h1>
+      <h1 class="text-capitalize text--cream">thanks <strong>{{ Auth::user()->name }}</strong> for your ordering!​</h1>
     </div>
   </main>
 @endsection

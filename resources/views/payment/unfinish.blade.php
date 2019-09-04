@@ -5,7 +5,7 @@
 @section('content')
   <main>
     <div class="container">
-      <h1>Your Paid Is Unfinish, <br> Please Wait</h1>
+      <h1>Your Paid Is Pending, <br> Please Wait</h1>
     </div>
   </main>
 @endsection
