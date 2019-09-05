@@ -48,7 +48,7 @@
                       @endif
                     </ul>
                     <ul class="col-12 px-0">
-                      <li class="bg--cream"><a href="" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
+                      <li class="bg--cream"><a href="{{ route('admin.recipe.all') }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
                       <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li>
                       <li class="bg--cream"><a href="" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
                     </ul>

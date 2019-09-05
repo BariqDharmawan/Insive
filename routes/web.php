@@ -53,10 +53,12 @@ Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->gro
 Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->name('admin.')->group(function () {
   Route::resource('pesan-dari-customer', 'ContactusController');
   Route::view('invoice', 'admin.invoice')->name('invoice'); //NEW CREATED ON 8/20/2019
+  Route::get('invoice/all', 'AdminController@indexInvoice')->name('invoice.all');
   Route::view('recipe', 'admin.recipe')->name('recipe'); //NEW CREATED ON 8/20/2019
+  Route::get('recipe/all', 'AdminController@indexRecipe')->name('recipe.all');
   Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019. Ini cmn percobaan tampilan all order
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
-  Route::get('order/all', 'AdminController@indexOrder')->name('admin.order.all'); //Ini tampilan asli all order
+  Route::get('order/all', 'AdminController@indexOrder')->name('order.all'); //Ini tampilan asli all order
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');
   Route::resource('cart', 'CartController');
