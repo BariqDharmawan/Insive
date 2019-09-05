@@ -919,19 +919,17 @@ footer a {
   background-color: transparent;
   color: #E2CCC1;
 }
-#order-today-page-admin main .col-12 {
+#order-today-page-admin main .container > .row > .col-12 {
   display: flex;
   margin-bottom: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
 }
-#order-today-page-admin main .col-12 span {
+#order-today-page-admin main .container > .row > .col-12 span {
   background-color: #E2CCC1;
-  padding: 10px;
-  flex-grow: 2;
 }
-#order-today-page-admin main .col-12 .card-header var {
+#order-today-page-admin main .container > .row > .col-12 .card-header var {
   color: #E2CCC1;
   justify-content: center;
   border: 1px solid #E2CCC1;
@@ -956,45 +954,30 @@ footer a {
   color: #141313;
   padding: 5px 10px;
 }
-#order-today-page-admin main .accordion .card-body > ul {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  position: relative;
-}
-#order-today-page-admin main .accordion .card-body > ul li {
-  display: flex;
-  flex-wrap: wrap;
-}
-#order-today-page-admin main .accordion .card-body > ul li:nth-last-child(-n+3) {
-  background-color: #E2CCC1;
-  margin-bottom: 10px;
-}
-#order-today-page-admin main .accordion .card-body > ul li:nth-last-child(-n+3) a {
-  color: #242424 !important;
-  height: 100%;
+#order-today-page-admin main .accordion .card-body > ul:first-of-type li {
+  text-transform: capitalize;
+  margin-bottom: 20px;
   width: 100%;
+}
+#order-today-page-admin main .accordion .card-body > ul:first-of-type li * {
+  border: 1px solid #E2CCC1;
+}
+#order-today-page-admin main .accordion .card-body > ul:last-of-type {
+  border-top: 1px solid rgba(226, 204, 193, 0.43);
+  padding: 20px 0;
+}
+#order-today-page-admin main .accordion .card-body > ul li a {
   display: block;
 }
 #order-today-page-admin main .accordion .card-body > ul li * {
-  padding: 5px 10px;
-  border: 1px solid #E2CCC1;
+  padding: 7px 10px;
 }
 #order-today-page-admin main .accordion .card-body > ul li span {
+  display: block;
   color: #000;
-}
-#order-today-page-admin main .accordion .card-body > ul li span:first-child,
-#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
-  flex-grow: 1;
-  width: calc(50% - 10px);
-}
-#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
-  margin-left: 15px;
 }
 #order-today-page-admin main .accordion .card-body > ul li var {
   display: block;
-  margin: 0 0 15px 0;
-  width: 100%;
 }
 #order-today-page-admin main .accordion .card-body > ul li var ~ * {
   width: 100%;
@@ -1143,7 +1126,7 @@ footer a {
   }
   /*end of invoice-page admin css*/
   /*order-today-page-admin css*/
-  #order-today-page-admin main .col-12 {
+  #order-today-page-admin main .container > .row > .col-12 {
     justify-content: space-between;
   }
   #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var {
@@ -1152,35 +1135,21 @@ footer a {
   }
   #order-today-page-admin main .accordion .card-body > ul li var {
     width: auto;
-    margin: 0 0 0 15px;
+    display: inline;
   }
-  #order-today-page-admin main .accordion .card-body > ul li span:first-child,
-  #order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
-    flex-grow: 0;
-    width: auto;
+  #order-today-page-admin main .accordion .card-body > ul li span {
+    display: inline;
   }
-  #order-today-page-admin main .accordion .card-body > ul li {
-    height: 36px;
-    margin-bottom: 6px;
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type {
+    display: flex;
+    justify-content: space-between;
   }
-  #order-today-page-admin main .accordion .card-body > ul li:nth-last-child(-n+3) {
-    position: absolute;
-    margin-bottom: 0;
-    right: 0;
-    min-width: 180px;
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type li * {
+    padding: 0;
   }
-
-  #order-today-page-admin main .accordion .card-body > ul li:nth-last-child(3) {
-    top: 0;
-  }
-  #order-today-page-admin main .accordion .card-body > ul li:nth-last-child(2) {
-    top: calc(36px + 6px);
-  }
-  #order-today-page-admin main .accordion .card-body > ul li:last-child {
-    top: calc((36px + 6px) * 2);
-  }
-  #order-today-page-admin main .col-12 .card-header var {
-    /* margin-left: 15px; */
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type li {
+    display: inline-block;
+    padding: 7px 10px;
   }
   /*end of order-today-page-admin css*/
   /*catalog-page more than phone css*/
@@ -1232,9 +1201,5 @@ footer a {
   }
   #catalog-page header.aside-showed, #catalog-page footer.aside-showed, #catalog-page main.aside-showed {
     width: 60%;
-  }
-  #order-today-page-admin main .accordion .card-body > ul li {
-    display: flex;
-    flex-wrap: wrap;
   }
 }

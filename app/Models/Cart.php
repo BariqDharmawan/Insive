@@ -8,7 +8,7 @@ class Cart extends Model
 {
     protected $table = 'carts';
     protected $fillable = [
-      'user_id', 
+      'user_id',
       'shipping_id',
       'logic_id',
       'cart_code',
@@ -31,7 +31,7 @@ class Cart extends Model
         $this->attributes['status'] = 'pending';
         self::save();
     }
- 
+
     /**
      * Set status to Success
      *
@@ -42,7 +42,7 @@ class Cart extends Model
         $this->attributes['status'] = 'success';
         self::save();
     }
- 
+
     /**
      * Set status to Failed
      *
@@ -53,7 +53,7 @@ class Cart extends Model
         $this->attributes['status'] = 'failed';
         self::save();
     }
- 
+
     /**
      * Set status to Expired
      *

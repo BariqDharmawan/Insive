@@ -36,7 +36,7 @@ class AdminController extends Controller
      */
     public function indexOrder()
     {
-        $order = Cart::all();
+        $order = Cart::paginate(20);
         $list_order = [];
         foreach ($order as $key => $value) {
             $value->user_id = User::find($value->user_id);
@@ -44,20 +44,20 @@ class AdminController extends Controller
                 $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
                                         ->leftJoin('products', 'products.id', 'sub_carts.product_id')
                                         ->where('sub_carts.cart_id', $value->id)
-                                        ->get();
+                                        ->paginate(20);
             }
             else if ($value->type_cart == 'custom') {
                 $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
                                               ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
                                               ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
                                               ->where('custom_products.cart_id', $value->id)
-                                              ->get();
+                                              ->paginate(20);
             }
             $list_order[] = $value;
         }
         $data['list_order'] = $list_order;
         // return response()->json($data);
-        return view('admin.all_order', compact('list_order'));
+        return view('admin.all_order', compact('list_order', 'order'));
     }
 
     /**
