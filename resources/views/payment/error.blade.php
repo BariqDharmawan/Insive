@@ -4,8 +4,9 @@
 @section('page-title', 'Payment Error')
 @section('content')
   <main>
-    <div class="container">
-      <h1>Your Paid Has Been Error, <br> Please Wait We Will Try Again</h1>
+    <div class="container flex-column">
+      <h1>Your Paid Has Been Error</h1>
+      <a href="{{ url('/') }}" class="btn btn-light mt-4"><i class='bx bxs-home' ></i> Back To Homepage</a>
     </div>
   </main>
 @endsection

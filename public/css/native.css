@@ -83,7 +83,8 @@ a.disabled {
 .bg--cream {
   background-color: #E2CCC1;
 }
-.text--cream {
+.text--cream, h1.text--cream:hover, h2.text--cream:hover, h3.text--cream:hover, h4.text--cream:hover, h5.text--cream:hover
+p.text--cream:hover {
   color: #E2CCC1;
 }
 .text--cream:hover {
@@ -813,7 +814,8 @@ footer a {
 }
 #finish-page main h1 span, #unfinish-page main h1 span {
   padding-bottom: 7px;
-  border-bottom: 4px solid #E2CCC1;
+  font-weight: bolder;
+  font-style: italic;
 }
 /*end of finish-page*/
 /*unfinish-page css*/
