@@ -16,6 +16,9 @@ body {
 main, footer, header {
   transition: all 250ms;
 }
+input[type='number'] {
+  -moz-appearance:textfield;
+}
 
 #show-menu {
   position: absolute;
@@ -139,8 +142,10 @@ a:hover {
 .product__action input[type=number]::-webkit-inner-spin-button,
 .product__action input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: textfield;
   margin: 0;
+}
+.product__action input[type='number'] {
+  -moz-appearance:textfield;
 }
 .product__button {
   display: inline-flex;
@@ -259,6 +264,9 @@ footer a {
 #profile-page input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+#profile-page input[type='number'] {
+  -moz-appearance:textfield;
 }
 #profile-page .profile .profile__details address {
   width: 60%;
@@ -850,11 +858,13 @@ footer a {
 #invoice-page-admin main, #order-today-page-admin main {
   min-height: calc(100% - 80px - 65px - 60px);
 }
-#invoice-page-admin main .col-12, #recipe-page-admin main .col-12 {
-  margin-bottom: 40px;
-  color: #fff;
+#invoice-page-admin main .col-12, #recipe-page-admin main .container > .row > .col-12 .card {
+  border-radius: .25rem .2rem 0 0;
   border: 1px solid #E2CCC1;
   padding: 10px 15px;
+}
+#invoice-page-admin main .col-12, #recipe-page-admin main .container > .row > .col-12 .card + button {
+  border-radius: .25rem .2rem 0 0;
 }
 #invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time {
   text-align: center;

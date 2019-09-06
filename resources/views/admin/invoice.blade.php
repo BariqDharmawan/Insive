@@ -4,12 +4,22 @@
 @section('page-title')
   Invoice Backend <br> Admin
 @endsection
+@section('css')
+  <style media="screen">
+    main .container > .row > .col-12 ~ .col-12 {
+      margin-top: 30px;
+    }
+    main .container > .row > .col-12 + button {
+      border-radius: 0 0 .25rem .25rem;
+    }
+  </style>
+@endsection
 @section('content')
   <main>
     <div class="container">
       <div class="row mx-0 pt-5">
         @foreach ($list_order as $order)
-          <div class="col-12">
+          <div class="col-12 text-white">
             <p class="font-weight-bold">INSIVE​</p>
             <time class="font-weight-bold">{{ $order->created_at }}</time>
             <ul>
@@ -20,15 +30,19 @@
               <li>Address :<address>{{ $order->user_id->address }}</address></li>
             </ul>
           </div>
+          <button type="button" class="btn w-100 bg--cream printBtn">Print</button>
         @endforeach
       </div>
-      {{-- <ul class="pagination">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> --}}
     </div>
   </main>
+@endsection
+@section('script')
+  <script src="{{ asset('plugins/printarea/jquery.PrintArea.js') }}" charset="utf-8"></script>
+  <script>
+    $(document).ready(function(e) {
+      $(".printBtn").bind("click", function(event) {
+        $(this).prev(".col-12").printArea();
+      });
+    });
+  </script>
 @endsection
