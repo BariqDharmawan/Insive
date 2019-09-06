@@ -247,6 +247,9 @@ footer a {
   display: flex;
   flex-direction: column;
 }
+#profile-page .profile .profile__details .modal {
+  text-align: left;
+}
 #profile-page .profile .modal-content {
   background-color: #141313;
 }
