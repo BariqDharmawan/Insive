@@ -112,6 +112,18 @@ class AdminController extends Controller
       return view('admin.recipe', compact('list_order'));
     }
 
+    public function findInvoiceRecipe(Request $request)
+    {
+      if ($request->has('find_invoice')) {
+        $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
+        return view('admin.find_result', compact('find'));
+      }
+      elseif ($request->has('find_recipe')) {
+        $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
+        return view('admin.find_result', compact('find'));
+      }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

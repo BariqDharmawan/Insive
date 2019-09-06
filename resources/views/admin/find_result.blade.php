@@ -33,27 +33,51 @@
     <div class="container">
       <div class="row">
         <form action="{{ route('admin.search.invoice-recipe') }}" class="col-12" method="get">
-          @csrf
           <input type="search" class="form-control bg-transparent text--cream" name="find_invoice"
           placeholder="Find formula code, customer name (example: Bariq Dharmawan)" autocomplete="off">
           <button type="submit" class="btn bg--cream">Search</button>
         </form>
       </div>
       <div class="row mx-0 pt-5">
-        @foreach ($list_order as $order)
-          <div class="col-12 py-3 text-white">
-            <p class="font-weight-bold">INSIVE​</p>
-            <time class="font-weight-bold">{{ $order->created_at }}</time>
-            <ul>
-              <li>Customer Name : <span>{{ $order->user_id->name }}</span></li>
-              <li>Formula Code : <span>{{ $order->formula_code }}</span></li>
-              <li>Special Ingredients : <span>Salicylic acid & lemon stem extract​</span></li>
-              <li>Total Price  : <var>{{ 'Rp ' . $order->total_price }} ( exclude shipping cost {{ 'Rp ' . $order->shipping_cost }} )</var></li>
-              <li>Address :<address>{{ $order->user_id->address }}</address></li>
-            </ul>
-          </div>
-          <button type="button" class="btn w-100 bg--cream printBtn">Print</button>
-        @endforeach
+        @if (count($find) > 0)
+          @foreach ($find as $result)
+            <div class="col-12 py-3 text-white">
+              <p class="font-weight-bold">INSIVE​</p>
+              <time class="font-weight-bold">{{ $result->created_at }}</time>
+              <ul>
+                <li>
+                  Customer Name :
+                  <span>{{ $result->getCustomer->name }}</span>
+                </li>
+                <li>
+                  Formula Code :
+                  <span>{{ $result->formula_code }}</span>
+                </li>
+                <li>
+                  Special Ingredients :
+                  <span>Salicylic acid & lemon stem extract​</span>
+                </li>
+                <li>
+                  Total Price :
+                  <var>{{ 'Rp ' . $result->total_price }} ( exclude shipping cost {{ 'Rp ' . $result->shipping_cost }} )</var>
+                </li>
+                <li>
+                  Address :
+                  <address>{{ $result->getCustomer->address }}</address>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn w-100 bg--cream printBtn">Print</button>
+          @endforeach
+        @else
+          <p class="text--cream text-center w-100 h5">
+            No Result !
+            <a href="{{ url()->previous() }}" class="d-flex align-items-center justify-content-center mt-2 text-warning">
+              <i class='bx bx-left-arrow-alt'></i>
+              Back To Previous
+            </a>
+          </p>
+        @endif
       </div>
     </div>
   </main>

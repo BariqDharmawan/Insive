@@ -6,20 +6,43 @@
 @endsection
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/printarea/PrintArea.css') }}" media="print">
-  <style media="print">
+  <style media="all">
     .card {
       background-color: #141313;
-      padding: 10px;
+      padding: 30px;
+      border: 1px solid #E2CCC1;
     }
-    .card p {
-      color: #E2CCC1 !important;
+    main .container > .row > .col-12 button {
+      border-radius: 0 0 .25rem .25rem;
+    }
+    input[type='search'] {
+      height: 45px;
+      border: 1px solid #E2CCC1;
+      padding-right: calc(.75rem + 76.7px);
+    }
+    input[type='search']:focus {
+      color: #d6c1b6;
+    }
+    button[type='submit'] {
+      position: absolute;
+      height: 45px;
+      right: 0;
+      top: 0;
     }
   </style>
 @endsection
 @section('content')
   <main>
     <div class="container">
-      <div class="row mx-0 pt-5 justify-content-between">
+      <div class="row">
+        <form action="{{ route('admin.search.invoice-recipe') }}" class="col-12" method="get">
+          @csrf
+          <input type="search" class="form-control bg-transparent text--cream" name="find_recipe"
+          placeholder="Find formula code (example: #01234)" autocomplete="off">
+          <button type="submit" class="btn bg--cream">Search</button>
+        </form>
+      </div>
+      <div class="row pt-5 justify-content-between">
         @foreach ($list_order as $order)
           <div class="col-12 col-md-5">
             <div class="card bg-transparent p-0 text-white">

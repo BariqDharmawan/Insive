@@ -21,6 +21,11 @@ class Cart extends Model
       'type_cart',
       'snap_token'
     ];
+
+    public function getCustomer()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id');
+    }
         /**
      * Set status to Pending
      *
