@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ContactUs;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactMail;
 
 class ContactusController extends Controller
 {
@@ -17,8 +14,7 @@ class ContactusController extends Controller
      */
     public function index()
     {
-      $contactUs = ContactUs::paginate(20);
-      return view('admin.contact_us', ['contactUs' => $contactUs]);
+        //
     }
 
     /**
@@ -39,8 +35,7 @@ class ContactusController extends Controller
      */
     public function store(Request $request)
     {
-      Mail::send(new ContactMail($request));
-      return redirect()->back()->with('success_message', 'Succesfully Replied Message Customer');
+        //
     }
 
     /**
@@ -85,8 +80,6 @@ class ContactusController extends Controller
      */
     public function destroy($id)
     {
-      $deleteContactUs = ContactUs::findOrFail($id);
-      $deleteContactUs->delete();
-      return redirect('admin/pesan-dari-customer')->with('success_message', 'Succesfully Removed A Message');
+        //
     }
 }

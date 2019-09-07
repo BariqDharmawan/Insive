@@ -342,7 +342,7 @@ class MainController extends Controller
     */
     public function destroy($id)
     {
-        //
+        //s
     }
 
     public function HowToOrder()

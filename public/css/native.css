@@ -20,6 +20,10 @@ input[type='number'] {
   -moz-appearance:textfield;
 }
 
+.visible-hidden {
+  display: none;
+}
+
 #show-menu {
   position: absolute;
   left: 15px;
@@ -861,27 +865,27 @@ footer a {
 #invoice-page-admin main, #order-today-page-admin main {
   min-height: calc(100% - 80px - 65px - 60px);
 }
-#invoice-page-admin main .container > .row:last-of-type .col-12, #recipe-page-admin main .container > .row:last-of-type > .col-12 .card {
+#invoice-page-admin main .container > .row:last-of-type .col-12, #recipe-page-admin main .container > .row:last-of-type > .col-12 .card, #invoice-page-admin main .container > .row:last-of-type .col-md-6, #recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card {
   border-radius: .25rem .25rem 0 0;
   border: 1px solid #E2CCC1;
 }
-#recipe-page-admin main .container > .row:last-of-type > .col-12 .card + button {
+#recipe-page-admin main .container > .row:last-of-type > .col-12 .card + button, #recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card + button {
   border-radius: 0 0 .25rem .25rem;
 }
-#invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time {
+#invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time, #invoice-page-admin main .col-md-6 p, #invoice-page-admin main .col-md-6 time {
   text-align: center;
   display: block;
   margin-bottom: 10px;
 }
-#invoice-page-admin main .col-12 ul {
+#invoice-page-admin main .col-12 ul, #invoice-page-admin main .col-md-6 ul {
   margin-bottom: 0 !important;
   display: flex;
   flex-direction: column;
 }
-#invoice-page-admin main .col-12 ul li {
+#invoice-page-admin main .col-12 ul li, #invoice-page-admin main .col-md-6 ul li {
    margin-bottom: 10px;
  }
-#invoice-page-admin main .col-12 ul li * {
+#invoice-page-admin main .col-12 ul li *, #invoice-page-admin main .col-md-6 ul li * {
   margin: 0 0 0 10px;
   display: inline;
   font-weight: bold;
@@ -915,13 +919,13 @@ footer a {
 }
 /*end of invoice page admin css*/
 /*recipe-page admin css*/
-#recipe-page-admin main .col-12 {
+#recipe-page-admin main .col-12, #recipe-page-admin main .col-md-6 {
   padding: 0;
 }
-#recipe-page-admin main .col-12 div {
+#recipe-page-admin main .col-12 div, #recipe-page-admin main .col-md-6 div {
   padding: 20px;
 }
-#recipe-page-admin main .col-12 div:last-child {
+#recipe-page-admin main .col-12 div:last-child, #recipe-page-admin main .col-md-6 div:last-child {
   border-top: 1px solid #E2CCC1;
 }
 /*end of recipe-page admin css*/
@@ -933,17 +937,17 @@ footer a {
   background-color: transparent;
   color: #E2CCC1;
 }
-#order-today-page-admin main .container > .row > .col-12 {
+#order-today-page-admin main .container > .row > .col-12, #order-today-page-admin main .container > .row > .col-md-6 {
   display: flex;
   margin-bottom: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
 }
-#order-today-page-admin main .container > .row > .col-12 span {
+#order-today-page-admin main .container > .row > .col-12 span, #order-today-page-admin main .container > .row > .col-md-6 span {
   background-color: #E2CCC1;
 }
-#order-today-page-admin main .container > .row > .col-12 .card-header var {
+#order-today-page-admin main .container > .row > .col-12 .card-header var, #order-today-page-admin main .container > .row > .col-md-6 .card-header var {
   color: #E2CCC1;
   justify-content: center;
   border: 1px solid #E2CCC1;
@@ -1140,10 +1144,10 @@ footer a {
   }
   /*end of invoice-page admin css*/
   /*order-today-page-admin css*/
-  #order-today-page-admin main .container > .row > .col-12 {
+  #order-today-page-admin main .container > .row > .col-12, #order-today-page-admin main .container > .row > .col-md-6 {
     justify-content: space-between;
   }
-  #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var {
+  #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var, #order-today-page-admin main .col-md-6 span, #order-today-page-admin main .col-md-6 var {
     flex-grow: 0;
     padding: 10px 40px;
   }

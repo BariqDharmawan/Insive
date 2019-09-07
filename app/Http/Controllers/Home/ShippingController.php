@@ -62,7 +62,7 @@ class ShippingController extends Controller
         $user_id = Auth::user()->id;
         if($response['rajaongkir']['status']['code'] == 200) {
             $data = [
-                'user_id' => $request->user_id, 
+                'user_id' => $user_id, 
                 'name' => $request->customer_fullname, 
                 'email' => $request->customer_email, 
                 'phone' => $request->customer_phone,
@@ -70,10 +70,10 @@ class ShippingController extends Controller
                 'city_id' => $request->customer_city,
                 'address' => $request->customer_address
                 ];
-                $table = Shipping::orderBy('id', 'desc')->firstOrCreate(
+                $table = Shipping::orderBy('id', 'desc')->updateOrCreate(
                     ['user_id' => $user_id, 'status' => 'unactive'], $data
                 );
-                
+                $table->save();
                 $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail();
                 $cart->shipping_id = $table->id;
                 $cart->save();
@@ -104,7 +104,7 @@ class ShippingController extends Controller
         $user_id = Auth::user()->id;
         if($response['rajaongkir']['status']['code'] == 200) {
             $data = [
-                'user_id' => $request->user_id, 
+                'user_id' => $user_id, 
                 'name' => $request->customer_fullname, 
                 'email' => $request->customer_email, 
                 'phone' => $request->customer_phone,
@@ -112,10 +112,9 @@ class ShippingController extends Controller
                 'city_id' => $request->customer_city,
                 'address' => $request->customer_address
                 ];
-                $table = Shipping::orderBy('id', 'desc')->firstOrCreate(
+                $table = Shipping::orderBy('id', 'desc')->updateOrCreate(
                     ['user_id' => $user_id, 'status' => 'unactive'], $data
                 );
-                
                 $cart = Cart::where([['user_id', '=', $user_id],['type_cart', '=', 'catalog'],['status', '=', 'waiting']])->firstOrFail();
                 $cart->shipping_id = $table->id;
                 $cart->save();

@@ -39,6 +39,8 @@ class MidtransController extends Controller
     public function submitPayment(Request $request)
     { 
         $customer = Shipping::where('user_id', Auth::user()->id)->first();
+        $customer->status = 'active';
+        $customer->save();
         $cart = Cart::where([['user_id', '=', Auth::user()->id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->first();
         // Buat transaksi ke midtrans kemudian save snap tokennya.
         $sub_cart = CustomProduct::where('cart_id', $cart->id)->get();
@@ -84,6 +86,8 @@ class MidtransController extends Controller
     public function submitPaymentCatalog(Request $request)
     { 
         $customer = Shipping::where('user_id', Auth::user()->id)->first();
+        $customer->status = 'active';
+        $customer->save();
         $cart = Cart::where([['user_id', '=', Auth::user()->id], ['type_cart', '=', 'catalog'], ['status', '=', 'waiting']])->first();
         // Buat transaksi ke midtrans kemudian save snap tokennya.
         $sub_cart = SubCart::where('cart_id', $cart->id)->get();

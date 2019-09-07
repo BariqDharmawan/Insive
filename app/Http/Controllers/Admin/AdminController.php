@@ -15,25 +15,26 @@ use App\Models\Pricing;
 use App\Models\Cart;
 use App\Models\CustomProduct;
 use App\Models\SubCart;
+use App\Models\Shipping;
 use Auth;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         return view('admin.dashboard');
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function indexOrder()
     {
         $order = Cart::all();
@@ -42,16 +43,16 @@ class AdminController extends Controller
             $value->user_id = User::find($value->user_id);
             if ($value->type_cart == 'catalog') {
                 $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
-                                        ->leftJoin('products', 'products.id', 'sub_carts.product_id')
-                                        ->where('sub_carts.cart_id', $value->id)
-                                        ->get();
+                ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+                ->where('sub_carts.cart_id', $value->id)
+                ->get();
             }
             else if ($value->type_cart == 'custom') {
                 $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
-                                              ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
-                                              ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
-                                              ->where('custom_products.cart_id', $value->id)
-                                              ->get();
+                ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+                ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+                ->where('custom_products.cart_id', $value->id)
+                ->get();
             }
             $list_order[] = $value;
         }
@@ -62,54 +63,80 @@ class AdminController extends Controller
 
     public function indexInvoice()
     {
-      $order = Cart::all();
-      $list_order = [];
-      foreach ($order as $key => $value) {
-          $value->user_id = User::find($value->user_id);
-          if ($value->type_cart == 'catalog') {
-              $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
-                                      ->leftJoin('products', 'products.id', 'sub_carts.product_id')
-                                      ->where('sub_carts.cart_id', $value->id)
-                                      ->get();
-          }
-          else if ($value->type_cart == 'custom') {
-              $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
-                                            ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
-                                            ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
-                                            ->where('custom_products.cart_id', $value->id)
-                                            ->get();
-          }
-          $list_order[] = $value;
-      }
-      $data['list_order'] = $list_order;
-      // dd($data);
-      // return response()->json($data);
-      return view('admin.invoice', compact('list_order'));
+        $order = Cart::all();
+        $list_order = [];
+        foreach ($order as $key => $value) {
+            $value->user_id = User::find($value->user_id);
+            if ($value->type_cart == 'catalog') {
+                $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+                ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+                ->where('sub_carts.cart_id', $value->id)
+                ->get();
+            }
+            else if ($value->type_cart == 'custom') {
+                $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+                ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+                ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+                ->where('custom_products.cart_id', $value->id)
+                ->get();
+            }
+            $list_order[] = $value;
+        }
+        $data['list_order'] = $list_order;
+        // dd($data);
+        // return response()->json($data);
+        return view('admin.invoice', compact('list_order'));
     }
     public function indexRecipe()
     {
-      $order = Cart::all();
-      $list_order = [];
-      foreach ($order as $key => $value) {
-          $value->user_id = User::find($value->user_id);
-          if ($value->type_cart == 'catalog') {
-              $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
-                                      ->leftJoin('products', 'products.id', 'sub_carts.product_id')
-                                      ->where('sub_carts.cart_id', $value->id)
-                                      ->get();
-          }
-          else if ($value->type_cart == 'custom') {
-              $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
-                                            ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
-                                            ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
-                                            ->where('custom_products.cart_id', $value->id)
-                                            ->get();
-          }
-          $list_order[] = $value;
-      }
-      $data['list_order'] = $list_order;
-      // return response()->json($data);
-      return view('admin.recipe', compact('list_order'));
+        $order = Cart::all();
+        $list_order = [];
+        foreach ($order as $key => $value) {
+            $value->user_id = User::find($value->user_id);
+            if ($value->type_cart == 'catalog') {
+                $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+                ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+                ->where('sub_carts.cart_id', $value->id)
+                ->get();
+            }
+            else if ($value->type_cart == 'custom') {
+                $value->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+                ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+                ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+                ->where('custom_products.cart_id', $value->id)
+                ->get();
+            }
+            $list_order[] = $value;
+        }
+        $data['list_order'] = $list_order;
+        // return response()->json($data);
+        return view('admin.recipe', compact('list_order'));
+    }
+
+    public function getInvoice($id)
+    {
+        $order = Cart::findOrFail($id);
+        $order->user = User::findOrFail($order->user_id);
+        $order->shipping = Shipping::findOrFail($order->shipping_id);
+        if(!empty($order->logic_id)) {
+            $order->logic = Logic::findOrFail($order->logic_id);
+        }
+        if ($order->type_cart == 'catalog') {
+            $order->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+            ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+            ->where('sub_carts.cart_id', $order->id)
+            ->get();
+        }
+        else if ($order->type_cart == 'custom') {
+            $order->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+            ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+            ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+            ->where('custom_products.cart_id', $order->id)
+            ->get();
+        }
+        $data['list_order'] = $order;
+        // return response()->json($data);
+        return view('admin.invoice_customer_print')->with($data);
     }
 
     public function singleRecipe($single)
@@ -140,77 +167,92 @@ class AdminController extends Controller
 
     public function findInvoiceRecipe(Request $request)
     {
-      if ($request->has('find_invoice')) {
-        $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
-        return view('admin.find_result', compact('find'));
-      }
-      elseif ($request->has('find_recipe')) {
-        $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
-        return view('admin.find_result', compact('find'));
-      }
+        if ($request->has('find_invoice')) {
+            $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
+            return view('admin.find_result', compact('find'));
+        }
+        elseif ($request->has('find_recipe')) {
+            $find = Cart::where('formula_code', 'LIKE', '%' . $request->find_invoice. '%')->get();
+            return view('admin.find_result', compact('find'));
+        }
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
         //
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function show($id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function edit($id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, $id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function updateTrackingOrder(Request $request, $id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->tracking_number = $request->tracking_number;
+        $cart->save();
+        return response()->json(['status' => 200, 'tracking_number' => $request->tracking_number, 'message' => 'Success input tracking number!']);
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroy($id)
     {
         //
