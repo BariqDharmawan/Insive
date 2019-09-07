@@ -51,7 +51,7 @@ Today's Order
                   @endif
                 </ul>
                 <ul class="col-12 px-0 footer-action-order">
-                  <li class="bg--cream"><a href="{{ route('admin.recipe.all') }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
+                  <li class="bg--cream"><a href="{{ route('admin.order.print.invoice', $order->id) }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
                   <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li>
                   @if(empty($order->tracking_number))
                   <li class="bg--cream li-input-tracking-number"><a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
@@ -118,33 +118,7 @@ Today's Order
         parent.append(`<li style="border: 1px solid #E2CCC1"><a href="javascript:void(0)" class="text-light">Tracking Number: ${result.value.tracking_number}</a></li>`);
       }
     })
-    // const { value: trackingNumber } = await Swal.fire({
-      //   title: 'Input your tracking number',
-      //   input: 'text',
-      //   inputPlaceholder: 'Enter your tracking number',
-      //   showCancelButton: true,
-      //   inputValidator: (value) => {
-        //     if (!value) {
-          //       return 'You need to write tracking number!'
-          //     }
-          //   }
-          // });
-          // if (trackingNumber) {
-            //   $.ajax({
-              //     url: '{{route("admin.order.tracking.update")}}/'+id,
-              //     type: 'POST',
-              //     data: {_token: "{{csrf_token()}}", tracking_number: trackingNumber},
-              //     success: function (result) {
-                //       if(result.status === 200) {
-                  //         Swal.fire(result.message);
-                  //       }
-                  //     },
-                  //     error: function (xhr, textStatus, other) {
-                    //       console.log(xhr.responseText);
-                    //     }
-                    //   });
-                    // }
-                  });
-                </script>
-                @endsection
+  });
+</script>
+@endsection
                 
