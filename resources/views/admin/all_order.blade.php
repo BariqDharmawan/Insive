@@ -47,11 +47,23 @@
                         @endforeach
                       @endif
                     </ul>
-                    <ul class="col-12 px-0">
-                      <li class="bg--cream"><a href="{{ route('admin.recipe.all') }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
-                      <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li>
-                      <li class="bg--cream"><a href="" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                    </ul>
+                    @if ($order->type_cart == 'custom')
+                      @foreach ($order->item as $single)
+                        <ul class="col-12 px-0">
+                          <li class="bg--cream"><a href="{{ route('admin.single-recipe', $single->id) }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
+                          <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li>
+                          <li class="bg--cream"><a href="" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
+                        </ul>
+                      @endforeach
+                    @elseif ($order->type_cart == 'catalog')
+                      @foreach ($order->item as $single)
+                        <ul class="col-12 px-0">
+                          <li class="bg--cream"><a href="{{ route('admin.single-recipe', $single->id) }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
+                          <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li>
+                          <li class="bg--cream"><a href="" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
+                        </ul>
+                      @endforeach
+                    @endif
                   </div>
                 </div>
               </div>
