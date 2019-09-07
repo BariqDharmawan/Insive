@@ -50,7 +50,7 @@ Invoice Backend <br> Admin
                     <ul>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
-                        <li>Special Ingredients : <span>Salicylic acid & lemon stem extract​</span></li>
+                        <li>Special Ingredients : <span>{{$list_order->logic->special_ingredients}}​</span></li>
                         <li class="border-warning-custom" style="height: 2px;"><br></li>
                         <li>Sheet Type / Fragrance :</span></li>
                         <li><span>{{ $item->sheet_name.' / '.$item->fragrance_name.' ('.$item->qty.')' }}</span></li>
@@ -65,7 +65,6 @@ Invoice Backend <br> Admin
                     <ul>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
-                        <li>Special Ingredients : <span>Salicylic acid & lemon stem extract​</span></li>
                         <li class="border-warning-custom" style="height: 2px;"><br></li>
                         <li>Catalog :</span></li>
                         <li><span>{{ $item->product_name.' ('.$item->qty.')' }}</span></li>
