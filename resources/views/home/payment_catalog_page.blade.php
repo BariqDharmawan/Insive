@@ -69,7 +69,7 @@
         },
         onPending: function (result) {
           // location.reload();
-          window.location = '{{ url("payment/unfinish") }}';
+          window.location = '{{ url("payment/finish") }}';
         },
         onError: function (result) {
           // location.reload();

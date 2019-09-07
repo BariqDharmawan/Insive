@@ -16,6 +16,7 @@ use App\Models\Pricing;
 use App\Models\Cart;
 use App\Models\CustomProduct;
 use Auth;
+use App\User;
 use App\Models\HowToOrder;
 use Indonesia;
 use App\Models\ContactUs;
@@ -209,7 +210,8 @@ class MainController extends Controller
 
     public function contact()
     {
-      return view('contact');
+      $admin = User::where('role', 'admin')->first();
+      return view('contact', compact('admin'));
     }
 
     public function ContactStore(Request $request)

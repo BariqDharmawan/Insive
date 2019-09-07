@@ -16,6 +16,9 @@ body {
 main, footer, header {
   transition: all 250ms;
 }
+input[type='number'] {
+  -moz-appearance:textfield;
+}
 
 #show-menu {
   position: absolute;
@@ -83,7 +86,8 @@ a.disabled {
 .bg--cream {
   background-color: #E2CCC1;
 }
-.text--cream {
+.text--cream, h1.text--cream:hover, h2.text--cream:hover, h3.text--cream:hover, h4.text--cream:hover, h5.text--cream:hover
+p.text--cream:hover {
   color: #E2CCC1;
 }
 .text--cream:hover {
@@ -138,8 +142,10 @@ a:hover {
 .product__action input[type=number]::-webkit-inner-spin-button,
 .product__action input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: textfield;
   margin: 0;
+}
+.product__action input[type='number'] {
+  -moz-appearance:textfield;
 }
 .product__button {
   display: inline-flex;
@@ -241,6 +247,9 @@ footer a {
   display: flex;
   flex-direction: column;
 }
+#profile-page .profile .profile__details .modal {
+  text-align: left;
+}
 #profile-page .profile .modal-content {
   background-color: #141313;
 }
@@ -258,6 +267,9 @@ footer a {
 #profile-page input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+#profile-page input[type='number'] {
+  -moz-appearance:textfield;
 }
 #profile-page .profile .profile__details address {
   width: 60%;
@@ -813,7 +825,8 @@ footer a {
 }
 #finish-page main h1 span, #unfinish-page main h1 span {
   padding-bottom: 7px;
-  border-bottom: 4px solid #E2CCC1;
+  font-weight: bolder;
+  font-style: italic;
 }
 /*end of finish-page*/
 /*unfinish-page css*/
@@ -848,11 +861,12 @@ footer a {
 #invoice-page-admin main, #order-today-page-admin main {
   min-height: calc(100% - 80px - 65px - 60px);
 }
-#invoice-page-admin main .col-12, #recipe-page-admin main .col-12 {
-  margin-bottom: 40px;
-  color: #fff;
+#invoice-page-admin main .container > .row:last-of-type .col-12, #recipe-page-admin main .container > .row:last-of-type > .col-12 .card {
+  border-radius: .25rem .25rem 0 0;
   border: 1px solid #E2CCC1;
-  padding: 10px 15px;
+}
+#recipe-page-admin main .container > .row:last-of-type > .col-12 .card + button {
+  border-radius: 0 0 .25rem .25rem;
 }
 #invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time {
   text-align: center;
@@ -919,29 +933,26 @@ footer a {
   background-color: transparent;
   color: #E2CCC1;
 }
-#order-today-page-admin main .col-12 {
+#order-today-page-admin main .container > .row > .col-12 {
   display: flex;
   margin-bottom: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
 }
-#order-today-page-admin main .col-12 span {
+#order-today-page-admin main .container > .row > .col-12 span {
   background-color: #E2CCC1;
-  padding: 10px;
-  flex-grow: 2;
 }
-#order-today-page-admin main .col-12 var {
+#order-today-page-admin main .container > .row > .col-12 .card-header var {
   color: #E2CCC1;
-  flex-grow: 1;
   justify-content: center;
   border: 1px solid #E2CCC1;
+  margin-left: auto;
   display: inline-flex;
-  margin-left: 40px;
   padding: 10px;
 }
 #order-today-page-admin main .accordion .card-body {
-  padding-left: 40px;
+  padding-left: 50px;
 }
 #order-today-page-admin main .accordion .card-body > div {
   display: flex;
@@ -957,42 +968,36 @@ footer a {
   color: #141313;
   padding: 5px 10px;
 }
-#order-today-page-admin main .accordion .card-body > ul {
-  display: flex;
-  flex-wrap: wrap;
+#order-today-page-admin main .accordion .card-body > ul:first-of-type li {
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  width: 100%;
 }
-#order-today-page-admin main .accordion .card-body > ul li {
-  display: flex;
-  flex-wrap: wrap;
-}
-#order-today-page-admin main .accordion .card-body > ul li * {
-  padding: 5px 10px;
+#order-today-page-admin main .accordion .card-body > ul:first-of-type li * {
   border: 1px solid #E2CCC1;
 }
-#order-today-page-admin main .accordion .card-body > ul li span:first-child {
-  margin-right: 10px;
+#order-today-page-admin main .accordion .card-body > ul:last-of-type {
+  border-top: 1px solid rgba(226, 204, 193, 0.43);
+  padding: 20px 0;
 }
-#order-today-page-admin main .accordion .card-body > ul li span:first-child,
-#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
-  flex-grow: 1;
-  width: calc(50% - 10px);
+#order-today-page-admin main .accordion .card-body > ul li a {
+  display: block;
 }
-#order-today-page-admin main .accordion .card-body > ul li span:nth-child(2) {
-  margin-left: 10px;
-  margin-bottom: 5px;
+#order-today-page-admin main .accordion .card-body > ul li * {
+  padding: 7px 10px;
+}
+#order-today-page-admin main .accordion .card-body > ul li span {
+  display: block;
+  color: #000;
 }
 #order-today-page-admin main .accordion .card-body > ul li var {
   display: block;
-  width: 100%;
-}
-#order-today-page-admin main .accordion .card-body > ul li a:first-of-type {
-  margin-top: 10px;
 }
 #order-today-page-admin main .accordion .card-body > ul li var ~ * {
   width: 100%;
   background-color: #E2CCC1;
   color: #141313;
-  margin: 5px 0;
+  margin: 15px 0;
 }
 /*end of order-today-admin page css*/
 @media screen and (min-width: 768px) {
@@ -1135,12 +1140,30 @@ footer a {
   }
   /*end of invoice-page admin css*/
   /*order-today-page-admin css*/
-  #order-today-page-admin main .col-12 {
+  #order-today-page-admin main .container > .row > .col-12 {
     justify-content: space-between;
   }
   #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var {
     flex-grow: 0;
     padding: 10px 40px;
+  }
+  #order-today-page-admin main .accordion .card-body > ul li var {
+    width: auto;
+    display: inline;
+  }
+  #order-today-page-admin main .accordion .card-body > ul li span {
+    display: inline;
+  }
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type {
+    display: flex;
+    justify-content: space-between;
+  }
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type li * {
+    padding: 0;
+  }
+  #order-today-page-admin main .accordion .card-body > ul:last-of-type li {
+    display: inline-block;
+    padding: 7px 10px;
   }
   /*end of order-today-page-admin css*/
   /*catalog-page more than phone css*/

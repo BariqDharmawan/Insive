@@ -32,6 +32,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('admin.order.all') }}" class="nav-link">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>Order</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('admin.logic.index') }}" class="nav-link {{ (Request::is('admin/logic'))? 'active' : '' }}">
             <i class="nav-icon fas fa-atom"></i>
             <p>Logic</p>
