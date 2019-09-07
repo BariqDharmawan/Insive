@@ -82,6 +82,7 @@ Invoice Backend <br> Admin
 <script>
     $(document).ready(function(e) {
         window.print();
+        window.location='{{ url()->previous() }}'
     });
 </script>
 @endsection
