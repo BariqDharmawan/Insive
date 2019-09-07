@@ -60,6 +60,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019. Ini cmn percobaan tampilan all order
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
   Route::get('order/all', 'AdminController@indexOrder')->name('order.all'); //Ini tampilan asli all order
+  Route::post('order/input/tracking/{id?}', 'AdminController@updateTrackingOrder')->name('order.tracking.update');
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');
   Route::resource('cart', 'CartController');

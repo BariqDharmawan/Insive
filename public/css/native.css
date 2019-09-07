@@ -20,6 +20,10 @@ input[type='number'] {
   -moz-appearance:textfield;
 }
 
+.visible-hidden {
+  display: none;
+}
+
 #show-menu {
   position: absolute;
   left: 15px;

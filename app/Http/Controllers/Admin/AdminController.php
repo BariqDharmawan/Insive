@@ -180,6 +180,21 @@ class AdminController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateTrackingOrder(Request $request, $id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->tracking_number = $request->tracking_number;
+        $cart->save();
+        return response()->json(['status' => 200, 'tracking_number' => $request->tracking_number, 'message' => 'Success input tracking number!']);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
