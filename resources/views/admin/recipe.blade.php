@@ -45,7 +45,7 @@
       <div class="row pt-5 justify-content-between">
         @foreach ($list_order as $order)
           <div class="col-12 col-md-5">
-            <div class="card bg-transparent p-0 text-white">
+            <div class="card bg-transparent p-0" style="color: yellow">
               <div>
                 <p>Customer Name: {{ $order->user_id->name }}</p>
                 <p>Formula Code : {{ $order->formula_code }}</p>
