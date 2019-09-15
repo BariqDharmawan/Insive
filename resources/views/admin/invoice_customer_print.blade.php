@@ -12,8 +12,8 @@ Invoice Backend <br> Admin
     main .container > .row > .col-12 + button {
         border-radius: 0 0 .25rem .25rem;
     }
-    .border-warning-custom {
-        border: 1px solid #ffc107 !important;
+    .border-warning-custom-custom {
+        border: 1px solid #E2CCC1 !important;
     }
     button[type='submit'] {
         position: absolute;
@@ -27,7 +27,7 @@ Invoice Backend <br> Admin
 <main>
     <div class="container">
         <div class="row mx-0 pt-5">
-            <div class="col-12 py-3 text-warning border-warning">
+            <div class="col-12 py-3 text--cream border-warning-custom">
                 <p class="font-weight-bold">INSIVE​</p>
                 <time class="font-weight-bold">({{ date_format($list_order->created_at, 'd-m-Y') }})</time>
                 <ul>
@@ -46,7 +46,7 @@ Invoice Backend <br> Admin
             @if ($list_order->type_cart == 'custom')
             @foreach ($list_order->item as $item)
             <div class="col-6 my-3">
-                <div class="col-12 text-warning border-warning">
+                <div class="col-12 text--cream border-warning-custom">
                     <ul>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
@@ -61,7 +61,7 @@ Invoice Backend <br> Admin
             @elseif($list_order->type_cart == 'catalog')
             @foreach ($list_order->item as $item)
             <div class="col-6 my-3">
-                <div class="col-12 text-warning border-warning">
+                <div class="col-12 text--cream border-warning-custom">
                     <ul>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
@@ -82,7 +82,7 @@ Invoice Backend <br> Admin
 <script>
     $(document).ready(function(e) {
         window.print();
-        window.location='{{ url()->previous() }}'
+        window.location='{{ url("admin/order/all") }}'
     });
 </script>
 @endsection
