@@ -70,6 +70,10 @@ main label {
   cursor: pointer;
   border-bottom: 1px solid #e0e0e0;
 }
+main label a {
+  color: inherit;
+  display: block;
+}
 main label:hover {
   background-color: #e0e0e0;
 }
@@ -136,6 +140,11 @@ main form input, main .register form textarea {
   border-radius: 5px;
   height: 35px;
   margin-bottom: 20px;
+}
+main .register form .invalid-feedback {
+  margin-top: -30px;
+  height: 25px;
+  color: #ba4c4c;
 }
 main .register form textarea {
   height: 145px;

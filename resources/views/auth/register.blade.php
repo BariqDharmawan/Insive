@@ -1,77 +1,57 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.2/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <main>
+      <input type="radio" id="signIn" name="same">
+      <label for="signIn"><a href="{{ route('login') }}">Sign In</a></label>
+      <input type="radio" name="same" id="signUp" checked>
+      <label for="signUp"><a href="{{ route('register') }}">Sign Up</a></label>
+      <section class="register">
+        <h1>Create your account</h1>
+        <p>For get our bennefit. If you does have an account, <span>Sign in with my account!</span></p>
+        <form action="{{ route('register') }}" method="post">
+          @csrf
+          <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name">
+          <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="Create your email" pattern=".{8,}"
+          minlength="8" title="minimal characters 8" required autofocus>
+          @error('email')
+           <span class="invalid-feedback" role="alert">
+               <strong>{{ $message }}</strong>
+           </span>
+          @enderror
+          <input type="password" @error('password') class="is-invalid" @enderror name="password" placeholder="Create your password" pattern=".{8,}"
+          minlength="8" title="minimal characters 8" autocomplete="new-password" required>
+          @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+          <input type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
+          <textarea name="address" class="form-control" rows="8" placeholder="Where Do You Life?"></textarea>
+          <button type="submit">Sign Up</button>
+          <a href="{{ url('/') }}" class="backto-homepage"><i class='bx bx-arrow-back' style="margin-right: 10px"></i> Back To Homepage</a>
+        </form>
+     </section>
+    </main>
+    <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
+    <script>
+      $(document).ready(function(){
+        // optional, only for blue link
+        $("main .login p span").click(function(){
+          $("input#signUp").prop("checked", true);
+        });
+        $("main .register p span").click(function(){
+          $("input#signIn").prop("checked", true);
+        });
+      });
+    </script>
+  </body>
+</html>
