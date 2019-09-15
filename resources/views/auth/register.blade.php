@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth</title>
+    <title>Register Page</title>
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.2/css/boxicons.min.css' rel='stylesheet'>
   </head>
@@ -20,7 +20,7 @@
         <form action="{{ route('register') }}" method="post">
           @csrf
           <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name">
-          <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="Create your email" pattern=".{8,}"
+          <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="What's your email" pattern=".{8,}"
           minlength="8" title="minimal characters 8" required autofocus>
           @error('email')
            <span class="invalid-feedback" role="alert">
