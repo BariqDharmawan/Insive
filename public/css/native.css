@@ -656,7 +656,7 @@ footer a {
 }
 #question-page [class*=carousel-control] {
   opacity: 1;
-  bottom: 0 !important;
+  bottom: -20px !important;
   top: auto !important;
   width: auto;
 }
@@ -665,7 +665,7 @@ footer a {
   background: initial;
   left: 0;
 }
-#question-page .carousel-control-next-icon .bx, .carousel-control-prev-icon .bx {
+#question-page .carousel-control-next-icon .bx, .carousel-control-prev-icon .bx, #btnPrevious {
   font-size: 40px;
 }
 /*end of question-page css*/

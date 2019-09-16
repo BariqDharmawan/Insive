@@ -129,6 +129,9 @@
           </ul>
         </div>
       </div>
+      <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious">
+        <i class='bx bx-left-arrow-alt'></i>
+      </a>
       <a class="carousel-control-next" id="btnNext" href="javascript:void(0)" role="button" data-slide="next" data-id="{{$question->id}}">
         <span class="carousel-control-next-icon" aria-hidden="true">
           <i class='bx bx-right-arrow-alt'></i>
