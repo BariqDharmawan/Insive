@@ -41,7 +41,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
 
   Route::post('custom/payment/store', 'CartController@postPayment')->name('cart.custom.payment.store');
   Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
-  Route::post('question/soal/ajax/{id?}', 'MainController@getSoal')->name('main.question.get.soal');
+  Route::post('question/soal/ajax/{id?}/{status?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
 Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->group(function () {
   Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');

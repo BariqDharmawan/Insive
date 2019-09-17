@@ -61,8 +61,10 @@ class ShippingController extends Controller
         $response = json_decode($requester->getBody()->getContents(), true);
         $user_id = Auth::user()->id;
         if($response['rajaongkir']['status']['code'] == 200) {
+            $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail();
             $data = [
                 'user_id' => $user_id, 
+                'cart_id' => $cart->id, 
                 'name' => $request->customer_fullname, 
                 'email' => $request->customer_email, 
                 'phone' => $request->customer_phone,
@@ -71,10 +73,9 @@ class ShippingController extends Controller
                 'address' => $request->customer_address
                 ];
                 $table = Shipping::orderBy('id', 'desc')->updateOrCreate(
-                    ['user_id' => $user_id, 'status' => 'unactive'], $data
+                    ['user_id' => $user_id, 'status' => 'unactive', 'cart_id' => $cart->id], $data
                 );
                 $table->save();
-                $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail();
                 $cart->shipping_id = $table->id;
                 $cart->save();
                 return redirect()->route('cart.custom.payment');
@@ -103,8 +104,10 @@ class ShippingController extends Controller
         $response = json_decode($requester->getBody()->getContents(), true);
         $user_id = Auth::user()->id;
         if($response['rajaongkir']['status']['code'] == 200) {
+            $cart = Cart::where([['user_id', '=', $user_id],['type_cart', '=', 'catalog'],['status', '=', 'waiting']])->firstOrFail();
             $data = [
                 'user_id' => $user_id, 
+                'cart_id' => $cart->id, 
                 'name' => $request->customer_fullname, 
                 'email' => $request->customer_email, 
                 'phone' => $request->customer_phone,
@@ -113,9 +116,8 @@ class ShippingController extends Controller
                 'address' => $request->customer_address
                 ];
                 $table = Shipping::orderBy('id', 'desc')->updateOrCreate(
-                    ['user_id' => $user_id, 'status' => 'unactive'], $data
+                    ['user_id' => $user_id, 'status' => 'unactive', 'cart_id' => $cart->id], $data
                 );
-                $cart = Cart::where([['user_id', '=', $user_id],['type_cart', '=', 'catalog'],['status', '=', 'waiting']])->firstOrFail();
                 $cart->shipping_id = $table->id;
                 $cart->save();
                 return redirect()->route('cart.catalog.payment');

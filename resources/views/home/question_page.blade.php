@@ -25,11 +25,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #F6E1B2;
-
+    
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-
+  
   #loader:before {
     content: "";
     position: absolute;
@@ -40,11 +40,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #FEC66E;
-
+    
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-
+  
   #loader:after {
     content: "";
     position: absolute;
@@ -55,11 +55,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #C7763E;
-
+    
     -webkit-animation: spin 1s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-
+  
   @-webkit-keyframes spin {
     0%   {
       -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
@@ -129,9 +129,11 @@
           </ul>
         </div>
       </div>
-      <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious">
+      @if ($question->id != 1)
+      <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious" data-id="{{$question->id}}">
         <i class='bx bx-left-arrow-alt'></i>
       </a>
+      @endif
       <a class="carousel-control-next" id="btnNext" href="javascript:void(0)" role="button" data-slide="next" data-id="{{$question->id}}">
         <span class="carousel-control-next-icon" aria-hidden="true">
           <i class='bx bx-right-arrow-alt'></i>
@@ -165,7 +167,7 @@
       console.log(value);
       $('#loader-wrapper').show();
       $.ajax({
-        'url': '{{route("main.question.get.soal")}}/'+id,
+        'url': '{{route("main.question.get.soal")}}/'+id+'/next',
         'method': 'POST',
         'data': {'_token': "{{csrf_token()}}", 'option_id': value},
         'success': function (result, textStatus, xhr) {
@@ -196,7 +198,7 @@
           console.log(xhr.status);
           var err = eval("(" + xhr.responseText + ")");
           console.log(xhr.responseText);
-
+          
           if(xhr.status === 406) {
             alert('You must select first!');
             $('#errorMsg').show();
@@ -209,6 +211,56 @@
         }
       });
     }
+  });
+  $(document).on('click', '#btnPrevious', function() {
+    var id = $(this).data('id');
+    var value = null;
+    console.log(value);
+    $('#loader-wrapper').show();
+    $.ajax({
+      'url': '{{route("main.question.get.soal")}}/'+id+'/prev',
+      'method': 'POST',
+      'data': {'_token': "{{csrf_token()}}", 'option_id': value},
+      'success': function (result, textStatus, xhr) {
+        if(xhr.status === 200) {
+          setTimeout(function() {
+            $("#containerQuestion").html(result.view);
+            if(result.type == "skin") {
+              $('.logo-question').removeClass('active');
+              $('.logo-question.logo-skin').addClass('active');
+            }
+            else if(result.type == "lifestyle") {
+              $('.logo-question').removeClass('active');
+              $('.logo-question.logo-lifestyle').addClass('active');
+            }
+            else if(result.type == "environment") {
+              $('.logo-question').removeClass('active');
+              $('.logo-question.logo-environment').addClass('active');
+            }
+            $('.select2').select2();
+          }, 2000);
+        }
+        else if(xhr.status === 201) {
+          // window.location.replace("http://stackoverflow.com");
+          window.location.href = "{{route('home.main.face.result')}}";
+        }
+      },
+      'error': function (xhr, textStatus, other) {
+        console.log(xhr.status);
+        var err = eval("(" + xhr.responseText + ")");
+        console.log(xhr.responseText);
+        
+        if(xhr.status === 406) {
+          alert('You must select first!');
+          $('#errorMsg').show();
+        }
+      },
+      'complete': function (xhr, textStatus) {
+        setTimeout(function() {
+          $('#loader-wrapper').hide();
+        }, 2000);
+      }
+    });
   });
 </script>
 @endsection

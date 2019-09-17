@@ -154,7 +154,7 @@ class MainController extends Controller
         return view('home.question_page')->with($data);
     }
 
-    public function getSoal(Request $request, $id)
+    public function getSoal(Request $request, $id, $act = 'next')
     {
         $option = $request->option_id;
         $question = Question::findOrfail($id);
@@ -170,7 +170,15 @@ class MainController extends Controller
             ], 201);
         }
         else {
-            $data['question'] = Question::findOrfail(($id+1));
+            if($act == 'next') {
+                $data['question'] = Question::findOrfail(($id+1));
+            }
+            else if($act == 'prev') {
+                $data['question'] = Question::findOrfail(($id-1));
+            }
+            else {
+                abort(404);
+            }
             if($id == 16) {
                 $client = new GuzzleClient([
                     'headers' => ['key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
