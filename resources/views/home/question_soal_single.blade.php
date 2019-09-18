@@ -33,11 +33,13 @@
             </ul>
         </div>
     </div>
-    @if ($question->id != 1)
-    <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious" data-id="{{$question->id}}">
-        <i class='bx bx-left-arrow-alt'></i>
-    </a>
-    @endif
+    @switch($question)
+      @case($question->id <> 1)
+        <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious" data-id="{{$question->id}}">
+            <i class='bx bx-left-arrow-alt'></i>
+        </a>
+      @break
+    @endswitch
     <a class="carousel-control-next" id="btnNext" href="javascript:void(0)" role="button" data-slide="next" data-id="{{$question->id}}">
         <span class="carousel-control-next-icon" aria-hidden="true">
             <i class='bx bx-right-arrow-alt'></i>
