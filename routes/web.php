@@ -4,20 +4,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing-page');
 Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default')->middleware(['auth', 'verified']);
 Route::view('face-result', 'face-result');
-Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected')->middleware(['auth', 'verified']);
-Route::get('contact-us', 'Home\MainController@contact')->name('contactus');
+Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
+Route::get('contact-us', 'Home\MainController@contact')->name('contactus')->middleware(['auth', 'verified']);
 Route::post('contact-us/store', 'Home\MainController@ContactStore')->name('contactus.store');
 Route::view('cart', 'cart');
 Route::view('payment', 'payment');
 Route::view('thank-you', 'thanks');
 Route::view('fill-address', 'shipping-address');
 Route::view('custom/package', 'custom.package');
-Route::get('/force/logout', 'Home\MainController@logout');
-Route::resource('faq', 'Home\FaqController');
-Route::get('payment/finish', 'PaymentController@finish');
-Route::get('payment/unfinish', 'PaymentController@unfinish');
-Route::get('payment/error', 'PaymentController@error');
-Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order');
+Route::get('/force/logout', 'Home\MainController@logout')->middleware(['auth', 'verified']);
+Route::resource('faq', 'Home\FaqController')->middleware(['auth', 'verified']);
+Route::get('payment/finish', 'PaymentController@finish')->middleware(['auth', 'verified']);
+Route::get('payment/unfinish', 'PaymentController@unfinish')->middleware(['auth', 'verified']);
+Route::get('payment/error', 'PaymentController@error')->middleware(['auth', 'verified']);
+Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order')->middleware(['auth', 'verified']);
 Route::post('/finish', 'MidtransController@index')->name('transaction.finish');
 Route::post('/submit/payment', 'MidtransController@submitPayment')->name('submit.payment');
 Route::post('/submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.payment.catalog');
@@ -43,7 +43,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
   Route::post('question/soal/ajax/{id?}/{status?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
-Route::prefix('home')->namespace('Home')->name('home.')->middleware('auth')->group(function () {
+Route::prefix('home')->namespace('Home')->name('home.')->middleware(['auth', 'verified'])->group(function () {
   Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');
   Route::resource('cart', 'CartController');
   Route::post('shipping/store/catalog', 'ShippingController@storeCatalog')->name('shipping.store.catalog');

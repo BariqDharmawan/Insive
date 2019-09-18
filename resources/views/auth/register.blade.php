@@ -16,7 +16,7 @@
       <label for="signUp"><a href="{{ route('register') }}">Sign Up</a></label>
       <section class="register">
         <h1>Create your account</h1>
-        <p>For get our bennefit. If you does have an account, <span>Sign in with my account!</span></p>
+        <p>For get our bennefit. If you does have an account, <span><a href="{{ route('login') }}">Sign in with my account!</a></span></p>
         <form action="{{ route('register') }}" method="post">
           @csrf
           <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name">
