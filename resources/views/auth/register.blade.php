@@ -19,7 +19,7 @@
         <p>For get our bennefit. If you does have an account, <span><a href="{{ route('login') }}">Sign in with my account!</a></span></p>
         <form action="{{ route('register') }}" method="post">
           @csrf
-          <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name">
+          <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name" value="{{ old('name') }}">
           <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="What's your email" pattern=".{8,}"
           minlength="8" title="minimal characters 8" required autofocus>
           @error('email')
@@ -35,7 +35,7 @@
             </span>
           @enderror
           <input type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
-          <textarea name="address" class="form-control" rows="8" placeholder="Where Do You Life?"></textarea>
+          <textarea name="address" class="form-control" rows="8" placeholder="Where Do You Life?">{{ old('address') }}</textarea>
           <button type="submit">Sign Up</button>
           <a href="{{ url('/') }}" class="backto-homepage"><i class='bx bx-arrow-back' style="margin-right: 10px"></i> Back To Homepage</a>
         </form>

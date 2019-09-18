@@ -20,7 +20,17 @@
         <form action="{{ url('login') }}" method="post">
           @csrf
           <input type="email" placeholder="Input your email" name="email" autocomplete="email" pattern=".{8,}" minlength="8" title="minimal characters 8" autofocus required>
+          @error('email')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
           <input type="password" placeholder="Input your password" name="password" pattern=".{8,}" minlength="8" title="minimal characters 8" required>
+          @error('password')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
           @if (Route::has('password.request'))
           <a href="{{ route('password.request') }}" id="forgot-password">I'm forgot my password!</a>
           @endif
