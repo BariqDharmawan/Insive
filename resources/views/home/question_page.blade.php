@@ -152,7 +152,7 @@
         </span>
         <span class="sr-only">Next</span>
       </a>
-      <strong>
+      <strong style="color: #636363;">
         Note: If you back to previous question, the current answer will be remove.
         But your answer on another previous question still be there
       </strong>
