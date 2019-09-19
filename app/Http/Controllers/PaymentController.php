@@ -8,7 +8,7 @@ class PaymentController extends Controller
 {
     public function finish()
     {
-      return view('payment.finish');
+      return view('payment.thanks');
     }
     public function unfinish()
     {
