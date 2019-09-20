@@ -3,15 +3,8 @@
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing-page');
 Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default')->middleware(['auth', 'verified']);
-Route::view('face-result', 'face-result');
-Route::view('catalog/selected', 'catalog.selected')->name('catalog.selected');
 Route::get('contact-us', 'Home\MainController@contact')->name('contactus');
 Route::post('contact-us/store', 'Home\MainController@ContactStore')->name('contactus.store');
-Route::view('cart', 'cart');
-Route::view('payment', 'payment');
-Route::view('thank-you', 'thanks');
-Route::view('fill-address', 'shipping-address');
-Route::view('custom/package', 'custom.package');
 Route::get('/force/logout', 'Home\MainController@logout')->middleware(['auth', 'verified']);
 Route::resource('faq', 'Home\FaqController');
 Route::get('payment/finish', 'PaymentController@finish')->middleware(['auth', 'verified']);
@@ -52,16 +45,15 @@ Route::prefix('home')->namespace('Home')->name('home.')->middleware(['auth', 've
 });
 Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->name('admin.')->group(function () {
   Route::resource('pesan-dari-customer', 'ContactusController');
-  Route::view('invoice', 'admin.invoice')->name('invoice'); //NEW CREATED ON 8/20/2019
+  Route::view('invoice', 'admin.invoice')->name('invoice');
   Route::get('invoice/all', 'AdminController@indexInvoice')->name('invoice.all');
-  Route::view('recipe', 'admin.recipe')->name('recipe'); //NEW CREATED ON 8/20/2019
+  Route::view('recipe', 'admin.recipe')->name('recipe');
   Route::get('recipe/all', 'AdminController@indexRecipe')->name('recipe.all');
   Route::get('single-recipe/{single}', 'AdminController@singleRecipe')->name('single-recipe');
   Route::get('invoice-recipe/search', 'AdminController@findInvoiceRecipe')->name('search.invoice-recipe');
-  Route::view('ordered', 'admin.ordered'); //NEW CREATED ON 8/20/2019. Ini cmn percobaan tampilan all order
   Route::get('dashboard', 'AdminController@index')->name('dashboard');
-  Route::get('order/all', 'AdminController@indexOrder')->name('order.all'); //Ini tampilan asli all order
-  Route::get('order/print/invoice/{id}', 'AdminController@getInvoice')->name('order.print.invoice'); //Ini tampilan asli all order
+  Route::get('order/all', 'AdminController@indexOrder')->name('order.all');
+  Route::get('order/print/invoice/{id}', 'AdminController@getInvoice')->name('order.print.invoice');
   Route::post('order/input/tracking/{id?}', 'AdminController@updateTrackingOrder')->name('order.tracking.update');
   Route::resource('admin', 'AdminController');
   Route::resource('pricing', 'PricingController');

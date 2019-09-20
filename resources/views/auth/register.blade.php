@@ -20,14 +20,14 @@
         <form action="{{ route('register') }}" method="post">
           @csrf
           <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name" value="{{ old('name') }}">
-          <input type="email" @error ('email') class="is-invalid" @enderror name="email" placeholder="What's your email" pattern=".{8,}"
+          <input type="email" name="email" placeholder="What's your email" pattern=".{8,}"
           minlength="8" title="minimal characters 8" required autofocus>
           @error('email')
            <span class="invalid-feedback" role="alert">
                <strong>{{ $message }}</strong>
            </span>
           @enderror
-          <input type="password" @error('password') class="is-invalid" @enderror name="password" placeholder="Create your password" pattern=".{8,}"
+          <input type="password" name="password" placeholder="Create your password" pattern=".{8,}"
           minlength="8" title="minimal characters 8" autocomplete="new-password" required>
           @error('password')
             <span class="invalid-feedback" role="alert">
@@ -42,16 +42,5 @@
      </section>
     </main>
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
-    <script>
-      $(document).ready(function(){
-        // optional, only for blue link
-        $("main .login p span").click(function(){
-          $("input#signUp").prop("checked", true);
-        });
-        $("main .register p span").click(function(){
-          $("input#signIn").prop("checked", true);
-        });
-      });
-    </script>
   </body>
 </html>

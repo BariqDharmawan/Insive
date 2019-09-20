@@ -626,7 +626,8 @@ footer a {
   display: block;
   visibility: hidden;
   opacity: 0;
-  top: 5px;
+  top: 50%;
+  transform: translateY(-50%);
   transition: all 250ms;
 }
 #question-page main .carousel-item li input[type='checkbox']:checked + label .bx {
