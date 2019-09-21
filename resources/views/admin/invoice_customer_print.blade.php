@@ -36,7 +36,10 @@ Invoice Backend <br> Admin
                     @if (!empty($list_order->logic))
                     <li>Special Ingredients : <span>{{$list_order->logic->special_ingredients}}​</span></li>
                     @endif
-                    <li>Total Price  : <var>{{ 'Rp ' . $list_order->total_price }} ( exclude shipping cost {{ 'Rp ' . $list_order->shipping_cost }} )</var></li>
+                    <li>
+                      Total Price  :
+                      <var>{{ 'Rp ' . $list_order->total_price }} ( exclude shipping cost {{ 'Rp ' . $list_order->shipping_cost }} )</var>
+                    </li>
                     <li class="border-warning-custom" style="height: 2px;"><br></li>
                     <li>To :<span>{{ $list_order->shipping->name }}</span></li>
                     <li>Phone :<span>{{ $list_order->shipping->phone }}</span></li>
@@ -73,6 +76,10 @@ Invoice Backend <br> Admin
             </div>
             @endforeach
             @endif
+            <a href="{{ route('admin.order.all') }}" class="btn bg--cream col-12">
+              <i class='bx bx-arrow-back mr-2'></i>
+              Back To Order List
+            </a>
         </div>
     </div>
 </main>
@@ -82,7 +89,6 @@ Invoice Backend <br> Admin
 <script>
     $(document).ready(function(e) {
         window.print();
-        window.location='{{ url("admin/order/all") }}'
     });
 </script>
 @endsection
