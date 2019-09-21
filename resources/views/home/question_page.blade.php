@@ -25,11 +25,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #F6E1B2;
-    
+
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   #loader:before {
     content: "";
     position: absolute;
@@ -40,11 +40,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #FEC66E;
-    
+
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   #loader:after {
     content: "";
     position: absolute;
@@ -55,11 +55,11 @@
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #C7763E;
-    
+
     -webkit-animation: spin 1s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
   }
-  
+
   @-webkit-keyframes spin {
     0%   {
       -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
@@ -88,9 +88,18 @@
 @endsection
 @section('content')
 <aside>
-  <a href="javascript:void(0)" class="logo-question logo-skin active"><img src="{{ asset('img/logo/skin.png') }}" class="mr-2" height="150"><span>skin</span></a>
-  <a href="javascript:void(0)" class="logo-question logo-lifestyle"><img src="{{ asset('img/logo/lifestyle.png') }}" class="mr-2" height="150"><span>lifestyle</span></a>
-  <a href="javascript:void(0)" class="logo-question logo-environment"><img src="{{ asset('img/logo/environment.png') }}" class="mr-2" height="150"><span>environment</span></a>
+  <a href="javascript:void(0)" class="logo-question logo-skin active">
+    <img src="{{ asset('img/logo/skin.png') }}" class="mr-2" height="150">
+    <span>skin</span>
+  </a>
+  <a href="javascript:void(0)" class="logo-question logo-lifestyle">
+    <img src="{{ asset('img/logo/lifestyle.png') }}" class="mr-2" height="150">
+    <span>lifestyle</span>
+  </a>
+  <a href="javascript:void(0)" class="logo-question logo-environment">
+    <img src="{{ asset('img/logo/environment.png') }}" class="mr-2" height="150">
+    <span>environment</span>
+  </a>
 </aside>
 <main>
   <div class="container" id="containerQuestion" style="height: 100%;">
@@ -129,10 +138,13 @@
           </ul>
         </div>
       </div>
-      @if ($question->id != 1)
-      <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious" data-id="{{$question->id}}">
-        <i class='bx bx-left-arrow-alt'></i>
-      </a>
+      @if($question->id <> 1)
+        <a href="javascript:void(0);" class="carousel-control-prev" id="btnPrevious" data-id="{{$question->id}}">
+          <span class="carousel-control-prev-icon" aria-hidden="false">
+            <i class='bx bx-left-arrow-alt'></i>
+          </span>
+          <span class="sr-only">Prev</span>
+        </a>
       @endif
       <a class="carousel-control-next" id="btnNext" href="javascript:void(0)" role="button" data-slide="next" data-id="{{$question->id}}">
         <span class="carousel-control-next-icon" aria-hidden="true">
@@ -140,6 +152,10 @@
         </span>
         <span class="sr-only">Next</span>
       </a>
+      <strong style="color: #636363;">
+        Note: If you back to previous question, the current answer will be remove.
+        But your answer on another previous question still be there
+      </strong>
     </div>
   </div>
 </main>
@@ -198,7 +214,7 @@
           console.log(xhr.status);
           var err = eval("(" + xhr.responseText + ")");
           console.log(xhr.responseText);
-          
+
           if(xhr.status === 406) {
             alert('You must select first!');
             $('#errorMsg').show();
@@ -249,7 +265,7 @@
         console.log(xhr.status);
         var err = eval("(" + xhr.responseText + ")");
         console.log(xhr.responseText);
-        
+
         if(xhr.status === 406) {
           alert('You must select first!');
           $('#errorMsg').show();

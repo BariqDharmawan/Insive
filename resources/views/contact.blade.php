@@ -52,7 +52,7 @@
             </li>
             <li>
               <i class='bx bxl-instagram-alt'></i>
-              <a href="https://www.instagram.com/bariq.dharmawan/">@insive.id</a>
+              <a href="https://www.instagram.com/bariq.dharmawan/" target="_blank">@insive.id</a>
             </li>
           </ul>
           {!! $admin->address !!}

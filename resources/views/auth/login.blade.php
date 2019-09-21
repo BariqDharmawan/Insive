@@ -16,11 +16,23 @@
       <label for="signUp"><a href="{{ route('register') }}">Sign Up</a></label>
       <section class="login">
         <h1>Sign In with your account</h1>
-        <p>To interact with our shop. If you don't have an account, <span>Make your account!</span></p>
+        <p>To interact with our shop. If you don't have an account, <span><a href="{{ route('register') }}">Make your account!</a></span></p>
         <form action="{{ url('login') }}" method="post">
           @csrf
-          <input type="email" placeholder="Input your email" name="email" autocomplete="email" pattern=".{8,}" minlength="8" title="minimal characters 8" autofocus required>
-          <input type="password" placeholder="Input your password" name="password" pattern=".{8,}" minlength="8" title="minimal characters 8" required>
+          <input type="email" placeholder="Input your email" name="email" autocomplete="email" pattern=".{8,}" minlength="8"
+          title="minimal characters 8" autofocus required>
+          @error('email')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+          <input type="password" placeholder="Input your password" name="password" pattern=".{8,}" minlength="8"
+          title="minimal characters 8" required>
+          @error('password')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
           @if (Route::has('password.request'))
           <a href="{{ route('password.request') }}" id="forgot-password">I'm forgot my password!</a>
           @endif
@@ -28,22 +40,13 @@
         </form>
         <div class="sosmed-login">
           <p id="sosmed-label">or maybe you prefer using your social media</p>
-          <a href="{{ url('login/google') }}" class="sosmed-login__google"><img src="{{ asset('img/logo/glogo.svg') }}" height="40"> Sign In With Google</a>
-          <a href="{{ url()->previous() }}" class="backto-homepage"><i class='bx bx-arrow-back' style="margin-right: 10px"></i> Back To Homepage</a>
+          <a href="{{ route('login.provider', 'google') }}" class="sosmed-login__google">
+            <img src="{{ asset('img/logo/glogo.svg') }}" height="40"> Sign In With Google
+          </a>
+          <a href="{{ url('/') }}" class="backto-homepage"><i class='bx bx-arrow-back' style="margin-right: 10px"></i> Back To Homepage</a>
         </div>
       </section>
     </main>
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
-    <script>
-      $(document).ready(function(){
-        // optional, only for blue link
-        $("main .login p span").click(function(){
-          $("input#signUp").prop("checked", true);
-        });
-        $("main .register p span").click(function(){
-          $("input#signIn").prop("checked", true);
-        });
-      });
-    </script>
   </body>
 </html>

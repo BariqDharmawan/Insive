@@ -622,11 +622,12 @@ footer a {
 }
 #question-page main .carousel-item li input[type='checkbox'] + label .bx {
   position: absolute;
-  left: -27px;
+  left: 0;
   display: block;
   visibility: hidden;
   opacity: 0;
-  top: 5px;
+  top: 50%;
+  transform: translateY(-50%);
   transition: all 250ms;
 }
 #question-page main .carousel-item li input[type='checkbox']:checked + label .bx {
@@ -638,7 +639,7 @@ footer a {
   cursor: pointer;
   margin-bottom: 0;
   font-size: 24px;
-  text-indent: 35px;
+  padding-left: 35px;
 }
 #question-page main .carousel-item li input + label::before {
   content: '';
@@ -760,6 +761,7 @@ footer a {
   display: flex;
   flex-grow: 1;
   align-items: center;
+  position: relative;
   flex-wrap: wrap;
   margin-bottom: 20px;
   flex-direction: column;
@@ -780,9 +782,18 @@ footer a {
 }
 #cart-page .product__action li input {
   order: -1;
+  width: auto;
+  margin-bottom: 15px;
 }
 #cart-page .product__action li .product__button {
   border: 1px solid #E2CCC1;
+  position: absolute;
+}
+#cart-page .product__action li .product__button--increase {
+  right: 0;
+}
+#cart-page .product__action li .product__button--decrease {
+  left: 0;
 }
 #cart-page .product__action li div:nth-child(2), #cart-page .product__action li div:nth-child(3) {
   width: 100%;
@@ -1087,6 +1098,13 @@ footer a {
   }
   #cart-page .product__action li .increase_number > * {
     flex-grow: 0;
+  }
+  #cart-page .product__button {
+    position: static !important;
+  }
+  #cart-page .product__action li input {
+    width: 40px;
+    margin-bottom: 0;
   }
   /*end of cart page more than phone css*/
   /*question-page width more than phone css*/

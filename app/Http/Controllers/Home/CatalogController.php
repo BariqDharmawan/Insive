@@ -11,6 +11,10 @@ use Auth;
 
 class CatalogController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware(['auth', 'verified']);
+    }
     public function index()
     {
         $data['product'] = Product::where('qty', '>', 0)->paginate(20);

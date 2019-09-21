@@ -141,10 +141,13 @@ main form input, main .register form textarea {
   height: 35px;
   margin-bottom: 20px;
 }
-main .register form .invalid-feedback {
-  margin-top: -30px;
+main form .invalid-feedback {
   height: 25px;
   color: #ba4c4c;
+  margin-bottom: 20px;
+}
+main .register form .invalid-feedback {
+  margin-top: -30px;
 }
 main .register form textarea {
   height: 145px;
