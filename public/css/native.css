@@ -216,6 +216,9 @@ footer a {
 #profile-page .profile img {
   margin: 0 auto;
   display: block;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 #profile-page .profile .profile__details {
   padding: 20px 0;

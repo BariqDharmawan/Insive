@@ -23,7 +23,7 @@
       @endif
       <div class="row">
         <div class="col-12 col-lg-6 pr-lg-5">
-          <form class="d-block mb-3 mb-lg-0" action="{{ route('contactus.store') }}" method="post">
+          <form class="d-block mb-3 mb-lg-0" action="{{ route('contact-us.store') }}" method="post">
             @csrf
             <div class="form-group">
               <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; " @auth value="{{ Auth::user()->name }}" readonly @endauth>

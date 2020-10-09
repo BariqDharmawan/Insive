@@ -353,7 +353,7 @@ class MainController extends Controller
         //s
     }
 
-    public function HowToOrder()
+    public function howToOrder()
     {
         $howToOrder = HowToOrder::first();
         return view('how-to', compact('howToOrder'));

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
-use Auth;
 use App\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -53,8 +53,12 @@ class LoginController extends Controller
     {
       $userSocial = Socialite::driver($provider)->user();
       $users = User::firstOrCreate(
-        ['email'           => $userSocial->getEmail()],
-        ['name'            => $userSocial->getName()]
+        ['email' => $userSocial->getEmail()],
+        [
+          'name' => $userSocial->getName(),
+          'image' => $userSocial->getAvatar(),
+          'provider' => 'socialite'
+        ]
       );
       Auth::login($users);
       if (Auth::user()->email_verified_at == '') {

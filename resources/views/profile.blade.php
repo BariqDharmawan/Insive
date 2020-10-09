@@ -30,17 +30,18 @@
       </div>
       @endif
       <figure class="profile">
-        <img src="{{ Storage::url($myprofile->image) }}" height="150" alt="Profile Photo">
+        <img src="{{ $myProfile->provider == 'built-in' ? Storage::url($myProfile->image) : $myProfile->image }}" 
+        height="150" alt="Profile Photo">
         <figcaption class="profile__details text--cream">
-          <p>{{ Auth::user()->name }}</p>
-          <small class="mb-2">{{ Auth::user()->email }}</small>
-          @if (Auth::user()->email <> 'admin@insive.com')
-          <small class="d-block mb-2">{{ Auth::user()->phone }}</small>
-          @if (Auth::user()->role <> 'admin')
-            <address>{{ Auth::user()->address }}</address>
+          <p>{{ $myProfile->name }}</p>
+          <small class="mb-2">{{ $myProfile->email }}</small>
+          @if ($myProfile->email <> 'admin@insive.com')
+          <small class="d-block mb-2">{{ $myProfile->phone }}</small>
+          @if ($myProfile->role <> 'admin')
+            <address>{{ Str::title($myProfile->address) }}</address>
           @endif
             <button type="button" class="btn btn-link text-info" data-toggle="modal" data-target="#fillProfile">
-              @if (Auth::user()->phone == '' OR Auth::user()->address == '')
+              @if ($myProfile->phone == '' OR $myProfile->address == '')
                 Please Complete Your Profile
               @else
                 Update Your Profile
@@ -58,29 +59,29 @@
                   </button>
                 </div>
                 <div class="modal-body py-4">
-                  <form action="{{ route('profile.update', Auth::user()->id) }}" id="completeProfile"
+                  <form action="{{ route('profile.update', $myProfile->id) }}" id="completeProfile"
                   enctype="multipart/form-data" method="post">
                     @csrf @method('PUT')
                     <div class="form-group">
                       <label for="name_customer">Your Fullname</label>
                       <input type="text" name="name_customer" id="name_customer" class="form-control"
-                      value="{{ Auth::user()->name }}" required>
+                      value="{{ $myProfile->name }}" required>
                     </div>
                     <div class="form-group">
                       <label for="name_customer">Your Fullname</label>
                       <input type="email" name="email_customer" class="form-control"
-                      value="{{ Auth::user()->email }}" required>
+                      value="{{ $myProfile->email }}" required>
                     </div>
                     <div class="form-group">
                       <label for="name_customer">Your Phone Number</label>
                       <input type="number" name="phone_customer" class="form-control" placeholder="Fill Your Phone Number"
-                      @if (Auth::user()->phone <> '') value="{{ Auth::user()->phone }}" @endif required>
+                      @if ($myProfile->phone <> '') value="{{ $myProfile->phone }}" @endif required>
                     </div>
                     <div class="form-group">
                       <label for="name_customer">Your Address</label>
                       <textarea name="address_customer" rows="8" class="form-control"
-                      placeholder="Fill Your Address">{{ Auth::user()->address }}</textarea>
-                      @if (Auth::user()->role == 'admin')
+                      placeholder="Fill Your Address">{{ $myProfile->address }}</textarea>
+                      @if ($myProfile->role == 'admin')
                       <small class="form-text text-secondary">
                         To change your address, please follow this :
                         (1) go to Google Maps
@@ -93,7 +94,7 @@
                     </div>
                     <div class="form-group text-left">
                       <label for="avatarCustomer" class="mb-2">Change Your Avatar</label>
-                      <input type="file" class="form-control-file" id="avatarCustomer" name="avatarCustomer">
+                      <input type="file" class="form-control-file" id="avatarCustomer" name="avatar_customer">
                     </div>
                   </form>
                 </div>

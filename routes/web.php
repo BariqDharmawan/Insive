@@ -1,50 +1,72 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing-page');
-Route::get('catalog', 'Home\CatalogController@index')->name('catalog.default')->middleware(['auth', 'verified']);
-Route::get('contact-us', 'Home\MainController@contact')->name('contactus');
-Route::post('contact-us/store', 'Home\MainController@ContactStore')->name('contactus.store');
-Route::get('/force/logout', 'Home\MainController@logout')->middleware(['auth', 'verified']);
-Route::resource('faq', 'Home\FaqController');
-Route::get('payment/finish', 'PaymentController@finish')->middleware(['auth', 'verified']);
-Route::get('payment/unfinish', 'PaymentController@unfinish')->middleware(['auth', 'verified']);
-Route::get('payment/error', 'PaymentController@error')->middleware(['auth', 'verified']);
-Route::get('how-to-order', 'Home\MainController@HowToOrder')->name('how-to-order');
-Route::post('/finish', 'MidtransController@index')->name('transaction.finish');
-Route::post('/submit/payment', 'MidtransController@submitPayment')->name('submit.payment');
-Route::post('/submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.payment.catalog');
-Route::post('/notification/handler', 'MidtransController@notificationHandler')->name('notification.handler');
+Route::post('finish', 'MidtransController@index')->name('transaction.finish');
+Route::post('submit/payment', 'MidtransController@submitPayment')->name('submit.payment');
+Route::post('submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.payment.catalog');
+Route::post('notification/handler', 'MidtransController@notificationHandler')->name('notification.handler');
+
+Auth::routes(['verify' => true]);
+
+Route::namespace('Auth')->name('login.')->prefix('login')->group(function(){
+  Route::get('{provider}', 'LoginController@redirectToProvider')->name('provider');
+  Route::get('{provider}/callback', 'LoginController@handleProviderCallback')->name('callback');
+});
+
+Route::namespace('Home')->group(function(){
+  Route::get('contact-us', 'MainController@contact')->name('contact-us');
+  Route::post('contact-us/store', 'MainController@ContactStore')->name('contact-us.store');
+  
+  Route::get('how-to-order', 'MainController@howToOrder')->name('how-to-order');
+  Route::resource('faq', 'FaqController');
+});
+
+Route::prefix('payment')->middleware(['auth', 'verified'])->group(function(){
+  Route::get('finish', 'PaymentController@finish');
+  Route::get('unfinish', 'PaymentController@unfinish');
+  Route::get('error', 'PaymentController@error');
+});
 
 Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
+  Route::get('catalog', 'CatalogController@index')->name('catalog.default');
   Route::resource('profile', 'ProfileController');
-  Route::get('custom/fragrance', 'MainController@fragrance')->name('main.fragrance');
-  Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');
-  Route::post('custom/fragrance', 'MainController@storeFragrance')->name('main.fragrance.store');
-  Route::get('custom/sheet', 'MainController@sheet')->name('main.sheet');
-  Route::post('custom/sheet', 'MainController@storeSheet')->name('main.sheet.store');
-  Route::get('/custom/sheet-fragrance', 'MainController@sheetAndFragrance');
-  Route::get('/custom/packages', 'MainController@pricing')->name('main.pricing');
-  Route::get('/question', 'MainController@question')->name('main.question');
-  Route::get('/address/user', 'CartController@indexShipping')->name('cart.fill.address');
-  Route::get('/address/user/catalog', 'CartController@indexShippingCatalog')->name('cart.fill.address.catalog');
-  Route::get('/custom/payment', 'CartController@indexPayment')->name('cart.custom.payment');
+  Route::get('force/logout', 'MainController@logout');
 
-  Route::redirect('finish/payment', '/');
+  Route::prefix('custom')->name('main.')->group(function(){
+    Route::get('fragrance', 'MainController@fragrance')->name('fragrance');
+    Route::post('fragrance', 'MainController@storeFragrance')->name('fragrance.store');
+    Route::get('packages', 'MainController@pricing')->name('pricing');
+  });
+
+  Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');  
+  // Route::get('custom/sheet-fragrance', 'MainController@sheetAndFragrance');
+  Route::get('question', 'MainController@question')->name('main.question');
+  Route::get('address/user', 'CartController@indexShipping')->name('cart.fill.address');
+  Route::get('address/user/catalog', 'CartController@indexShippingCatalog')->name('cart.fill.address.catalog');
+  Route::get('cart/payment', 'CartController@indexPayment')->name('cart.custom.payment');
+
+  Route::permanentRedirect('finish/payment', '/');
 
   Route::post('custom/payment/store', 'CartController@postPayment')->name('cart.custom.payment.store');
-  Route::get('/catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
+  Route::get('catalog/payment', 'CartController@indexCatalogPayment')->name('cart.catalog.payment');
   Route::post('question/soal/ajax/{id?}/{status?}', 'MainController@getSoal')->name('main.question.get.soal');
 });
+
 Route::prefix('home')->namespace('Home')->name('home.')->middleware(['auth', 'verified'])->group(function () {
   Route::get('/face-result', 'MainController@faceResult')->name('main.face.result');
-  Route::resource('cart', 'CartController');
   Route::post('shipping/store/catalog', 'ShippingController@storeCatalog')->name('shipping.store.catalog');
-  Route::resource('shipping', 'ShippingController');
-  Route::resource('main', 'MainController');
+  Route::resources([
+    'cart' => 'CartController',
+    'shipping' => 'ShippingController',
+    'main' => 'MainController'
+  ]);
 });
+
 Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->name('admin.')->group(function () {
-  Route::resource('pesan-dari-customer', 'ContactusController');
   Route::view('invoice', 'admin.invoice')->name('invoice');
   Route::get('invoice/all', 'AdminController@indexInvoice')->name('invoice.all');
   Route::view('recipe', 'admin.recipe')->name('recipe');
@@ -55,24 +77,24 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::get('order/all', 'AdminController@indexOrder')->name('order.all');
   Route::get('order/print/invoice/{id}', 'AdminController@getInvoice')->name('order.print.invoice');
   Route::post('order/input/tracking/{id?}', 'AdminController@updateTrackingOrder')->name('order.tracking.update');
-  Route::resource('admin', 'AdminController');
-  Route::resource('pricing', 'PricingController');
-  Route::resource('cart', 'CartController');
-  Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
   Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('fragrance.update.api');
-  Route::resource('sheet', 'SheetController');
-  Route::resource('fragrance', 'FragranceController');
+  Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
-  Route::resource('question', 'QuestionController');
   Route::get('product/trash', 'ProductController@trashed')->name('product.trashed');
   Route::post('product/restored/{id}', 'ProductController@restored')->name('product.restored');
   Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
   Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
-  Route::resource('product', 'ProductController');
-  Route::resource('logic', 'LogicController');
-  Route::resource('faq', 'FaqController');
-  Route::resource('how-to-order', 'HowToOrderController');
+  Route::resources([
+    'pesan-dari-customer' => 'ContactusController',
+    'admin' =>'AdminController',
+    'pricing' =>'PricingController',
+    'cart' =>'CartController',
+    'fragrance' => 'FragranceController',
+    'sheet' => 'SheetController',
+    'question' => 'QuestionController',
+    'product' =>'ProductController',
+    'logic' =>'LogicController',
+    'faq' =>'FaqController',
+    'how-to-order' =>'HowToOrderController'
+  ]);
 });
-Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
-Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');
-Auth::routes(['verify' => true]);

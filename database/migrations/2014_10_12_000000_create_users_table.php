@@ -19,11 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('image')->default('files/people.png');
             $table->string('email')->unique();
+            $table->enum('provider', ['socialite', 'built-in'])->default('built-in');
             $table->enum('role', ['admin', 'customer'])->default('customer');
             $table->string('phone')->nullable();
             $table->longText('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->default(Hash::make('insive_member'));
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

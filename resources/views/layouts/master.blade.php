@@ -28,7 +28,6 @@
             <li><a href="{{ route('catalog.default') }}">buy from catalog</a></li>
             <li><a href="{{ route('faq.index') }}">FAQ</a></li>
             <li><a href="" class="disabled">beauty tips <small>(coming soon)</small></a></li>
-            <li><a href="{{ route('contactus') }}">contact us</a></li>
             <li><a href="{{ route('profile.index') }}">My Profile</a></li>
           @endif
         @endauth
@@ -38,9 +37,9 @@
           <li><a href="{{ route('catalog.default') }}">buy from catalog</a></li>
           <li><a href="{{ route('faq.index') }}">FAQ</a></li>
           <li><a href="" class="disabled">beauty tips <small>(coming soon)</small></a></li>
-          <li><a href="{{ route('contactus') }}">contact us</a></li>
+          
         @endguest
-        <li><a href="{{ route('profile.index') }}">My Profile</a></li>
+        <li><a href="{{ route('contact-us') }}">contact us</a></li>
       </ul>
     </nav>
     <header>

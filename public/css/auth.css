@@ -17,9 +17,8 @@ input[type="radio"] {
 #registerPage, #loginPage {
   min-height: 100vh;
 }
-#loginPage {
+#loginPage, #registerPage {
   display: flex;
-  /* height: auto; */
 }
 #registerPage {
   height: auto;
