@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.2/css/boxicons.min.css' rel='stylesheet'>
   </head>
-  <body>
+  <body id="loginPage">
     <main>
-      <input type="radio" id="signIn" name="same" checked>
-      <label for="signIn"><a href="{{ route('login') }}">Sign In</a></label>
-      <input type="radio" name="same" id="signUp">
-      <label for="signUp"><a href="{{ route('register') }}">Sign Up</a></label>
+      <div class="label-box">
+        <label for="signIn" class="label-box__name">
+          <a href="{{ route('login') }}">Sign In</a>
+        </label>
+        <label for="signUp" class="label-box__name">
+          <a href="{{ route('register') }}">Sign Up</a>
+        </label>
+      </div>
       <section class="login">
         <h1>Sign In with your account</h1>
         <p>To interact with our shop. If you don't have an account, <span><a href="{{ route('register') }}">Make your account!</a></span></p>

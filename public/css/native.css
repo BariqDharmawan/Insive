@@ -1,28 +1,4 @@
-*, *::after, *::before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box !important;
-  list-style-type: none;
-  scroll-behavior: smooth;
-  outline: none;
-}
-html, body {
-  height: 100%;
-}
-body {
-  background-color: #141313;
-  overflow-x: hidden;
-}
-main, footer, header {
-  transition: all 250ms;
-}
-input[type='number'] {
-  -moz-appearance:textfield;
-}
-
-.visible-hidden {
-  display: none;
-}
+@import 'general.css';
 
 #show-menu {
   position: absolute;
@@ -87,9 +63,7 @@ a.disabled {
   color: #929292;
   pointer-events: none;
 }
-.bg--cream {
-  background-color: #E2CCC1;
-}
+
 .text--cream, h1.text--cream:hover, h2.text--cream:hover, h3.text--cream:hover, h4.text--cream:hover, h5.text--cream:hover
 p.text--cream:hover {
   color: #E2CCC1;
@@ -107,9 +81,7 @@ p.text--cream:hover {
 textarea {
   min-height: 200px;
 }
-a:hover {
-  text-decoration: none;
-}
+
 .product img {
   display: block;
   width: 100%;
