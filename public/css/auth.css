@@ -1,5 +1,9 @@
 @import 'general.css';
 
+html, body {
+  height: initial;
+}
+
 .backto-homepage {
   color: #319FAD !important;
   display: flex;
@@ -14,14 +18,8 @@ input[type="radio"] {
   position: absolute;
   z-index: -999;
 }
-#registerPage, #loginPage {
-  min-height: 100vh;
-}
 #loginPage, #registerPage {
   display: flex;
-}
-#registerPage {
-  height: auto;
 }
 #loginPage .label-box__name[for='signIn'] {
   background-color: #DFC790;
@@ -40,7 +38,7 @@ main {
   background-color: #fff;
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 .label-box {
@@ -73,9 +71,8 @@ main label:first-of-type {
 main > section {
   display: flex;
   flex-direction: column;
-  /* flex-grow: 1; */
+  flex-grow: 1;
   transition: all 450ms;
-  /* overflow: hidden; */
   width: 100%;
   padding: 1rem 25px;
 }
@@ -160,9 +157,9 @@ main .login form #forgot-password {
 main .login form #forgot-password:hover {
   text-decoration: underline;
 }
-main .login #sosmed-label {
+main #sosmed-label {
   color: #494949;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   position: relative;
   width: 100%;
   display: flex;
@@ -232,6 +229,7 @@ main .register form button:hover {
 
 @media screen and (min-width: 768px) {
   body {
+    height: 100vh;
     align-items: center;
     justify-content: center;
   }
@@ -240,6 +238,10 @@ main .register form button:hover {
     width: 50%;
     height: auto;
     border-radius: 5px;
+    min-height: initial;
+  }
+  main #sosmed-label {
+    margin: 2rem 0;
   }
   main > section h1 {
     font-size: 2rem;
