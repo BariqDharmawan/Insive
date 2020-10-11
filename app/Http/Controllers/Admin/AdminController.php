@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\User;
 use App\Models\Question;
 use App\Models\Option;
@@ -13,13 +14,16 @@ use App\Models\Fragrance;
 use App\Models\Sheet;
 use App\Models\Pricing;
 use App\Models\Cart;
+use App\Models\ContactUs;
 use App\Models\CustomProduct;
 use App\Models\SubCart;
 use App\Models\Shipping;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+
     /**
     * Display a listing of the resource.
     *
@@ -257,4 +261,36 @@ class AdminController extends Controller
     {
         //
     }
+
+
+    /**
+     * get admin account and insive contact
+     *
+     * @return $adminAccount = $this->adminAccount
+     * @throws conditon
+     **/
+    public function setting()
+    {
+        return view('admin.setting', ['aboutUs' => AboutUs::first(), 'adminAccount' => $this->adminAccount]);
+    }
+
+    /**
+     * update admin account
+     *
+     * @param User role admin
+     **/
+    public function updateAccount(Request $request)
+    {
+        $account = $this->adminAccount;
+
+        if ($request->has('email')) {
+            $account->email = $request->email;
+        }
+        if ($request->has('password')) {
+            $account->password = Hash::make($request->password);
+        }
+        $account->save();
+        return redirect()->back();
+    }
+
 }

@@ -45,3 +45,7 @@ input[type='number'] {
 .fg-1 {
   flex-grow: 1;
 }
+
+.mb-0 {
+    margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 @section('title-page', 'Insive | Admin - Create Page')
 @section('title-body', 'How To Order Create')
 @section('css')

@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 
 @section('title-page', 'E-Bina | Admin - Pricing Configuration')
 

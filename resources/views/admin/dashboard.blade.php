@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 
 @section('title-page', 'Insive | Admin - Dashboard')
 
@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
 @endsection
 
-@section ('title-body', 'Dashboard')
+@section('title-body', 'Dashboard')
 
 @section('content')
 @if (Session::has('success_message') || Session::has('failed_message'))
@@ -16,8 +16,7 @@
     </div>
 </div>
 @endif
-<div class="col-12">
-</div>
+<div class="col-12"></div>
 @endsection
 @section('script')
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>

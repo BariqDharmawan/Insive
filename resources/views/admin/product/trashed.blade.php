@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 @section('title-page', 'Admin | Product Trashed')
 @section('content')
   <div class="col-12">

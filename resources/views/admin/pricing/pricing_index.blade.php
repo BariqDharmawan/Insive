@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 
 @section('title-page', 'Insive | Admin - Pricing Configuration')
 

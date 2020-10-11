@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 @section('title-page', 'Insive | Message Customer')
 @section('title-body', 'Message From Customer')
 @section('css')

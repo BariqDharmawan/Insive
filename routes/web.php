@@ -84,6 +84,13 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::post('product/restored/{id}', 'ProductController@restored')->name('product.restored');
   Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
   Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
+  Route::prefix('about-us')->name('about-us.')->group(function(){
+    Route::post('update-contact', 'AboutUsController@update')->name('update');
+  });
+  Route::prefix('setting')->name('setting.')->group(function(){
+    Route::get('/', 'AdminController@setting')->name('index');
+    Route::put('update', 'AdminController@updateAccount')->name('update');
+  });
   Route::resources([
     'pesan-dari-customer' => 'ContactusController',
     'admin' =>'AdminController',

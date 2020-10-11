@@ -35,16 +35,16 @@
                 <input type="email" name="email" placeholder="What's your email" pattern=".{8,}" minlength="8"
                     title="minimal characters 8" required autofocus>
                 @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
                 <input type="password" name="password" placeholder="Create your password" pattern=".{8,}" minlength="8"
                     title="minimal characters 8" autocomplete="new-password" required>
                 @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required
                     autocomplete="new-password">

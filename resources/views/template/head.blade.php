@@ -2,6 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title-page')</title>
   <link rel="stylesheet" href="{{ asset('plugins/simplebar/simplebar.css') }}">
   @yield('css')

@@ -1,4 +1,4 @@
-@extends('temp.main')
+@extends('template.main')
 @section('title-page', 'Admin | Product List')
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
