@@ -77,7 +77,7 @@
 <script src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 <script>
   function submitForm() {
-    $.post("{{ route('submit.payment') }}",{
+    $.post("{{ route('submit.pay-custom') }}",{
       _method: 'POST',
       _token: '{{ csrf_token() }}',
       price: $('input#shipping_cost').val(),

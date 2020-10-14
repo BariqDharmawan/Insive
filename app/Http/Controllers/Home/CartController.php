@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Home;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client as GuzzleClient;
-use App\Models\Question;
-use App\Models\Option;
-use App\Models\Answer;
-use App\Models\Logic;
-use App\Models\Fragrance;
-use App\Models\Sheet;
-use App\Models\Pricing;
-use App\Models\Shipping;
-use App\Models\Cart;
-use App\Models\SubCart;
-use App\Models\CustomProduct;
-use Auth;
-
-use Veritrans_Config;
 use Veritrans_Snap;
+use App\Models\Cart;
+use App\Models\Logic;
+use App\Models\Sheet;
+use Veritrans_Config;
+use App\Models\Answer;
+use App\Models\Option;
+use App\Models\Pricing;
+use App\Models\SubCart;
+use App\Models\Question;
+use App\Models\Shipping;
+use App\Models\Fragrance;
 use Veritrans_Notification;
+use Illuminate\Http\Request;
+use App\Models\CustomProduct;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 class CartController extends Controller
 {
@@ -247,9 +247,13 @@ class CartController extends Controller
      */
     public function indexCatalogPayment()
     {
-        $user_id = Auth::user()->id;
-        $cart = Cart::where([['user_id', '=', $user_id],['type_cart', '=', 'catalog'],['status', '=', 'waiting']])->firstOrFail();
-        $shipping = Shipping::where('id', '=', $cart->shipping_id)->firstOrFail();
+        $user_id = Auth::id();
+        $cart = Cart::where([
+            ['user_id', $user_id],
+            ['type_cart', 'catalog'],
+            ['status', 'waiting']
+        ])->firstOrFail();
+        $shipping = Shipping::where('id', $cart->shipping_id)->firstOrFail();
         $qty_package = SubCart::where('cart_id', $cart->id)->sum('qty');
         $price_package = SubCart::where('cart_id', $cart->id)->sum('total_price');
         $client = new GuzzleClient([

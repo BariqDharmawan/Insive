@@ -31,17 +31,21 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-      if (Auth::user()->role == 'admin') {
-        return 'admin/dashboard';
+      switch(auth()->user()->role) {
+        case 'admin':
+          return 'admin/dashboard';
+        break;
+
+        case 'customer':
+          if (auth()->user()->email_verified_at == '') { //if user not verified
+            return 'home';
+          } 
+          else {
+            return '/';
+          }
+        break;
       }
-      else {
-        if (Auth::user()->email_verified_at == '') {
-          return 'home';
-        }
-        else {
-          return '/';
-        }
-      }
+
     }
 
     public function redirectToProvider($provider)

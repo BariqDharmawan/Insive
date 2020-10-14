@@ -16,7 +16,10 @@
     </div>
 </div>
 @endif
-<div class="col-12"></div>
+<div class="col-12 px-0 py-3">
+    <h1 class="h5 font-weight-bold">Welcome, {{ $adminAccount->name }}</h1>
+    <p>Please use the sidebar on the left for managing your ecommerce</p>
+</div>
 @endsection
 @section('script')
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>

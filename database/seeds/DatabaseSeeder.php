@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
           UserSeeder::class,
           ProductSeeder::class,
           FaqSeeder::class,
+          MessageCustomerSeeder::class,
           HowToOrderSeeder::class,
           AboutUsSeeder::class
         ]);

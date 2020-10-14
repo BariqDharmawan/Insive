@@ -15,12 +15,13 @@ use App\Models\Sheet;
 use App\Models\Pricing;
 use App\Models\Cart;
 use App\Models\CustomProduct;
-use Auth;
 use App\User;
 use App\Models\HowToOrder;
 use Indonesia;
 use App\Models\ContactUs;
 use App\Mail\ContactMail;
+use App\Mail\MessageFromCustomer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
@@ -218,8 +219,10 @@ class MainController extends Controller
 
     public function contact()
     {
-      $admin = User::where('role', 'admin')->first();
-      return view('contact', compact('admin'));
+      return view('contact', [
+          'admin' => $this->adminAccount->first(),
+          'aboutUs' => $this->aboutUs
+        ]);
     }
 
     public function ContactStore(Request $request)
@@ -231,7 +234,11 @@ class MainController extends Controller
         $contactUs->email_customer = $request->peopleEmail;
         $contactUs->pesan = $request->message;
         $contactUs->save();
-        return redirect()->back()->with('success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now');
+
+        Mail::to($this->adminAccount->first()->email)->send(new MessageFromCustomer($contactUs));
+        return redirect()->back()->with(
+            'success_message', 'Message Succesfully Sent! Please Wait We"ll Reply You Maximum 24 Hours From Now'
+        );
       }
       else {
         return redirect()->back()->with('error_message', "Admin can't contact to itself");

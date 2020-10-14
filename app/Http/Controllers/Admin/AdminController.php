@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\AboutUs;
 use App\User;
 use App\Models\Question;
@@ -18,6 +19,9 @@ use App\Models\ContactUs;
 use App\Models\CustomProduct;
 use App\Models\SubCart;
 use App\Models\Shipping;
+use App\Rules\MatchOldPassword;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,7 +35,7 @@ class AdminController extends Controller
     */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.dashboard', ['adminAccount' => $this->adminAccount->first()]);
     }
 
     /**
@@ -271,7 +275,10 @@ class AdminController extends Controller
      **/
     public function setting()
     {
-        return view('admin.setting', ['aboutUs' => AboutUs::first(), 'adminAccount' => $this->adminAccount]);
+        return view('admin.setting.index', [
+            'aboutUs' => AboutUs::first(), 
+            'adminAccount' => $this->adminAccount->first()
+        ]);
     }
 
     /**
@@ -279,18 +286,23 @@ class AdminController extends Controller
      *
      * @param User role admin
      **/
-    public function updateAccount(Request $request)
+    public function updateAccount(UserRequest $request)
     {
-        $account = $this->adminAccount;
+        $adminAccount = $this->adminAccount->first();
+        
+        if ($request->has('name')) {
+            $adminAccount->name = $request->name;
+        }
+        if ($request->has('email_admin')) {
+            $adminAccount->email = $request->email_admin;
+        }
+        if ($request->has('new_password') and $request->filled('new_password')) {
+            $adminAccount->password = Hash::make($request->new_password);
+        }
 
-        if ($request->has('email')) {
-            $account->email = $request->email;
-        }
-        if ($request->has('password')) {
-            $account->password = Hash::make($request->password);
-        }
-        $account->save();
+        $adminAccount->save();
         return redirect()->back();
+
     }
 
 }

@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::view('/', 'landing-page');
+Route::view('/', 'landing');
 Route::post('finish', 'MidtransController@index')->name('transaction.finish');
-Route::post('submit/payment', 'MidtransController@submitPayment')->name('submit.payment');
-Route::post('submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.payment.catalog');
+Route::post('submit/payment', 'MidtransController@submitPayment')->name('submit.pay-custom');
+Route::post('submit/payment/catalog', 'MidtransController@submitPaymentCatalog')->name('submit.pay-catalog');
 Route::post('notification/handler', 'MidtransController@notificationHandler')->name('notification.handler');
 
 Auth::routes(['verify' => true]);
@@ -25,10 +25,10 @@ Route::namespace('Home')->group(function(){
   Route::resource('faq', 'FaqController');
 });
 
-Route::prefix('payment')->middleware(['auth', 'verified'])->group(function(){
-  Route::get('finish', 'PaymentController@finish');
-  Route::get('unfinish', 'PaymentController@unfinish');
-  Route::get('error', 'PaymentController@error');
+Route::prefix('payment')->middleware(['auth', 'verified'])->name('payment.')->group(function(){
+  Route::get('finish', 'PaymentController@finish')->name('finish');
+  Route::get('unfinish', 'PaymentController@unfinish')->name('unfinish');
+  Route::get('error', 'PaymentController@error')->name('error');
 });
 
 Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
@@ -85,7 +85,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
   Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
   Route::prefix('about-us')->name('about-us.')->group(function(){
-    Route::post('update-contact', 'AboutUsController@update')->name('update');
+    Route::post('update-contact', 'AboutContactController')->name('update');
   });
   Route::prefix('setting')->name('setting.')->group(function(){
     Route::get('/', 'AdminController@setting')->name('index');

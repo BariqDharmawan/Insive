@@ -52,11 +52,8 @@
 @section('script')
 <script src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 <script>
-  $(document).ready(function() {
-
-  });
   function submitForm() {
-    $.post("{{ route('submit.payment.catalog') }}",{
+    $.post("{{ route('submit.pay-catalog') }}",{
       _method: 'POST',
       _token: '{{ csrf_token() }}',
       price: $('input#shipping_cost').val(),
@@ -65,15 +62,15 @@
       snap.pay(data.snap_token, {
         onSuccess: function (result) {
           // location.reload();
-          window.location = '{{ url("payment/finish") }}';
+          window.location = '{{ route("payment.finish") }}';
         },
         onPending: function (result) {
           // location.reload();
-          window.location = '{{ url("payment/finish") }}';
+          window.location = '{{ route("payment.finish") }}';
         },
         onError: function (result) {
           // location.reload();
-          window.location = '{{ url("payment/error") }}';
+          window.location = '{{ route("payment.error") }}';
         }
       });
     });

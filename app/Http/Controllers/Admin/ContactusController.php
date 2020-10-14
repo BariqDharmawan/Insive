@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ContactUs;
 
 class ContactusController extends Controller
 {
@@ -14,7 +15,11 @@ class ContactusController extends Controller
      */
     public function index()
     {
-        //
+        $messageCustomer = ContactUs::paginate(20);
+        return view('admin.contact.index', [
+            'messageCustomer' => $messageCustomer,
+            'adminAccount' => $this->adminAccount->first()
+        ]);
     }
 
     /**

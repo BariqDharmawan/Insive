@@ -16,7 +16,7 @@ class HowToOrderController extends Controller
     public function index()
     {
         $howToOrder = HowToOrder::first();
-        return view('admin.howtoorder.index', compact('howToOrder'));
+        return view('admin.how-to-order.index', compact('howToOrder'));
     }
 
     /**
@@ -27,7 +27,7 @@ class HowToOrderController extends Controller
     public function create()
     {
       $howToOrder = HowToOrder::first();
-      return view('admin.howtoorder.create', compact('howToOrder'));
+      return view('admin.how-to-order.create', compact('howToOrder'));
     }
 
     /**
@@ -46,17 +46,6 @@ class HowToOrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -65,7 +54,7 @@ class HowToOrderController extends Controller
     public function edit($id)
     {
         $editHowToOrder = HowToOrder::findOrFail($id);
-        return view('admin.howtoorder.edit', compact('editHowToOrder'));
+        return view('admin.how-to-order.edit', compact('editHowToOrder'));
     }
 
     /**

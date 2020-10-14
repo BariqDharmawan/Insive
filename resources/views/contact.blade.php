@@ -3,6 +3,7 @@
 @section('page-title', 'Contact Us')
 @section('body-id', 'contact-us-page')
 @section('css')
+  {{-- <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' /> --}}
   <style media="screen">
     input[type='email'].form-control {
       text-transform: none !important;
@@ -26,15 +27,16 @@
           <form class="d-block mb-3 mb-lg-0" action="{{ route('contact-us.store') }}" method="post">
             @csrf
             <div class="form-group">
-              <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; " @auth value="{{ Auth::user()->name }}" readonly @endauth>
+              <input type="text" name="peopleName" class="form-control" id="peopleName" placeholder=" &nbsp; " @auth value="{{ Auth::user()->name }}" readonly @endauth required>
               <label for="peopleName">What is your name</label>
             </div>
             <div class="form-group">
-              <input type="email" name="peopleEmail" class="form-control" id="peopleEmail" placeholder=" &nbsp; " @auth value="{{ Auth::user()->email }}" readonly @endauth>
+              <input type="email" name="peopleEmail" class="form-control" id="peopleEmail" placeholder=" &nbsp; " @auth value="{{ Auth::user()->email }}" readonly @endauth required>
               <label for="peopleEmail">What is your email</label>
             </div>
             <div class="form-group">
-              <textarea name="message" id="peopleMessage" rows="7" placeholder=" &nbsp; " class="form-control"></textarea>
+              <textarea name="message" id="peopleMessage" rows="7" 
+              placeholder=" &nbsp; " class="form-control" required></textarea>
               <label for="peopleMessage">Let drop your message</label>
             </div>
             <button type="submit" class="btn bg--cream">Send <i class='bx bx-send ml-3'></i></button>
@@ -52,10 +54,12 @@
             </li>
             <li>
               <i class='bx bxl-instagram-alt'></i>
-              <a href="https://www.instagram.com/bariq.dharmawan/" target="_blank">@insive.id</a>
+              <a href="https://www.instagram.com/bariq.dharmawan/" target="_blank">{{ $aboutUs->instagram }}</a>
             </li>
           </ul>
-          {!! $admin->address !!}
+
+          <iframe height="400"src="https://maps.google.com/maps?q={{ str_replace(" ", "%20", $aboutUs->embeded_map) }}&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
         </div>
       </div>
     </div>
