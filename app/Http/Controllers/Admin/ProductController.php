@@ -4,14 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductValidation;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function __construct()
+
+    protected function saveProduct(Request $request, Product $product)
     {
-        $this->middleware('auth');
+        $product->product_name = $request->product_name;
+        $product->price = $request->price;
+        $product->qty = $request->qty;
+        $product->category = $request->input('category', 'mask');
+        $product->type = strtolower($request->type);
+        if ($request->hasFile('product_img')) {
+          $getProductImg = $request->file('product_img');
+          $path = $getProductImg->store('public/files');
+          $product->product_img = $path;
+        }
+        $product->save();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +32,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'DESC')->paginate(5);
-        return view('admin.product.list', compact('products'));
+        $catalog = Product::latest()->paginate(10);
+        return view('admin.product.list',[
+          'catalog' => $catalog,
+          'titlePage' => 'Catalog Product'
+        ]);
     }
 
     /**
@@ -39,27 +55,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductValidation $request)
     {
       $addProduct = new Product;
-      $addProduct->product_name = $request->product_name;
-      $addProduct->price = $request->price;
-      $addProduct->qty = $request->qty;
-      $addProduct->type = strtolower($request->type);
-      $addProduct->product_img = $request->file('product_img')->store('public/files');
-      $addProduct->save();
+      $this->saveProduct($request, $addProduct);
+      
       return redirect()->back()->with('added');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -81,19 +82,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductValidation $request, $id)
     {
         $editProduct = Product::findOrFail($id);
-        $editProduct->product_name = $request->product_name;
-        $editProduct->price = $request->price;
-        $editProduct->qty = $request->qty;
-        $editProduct->type = $request->type;
-        if ($request->hasFile('product_img')) {
-          $getProductImg = $request->file('product_img');
-          $path = $getProductImg->store('public/files');
-          $editProduct->product_img = $path;
-        }
-        $editProduct->save();
+        $this->saveProduct($request, $editProduct);
+        
         return redirect()->back()->with('success');
     }
 
