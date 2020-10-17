@@ -28,7 +28,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Blade::include('partial.input', 'input');
-        Blade::include('partial.invalid_feedback', 'invalidFeedback');
+
+        $elements = [
+            'partial.input' => 'input',
+            'partial.invalid_feedback' => 'invalidFeedback'
+        ];
+
+        foreach ($elements as $key => $element) {
+            Blade::include($key, $element);
+        }
     }
 }
