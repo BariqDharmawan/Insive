@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Rules\ContainAlpha;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', new ContainAlpha],
             'address' => ['required', 'string', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],

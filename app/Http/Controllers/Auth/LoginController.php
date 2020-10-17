@@ -61,16 +61,14 @@ class LoginController extends Controller
         [
           'name' => $userSocial->getName(),
           'image' => $userSocial->getAvatar(),
-          'provider' => 'socialite'
+          'provider' => 'socialite',
+          'email_verified_at' => now()
         ]
       );
+
       Auth::login($users);
-      if (Auth::user()->email_verified_at == '') {
-        return redirect('home');
-      }
-      else {
-        return redirect('/');
-      }
+      return redirect()->intended('/');
+      
     }
 
     /**
