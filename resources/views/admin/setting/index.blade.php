@@ -1,8 +1,8 @@
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - Setting page')
+@section('title-page', $titlePage)
 
-@section('title-body', 'Setting')
+@section('title-body', $titlePage)
 
 @section('body-id', 'setting')
 
@@ -32,10 +32,6 @@
         top: 30px;
         left: 50%;
     }
-    .invalid-feedback {
-        display: block !important;
-        padding: 0 10px !important;
-    }
 </style>    
 @endsection
 
@@ -45,11 +41,11 @@
     <div class="alert alert-danger" role="alert" style="display: none"></div>
     <section class="setting-account mt3 mb-5">
         <h2 class="h5">Admin account</h2>
-        @include('admin.setting.form_account')
+        @include('admin.setting.account')
     </section>
     <section class="setting-contact">
         <h2 class="h5">Our contact</h2>
-        @include('admin.setting.form_contact')
+        @include('admin.setting.contact')
     </section>
 </div>
 @endsection

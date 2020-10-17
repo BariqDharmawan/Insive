@@ -1,14 +1,10 @@
-@php
-    $title = 'Message From Customer';
-@endphp
-
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - ' . $title)
+@section('title-page', $titlePage)
 
-@section('title-body', $title)
+@section('title-body', $titlePage)
 
-@section('body-id', $title)
+@section('body-id', $titlePage)
 
 @section('content')
 <div class="col-12">

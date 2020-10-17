@@ -1,6 +1,6 @@
 @extends('template.main')
-@section('title-page', 'Insive | Admin - Create Page')
-@section('title-body', 'How To Order Create')
+@section('title-page', $titlePage)
+@section('title-body', $titlePage)
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
   <style media="screen">

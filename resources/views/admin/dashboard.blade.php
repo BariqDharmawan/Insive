@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - Dashboard')
+@section('title-page', 'Dashboard')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">

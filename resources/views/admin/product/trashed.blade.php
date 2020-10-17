@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title-page', 'Admin | Product Trashed')
+@section('title-page', 'Product Trashed')
 @section('content')
   <div class="col-12">
     @if (session('deleted'))
