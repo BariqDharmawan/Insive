@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        View::share('adminAccount', User::where('role', 'admin')->firstOrFail());
         Blade::include('partial.input', 'input');
         Blade::include('partial.invalid_feedback', 'invalidFeedback');
     }
