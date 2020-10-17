@@ -21,7 +21,7 @@ class AboutContactController extends Controller
             [
                 'instagram' => $request->instagram,
                 'phone' => $request->phone,
-                'email' => $request->email_about_us,
+                'email' => $request->email,
                 'embeded_map' => $request->embeded_map
             ]
         );
