@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -25,6 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/';
 
     /**
