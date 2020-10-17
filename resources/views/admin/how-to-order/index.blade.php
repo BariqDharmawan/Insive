@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title-page', 'Insive | Admin - Index Page')
+@section('title-page', 'Index Page')
 @section('title-body', 'How To Order Index')
 @section('css')
   <style media="screen">

@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\Home;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client as GuzzleClient;
-use App\Models\Question;
-use App\Models\Option;
-use App\Models\Answer;
-use App\Models\Logic;
-use App\Models\Fragrance;
-use App\Models\Sheet;
-use App\Models\Pricing;
-use App\Models\Cart;
-use App\Models\CustomProduct;
 use App\User;
-use App\Models\HowToOrder;
-use Indonesia;
-use App\Models\ContactUs;
+use App\Models\Cart;
+use App\Models\Logic;
+use App\Models\Sheet;
+use App\Models\Answer;
+use App\Models\Option;
+use App\Models\Pricing;
+use App\Models\Question;
 use App\Mail\ContactMail;
+use App\Models\ContactUs;
+use App\Models\Fragrance;
+use App\Models\HowToOrder;
+use Illuminate\Http\Request;
+use App\Models\CustomProduct;
 use App\Mail\MessageFromCustomer;
+use Laravolt\Indonesia\Indonesia;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 class MainController extends Controller
 {
@@ -45,7 +45,7 @@ class MainController extends Controller
     public function fragrance()
     {
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
-        return view('home.fragrance_page')->with($data);
+        return view('fragrance.custom')->with($data);
     }
 
     /**
@@ -86,21 +86,21 @@ class MainController extends Controller
         );
         CustomProduct::where('cart_id', $table->id)->delete();
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
-        return view('home.sheet_page')->with($data);
+        return view('home.sheet')->with($data);
     }
 
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function sheetAndFragrance()
-    {
-        // $user_id = Auth::user()->id;
-        // $cart_id = Cart::where([['user_id', '=', $user_id], ['status', '=', 'waiting']])->firstOrFail()->id;
-        // $data['product'] = CustomProduct::where('cart_id', '=', $cart_id)->get();
-        // return view('home.sheet_and_fragrance_page')->with($data);
-    }
+    // /**
+    // * Display a listing of the resource.
+    // *
+    // * @return \Illuminate\Http\Response
+    // */
+    // public function sheetAndFragrance()
+    // {
+    //     $user_id = Auth::user()->id;
+    //     $cart_id = Cart::where([['user_id', '=', $user_id], ['status', '=', 'waiting']])->firstOrFail()->id;
+    //     $data['product'] = CustomProduct::where('cart_id', '=', $cart_id)->get();
+    //     return view('home.sheet_and_fragrance_page')->with($data);
+    // }
 
     /**
     * Display a listing of the resource.
@@ -110,7 +110,7 @@ class MainController extends Controller
     public function pricing()
     {
         $data['price'] = Pricing::all();
-        return view('home.pricing_page')->with($data);
+        return view('home.pricing')->with($data);
     }
 
     /**
@@ -140,7 +140,7 @@ class MainController extends Controller
             }
             $data['result'] = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
             // dd($result);
-            return view('home.face_result')->with($data);
+            return view('custom.face-result')->with($data);
         }
     }
 
@@ -152,7 +152,7 @@ class MainController extends Controller
     public function question()
     {
         $data['question'] = Question::findOrfail(1);
-        return view('home.question_page')->with($data);
+        return view('custom.question')->with($data);
     }
 
     public function getSoal(Request $request, $id, $act = 'next')

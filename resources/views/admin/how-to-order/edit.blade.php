@@ -1,9 +1,13 @@
 @extends('template.main')
-@section('title-page', 'Insive | Admin - Create Page')
-@section('title-body', 'How To Order Create')
+
+@section('title-page', $titlePage)
+
+@section('title-body', $titlePage)
+
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
 @endsection
+
 @section('content')
   <div class="col-12">
     <form action="{{ route('admin.how-to-order.update', $editHowToOrder->id) }}" method="post">
@@ -22,6 +26,7 @@
     </form>
   </div>
 @endsection
+
 @section('script')
   <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
   <script>
