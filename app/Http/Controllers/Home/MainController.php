@@ -276,6 +276,7 @@ class MainController extends Controller
     */
     public function storeFragrance(Request $request)
     {
+        echo "test";
         $fragrance = $request->input('fragrance');
         $user_id = Auth::user()->id;
         $date_now = date('Y-m-d H:i:s');
