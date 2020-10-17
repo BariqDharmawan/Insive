@@ -32,6 +32,11 @@
                 @csrf
                 <input type="text" name="name" placeholder="What's You Full Name" autocomplete="name"
                     value="{{ old('name') }}">
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 <input type="email" name="email" placeholder="What's your email" pattern=".{8,}" minlength="8"
                     title="minimal characters 8" required autofocus>
                 @error('email')
@@ -47,9 +52,14 @@
                     </span>
                 @enderror
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required
-                    autocomplete="new-password">
+                    autocomplete="new-password" required>
                 <textarea name="address" class="form-control" rows="8"
-                    placeholder="Where Do You Life?">{{ old('address') }}</textarea>
+                    placeholder="Where Do You Life?" required>{{ old('address') }}</textarea>
+                @error('address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 <button type="submit">Sign Up</button>
                 <a href="{{ url('/') }}" class="backto-homepage">
                     <i class='bx bx-arrow-back' style="margin-right: 10px"></i>
