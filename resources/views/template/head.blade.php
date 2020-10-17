@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>@yield('title-page')</title>
+  <title>Admin | @yield('title-page')</title>
   <link rel="stylesheet" href="{{ asset('plugins/simplebar/simplebar.css') }}">
   @yield('css')
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
@@ -16,6 +16,18 @@
     }
     aside {
       z-index: 1040 !important;
+    }
+    .text-no-decoration {
+      text-decoration: none;
+    }
+    .invalid-feedback {
+        display: block !important;
+        padding: 0 10px !important;
+    }
+    .alert-danger {
+      background-color: #f8d7da !important;
+      border-color: #f5c6cb !important;
+      color: #721c24 !important;
     }
   </style>
 </head>
