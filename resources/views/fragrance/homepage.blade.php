@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - Fragrance')
+@section('title-page', 'Fragrance')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">

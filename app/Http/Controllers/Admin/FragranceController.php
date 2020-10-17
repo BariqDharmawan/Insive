@@ -20,7 +20,7 @@ class FragranceController extends Controller
     public function index()
     {
         $data['fragrance'] = Fragrance::all();
-        return view('admin.fragrance.fragrance_index')->with($data);
+        return view('fragrance.homepage')->with($data);
     }
     
     /**

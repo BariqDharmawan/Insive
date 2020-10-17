@@ -56,7 +56,7 @@ class CartController extends Controller
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
         $data['price'] = Pricing::all();
-        return view('home.cart_page')->with($data);
+        return view('home.cart')->with($data);
     }
 
     /**
@@ -77,7 +77,7 @@ class CartController extends Controller
         else {
             $data['allCities'] = Indonesia::allProvinces();
         }
-        return view('home.shipping_page')->with($data);
+        return view('shipping.custom-order')->with($data);
     }
 
     /**
@@ -98,7 +98,7 @@ class CartController extends Controller
         else {
             $data['allCities'] = Indonesia::allProvinces();
         }
-        return view('home.shipping_catalog_page')->with($data);
+        return view('shipping.catalog-order')->with($data);
     }
 
     /**

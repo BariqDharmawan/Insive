@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - Question')
+@section('title-page', 'Question')
 
 @section('css')
 <style type="text/css">

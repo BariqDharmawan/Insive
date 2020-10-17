@@ -17,7 +17,7 @@ class PricingController extends Controller
     public function index()
     {
         $pricing = Pricing::all();
-        return view('admin.pricing.pricing_index', [
+        return view('admin.pricing.homepage', [
             'pricing' => $pricing,
             'titlePage' => 'Pricing Configuration'
         ]);
@@ -64,7 +64,7 @@ class PricingController extends Controller
     public function edit($id)
     {
         $data['pricing'] = Pricing::findOrfail($id);
-        return view('admin.pricing.pricing_edit')->with($data);
+        return view('admin.pricing.edit')->with($data);
     }
 
     /**

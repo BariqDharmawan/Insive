@@ -1,11 +1,8 @@
 @extends('template.main')
 
-@section('title-page', 'E-Bina | Admin - Pricing Configuration')
+@section('title-page', 'Pricing Configuration')
 
-@section('css')
-@endsection
-
-@section ('title-body', 'Configure '.ucwords($pricing->price_name).' Package')
+@section ('title-body', 'Configure ' . ucwords($pricing->price_name) . ' Package')
 
 @section('content')
 @if (Session::has('success_message') || Session::has('failed_message'))

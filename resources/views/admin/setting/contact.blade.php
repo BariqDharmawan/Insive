@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="form-group col-12 col-md-6">
-            @include('partial.input', [
+            @input([
                 'name' => 'email_about_us',
                 'type' => 'email',
                 'placeholder' => 'Please use valid email',
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="form-group">
-        @include('partial.input', [
+        @input([
             'name' => 'phone',
             'type' => 'tel',
             'placeholder' => 'Please use valid phone number',
@@ -41,7 +41,7 @@
         <small id="phone" class="form-text text-muted">Ex: 087776xxx</small>
     </div>
     <div class="form-group">
-        @include('partial.input', [
+        @input([
             'type' => 'text',
             'name' => 'embeded_map',
             'placeholder' => 'Please input specific location for better result on maps',
@@ -50,10 +50,6 @@
             'labelText' => 'Location',
             'isRequired' => true
         ])
-        {{-- <label for="embeded-map">Location</label>
-        <input type="text" name="embeded_map" id="embeded-map" 
-        placeholder="Please input specific location for better result on maps" class="form-control" value="{{ $aboutUs->embeded_map ?? '' }}" 
-        aria-describedby="embededMapHelp" required> --}}
         <small id="embededMapHelp" class="form-text text-muted">Ex: Jl. swadaya gudang baru no. 15</small>
     </div>
     <button class="btn btn-success" type="submit">Update contact</button>

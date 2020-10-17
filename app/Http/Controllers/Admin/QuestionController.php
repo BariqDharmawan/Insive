@@ -19,7 +19,7 @@ class QuestionController extends Controller
     public function index()
     {
         $data['question'] = Question::all();
-        return view('admin.question.q_index')->with($data);
+        return view('admin.question.homepage')->with($data);
     }
     
     /**
@@ -63,7 +63,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $data['question'] = Question::findOrfail($id);
-        return view('admin.question.q_single')->with($data);
+        return view('admin.question.single')->with($data);
     }
     
     public function getSoal(Request $request, $id)
@@ -84,7 +84,7 @@ class QuestionController extends Controller
         else {
             $data['question'] = Question::findOrfail(($id+1));
             return response()->json([
-                'view' => view('admin.question.q_soal_single')->with($data)->render()
+                'view' => view('admin.question.soal-single')->with($data)->render()
             ], 200);
         }
     }

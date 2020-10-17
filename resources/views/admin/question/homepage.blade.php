@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title-page', 'Insive | Admin - Logic')
+@section('title-page', 'Question')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
@@ -20,7 +20,7 @@
     <div class="card">
         <div class="card-header no-border">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">List of Logic</h3>
+                <h3 class="card-title">List of Question</h3>
             </div>
         </div>
         <div class="card-body">
@@ -28,27 +28,23 @@
                 <table class="table table-bordered table-hover datatables">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Option 3</th>
-                            <th>Option 4</th>
-                            <th>Face Result</th>
-                            <th>Face Description</th>
-                            <th>Special Ingredients</th>
-                            <th>No Formula</th>
-                            <th>Face Icon</th>
+                            <th>No</th>
+                            <th>Question</th>
+                            <th>Options</th>
+                            <th>Type</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($logic as $key => $value)
+                        @foreach($question as $key => $value)
                         <tr>
-                            <td>{{ $value->id }}</td>
-                            <td>{{ $value->option_3 }}</td>
-                            <td>{{ $value->option_4 }}</td>
-                            <td>{{ $value->face_result }}</td>
-                            <td>{{ $value->face_description }}</td>
-                            <td>{{ $value->special_ingredients }}</td>
-                            <td>{{ $value->no_formula }}</td>
-                            <td><img src="{{ asset('img/muka/'.$value->face_icon) }}" height="150" width="150" alt="{{$value->face_icon}}"></td>
+                            <td>{{ $value->no_question }}</td>
+                            <td>{{ $value->question }}</td>
+                            <td>
+                                @foreach ($value->options as $item)
+                                    {{ $item->value.'. '.$item->text }}<br>
+                                @endforeach
+                            </td>
+                            <td>{{ $value->type }}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -16,7 +16,7 @@ class LogicController extends Controller
     public function index()
     {
         $data['logic'] = Logic::all();
-        return view('admin.logic.l_index')->with($data);
+        return view('admin.logic.homepage')->with($data);
     }
 
     /**

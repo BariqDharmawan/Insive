@@ -33,7 +33,8 @@
               @php
               $price_first = $value->price;
               @endphp
-              <figure class="fragrance text-center col-6 py-3 col-lg-4" id="figure_pricing--trial" data-min="{{$value->min_qty}}" data-max="{{$value->max_qty}}" data-price="{{$value->price}}">
+              <figure class="fragrance text-center col-6 py-3 col-lg-4" id="figure_pricing--trial" 
+              data-min="{{$value->min_qty}}" data-max="{{$value->max_qty}}" data-price="{{$value->price}}">
                 <img src="{{ asset('img/package/trial.png') }}" height="100" width="100" alt="Trial">
                 <figcaption class="text--cream">
                     <label class="m-0" for="pricing_trial"><var>{{$value->min_qty}}-{{$value->max_qty}} pcs</var> (Rp {{number_format($value->price, 0)}})​</label>

@@ -18,7 +18,7 @@ class CatalogController extends Controller
     public function index()
     {
         $data['product'] = Product::where('qty', '>', 0)->paginate(20);
-        return view('catalog.catalog_index')->with($data);
+        return view('catalog.homepage')->with($data);
     }
 
     public function store(Request $request)
