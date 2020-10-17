@@ -27,7 +27,12 @@ class HowToOrderController extends Controller
     public function create()
     {
       $howToOrder = HowToOrder::first();
-      return view('admin.how-to-order.create', compact('howToOrder'));
+      $titlePage = 'How To Order';
+
+      return view('admin.how-to-order.create', [
+          'howToOrder' => $howToOrder, 
+          'titlePage' => $titlePage
+        ]);
     }
 
     /**
@@ -54,7 +59,11 @@ class HowToOrderController extends Controller
     public function edit($id)
     {
         $editHowToOrder = HowToOrder::findOrFail($id);
-        return view('admin.how-to-order.edit', compact('editHowToOrder'));
+
+        return view('admin.how-to-order.edit', [
+            'editHowToOrder' => $editHowToOrder,
+            'titlePage' => 'Editing How To Order'
+        ]);
     }
 
     /**

@@ -227,7 +227,6 @@ class MainController extends Controller
 
     public function ContactStore(Request $request)
     {
-      // Mail::send(new ContactMail($request));
       if ($request->has('email_customer') <> 'admin@insive.com') {
         $contactUs = new ContactUs;
         $contactUs->nama_customer = $request->peopleName;

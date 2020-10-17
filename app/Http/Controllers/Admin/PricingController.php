@@ -16,8 +16,11 @@ class PricingController extends Controller
      */
     public function index()
     {
-        $data['pricing'] = Pricing::all();
-        return view('admin.pricing.pricing_index')->with($data);
+        $pricing = Pricing::all();
+        return view('admin.pricing.pricing_index', [
+            'pricing' => $pricing,
+            'titlePage' => 'Pricing Configuration'
+        ]);
     }
 
     /**

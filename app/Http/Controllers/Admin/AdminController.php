@@ -276,6 +276,7 @@ class AdminController extends Controller
     public function setting()
     {
         return view('admin.setting.index', [
+            'titlePage' => 'Setting page',
             'aboutUs' => AboutUs::first(), 
             'adminAccount' => $this->adminAccount->first()
         ]);

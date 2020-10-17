@@ -16,9 +16,11 @@ class ContactusController extends Controller
     public function index()
     {
         $messageCustomer = ContactUs::paginate(20);
+
         return view('admin.contact.index', [
             'messageCustomer' => $messageCustomer,
-            'adminAccount' => $this->adminAccount->first()
+            'adminAccount' => $this->adminAccount->first(),
+            'titlePage' => 'Message From Customer'
         ]);
     }
 
