@@ -11,8 +11,20 @@ class SheetSeeder extends Seeder
      */
     public function run()
     {
-        $sheet_name = ['Coconut bio-cellulose', 'Activated charcoal', 'Super silk', 'Panda animal printed', 'Sheep animal printed'];
-        $sheet_img = ['coconut-bio-cellulose.png', 'activated-charcoal.png', 'activated-charcoal.png', 'activated-charcoal.png', 'activated-charcoal.png'];
+        $sheet_name = [
+            'Coconut bio-cellulose',
+            'Activated charcoal',
+            'Super silk',
+            'Panda animal printed',
+            'Sheep animal printed'
+        ];
+        $sheet_img = [
+            'coconut-bio-cellulose.png',
+            'activated-charcoal.png',
+            'activated-charcoal.png',
+            'activated-charcoal.png',
+            'activated-charcoal.png'
+        ];
         $qty = 1;
 
         foreach ($sheet_name as $key => $value) {

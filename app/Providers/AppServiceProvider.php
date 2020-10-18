@@ -34,8 +34,10 @@ class AppServiceProvider extends ServiceProvider
             'partial.invalid_feedback' => 'invalidFeedback'
         ];
 
-        foreach ($elements as $key => $element) {
-            Blade::include($key, $element);
+        foreach ($elements as $element => $alias) {
+            Blade::include($element, $alias);
         }
+
+        Blade::component('partial.alert', 'alert');
     }
 }
