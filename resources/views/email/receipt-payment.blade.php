@@ -1,11 +1,16 @@
 @component('mail::message')
-# Payment receipt for customer with name {{ $receipt->getCustomer->name }}
+{{-- # Payment receipt for customer with name <br> {{ $receipt->getCustomer->name }} --}}
 
-The body of your message.
+What your customer buy
+{{ $items }}
+{{-- @foreach ($items as $item)
+    - {{ $item }}
+@endforeach --}}
+{{-- - Sheet mask: Rp. 20,000
+- Serum: Rp. 30,000
+- Shipping cost: Rp. 9,000 --}}
 
-{{-- @component('mail::button', ['url' => ''])
-Button Text
-@endcomponent --}}
+{{-- Total price : {{ 'Rp. ' . number_format($receipt->total_price) }} --}}
 
-{{ config('app.name') }}
+** {{ config('app.name') }} **
 @endcomponent

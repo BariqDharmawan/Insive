@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('receipt', function () {
+  $cart = App\Models\Cart::first();
+  return new App\Mail\ReceiptPayment($cart);
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing');
 Route::post('finish', 'MidtransController@index')->name('transaction.finish');
@@ -12,20 +17,20 @@ Route::post('notification/handler', 'MidtransController@notificationHandler')->n
 
 Auth::routes(['verify' => true]);
 
-Route::namespace('Auth')->name('login.')->prefix('login')->group(function(){
+Route::namespace('Auth')->name('login.')->prefix('login')->group(function () {
   Route::get('{provider}', 'LoginController@redirectToProvider')->name('provider');
   Route::get('{provider}/callback', 'LoginController@handleProviderCallback')->name('callback');
 });
 
-Route::namespace('Home')->group(function(){
+Route::namespace('Home')->group(function () {
   Route::get('contact-us', 'MainController@contact')->name('contact-us');
   Route::post('contact-us/store', 'MainController@ContactStore')->name('contact-us.store');
-  
+
   Route::get('how-to-order', 'MainController@howToOrder')->name('how-to-order');
   Route::resource('faq', 'FaqController');
 });
 
-Route::prefix('payment')->middleware(['auth', 'verified'])->name('payment.')->group(function(){
+Route::prefix('payment')->middleware(['auth', 'verified'])->name('payment.')->group(function () {
   Route::get('finish', 'PaymentController@finish')->name('finish');
   Route::get('unfinish', 'PaymentController@unfinish')->name('unfinish');
   Route::get('error', 'PaymentController@error')->name('error');
@@ -36,7 +41,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::resource('profile', 'ProfileController');
   Route::get('force/logout', 'MainController@logout');
 
-  Route::prefix('custom')->name('main.')->group(function(){
+  Route::prefix('custom')->name('main.')->group(function () {
     Route::get('sheet', 'MainController@sheet')->name('sheet');
     Route::post('sheet', 'MainController@storeSheet')->name('sheet.store');
     Route::get('fragrance', 'MainController@fragrance')->name('fragrance');
@@ -44,7 +49,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
     Route::get('packages', 'MainController@pricing')->name('pricing');
   });
 
-  Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');  
+  Route::post('catalog/store', 'CatalogController@store')->name('home.catalog.store');
   // Route::get('custom/sheet-fragrance', 'MainController@sheetAndFragrance');
   Route::get('question', 'MainController@question')->name('main.question');
   Route::get('address/user', 'CartController@indexShipping')->name('cart.fill.address');
@@ -86,24 +91,25 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::post('product/restored/{id}', 'ProductController@restored')->name('product.restored');
   Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
   Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
-  Route::prefix('about-us')->name('about-us.')->group(function(){
+  Route::prefix('about-us')->name('about-us.')->group(function () {
     Route::post('update-contact', 'AboutContactController')->name('update');
   });
-  Route::prefix('setting')->name('setting.')->group(function(){
+  Route::prefix('setting')->name('setting.')->group(function () {
     Route::get('/', 'AdminController@setting')->name('index');
     Route::put('update', 'AdminController@updateAccount')->name('update');
   });
+
+  Route::resource('product', 'ProductController')->except(['create', 'edit', 'show']);
   Route::resources([
     'pesan-dari-customer' => 'ContactusController',
-    'admin' =>'AdminController',
-    'pricing' =>'PricingController',
-    'cart' =>'CartController',
+    'admin' => 'AdminController',
+    'pricing' => 'PricingController',
+    'cart' => 'CartController',
     'fragrance' => 'FragranceController',
     'sheet' => 'SheetController',
     'question' => 'QuestionController',
-    'product' =>'ProductController',
-    'logic' =>'LogicController',
-    'faq' =>'FaqController',
-    'how-to-order' =>'HowToOrderController'
+    'logic' => 'LogicController',
+    'faq' => 'FaqController',
+    'how-to-order' => 'HowToOrderController'
   ]);
 });

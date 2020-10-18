@@ -13,16 +13,16 @@ class ReceiptPayment extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $receipt;
+    public $items;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Cart $cart)
+    public function __construct($items)
     {
-        $this->receipt = $cart;
+        $this->items = $items;
     }
 
     /**
