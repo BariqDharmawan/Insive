@@ -38,6 +38,6 @@ class MessageFromCustomer extends Mailable
     {
         return $this->subject('Message From Customer')
                     ->replyTo($this->contactUs->email_customer)
-                    ->markdown('email.message_customer');
+                    ->markdown('email.message-customer');
     }
 }

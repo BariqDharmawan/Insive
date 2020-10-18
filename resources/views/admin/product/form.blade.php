@@ -37,7 +37,7 @@
 </div>
 <div class="form-group">
     <label for="product-type">Product Type</label>
-    <select class="form-control select2" id="edit-product__type" name="type" 
+    <select class="form-control select2" name="type" 
     aria-describedby="typeFeedback" data-placeholder="Select a type" required>
         <option value=""></option>
         <option value="A">A</option>

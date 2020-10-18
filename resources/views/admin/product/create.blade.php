@@ -13,10 +13,6 @@
                     @csrf
                     @include('admin.product.form')
                 </form>
-                {{-- @include('admin.product.form', [
-                    'action' => route('admin.product.store'), 
-                    'id' => 'formAddProduct'
-                ]) --}}
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="submit" form="formAddProduct" class="btn btn-success">Add new product</button>
