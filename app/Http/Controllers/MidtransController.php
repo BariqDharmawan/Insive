@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Sheet;
-use App\Models\Fragrance;
-use App\Models\Product;
-use App\Models\Pricing;
-use App\Models\Shipping;
-use App\Models\Cart;
-use App\Models\SubCart;
-use App\Models\CustomProduct;
-use Auth;
-use Veritrans_Config;
+use App\Mail\ReceiptPayment;
 use Veritrans_Snap;
+use App\Models\Cart;
+use App\Models\Sheet;
+use Veritrans_Config;
+use App\Models\Pricing;
+use App\Models\Product;
+use App\Models\SubCart;
+use App\Models\Shipping;
+use App\Models\Fragrance;
 use Veritrans_Notification;
+use Illuminate\Http\Request;
+use App\Models\CustomProduct;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MidtransController extends Controller
 {
@@ -85,10 +88,16 @@ class MidtransController extends Controller
   
   public function submitPaymentCatalog(Request $request)
   { 
-    $cart = Cart::where([['user_id', '=', Auth::user()->id], ['type_cart', '=', 'catalog'], ['status', '=', 'waiting']])->first();
-    $customer = Shipping::where('user_id', Auth::user()->id)->where('cart_id', $cart->id)->first();
+    $cart = Cart::where([
+      ['user_id', Auth::id()], 
+      ['type_cart', 'catalog'], 
+      ['status', 'waiting']
+    ])->first();
+
+    $customer = Shipping::where('user_id', Auth::id())->where('cart_id', $cart->id)->first();
     $customer->status = 'active';
     $customer->save();
+
     // Buat transaksi ke midtrans kemudian save snap tokennya.
     $sub_cart = SubCart::where('cart_id', $cart->id)->get();
     $items = [];
@@ -125,6 +134,8 @@ class MidtransController extends Controller
     
     // Beri response snap token
     $this->response['snap_token'] = $snapToken;
+
+    Mail::to($this->adminAccount->first()->email)->send(new ReceiptPayment($cart));
     
     return response()->json($this->response);
     // return response()->json($payload);
@@ -133,7 +144,7 @@ class MidtransController extends Controller
   public function notificationHandler(Request $request)
   {
     $notif = new Veritrans_Notification();
-    \DB::transaction(function() use($notif) {
+    DB::transaction(function() use($notif) {
       
       $transaction = $notif->transaction_status;
       $type = $notif->payment_type;

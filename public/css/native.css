@@ -64,8 +64,8 @@ a.disabled {
   pointer-events: none;
 }
 
-.text--cream, h1.text--cream:hover, h2.text--cream:hover, h3.text--cream:hover, h4.text--cream:hover, h5.text--cream:hover
-p.text--cream:hover {
+.text--cream, h1.text--cream:hover, h2.text--cream:hover, h3.text--cream:hover, 
+h4.text--cream:hover, h5.text--cream:hover p.text--cream:hover {
   color: #E2CCC1;
 }
 .text--cream:hover {
@@ -265,6 +265,7 @@ footer a {
   border-top: 1px solid transparent;
 }
 /*end of profile-page css*/
+
 /*landing-page css*/
 #landing-page footer a:hover {
   color: #cdcbcb;
@@ -279,7 +280,7 @@ footer a {
 }
 #landing-page .carousel-item {
   text-align: center;
-  height: 400px;
+  height: 450px;
 }
 #landing-page .carousel-item img, #landing-page .carousel-item:first-child h1 {
   display: inline-block;
@@ -308,7 +309,7 @@ footer a {
 }
 #landing-page .landing-link {
   display: flex;
-  margin: 20px 0 50px;
+  margin: 30px 0 50px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -335,6 +336,8 @@ footer a {
 }
 #landing-page .recommend-link {
   display: flex;
+  justify-content: center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
   text-transform: uppercase;
@@ -851,14 +854,19 @@ footer a {
 #invoice-page-admin main, #order-today-page-admin main {
   min-height: calc(100% - 80px - 65px - 60px);
 }
-#invoice-page-admin main .container > .row:last-of-type .col-12, #recipe-page-admin main .container > .row:last-of-type > .col-12 .card, #invoice-page-admin main .container > .row:last-of-type .col-md-6, #recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card {
+#invoice-page-admin main .container > .row:last-of-type .col-12, 
+#recipe-page-admin main .container > .row:last-of-type > .col-12 .card, 
+#invoice-page-admin main .container > .row:last-of-type .col-md-6, 
+#recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card {
   border-radius: .25rem .25rem 0 0;
   border: 1px solid #E2CCC1;
 }
-#recipe-page-admin main .container > .row:last-of-type > .col-12 .card + button, #recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card + button {
+#recipe-page-admin main .container > .row:last-of-type > .col-12 .card + button, 
+#recipe-page-admin main .container > .row:last-of-type > .col-md-6 .card + button {
   border-radius: 0 0 .25rem .25rem;
 }
-#invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time, #invoice-page-admin main .col-md-6 p, #invoice-page-admin main .col-md-6 time {
+#invoice-page-admin main .col-12 p, #invoice-page-admin main .col-12 time, 
+#invoice-page-admin main .col-md-6 p, #invoice-page-admin main .col-md-6 time {
   text-align: center;
   display: block;
   margin-bottom: 10px;
@@ -911,7 +919,8 @@ footer a {
 #recipe-page-admin main .col-12 div, #recipe-page-admin main .col-md-6 div {
   padding: 20px;
 }
-#recipe-page-admin main .col-12 div:last-child, #recipe-page-admin main .col-md-6 div:last-child {
+#recipe-page-admin main .col-12 div:last-child, 
+#recipe-page-admin main .col-md-6 div:last-child {
   border-top: 1px solid #E2CCC1;
 }
 /*end of recipe-page admin css*/
@@ -923,17 +932,20 @@ footer a {
   background-color: transparent;
   color: #E2CCC1;
 }
-#order-today-page-admin main .container > .row > .col-12, #order-today-page-admin main .container > .row > .col-md-6 {
+#order-today-page-admin main .container > .row > .col-12, 
+#order-today-page-admin main .container > .row > .col-md-6 {
   display: flex;
   margin-bottom: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
 }
-#order-today-page-admin main .container > .row > .col-12 span, #order-today-page-admin main .container > .row > .col-md-6 span {
+#order-today-page-admin main .container > .row > .col-12 span, 
+#order-today-page-admin main .container > .row > .col-md-6 span {
   background-color: #E2CCC1;
 }
-#order-today-page-admin main .container > .row > .col-12 .card-header var, #order-today-page-admin main .container > .row > .col-md-6 .card-header var {
+#order-today-page-admin main .container > .row > .col-12 .card-header var, 
+#order-today-page-admin main .container > .row > .col-md-6 .card-header var {
   color: #E2CCC1;
   justify-content: center;
   border: 1px solid #E2CCC1;
@@ -989,6 +1001,7 @@ footer a {
   color: #141313;
   margin: 15px 0;
 }
+
 /*end of order-today-admin page css*/
 @media screen and (min-width: 768px) {
   #show-menu {
@@ -1002,8 +1015,6 @@ footer a {
     width: 45px;
     height: 45px;
   }
-  /* nav {
-  } */
   nav.menu-visible {
     box-shadow: 6px 0px 8px 3px rgba(182,182,182,.25);
     width: 30%;
@@ -1060,6 +1071,7 @@ footer a {
     width: 80%;
   }
   /*end of catalog-page width more than phone css*/
+
   /*cart page more than phone css*/
   #cart-page .product__action li {
     flex-direction: row;
@@ -1082,6 +1094,7 @@ footer a {
     margin-bottom: 0;
   }
   /*end of cart page more than phone css*/
+
   /*question-page width more than phone css*/
   #question-page aside ~ main {
     width: 70%;
@@ -1137,16 +1150,18 @@ footer a {
   }
   /*end of invoice-page admin css*/
   /*order-today-page-admin css*/
-  #order-today-page-admin main .container > .row > .col-12, #order-today-page-admin main .container > .row > .col-md-6 {
+  #order-today-page-admin main .container > .row > .col-12, 
+  #order-today-page-admin main .container > .row > .col-md-6 {
     justify-content: space-between;
   }
-  #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var, #order-today-page-admin main .col-md-6 span, #order-today-page-admin main .col-md-6 var {
+  #order-today-page-admin main .col-12 span, #order-today-page-admin main .col-12 var, 
+  #order-today-page-admin main .col-md-6 span, #order-today-page-admin main .col-md-6 var {
     flex-grow: 0;
     padding: 10px 40px;
   }
   #order-today-page-admin main .accordion .card-body > ul li var {
     width: auto;
-    display: inline;
+    display: inline-block;
   }
   #order-today-page-admin main .accordion .card-body > ul li span {
     display: inline;
@@ -1207,10 +1222,14 @@ footer a {
   /*end of catalog-page more than phone css*/
 }
 @media screen and (min-width: 960px) {
+  #landing-page .carousel-item {
+    height: 400px;
+  }
   #catalog-page aside {
     width: 40%;
   }
-  #catalog-page header.aside-showed, #catalog-page footer.aside-showed, #catalog-page main.aside-showed {
+  #catalog-page header.aside-showed, #catalog-page footer.aside-showed, 
+  #catalog-page main.aside-showed {
     width: 60%;
   }
 }
