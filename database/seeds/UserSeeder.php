@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      DB::table('users')->insert([
-        'name' => 'Insive Admin',
-        'email' => 'sanchez77rodriguez@gmail.com', //yollamiranda@gmail.com
-        'role' => 'admin',
-        'email_verified_at' => Carbon::now(),
-        'password' => Hash::make(12344321)
-      ]);
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    User::create([
+      'name' => 'Insive Admin',
+      'email' => 'sanchez77rodriguez@gmail.com', //yollamiranda@gmail.com
+      'role' => 'admin',
+      'email_verified_at' => Carbon::now(),
+      'password' => Hash::make(12344321)
+    ]);
 
-      factory(User::class, 9)->create()->each(function ($user) {
-        $user->save();
-      });
-    }
+    factory(User::class, 9)->create()->each(function ($user) {
+      $user->save();
+    });
+  }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ReceiptPayment;
+use App\User;
 use Veritrans_Snap;
 use App\Models\Cart;
 use App\Models\Sheet;
@@ -12,6 +12,7 @@ use App\Models\SubCart;
 use App\Models\Shipping;
 use App\Models\Fragrance;
 use Veritrans_Notification;
+use App\Mail\ReceiptPayment;
 use Illuminate\Http\Request;
 use App\Models\CustomProduct;
 use Illuminate\Support\Facades\DB;
@@ -136,13 +137,15 @@ class MidtransController extends Controller
     $cart->snap_token = $snapToken;
     $cart->save();
 
+    // cetak apa yg dibeli customer
+
     Mail::to($this->adminAccount->first()->email)->send(new ReceiptPayment($items));
 
     // Beri response snap token
     $this->response['snap_token'] = $snapToken;
 
     return response()->json($this->response);
-    // return response()->json($payload);
+    return response()->json($payload);
   }
 
   public function notificationHandler(Request $request)

@@ -51,16 +51,36 @@ Today's Order
                   @endif
                 </ul>
                 <ul class="col-12 px-0 footer-action-order">
-                  <li class="bg--cream"><a href="{{ route('admin.order.print.invoice', $order->id) }}" class="text-dark"><i class='bx bxs-printer'></i> Print Recipe & Invoice​</a></li>
-                  {{-- <li class="bg--cream"><a href="" class="text-dark"><i class='bx bx-sync' ></i> Update status order​</a></li> --}}
+                  <li class="bg--cream">
+                    <a href="{{ route('admin.order.print.invoice', $order->id) }}" class="text-dark">
+                      <i class='bx bxs-printer'></i> 
+                      Print Recipe & Invoice​
+                    </a>
+                  </li>
                   @if ($order->status == 'success')
-                  <li style="border: 1px solid forestgreen"><a href="javascript:void(0)" style="color: forestgreen;">Status Payment: {{$order->status}}</a></li>    
+                  <li style="border: 1px solid forestgreen">
+                    <a href="javascript:void(0)" style="color: forestgreen;">
+                      Status Payment: {{ $order->status }}
+                    </a>
+                  </li>
                   @elseif($order->status == 'pending')
-                  <li style="border: 1px solid orange"><a href="javascript:void(0)" style="color: orange;">Status Payment: {{$order->status}}</a></li>
+                  <li style="border: 1px solid orange">
+                    <a href="javascript:void(0)" style="color: orange;">
+                      Status Payment: {{ $order->status }}
+                    </a>
+                  </li>
                   @elseif($order->status == 'failed' || $order->status == 'expired')
-                  <li style="border: 1px solid red"><a href="javascript:void(0)" style="color: red;">Status Payment: {{$order->status}}</a></li>
+                  <li style="border: 1px solid red">
+                    <a href="javascript:void(0)" style="color: red;">
+                      Status Payment: {{ $order->status }}
+                    </a>
+                  </li>
                   @else
-                  <li style="border: 1px solid #E2CCC1"><a href="javascript:void(0)" class="text-light">Status Payment: {{$order->status}}</a></li>
+                  <li style="border: 1px solid #E2CCC1">
+                    <a href="javascript:void(0)" class="text-light">
+                      Status Payment: {{ $order->status }}
+                    </a>
+                  </li>
                   @endif
                   @if(empty($order->tracking_number))
                   <li class="bg--cream li-input-tracking-number"><a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>

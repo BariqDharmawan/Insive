@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Option;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,25 +13,128 @@ class OptionSeeder extends Seeder
      */
     public function run()
     {
-        $opt1 = ['Under 18', '19-29', '30-39', '40-49', '50-59', '60+'];
-        $opt2 = ['Male', 'Female'];
-        $opt3 = ['Dry or rough', 'Oily all over', 'Excess oil on t-zone', 'Uneven tone', 'Lines and creases', 'All is well'];
-        $opt4 = ['Rarely see a spot', 'Few times a month', 'Seems forever', 'All clear here'];
-        $opt5 = ['Irritated', 'Itchy', 'Dry', 'Red', 'Blotchy', 'None'];
-        $opt6 = ['Cleansers', 'Toners', 'Serum', 'Moisturizers', 'Eye creams'];
-        $opt7 = ['Primer or concealer', 'Foundation cream or powder', 'BB cream', 'Lipstick or mascara', 'Contours or highlighters', 'All natural'];
-        $opt8 = ['I prefer natural skin', 'Light coverage', 'Not too light, not too heavy', 'Bold and layered'];
-        $opt9 = ['Keep clear', 'Even tone', 'Blur fine lines', 'Boost hydration', 'Be less oily', 'Maintain current status'];
+        $opt1 = [
+            'Under 18',
+            '19-29',
+            '30-39',
+            '40-49',
+            '50-59',
+            '60+'
+        ];
+        $opt2 = [
+            'Male',
+            'Female'
+        ];
+        $opt3 = [
+            'Dry or rough',
+            'Oily all over',
+            'Excess oil on t-zone',
+            'Uneven tone',
+            'Lines and creases',
+            'All is well'
+        ];
+        $opt4 = [
+            'Rarely see a spot',
+            'Few times a month',
+            'Seems forever',
+            'All clear here'
+        ];
+        $opt5 = [
+            'Irritated',
+            'Itchy',
+            'Dry',
+            'Red',
+            'Blotchy',
+            'None'
+        ];
+        $opt6 = [
+            'Cleansers',
+            'Toners',
+            'Serum',
+            'Moisturizers',
+            'Eye creams'
+        ];
+        $opt7 = [
+            'Primer or concealer',
+            'Foundation cream or powder',
+            'BB cream',
+            'Lipstick or mascara',
+            'Contours or highlighters',
+            'All natural'
+        ];
+        $opt8 = [
+            'I prefer natural skin',
+            'Light coverage',
+            'Not too light,
+            not too heavy',
+            'Bold and layered'
+        ];
+        $opt9 = [
+            'Keep clear',
+            'Even tone',
+            'Blur fine lines',
+            'Boost hydration',
+            'Be less oily',
+            'Maintain current status'
+        ];
 
-        $opt10 = ['Bike / motorcycle', 'Bus', 'Subway/train', 'Walk', 'Car'];
-        $opt11 = ['Daily', 'Rarely', 'I’m around smokers', 'I don’t smoke'];
-        $opt12 = ['0-2', '3-4', '5-7', '7+'];
-        $opt13 = ['Rarely', 'Few times', 'Twice a week', 'All day, literally every day'];
-        $opt14 = ['4 or less', '5 to 7', '8 to 10', '11 to 13', '14 or more'];
-        $opt15 = ['Cheese', 'Eggs', 'Poultry', 'Fruits & veggies', 'Grains & breads', 'None of these'];
-        $opt16 = ['Rarely', 'Few times', 'Twice a week', 'Every day'];
+        $opt10 = [
+            'Bike / motorcycle',
+            'Bus',
+            'Subway/train',
+            'Walk',
+            'Car'
+        ];
+        $opt11 = [
+            'Daily',
+            'Rarely',
+            'I’m around smokers',
+            'I don’t smoke'
+        ];
+        $opt12 = [
+            '0-2',
+            '3-4',
+            '5-7',
+            '7+'
+        ];
+        $opt13 = [
+            'Rarely',
+            'Few times',
+            'Twice a week',
+            'All day,
+            literally every day'
+        ];
+        $opt14 = [
+            '4 or less',
+            '5 to 7',
+            '8 to 10',
+            '11 to 13',
+            '14 or more'
+        ];
+        $opt15 = [
+            'Cheese',
+            'Eggs',
+            'Poultry',
+            'Fruits & veggies',
+            'Grains & breads',
+            'None of these'
+        ];
+        $opt16 = [
+            'Rarely',
+            'Few times',
+            'Twice a week',
+            'Every day'
+        ];
 
-        $opt17 = ['DKI Jakarta', 'Bandung', 'Depok', 'Tangerang', 'Bogor', 'Bekasi', 'Other'];
+        $opt17 = [
+            'DKI Jakarta',
+            'Bandung',
+            'Depok',
+            'Tangerang',
+            'Bogor',
+            'Bekasi',
+            'Other'
+        ];
 
         foreach ($opt1 as $key => $value) {
             DB::table('options')->insert([

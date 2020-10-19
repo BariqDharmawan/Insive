@@ -4,8 +4,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('receipt', function () {
-  $cart = App\Models\Cart::first();
-  return new App\Mail\ReceiptPayment($cart);
+  $order = App\Models\Cart::first();
+  // foreach ($order as $key => $value) {
+  $order->user_id = App\User::find($order->user_id);
+  if ($order->type_cart == 'catalog') {
+    $order->item = App\Models\SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+      ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+      ->where('sub_carts.cart_id', $order->id)
+      ->get();
+  } else if ($order->type_cart == 'custom') {
+    $order->item = App\Models\CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+      ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+      ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+      ->where('custom_products.cart_id', $order->id)
+      ->get();
+  }
+  // }
+
+  // dd($items);
+  return new App\Mail\ReceiptPayment($order);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -13,16 +13,16 @@ class ReceiptPayment extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $items;
+    public $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($items)
+    public function __construct($order)
     {
-        $this->items = $items;
+        $this->order = $order;
     }
 
     /**
