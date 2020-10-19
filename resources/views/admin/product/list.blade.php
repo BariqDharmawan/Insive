@@ -42,10 +42,10 @@
         @if(count($catalog) == 0)
             @alert(['type' => 'secondary', 'addClass' => 'text-center', 'closeBtn' => false])
                 No catalog created. Let's
-                <a href="javascript:void(0);" class="text-primary text-no-decoration" 
-                    data-toggle="modal" data-target="#modal-add">
-                    add new one!
-                </a>
+                <button type="button" class="text-primary text-no-decoration" 
+                data-toggle="modal" data-target="#modal-add">
+                    Add New catalog
+                </button>
             @endalert
         @else
             <div class="card">
@@ -144,7 +144,7 @@
                                 <td class="mx-auto" colspan="2">
                                     <button type="button" class="btn btn-primary float-left" data-toggle="modal"
                                         data-target="#modal-add">
-                                        Add New Product
+                                        Add New catalog
                                     </button>
                                 </td>
                                 <td colspan="5">
@@ -180,8 +180,8 @@ $(document).ready(function () {
         return parent.find(target).val(value);
     }
 
-    function formattingCurrency(targetInput) {
-        new AutoNumeric(targetInput, {
+    function formattingCurrency(targetInput, value = 0) {
+        new AutoNumeric(targetInput, value, {
             digitGroupSeparator: ',',
             decimalPlaces: '0'
         });
@@ -196,20 +196,19 @@ $(document).ready(function () {
         allowClear: true
     });
 
-    $("#formImport input[type='file']").change(function () {
-        $(this).parents("form").submit();
-    });
-
-    $(".btn-show-modal-edit").each(function () {
-        let product = $(this).closest('.product');
-
-        $(this).click(function (index) {
+    // $(".btn-show-modal-edit").each(function () {
+        
+        $(".btn-show-modal-edit").click(function () {
+            let product = $(this).closest('.product');
             let productId = $(this).data('id');
             let productName = getText(product, '.product__name');
             let productQty = getText(product, '.product__qty');
-            let productPrice = product.find('.product__price').data('price');
+            let productPrice = product.find('td:nth-child(2) .product__price').data('price');
             let productTypeVal = getText(product, '.product__type');
+
             let formTarget = 'formEditProduct' + productId;
+            let inputPrice = modalEditProduct.find("input[name='price']")[0];
+
 
             modalEditProduct.find('form').attr({
                 'id': formTarget,
@@ -218,17 +217,15 @@ $(document).ready(function () {
             modalEditProduct.find('button').attr('form', formTarget);
 
             setValue(modalEditProduct, "input[name='product_name']", productName);
-            setValue(modalEditProduct, "input[name='price']", productPrice);
+            
+            modalEditProduct.find("input[name='price']").val(productPrice);
+            // formattingCurrency(inputPrice, productPrice);
+            
             setValue(modalEditProduct, "input[name='qty']", productQty);
 
             setValue(modalEditProduct, ".select2", productTypeVal);
             modalEditProduct.find(".select2").trigger('change');
-
-            formattingCurrency('#formEditProduct' + productId + ' input[name="price"]');
-
         });
-        
-    });
 
     modalAddProduct.find("input, select").prop('required', true);
 
