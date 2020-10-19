@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('receipt', function () {
   $order = App\Models\Cart::first();
-  // foreach ($order as $key => $value) {
   $order->user_id = App\User::find($order->user_id);
   if ($order->type_cart == 'catalog') {
     $order->item = App\Models\SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
@@ -19,9 +18,6 @@ Route::get('receipt', function () {
       ->where('custom_products.cart_id', $order->id)
       ->get();
   }
-  // }
-
-  // dd($items);
   return new App\Mail\ReceiptPayment($order);
 });
 

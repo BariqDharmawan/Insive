@@ -17,7 +17,7 @@
 What your customer buy
 @component('mail::table')
     | Product name | QTY |
-    | ------------ |:---|
+    | ------------ |:--- |
     @foreach ($order->item as $item)
     | {{ $item->product_name }} | {{ $item->qty . ' PCS' }}
     @endforeach

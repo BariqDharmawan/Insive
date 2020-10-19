@@ -145,7 +145,7 @@ class MidtransController extends Controller
     $this->response['snap_token'] = $snapToken;
 
     return response()->json($this->response);
-    return response()->json($payload);
+    // return response()->json($payload);
   }
 
   public function notificationHandler(Request $request)
