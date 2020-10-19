@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         $elements = [
             'partial.input' => 'input',
-            'partial.invalid_feedback' => 'invalidFeedback'
+            'partial.invalid-feedback' => 'invalidFeedback'
         ];
 
         foreach ($elements as $element => $alias) {
