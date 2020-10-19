@@ -26,9 +26,9 @@
                     <figcaption>
                         <p class="text--cream">{{$item->product_name}}</p>
                         <div class="product__price">
-                            <span class="text--cream">Rp. </span>
+                            <span class="text--cream text--price" style="min-width:100px;">Rp. {{number_format($item->price, 0)}}</span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
-                            <input type="number" class="input-price-cart" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
+                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
                         </div>
                         <div class="product__action">
                             <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
@@ -58,7 +58,7 @@
                 '<a href="javascript:void(0);" class="product__button product__button--increase">' +
                     '<i class="bx bx-plus"></i>' +
                 '</a>' +
-                '<input type="number" name="jumlah_beli[]" min="1" value="1" required>' +
+                '<input type="number" name="jumlah_beli[]" min="1" value="1" required readonly>' +
                 '<a href="#" class="product__button product__button--decrease">' +
                     '<i class="bx bx-minus"></i>' +
                 '</a>'
@@ -92,7 +92,7 @@
                     '<a href="javascript:void(0);" class="product__button product__button--increase">' +
                         '<i class="bx bx-plus"></i>' +
                     '</a>' +
-                    '<input type="number"'+ 'name="jumlah_beli" min="1" value="1" required>' +
+                    '<input type="number"'+ 'name="jumlah_beli" min="1" value="1" required readonly>' +
                     '<a href="#" class="product__button" product__button--decrease">' +
                         '<i class="bx bx-minus"></i>' +
                     '</a>'
@@ -114,15 +114,30 @@
             });
         });
 
+        function addCommas(nStr)
+        {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        };
+
         //tambahin jumlah beli
         defaultValue = 1;
         $(document).on('click', '.product__button--increase', function () {
             // $(this).next().trigger("keydown"); //inputan dianggap berubah value
             let input = $(this).parents('figcaption').find('.input-price-cart');
+            let span = $(this).parents('figcaption').find('.text--price');
             let price = input.data('price');
             $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
             let final_price = price * $(this).next('input').val();
             input.val(final_price);
+            span.text("Rp. " + addCommas(final_price));
             defaultValue += parseInt($(this).next('input').val(), 10) + 1;
         });
         
@@ -130,10 +145,12 @@
         $(document).on('click', '.product__button--decrease', function () {
             if ($(this).prev('input').val() > 1) {
                 let input = $(this).parents('figcaption').find('.input-price-cart');
+                let span = $(this).parents('figcaption').find('.text--price');
                 let price = input.data('price');
                 $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
                 let final_price = price * $(this).prev('input').val();
                 input.val(final_price);
+                span.text("Rp. " + addCommas(final_price));
                 defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
             } else {
                 $(this).prev('input').val(1);
