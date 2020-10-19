@@ -73,16 +73,31 @@ class MainController extends Controller
                 $option_4 = $value['text'];
             }
         }
-        $logic = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
+        $logic = Logic::where([
+            ['option_3', '=', $option_3], 
+            ['option_4', '=', $option_4]
+        ])->firstOrFail();
         $code_cart = Cart::orderBy('id', 'desc')->first();
-        if(empty($code_cart)) {
+        if (empty($code_cart)) {
             $code = 'C'.date('HisYmd').$user_id.sprintf('%05d', 1);
-        } else {
+        } 
+        else {
             $code = 'C'.date('HisYmd').$user_id.sprintf('%05d', substr($code_cart->cart_code, -1)+1);
         }
         $table = Cart::firstOrCreate(
-            ['user_id' => $user_id, 'type_cart' => 'custom', 'status' => 'waiting'],
-            ['user_id' => $user_id, 'logic_id' => $logic->id, 'cart_code' => $code, 'formula_code' => '#'.$logic->no_formula, 'type_cart' => 'custom', 'status' => 'waiting']
+            [
+                'user_id' => $user_id, 
+                'type_cart' => 'custom', 
+                'status' => 'waiting'
+            ],
+            [
+                'user_id' => $user_id, 
+                'logic_id' => $logic->id, 
+                'cart_code' => $code, 
+                'formula_code' => '#' . $logic->no_formula, 
+                'type_cart' => 'custom', 
+                'status' => 'waiting'
+            ]
         );
         CustomProduct::where('cart_id', $table->id)->delete();
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();

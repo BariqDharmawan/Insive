@@ -21,7 +21,7 @@
             <li><a href="{{ route('admin.order.all') }}">All Order</a></li>
             <li><a href="{{ route('admin.invoice.all') }}">Print Invoice</a></li>
             <li><a href="{{ route('admin.recipe.all') }}">Print Recipe</a></li>
-            <li><a href="{{ route('admin.product.index') }}">Admin Dashboard</a></li>
+            <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
           @else
             <li><a href="{{ route('how-to-order') }}">how to order</a></li>
             <li><a href="{{ url('question') }}">custom sheet mask</a></li>

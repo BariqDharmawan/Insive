@@ -22,38 +22,31 @@
 
 @section('content')
 
-    @if(Session::has('added'))
-        <div class="alert alert-success">
-            Product Has Been Added
-        </div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-danger">
-            Product Has Been Removed
-        </div>
+    @if (session('success'))
+        @alert(['type' => 'success', 'closeBtn' => true])
+            {{ session('success') }} 
+        @endalert 
     @endif
 
-    @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show col-12" role="alert">
+    @if ($errors->any())
+        @alert(['type' => 'danger', 'closeBtn' => true])
             <ul class="mb-0">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        @endalert
     @endif
 
     <div class="col-12">
         @if(count($catalog) == 0)
-            <div class="alert alert-secondary col text-center" role="alert">
+            @alert(['type' => 'secondary', 'addClass' => 'text-center', 'closeBtn' => false])
                 No catalog created. Let's
-                <a href="javascript:void(0);" class="text-primary text-no-decoration" data-toggle="modal"
-                    data-target="#modal-add">
+                <a href="javascript:void(0);" class="text-primary text-no-decoration" 
+                    data-toggle="modal" data-target="#modal-add">
                     add new one!
                 </a>
-            </div>
+            @endalert
         @else
             <div class="card">
                 <div class="card-header border-0">
@@ -119,20 +112,21 @@
                                                             Delete Product
                                                             {{ $product->product_name }}
                                                         </h4>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
+                                                        <button type="button" class="close" 
+                                                        data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure wanna remove product
-                                                            <strong>{{ $product->product_name }}</strong>?</p>
+                                                        <p>
+                                                            Are you sure wanna remove product
+                                                            <strong>{{ $product->product_name }}</strong> ?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <form
-                                                            action="{{ route('admin.product.destroy', $product->id) }}"
-                                                            method="post">
-                                                            @csrf@method('DELETE')
+                                                        <form method="post"
+                                                            action="{{ route('admin.product.destroy', $product->id) }}">
+                                                            @csrf @method('DELETE')
                                                             <button type="submit" class="btn btn-danger w-100">
                                                                 Yapp, remove it
                                                             </button>
@@ -153,16 +147,18 @@
                                         Add New Product
                                     </button>
                                 </td>
-                                <td colspan="5">{{ $catalog->links() }}</td>
+                                <td colspan="5">
+                                    {{ $catalog->links() }}
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
+            @include('admin.product.edit')
         @endif
+        @include('admin.product.create')
     </div>
-    @include('admin.product.edit')
-    @include('admin.product.create')
 
 @endsection
 @section('script')
@@ -193,7 +189,7 @@ $(document).ready(function () {
     
     bsCustomFileInput.init();
 
-    $('.alert:not(.alert-danger)').delay(1000).slideUp("slow");
+    $('.alert').not('.alert-danger, .alert-secondary').delay(1000).slideUp("slow");
 
     select2.select2({
         placeholder: select2.data('placeholder'),

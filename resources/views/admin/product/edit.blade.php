@@ -12,12 +12,6 @@
                     @csrf @method('PUT')
                     @include('admin.product.form')
                 </form>
-                {{-- @include('admin.product.form', [
-                    'action' => route('admin.product.update', $product->id),
-                    'id' => 'formEditProduct' . $product->id,
-                    'data' => $product,
-                    'method' => 'PUT'
-                ]) --}}
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="submit" form="formEditProduct{{ $product->id }}" class="btn btn-success">
