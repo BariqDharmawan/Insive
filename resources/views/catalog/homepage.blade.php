@@ -28,10 +28,14 @@
                         <div class="product__price">
                             <span class="text--cream">Rp. </span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
-                            <input type="number" class="input-price-cart" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
+                            <input type="number" class="input-price-cart" name="hargaproduct" 
+                            data-price="{{$item->price}}" value="{{$item->price}}" readonly>
                         </div>
                         <div class="product__action">
-                            <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
+                            <a href="javascript:void(0);" class="btn bg--cream">
+                                <i class='bx bx-plus'></i> 
+                                Add To Cart
+                            </a>
                         </div>
                     </figcaption>
                 </figure>
@@ -139,6 +143,7 @@
                 $(this).prev('input').val(1);
             }
         });
+        
         $(".btn-close").click(function () {
             $(this).parent().removeClass("show");
             $("header, footer, main").removeClass("aside-showed");

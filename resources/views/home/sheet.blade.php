@@ -15,18 +15,32 @@
           <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">
             Formula Code: <var class="font-weight-bold">#02139</var>
           </p>
-          <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">Choose your sheet:</p>
-          <div class="row mx-0 px-2 justify-content-between">
-            @foreach ($sheet as $key => $item)
-            <figure class="sheet text-center col-6 py-3 col-lg-auto  {{($key == 0)? 'selected' : ''}}">
-              <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" class="rounded-circle p-3 bg--cream"
-              alt="Fragrance Item" width="110" height="110">
-              <figcaption class="text--cream">
-                <input type="checkbox" name="sheet[]" class="d-none" value="{{$item->id}}"
-                id="sheet_{{Str::slug($item->sheet_name, '_')}}" {{($key == 0)? 'checked="checked"' : ''}}>
-                <label class="m-0">{{$item->sheet_name}}</label>
-              </figcaption>
-            </figure>
+          <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">
+            Choose your sheet:
+          </p>
+          <div class="row mx-0 px-2">
+            @foreach ($sheet as $item)
+              <div class="col-12 col-md-6 col-lg-4 w-xl-20 sheet-box">
+                  <figure class="sheet text-center">
+                      <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" height="100" width="100"
+                      class="rounded-circle p-3 bg--cream sheet__img" alt="Fragrance Item">
+                      <figcaption class="text--cream sheet__detail">
+                          <input type="checkbox" name="sheet[]" class="d-none sheet__select" value="{{ $item->id }}"
+                              id="sheet_{{Str::slug($item->sheet_name, '_')}}">
+                          <label class="sheet__name">{{ $item->sheet_name }}</label>
+                          <div class="product__action bg--blue mt-auto">
+                              <a href="javascript:void(0);" class="product__button product__button--increase">
+                                  <i class="bx bx-plus"></i>
+                              </a>
+                              <input type="number" name="jumlah_sheet[]" min="0"
+                              class="order-0 mr-0 sheet__qty" required readonly>
+                              <a href="#" class="product__button product__button--decrease">
+                                  <i class="bx bx-minus"></i>
+                              </a>
+                          </div>
+                      </figcaption>
+                  </figure>
+              </div>
             @endforeach
           </div>
         </div>
@@ -40,23 +54,4 @@
     </form>
   </div>
 </main>
-@endsection
-@section('script')
-<script>
-  $(document).ready(function() {
-    $(".sheet").click(function() {
-        if($(this).hasClass('selected')) {
-          //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-          $(this).removeClass("selected");
-          //saat sheet di klik, trigger input di dlm nya jd checked
-          $(this).children("figcaption").find("input[type='checkbox']").prop("checked", false);
-        } else {
-          //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-          $(this).addClass("selected");
-          //saat sheet di klik, trigger input di dlm nya jd checked
-          $(this).children("figcaption").find("input[type='checkbox']").prop("checked", true);
-        }
-    });
-  });
-</script>
 @endsection
