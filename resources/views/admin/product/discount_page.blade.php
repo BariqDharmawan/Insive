@@ -155,11 +155,7 @@
                                 <td class="mx-auto" colspan="2">
                                     <button type="button" class="btn btn-primary float-left" data-toggle="modal"
                                         data-target="#modal-add">
-                                        Add New Product
-                                    </button>
-                                    <button type="button" class="btn btn-primary float-left ml-2" data-toggle="modal"
-                                        data-target="#modal-add">
-                                        Manage Discount
+                                        Add New Discount
                                     </button>
                                 </td>
                                 <td colspan="5">

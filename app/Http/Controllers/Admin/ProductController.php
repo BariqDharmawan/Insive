@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductValidation;
 use App\Models\Product;
@@ -32,7 +33,11 @@ class ProductController extends Controller
    */
   public function index()
   {
-    $catalog = Product::latest()->paginate(10);
+    $catalog = Product::leftJoin('product_discounts as prod_d', 'products.id', '=', 'prod_d.product_id')
+                        ->select('products.*', DB::raw('IFNULL(`prod_d`.`discount_price`, 0) as discount_price'))
+                        ->latest()
+                        ->paginate(10);
+    // dd($catalog);
     return view('admin.product.list', [
       'catalog' => $catalog,
       'titlePage' => 'Catalog Product'
