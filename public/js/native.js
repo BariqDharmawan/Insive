@@ -1,3 +1,10 @@
+function currency(number) {
+    new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    }).format(number);
+}
+
 jQuery(function () {
 
     const disableEvent = (e) => e.preventDefault();

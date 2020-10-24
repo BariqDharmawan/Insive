@@ -282,7 +282,6 @@ class MainController extends Controller
                 ];
             }
 
-            dd($data);
             $table = CustomProduct::insert($data);
 
             return redirect()->route('main.fragrance');
