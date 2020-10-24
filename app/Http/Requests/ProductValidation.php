@@ -27,29 +27,26 @@ class ProductValidation extends FormRequest
     public function rules()
     {
 
-        switch($this->method()) {
-            case 'POST' :
-            {
+        switch ($this->method()) {
+            case 'POST':
                 return [
                     'product_name' => ['required', 'min:3', 'max:50', 'unique:products', new ContainAlpha],
                     'price' => ['required', 'integer'],
-                    'qty' => ['required', 'integer'],
+                    'qty' => ['required', 'integer', 'min:1'],
                     'product_img' => ['required']
                 ];
-            }
-            case 'PUT' :
-            {
+            case 'PUT':
                 return [
                     'product_name' => ['required', 'min:3', 'max:50', new ContainAlpha],
                     'price' => ['required', 'integer'],
-                    'qty' => ['required', 'integer'],
+                    'qty' => ['required', 'integer', 'min:1'],
                     'product_img' => ['nullable']
                 ];
-            }
         }
     }
 
-    protected function prepareForValidation() {
+    protected function prepareForValidation()
+    {
         $this->merge([
             'price' => str_replace(',', '', $this->price)
         ]);
@@ -67,5 +64,4 @@ class ProductValidation extends FormRequest
             'body.required'  => 'A message is required',
         ];
     }
-
 }

@@ -43,7 +43,10 @@
                             <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
                         </div>
                         <div class="product__action">
-                            <a href="javascript:void(0);" class="btn bg--cream"><i class='bx bx-plus'></i> Add To Cart</a>
+                            <a href="javascript:void(0);" class="btn bg--cream">
+                                <i class='bx bx-plus'></i> 
+                                Add To Cart
+                            </a>
                         </div>
                     </figcaption>
                 </figure>
@@ -78,6 +81,7 @@
                     $("aside .form-group .row .product figcaption").append(
                     '<a href="javascript:void(0);" class="btnRemove">' +
                         '<i class="bx bx-trash-alt"></i>' +
+<<<<<<< HEAD
                         '</a>'
                         );
                         $("aside").addClass('show');
@@ -184,3 +188,60 @@
                                 </script>
                                 @endsection
                                 
+=======
+                    '</a>'
+                );
+                $("aside").addClass('show');
+                $("header, footer, main").addClass("aside-showed");
+                if ($("aside .form-row > div:last-child button").length === 0) {
+                    $("aside .form-row > div:last-child").append(
+                        '<button type="submit" class="btn bg--cream w-100 text-center float-right">' +
+                            'Proceed Checkout' +
+                        '</button>'
+                    );
+                }
+            });
+        });
+
+        //tambahin jumlah beli
+        defaultValue = 1;
+        $(document).on('click', '.product__button--increase', function () {
+            // $(this).next().trigger("keydown"); //inputan dianggap berubah value
+            let input = $(this).parents('figcaption').find('.input-price-cart');
+            let price = input.data('price');
+            $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
+            let final_price = price * $(this).next('input').val();
+            input.val(final_price);
+            defaultValue += parseInt($(this).next('input').val(), 10) + 1;
+        });
+        
+        //kurangin jumlah beli
+        $(document).on('click', '.product__button--decrease', function () {
+            if ($(this).prev('input').val() > 1) {
+                let input = $(this).parents('figcaption').find('.input-price-cart');
+                let price = input.data('price');
+                $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
+                let final_price = price * $(this).prev('input').val();
+                input.val(final_price);
+                defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
+            } else {
+                $(this).prev('input').val(1);
+            }
+        });
+        
+        $(".btn-close").click(function () {
+            $(this).parent().removeClass("show");
+            $("header, footer, main").removeClass("aside-showed");
+        });
+        $("#cartBtn").click(function () {
+            $("aside").toggleClass("show");
+            $("header, footer, main").toggleClass("aside-showed");
+        });
+        
+        //perkecil width element saat aside muncul
+        $("aside.show").siblings("main, header, footer").addClass("aside-showed");
+
+    });
+    </script>
+    @endsection
+>>>>>>> f6cfd00ed4bef7befee48fdfb6acdfc2666e8e47

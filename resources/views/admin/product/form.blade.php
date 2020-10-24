@@ -16,8 +16,8 @@
             <div class="input-group-text">Rp. </div>
         </div>
         <input class="form-control" 
-        id="product-price" name="price" type="text" placeholder="Price" minlength="3" maxlength="50"
-        value="{{ $product->price ?? old('price') }}" aria-describedby="productPriceFeedback" required>
+        id="product-price" name="price" type="number" placeholder="Price"
+        value="{{ $product->price }}" aria-describedby="productPriceFeedback" required>
     </div>
 </div>
 <div class="form-group">

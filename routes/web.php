@@ -21,6 +21,8 @@ Route::get('receipt', function () {
   return new App\Mail\ReceiptPayment($order);
 });
 
+Route::view('order/summary', 'home.summary-order', ['title' => 'Summary Order']);
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landing');
 Route::post('finish', 'MidtransController@index')->name('transaction.finish');

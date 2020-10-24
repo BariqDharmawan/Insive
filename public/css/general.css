@@ -25,7 +25,11 @@ body {
 }
 
 .bg--cream {
-    background-color: #E2CCC1;
+    background-color: #E2CCC1 !important;
+}
+
+.bg--blue {
+    background-color: #4472c4ff !important;
 }
 
 a:hover {
@@ -43,9 +47,51 @@ input[type='number'] {
 }
 
 .fg-1 {
-  flex-grow: 1;
+    flex-grow: 1;
+}
+
+.order-0 {
+    order: 0 !important;
+}
+
+.order-1 {
+    order: 1 !important;
 }
 
 .mb-0 {
     margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 2rem !important;
+}
+
+.mt-1 {
+    margin-top: 1rem !important;
+}
+
+.not-italic {
+    font-style: normal;
+}
+
+.scale-down {
+    object-fit: scale-down;
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        max-width: none !important;
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .w-xl-20 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
 }

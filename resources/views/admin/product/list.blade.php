@@ -2,6 +2,8 @@
 
 @section('title-page', $titlePage)
 
+@section('body-id', 'manageCatalog')
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <style media="screen">
@@ -42,10 +44,10 @@
         @if(count($catalog) == 0)
             @alert(['type' => 'secondary', 'addClass' => 'text-center', 'closeBtn' => false])
                 No catalog created. Let's
-                <a href="javascript:void(0);" class="text-primary text-no-decoration" 
-                    data-toggle="modal" data-target="#modal-add">
-                    add new one!
-                </a>
+                <button type="button" class="text-primary text-no-decoration" 
+                data-toggle="modal" data-target="#modal-add">
+                    Add New catalog
+                </button>
             @endalert
         @else
             <div class="card">
@@ -155,7 +157,7 @@
                                 <td class="mx-auto" colspan="2">
                                     <button type="button" class="btn btn-primary float-left" data-toggle="modal"
                                         data-target="#modal-add">
-                                        Add New Product
+                                        Add New catalog
                                     </button>
                                     <button type="button" class="btn btn-primary float-left ml-2" data-toggle="modal"
                                         data-target="#modal-add">
@@ -174,84 +176,4 @@
         @endif
         @include('admin.product.create')
     </div>
-
-@endsection
-@section('script')
-<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js" 
-charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-<script>
-$(document).ready(function () {
-    const modalEditProduct = $("#modal-edit-product");
-    const modalAddProduct = $("#modal-add");
-    const select2 = $(".select2");
-
-    function getText(parent, target) {
-        return parent.find(target).text().trim();
-    }
-
-    function setValue(parent, target, value) {
-        return parent.find(target).val(value);
-    }
-
-    function formattingCurrency(targetInput) {
-        new AutoNumeric(targetInput, {
-            digitGroupSeparator: ',',
-            decimalPlaces: '0'
-        });
-    }
-    
-    bsCustomFileInput.init();
-
-    $('.alert').not('.alert-danger, .alert-secondary').delay(1000).slideUp("slow");
-
-    select2.select2({
-        placeholder: select2.data('placeholder'),
-        allowClear: true
-    });
-
-    $("#formImport input[type='file']").change(function () {
-        $(this).parents("form").submit();
-    });
-
-    $(".btn-show-modal-edit").each(function () {
-        let product = $(this).closest('.product');
-
-        $(this).click(function (index) {
-            let productId = $(this).data('id');
-            let productName = getText(product, '.product__name');
-            let productQty = getText(product, '.product__qty');
-            let productPrice = product.find('.product__price').data('price');
-            let productTypeVal = getText(product, '.product__type');
-            let formTarget = 'formEditProduct' + productId;
-
-            modalEditProduct.find('form').attr({
-                'id': formTarget,
-                'action': `/admin/product/${productId}`
-            });
-            modalEditProduct.find('button').attr('form', formTarget);
-
-            setValue(modalEditProduct, "input[name='product_name']", productName);
-            setValue(modalEditProduct, "input[name='price']", productPrice);
-            setValue(modalEditProduct, "input[name='qty']", productQty);
-
-            setValue(modalEditProduct, ".select2", productTypeVal);
-            modalEditProduct.find(".select2").trigger('change');
-
-            formattingCurrency('#formEditProduct' + productId + ' input[name="price"]');
-
-        });
-        
-    });
-
-    modalAddProduct.find("input, select").prop('required', true);
-
-    $("button[data-target='#modal-add']").click(function () {
-        modalAddProduct.find("input:not([type='hidden']), select").val("");
-        formattingCurrency('#modal-add input[name="price"]');
-    });
-
-});
-</script>
 @endsection

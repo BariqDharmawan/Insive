@@ -12,7 +12,6 @@ class ReceiptPayment extends Mailable
 {
     use Queueable, SerializesModels;
 
-
     public $order;
 
     /**

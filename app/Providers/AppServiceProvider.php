@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         $elements = [
             'partial.input' => 'input',
-            'partial.invalid_feedback' => 'invalidFeedback'
+            'partial.invalid-feedback' => 'invalidFeedback'
         ];
 
         foreach ($elements as $element => $alias) {
@@ -39,5 +39,13 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Blade::component('partial.alert', 'alert');
+
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Sven\ArtisanView\ServiceProvider::class);
+        }
+
+        Blade::directive('currency', function ($number) {
+            return "<?php echo ('Rp. ' . number_format($number)) ?>";
+        });
     }
 }
