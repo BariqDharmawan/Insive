@@ -37,7 +37,7 @@
         <div class="row">
             @foreach ($product as $item)
             <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                <figure class="product">
+                <figure class="product" data-is-cloned="false" data-product-id="{{ $item->id }}">
                     <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="">
                     <figcaption class="fig--price">
                         <p class="text--cream">{{ $item->product_name }}</p>
@@ -77,14 +77,13 @@
 @endsection
 @section('script')
 <script>
-    var total_price = 0;
-    function addCommas(nStr)
-    {
+    let total_price = 0;
+    function addCommas(nStr) {
         nStr += '';
         x = nStr.split('.');
         x1 = x[0];
         x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
+        let rgx = /(\d+)(\d{3})/;
         while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + ',' + '$2');
         }
@@ -99,35 +98,42 @@
     $(document).ready(function () {
 
         //add to cart product only once
-        $("main .product__action .btn").one('click', function () {
+        $("main .product__action .btn").on('click', function () {
+            if ($(this).parents(".product").attr('data-is-cloned') === "false") {
+                let productnya = $(this).parents(".product").clone(true);
+                let price = productnya.find('.input-price-cart');
+                total_price += Number.parseInt(price.val());
 
-            let productnya = $(this).parents(".product").clone();
-            let price = productnya.find('.input-price-cart');
-            total_price += Number.parseInt(price.val());
-            triggerLabelTotalPrice();
-            $("aside .form-group .row").append(productnya);
-            $("aside .form-group .row .product__action .btn").replaceWith(
-                '<a href="javascript:void(0);" class="product__button product__button--increase">' +
-                '<i class="bx bx-plus"></i>' +
-                '</a>' +
-                '<input type="number" name="jumlah_beli[]" min="1" value="1" required readonly>' +
-                '<a href="#" class="product__button product__button--decrease">' +
-                '<i class="bx bx-minus"></i>' +
-                '</a>'
-            );
-            $("aside .form-group .row .product figcaption").append(
-                '<a href="javascript:void(0);" class="btnRemove ml-1">' +
-                '<i class="bx bx-trash-alt"></i>' +
-                '</a>'
-            );
-            $("aside").addClass('show');
-            $("header, footer, main").addClass("aside-showed");
-            if ($("aside .form-row > div:last-child button").length === 0) {
-                $("aside .form-row > div:last-child").append(
-                    '<button type="submit" class="btn bg--cream w-100 text-center float-right">' +
-                    'Proceed Checkout' +
-                    '</button>'
+                triggerLabelTotalPrice();
+                
+                $("aside .form-group .row").append(productnya);
+                $("aside .form-group .row .product__action .btn").replaceWith(
+                    '<a href="javascript:void(0);" class="product__button product__button--increase">' +
+                    '<i class="bx bx-plus"></i>' +
+                    '</a>' +
+                    '<input type="number" name="jumlah_beli[]" min="1" value="1" required readonly>' +
+                    '<a href="#" class="product__button product__button--decrease">' +
+                    '<i class="bx bx-minus"></i>' +
+                    '</a>'
                 );
+                $("aside .form-group .row .product figcaption").append(
+                    '<a href="javascript:void(0);" class="btnRemove ml-1">' +
+                    '<i class="bx bx-trash-alt"></i>' +
+                    '</a>'
+                );
+
+                $("aside").addClass('show');
+                $("header, footer, main").addClass("aside-showed");
+
+                if ($("aside .form-row > div:last-child button").length === 0) {
+                    $("aside .form-row > div:last-child").append(
+                        '<button type="submit" class="btn bg--cream w-100 text-center float-right">' +
+                        'Proceed Checkout' +
+                        '</button>'
+                    );
+                }
+
+                $(this).parents(".product").attr('data-is-cloned', "true");
             }
         });
         //tambahin jumlah beli
@@ -162,6 +168,12 @@
             } else {
                 $(this).prev('input').val(1);
             }
+        });
+
+        $(document).on('click', '.btnRemove', function(){
+            let productId = $(this).parents(".product").data('product-id')
+            $(this).parents(".product").remove()
+            $("main .product[data-product-id='" + productId + "']").attr('data-is-cloned', "false");
         });
 
         

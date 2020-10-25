@@ -29,9 +29,7 @@
                 <label class="mt-0 mb-4">
                   {{ $item->fragrance_name }}
                 </label>
-
                 @include('partial.changing-qty')
-
               </figcaption>
             </figure>
             @endforeach
