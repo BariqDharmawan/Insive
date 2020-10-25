@@ -569,6 +569,26 @@ footer a {
     margin-bottom: 20px;
 }
 
+#face-result-page .product__detail {
+    position: absolute;
+    display: block;
+    bottom: 50%;
+    transform: translateY(50%);
+    padding: 40px 30px;
+    background-color: #4472c4ff;
+    color: #fff;
+    width: 100%;
+}
+
+#face-result-page .product__pick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+}
+
 #face-result-page .row:last-of-type .btn {
     box-shadow: 0 7px rgba(203, 181, 134, 0.7);
     border-radius: 20px;

@@ -4,7 +4,7 @@
 @section('body-id', 'face-result-page')
 @section('content')
 <main>
-  <div class="container">
+  <div class="container py-4">
     <div class="row">
       <div class="col-12 col-md-6">
         <figure class="result mb-5 mb-md-0">
@@ -12,27 +12,44 @@
             <img height="350" class="d-block mx-auto" src="{{ asset('img/muka/'.$result->face_icon) }}" alt="Hasil Muka">
           </div>
           <figcaption class="result__caption text-light">
-            <h4 class="text--cream text-center"><b>{{$result->face_title}}</b></h4>
+            <h4 class="text--cream text-center">
+              <b>{{ $result->face_title }}</b>
+            </h4>
             <p class="mb-0 text-justify" style="font-size: 1.1rem">
-              <b>{{$result->face_description}}</b>
+              <b>{{ $result->face_description }}</b>
             </p>
           </figcaption>
         </figure>
       </div>
-      <div class="col-12 col-md-6">
-        <figure class="product mb-0">
-          <img height="350" src="{{ asset('img/product.png') }}" alt="">
-          <figcaption class="text-light py-0">
-            <strong class="text--cream d-block">Special ingredients for you: </strong>
-            <p class="text-capitalize">{{$result->special_ingredients}} </p>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-    <div class="row py-5 justify-content-center justify-content-md-end align-items-center">
-      <div class="col-12 col-md-6 row mx-0 justify-content-center">
-        <a href="{{ route('main.sheet') }}" class="btn bg--cream text-capitalize">
-          Choose your sheet & fragrance! <i class='bx bx-chevron-right' ></i>
+      <div class="col-12 col-md-6 text-center">
+        <h3 class="text--cream">Choose Your Products (you can tick both)</h3>
+        <div class="row justify-content-between my-5">
+          <div class="col-md-6 col-lg-5">
+            <input type="checkbox" class="product__pick" name="product__pick" required>
+            <figure class="product mb-0 position-relative">
+              <img height="350" src="{{ asset('img/product.png') }}" style="height: auto">
+              <figcaption class="product__detail">
+                <span>Sheet mask</span>
+              </figcaption>
+          </figure>
+          </div>
+          <div class="col-md-6 col-lg-5">
+            <input type="checkbox" class="product__pick" name="product__pick" required>
+            <figure class="product mb-0 position-relative">
+              <img height="350" src="{{ asset('img/product.png') }}" style="height: auto">
+              <figcaption class="product__detail">
+                <span>Serum</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="text-capitalize h5">
+          <span class="text--cream d-block">Special ingredients for you:</span>
+          <span class="text-white d-block">{{ $result->special_ingredients }}</span>
+        </p>
+        <a href="{{ route('main.sheet') }}" id="btnNextCustom"
+        class="btn bg--cream mt-5 d-inline-flex mx-auto text-capitalize">
+          Next, Start to Customize <i class='bx bx-chevron-right' ></i>
         </a>
       </div>
     </div>
