@@ -15,6 +15,7 @@ class CatalogController extends Controller
     {
       $this->middleware(['auth', 'verified']);
     }
+    
     public function index()
     {
         $data['product'] = Product::where('qty', '>', 0)->paginate(20);

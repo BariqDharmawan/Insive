@@ -2,9 +2,7 @@
 
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -20,7 +18,7 @@ class UserSeeder extends Seeder
       'name' => 'Insive Admin',
       'email' => 'sanchez77rodriguez@gmail.com', //yollamiranda@gmail.com
       'role' => 'admin',
-      'email_verified_at' => Carbon::now(),
+      'email_verified_at' => now(),
       'password' => Hash::make(12344321)
     ]);
 

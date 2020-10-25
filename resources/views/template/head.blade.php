@@ -29,5 +29,8 @@
       border-color: #f5c6cb !important;
       color: #721c24 !important;
     }
+    .not-italic {
+      font-style: normal
+    }
   </style>
 </head>

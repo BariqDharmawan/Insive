@@ -13,7 +13,7 @@ class CreateProductDiscountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_discounts', function (Blueprint $table) {
+        Schema::create('product_discount', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('product_id')->unsigned()->nullable();
             $table->integer('discount_price')->default(0);

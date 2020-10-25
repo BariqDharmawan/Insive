@@ -47,7 +47,9 @@
                     <div class="form-group form-row">
                         <label class="col-form-label col-12 col-lg-2 text--cream" for="fullname">Name:​</label>
                         <div class="col-12 col-lg-10">
-                            <input class="form-control" type="text"  id="fullname" name="customer_fullname"  @auth value="{{ Auth::user()->name }}" @endauth placeholder="Please Fill Your Fullname" required>
+                            <input class="form-control" type="text"  id="fullname" name="customer_fullname"  
+                            @auth value="{{ Auth::user()->name }}" @endauth 
+                            placeholder="Please Fill Your Fullname" required>
                         </div>
                     </div>
                     <div class="form-group form-row">

@@ -33,7 +33,7 @@ class ProductController extends Controller
    */
   public function index()
   {
-    $catalog = Product::leftJoin('product_discounts as prod_d', 'products.id', '=', 'prod_d.product_id')
+    $catalog = Product::leftJoin('product_discount as prod_d', 'products.id', '=', 'prod_d.product_id')
                         ->select('products.*', DB::raw('IFNULL(`prod_d`.`discount_price`, 0) as discount_price'))
                         ->latest()
                         ->paginate(10);

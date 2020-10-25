@@ -102,10 +102,6 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('fragrance.update.api');
   Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
-  Route::get('product/trash', 'ProductController@trashed')->name('product.trashed');
-  Route::post('product/restored/{id}', 'ProductController@restored')->name('product.restored');
-  Route::delete('product/deleted/{product}', 'ProductController@permanentlyDelete')->name('product.permanently_delete.single');
-  Route::delete('product/deleted-all', 'ProductController@permanentlyDeleteAll')->name('product.permanently_delete.all');
   Route::prefix('about-us')->name('about-us.')->group(function () {
     Route::post('update-contact', 'AboutContactController')->name('update');
   });
@@ -115,6 +111,15 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   });
 
   Route::resource('product', 'ProductController')->except(['create', 'edit', 'show']);
+  Route::prefix('product')->name('product.')->group(function () {
+    Route::get('trash', 'ProductController@trashed')->name('trashed');
+    Route::post('restored/{id}', 'ProductController@restored')->name('restored');
+    Route::delete('deleted-all', 'ProductController@permanentlyDeleteAll')->name('permanently_delete.all');
+    Route::delete('deleted/{product}', 'ProductController@permanentlyDelete')->name('permanently_delete.single');
+    Route::resource('manage-discount', 'DiscountController')->except(['create', 'edit', 'show']);
+  });
+
+
   Route::resources([
     'pesan-dari-customer' => 'ContactusController',
     'admin' => 'AdminController',

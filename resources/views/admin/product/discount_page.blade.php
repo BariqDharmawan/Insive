@@ -30,11 +30,9 @@
 
     @if ($errors->any())
         @alert(['type' => 'danger', 'closeBtn' => true])
-            <ul class="mb-0">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
         @endalert
     @endif
 

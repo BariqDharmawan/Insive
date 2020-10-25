@@ -1,22 +1,15 @@
-function currency(number) {
-    new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    }).format(number);
-}
+import * as Helper from './helper.js';
 
 jQuery(function () {
 
-    const disableEvent = (e) => e.preventDefault();
-
     // script for sidebar
     $("#show-menu").on('click', function (e) {
-        disableEvent(e);
+        Helper.disableEvent(e);
         $("nav").addClass("menu-visible");
     });
 
     $("#close-menu").on('click', function (e) {
-        disableEvent(e);
+        Helper.disableEvent(e);
         $("nav").removeClass("menu-visible");
     });
     // end of script for sidebar
@@ -46,10 +39,9 @@ jQuery(function () {
         return fromElement.parent().find('.sheet__qty');
     }
 
-    // qtySheetInput = getSheetQtyInput($(this));
     customFragrancePage.find(".sheet__qty").val(0); // set default value to 0
     customFragrancePage.find('.product__button--increase').on('click', function (e) {
-        e.preventDefault();
+        Helper.disableEvent(e);
 
         qtySheetInput = getSheetQtyInput($(this));
         let currentQty = Number(qtySheetInput.val());
@@ -61,7 +53,7 @@ jQuery(function () {
 
     // kurangin jumlah beli sheet
     customFragrancePage.find('.product__button--decrease').on('click', function (e) {
-        e.preventDefault();
+        Helper.disableEvent(e);
 
         qtySheetInput = getSheetQtyInput($(this));
         if ($(this).prev('input').val() > 0) {

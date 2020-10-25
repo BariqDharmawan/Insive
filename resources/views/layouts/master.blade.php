@@ -53,7 +53,7 @@
     <script src="{{ asset('js/jquery.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/popper.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
-    <script src="{{ asset('js/native.js') }}" charset="utf-8"></script>
+    <script type="module" src="{{ asset('js/native.js') }}" charset="utf-8"></script>
     @yield('script') {{-- for js on each page --}}
   </body>
 </html>

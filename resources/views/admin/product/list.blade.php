@@ -159,10 +159,10 @@
                                         data-target="#modal-add">
                                         Add New catalog
                                     </button>
-                                    <button type="button" class="btn btn-primary float-left ml-2" data-toggle="modal"
-                                        data-target="#modal-add">
+                                    <a href="{{ route('admin.product.manage-discount.index') }}" 
+                                    class="btn btn-outline-primary ml-3">
                                         Manage Discount
-                                    </button>
+                                    </a>
                                 </td>
                                 <td colspan="5">
                                     {{ $catalog->links() }}

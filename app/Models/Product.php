@@ -16,7 +16,7 @@ class Product extends Model
         'qty' => 'integer'
     ];
 
-    public function getProductNameAttribute($value) 
+    public function getProductNameAttribute($value)
     {
         return ucfirst($value);
     }
@@ -29,5 +29,10 @@ class Product extends Model
     public function getCreatedAtAttribute($value)
     {
         return Carbon::create($value)->diffForHumans() ?? '-';
+    }
+
+    public function discount()
+    {
+        return $this->hasOne('App\Models\ProductDiscount');
     }
 }
