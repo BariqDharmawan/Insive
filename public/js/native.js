@@ -3,31 +3,36 @@ import * as Helper from './helper.js';
 jQuery(function () {
 
     // script for sidebar
+    const nav = $("nav");
     $("#show-menu").on('click', function (e) {
         Helper.disableEvent(e);
-        $("nav").addClass("menu-visible");
+        nav.addClass("menu-visible");
     });
 
     $("#close-menu").on('click', function (e) {
         Helper.disableEvent(e);
-        $("nav").removeClass("menu-visible");
+        nav.removeClass("menu-visible");
     });
     // end of script for sidebar
 
     // script for #custom-fragrance-page
     const customFragrancePage = $("#custom-fragrance-page");
+    let pickFragrance;
+
     customFragrancePage.find(".sheet").on('click', function () {
+        pickFragrance = $(this).children("figcaption").find("input[type='checkbox']");
+
         if ($(this).hasClass('selected')) {
             //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
             $(this).removeClass("selected");
             //saat sheet di klik, trigger input di dlm nya jd checked
-            $(this).children("figcaption").find("input[type='checkbox']").prop("checked", false);
-            console.log($(this).children("figcaption").find("input[type='checkbox']").val());
+            pickFragrance.prop("checked", false);
+            console.log(pickFragrance.val());
         } else {
             //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
             $(this).addClass("selected");
             //saat sheet di klik, trigger input di dlm nya jd checked
-            $(this).children("figcaption").find("input[type='checkbox']").prop("checked", true);
+            pickFragrance.prop("checked", true);
         }
     });
 
@@ -68,17 +73,19 @@ jQuery(function () {
         }
     });
 
+    let sheetDetail, sheetTotal, selectSheet, sheetSelect;
     customFragrancePage.find('.sheet .product__button').on('click', function () {
-        const sheetDetail = $(this).parents('.sheet__detail');
-        const sheetTotal = sheetDetail.find('.sheet__qty');
-        const selectSheet = sheetDetail.find("input[type='checkbox']");
+        sheetDetail = $(this).parents('.sheet__detail');
+        sheetTotal = sheetDetail.find('.sheet__qty');
+        selectSheet = sheetDetail.find("input[type='checkbox']");
+        sheetSelect = sheetDetail.find('.sheet__select');
 
         if (sheetTotal.val() > 0) {
             selectSheet.prop('checked', true);
-            $(this).parents(".sheet__detail").find('.sheet__select').prop("checked", true);
+            sheetSelect.prop("checked", true);
 
         } else {
-            $(this).parents(".sheet__detail").find('.sheet__select').prop("checked", false);
+            sheetSelect.prop("checked", false);
 
         }
         console.log(sheetTotal.val());

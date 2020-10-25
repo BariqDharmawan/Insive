@@ -858,14 +858,14 @@ footer a {
 /*end of catalog-page css*/
 /*custom-fragrance-page css*/
 
-/* #custom-fragrance-page .row figure:hover {
+#custom-fragrance-page .row figure:hover {
     background-color: #1F1E1E;
     cursor: pointer;
-} */
+}
 
-/* #custom-fragrance-page .row figure.selected {
+#custom-fragrance-page .row figure.selected {
     background-color: #282828;
-} */
+}
 
 #custom-fragrance-page .unscented-fragrance {
     background-color: #E2CCC1;
