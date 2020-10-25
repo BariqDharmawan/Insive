@@ -86,4 +86,13 @@ jQuery(function () {
 
     // end of script for #custom-fragrance-page
 
+    //script for #face-result-page
+    $("#btnNextCustom").on('click', function (e) {
+        if ($(".product__pick :checked").length === 0) {
+            alert("you're not checked anything. Please check one")
+            Helper.disableEvent(e);
+        }
+    });
+    //end of script for #face-result-page
+
 });
