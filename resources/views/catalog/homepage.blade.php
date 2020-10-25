@@ -11,6 +11,9 @@
     .real--price:hover {
         color: #c21717;
     }
+    .fig--price {
+        min-width: 180px;
+    }
 </style>
 @endsection
 @section('content')
@@ -23,7 +26,9 @@
             <div class="form-group col-12">
                 <div class="row mx-0 justify-content-between"></div> {{-- tambah element lwt js --}}
             </div>
-            <div class="col-12"></div> {{-- tambah button submit lwt js --}}
+            <div class="col-12">
+            <label class="float-right text--cream text--price text--total-price mr-1">Total: Rp. 0</label>
+            </div> {{-- tambah button submit lwt js --}}
         </div>
     </form>
 </aside>
@@ -34,15 +39,15 @@
             <div class="col-12 col-md-6 col-lg-3">
                 <figure class="product">
                     <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="mx-auto">
-                    <figcaption>
+                    <figcaption class="fig--price">
                         <p class="text--cream">{{ $item->product_name }}</p>
                         @if ($item->discount)
-                            <span class="text--cream text--price real--price" style="min-width:100px;">
+                            <small class="text--cream text--price real--price" style="min-width:100px;">
                                 @currency($item->price)
-                            </span>
+                            </small>
                         @endif
                         <div class="product__price">
-                            <span class="text--cream text--price" style="min-width:100px;">
+                            <span class="text--cream text--price after--price" style="min-width:100px;">
                                 @if ($item->discount)
                                     @currency($item->discount->discount_price)
                                 @else
@@ -50,7 +55,7 @@
                                 @endif
                             </span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
-                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
+                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{($item->discount)? $item->discount->discount_price : $item->price}}" value="{{($item->discount)? $item->discount->discount_price : $item->price}}" readonly>
                         </div>
                         <div class="product__action">
                             <a href="javascript:void(0);" class="btn bg--cream">
@@ -71,13 +76,34 @@
 @endsection
 @section('script')
 <script>
+    var total_price = 0;
+    function addCommas(nStr)
+    {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    };
+
+    function triggerLabelTotalPrice() {
+        let label = $('html').find("aside div.col-12 label.text--total-price");
+        label.text(`Total Price: Rp. ${addCommas(total_price)}`);
+    }
+
     $(document).ready(function () {
 
         //add to cart product only once
         $("main .product__action .btn").one('click', function () {
 
             let productnya = $(this).parents(".product").clone();
-
+            let price = productnya.find('.input-price-cart');
+            total_price += Number.parseInt(price.val());
+            triggerLabelTotalPrice();
             $("aside .form-group .row").append(productnya);
             $("aside .form-group .row .product__action .btn").replaceWith(
                 '<a href="javascript:void(0);" class="product__button product__button--increase">' +
@@ -89,7 +115,7 @@
                 '</a>'
             );
             $("aside .form-group .row .product figcaption").append(
-                '<a href="javascript:void(0);" class="btnRemove">' +
+                '<a href="javascript:void(0);" class="btnRemove ml-1">' +
                 '<i class="bx bx-trash-alt"></i>' +
                 '</a>'
             );
@@ -108,9 +134,13 @@
         $(document).on('click', '.product__button--increase', function () {
             // $(this).next().trigger("keydown"); //inputan dianggap berubah value
             let input = $(this).parents('figcaption').find('.input-price-cart');
+            let label = $(this).parents('figcaption').find('.after--price');
             let price = input.data('price');
             $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
             let final_price = price * $(this).next('input').val();
+            // label.text(`Rp. ${addCommas(final_price)}`);
+            total_price += (final_price - price);
+            triggerLabelTotalPrice();
             input.val(final_price);
             defaultValue += parseInt($(this).next('input').val(), 10) + 1;
         });
@@ -119,9 +149,13 @@
         $(document).on('click', '.product__button--decrease', function () {
             if ($(this).prev('input').val() > 1) {
                 let input = $(this).parents('figcaption').find('.input-price-cart');
+                let label = $(this).parents('figcaption').find('.after--price');
                 let price = input.data('price');
                 $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
                 let final_price = price * $(this).prev('input').val();
+                // label.text(`Rp. ${addCommas(final_price)}`);
+                total_price -= final_price;
+                triggerLabelTotalPrice();
                 input.val(final_price);
                 defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
             } else {
@@ -129,6 +163,7 @@
             }
         });
 
+        
         $(".btn-close").click(function () {
             $(this).parent().removeClass("show");
             $("header, footer, main").removeClass("aside-showed");

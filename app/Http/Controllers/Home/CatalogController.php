@@ -57,14 +57,14 @@ class CatalogController extends Controller
         $qty = $request->jumlah_beli;
         foreach ($request->product_id as $key => $value) {
             if ($qty[$key] > 0) {
-                $product = Product::where('id', $value)->first();
+                $product = Product::with('discount')->where('id', $value)->first();
                 $subCart = new SubCart;
                 $subCart->user_id = $user_id;
                 $subCart->cart_id = $table->id;
                 $subCart->product_id = $product->id;
                 $subCart->qty = $qty[$key];
-                $subCart->price = $product->price;
-                $subCart->total_price = $qty[$key] * $product->price;
+                $subCart->price = ($product->discount)? $product->discount->discount_price : $product->price;
+                $subCart->total_price = $qty[$key] * $subCart->price;
                 $subCart->save();
             }
         }

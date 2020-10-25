@@ -292,7 +292,7 @@ class CartController extends Controller
         $cart->total_price = $price_package;
         $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
-
+        
         return view('home.payment_catalog_page')->with($data);
     }
 

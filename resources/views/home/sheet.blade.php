@@ -25,7 +25,7 @@
                       <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" height="100" width="100"
                       class="rounded-circle p-3 bg--cream sheet__img" alt="Fragrance Item">
                       <figcaption class="text--cream sheet__detail">
-                          <input type="checkbox" name="sheet[]" class="d-none sheet__select" value="{{ $item->id }}"
+                          <input type="text" name="sheet[]" class="d-none sheet__select" value="{{ $item->id }}"
                               id="sheet_{{Str::slug($item->sheet_name, '_')}}">
                           <label class="sheet__name">{{ $item->sheet_name }}</label>
                           <div class="product__action bg--blue mt-auto">

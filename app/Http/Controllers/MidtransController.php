@@ -98,7 +98,7 @@ class MidtransController extends Controller
       ['type_cart', 'catalog'],
       ['status', 'waiting']
     ])->first();
-
+      // dd($cart);
     $customer = Shipping::where('user_id', Auth::id())->where('cart_id', $cart->id)->first();
     $customer->status = 'active';
     $customer->save();
@@ -138,8 +138,7 @@ class MidtransController extends Controller
     $cart->save();
 
     // cetak apa yg dibeli customer
-
-    Mail::to($this->adminAccount->first()->email)->send(new ReceiptPayment($items));
+    // Mail::to($this->adminAccount->first()->email)->send(new ReceiptPayment($items));
 
     // Beri response snap token
     $this->response['snap_token'] = $snapToken;

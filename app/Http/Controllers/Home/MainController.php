@@ -44,6 +44,49 @@ class MainController extends Controller
      */
     public function fragrance()
     {
+        $user_id = Auth::user()->id;
+        $answers = Answer::select('answers.question_id', 'answers.option_id', 'options.text')
+            ->join('options', 'options.id', 'answers.option_id')
+            ->where('answers.user_id', '=', $user_id)
+            ->get()->toArray();
+        if (empty($answers)) {
+            return redirect()->route('main.question');
+        }
+        $option_3;
+        $option_4;
+        foreach ($answers as $key => $value) {
+            if ($value['question_id'] == 3) {
+                $option_3 = $value['text'];
+            } else if ($value['question_id'] == 4) {
+                $option_4 = $value['text'];
+            }
+        }
+        $logic = Logic::where([
+            ['option_3', '=', $option_3],
+            ['option_4', '=', $option_4]
+        ])->firstOrFail();
+        $code_cart = Cart::orderBy('id', 'desc')->first();
+        if (empty($code_cart)) {
+            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', 1);
+        } else {
+            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -1) + 1);
+        }
+        $table = Cart::firstOrCreate(
+            [
+                'user_id' => $user_id,
+                'type_cart' => 'custom',
+                'status' => 'waiting'
+            ],
+            [
+                'user_id' => $user_id,
+                'logic_id' => $logic->id,
+                'cart_code' => $code,
+                'formula_code' => '#' . $logic->no_formula,
+                'type_cart' => 'custom',
+                'status' => 'waiting'
+            ]
+        );
+        CustomProduct::where([['cart_id', "=", $table->id], ["fragrance_id", "<>", null]])->delete();
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
         return view('fragrance.custom')->with($data);
     }
@@ -97,7 +140,7 @@ class MainController extends Controller
                 'status' => 'waiting'
             ]
         );
-        CustomProduct::where('cart_id', $table->id)->delete();
+        CustomProduct::where([['cart_id', "=", $table->id], ["sheet_id", "<>", null]])->delete();
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
         return view('home.sheet')->with($data);
     }
@@ -272,18 +315,18 @@ class MainController extends Controller
             $data = [];
 
             foreach ($sheet as $key => $value) {
-
-                $data[] = [
-                    'cart_id' => $cart_id,
-                    'sheet_id' => $value,
-                    'qty' =>  $request->input('jumlah_sheet.' . $key),
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ];
+                $qty = $request->input('jumlah_sheet')[$key];
+                if($qty > 0) {
+                    $data[] = [
+                        'cart_id' => $cart_id,
+                        'sheet_id' => $value,
+                        'qty' =>  $qty,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                }
             }
-
             $table = CustomProduct::insert($data);
-
             return redirect()->route('main.fragrance');
         } else {
             return redirect()->back();
@@ -304,34 +347,35 @@ class MainController extends Controller
         $date_now = date('Y-m-d H:i:s');
         if ($fragrance !== null) {
             $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->firstOrFail()->id;
-            $count_sheet = CustomProduct::where('cart_id', '=', $cart_id)->count();
-            $count_fragrance = count($fragrance);
-            if ($count_sheet > 0) {
-                $date_now = date('Y-m-d H:i:s');
-                $sheet = CustomProduct::where('cart_id', '=', $cart_id)->get();
-                $last_sheet_id = $sheet->last()->sheet_id;
-                if ($count_sheet >= $count_fragrance) {
-                    for ($i = 0; $i < $count_sheet; $i++) {
-                        CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$i]->sheet_id]])
-                            ->update(['fragrance_id' => ($i <= ($count_fragrance - 1)) ? $fragrance[$i] : last($fragrance)]);
-                    }
-                    return redirect(url('/home/cart'));
-                } elseif ($count_sheet <= $count_fragrance) {
-                    for ($j = 0; $j < $count_fragrance; $j++) {
-                        if ($j <= ($count_sheet - 1)) {
-                            CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$j]->sheet_id]])
-                                ->update(['fragrance_id' => $fragrance[$j]]);
-                        } else {
-                            CustomProduct::create(['cart_id' => $cart_id, 'sheet_id' => $last_sheet_id, 'fragrance_id' => $fragrance[$j], 'qty' => 1, 'created_at' => $date_now, 'updated_at' => $date_now]);
-                        }
-                    }
-                    return redirect(url('/home/cart'));
-                } else {
-                    return redirect(url('/'));
-                }
-            } else {
-                return redirect()->route('main.question');
-            }
+            
+            // $count_sheet = CustomProduct::where('cart_id', '=', $cart_id)->count();
+            // $count_fragrance = count($fragrance);
+            // if ($count_sheet > 0) {
+            //     $date_now = date('Y-m-d H:i:s');
+            //     $sheet = CustomProduct::where('cart_id', '=', $cart_id)->get();
+            //     $last_sheet_id = $sheet->last()->sheet_id;
+            //     if ($count_sheet >= $count_fragrance) {
+            //         for ($i = 0; $i < $count_sheet; $i++) {
+            //             CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$i]->sheet_id]])
+            //                 ->update(['fragrance_id' => ($i <= ($count_fragrance - 1)) ? $fragrance[$i] : last($fragrance)]);
+            //         }
+            //         return redirect(url('/home/cart'));
+            //     } elseif ($count_sheet <= $count_fragrance) {
+            //         for ($j = 0; $j < $count_fragrance; $j++) {
+            //             if ($j <= ($count_sheet - 1)) {
+            //                 CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$j]->sheet_id]])
+            //                     ->update(['fragrance_id' => $fragrance[$j]]);
+            //             } else {
+            //                 CustomProduct::create(['cart_id' => $cart_id, 'sheet_id' => $last_sheet_id, 'fragrance_id' => $fragrance[$j], 'qty' => 1, 'created_at' => $date_now, 'updated_at' => $date_now]);
+            //             }
+            //         }
+            //         return redirect(url('/home/cart'));
+            //     } else {
+            //         return redirect(url('/'));
+            //     }
+            // } else {
+            //     return redirect()->route('main.question');
+            // }
         } else {
             return redirect()->back();
         }
