@@ -86,8 +86,14 @@ class MainController extends Controller
                 'status' => 'waiting'
             ]
         );
-        CustomProduct::where([['cart_id', "=", $table->id], ["fragrance_id", "<>", null]])->delete();
+        CustomProduct::where([
+            ['cart_id', "=", $table->id], 
+            ["fragrance_id", "<>", null]
+        ])->delete();
+
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
+        $data['table'] = $table;
+        
         return view('fragrance.custom')->with($data);
     }
 

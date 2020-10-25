@@ -27,7 +27,7 @@
                 <div class="row mx-0 justify-content-between"></div> {{-- tambah element lwt js --}}
             </div>
             <div class="col-12">
-            <label class="float-right text--cream text--price text--total-price mr-1">Total: Rp. 0</label>
+            <label class="text--cream text--price text--total-price mr-1 mb-3">Total: Rp. 0</label>
             </div> {{-- tambah button submit lwt js --}}
         </div>
     </form>
@@ -36,9 +36,9 @@
     <div class="container">
         <div class="row">
             @foreach ($product as $item)
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <figure class="product">
-                    <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="mx-auto">
+                    <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="">
                     <figcaption class="fig--price">
                         <p class="text--cream">{{ $item->product_name }}</p>
                         @if ($item->discount)
@@ -55,7 +55,8 @@
                                 @endif
                             </span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
-                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{($item->discount)? $item->discount->discount_price : $item->price}}" value="{{($item->discount)? $item->discount->discount_price : $item->price}}" readonly>
+                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{($item->discount)? $item->discount->discount_price : $item->price}}" 
+                            value="{{($item->discount)? $item->discount->discount_price : $item->price}}" readonly>
                         </div>
                         <div class="product__action">
                             <a href="javascript:void(0);" class="btn bg--cream">

@@ -437,6 +437,7 @@ footer a {
 /*catalog-page css*/
 #catalog-page main .product {
     display: flex;
+    align-items: center;
     flex-direction: column;
     height: calc(100% - 1rem);
 }
@@ -858,10 +859,10 @@ footer a {
 /*end of catalog-page css*/
 /*custom-fragrance-page css*/
 
-#custom-fragrance-page .row figure:hover {
+/* #custom-fragrance-page .row figure:hover {
     background-color: #1F1E1E;
     cursor: pointer;
-}
+} */
 
 #custom-fragrance-page .row figure.selected {
     background-color: #282828;
@@ -908,16 +909,16 @@ footer a {
     margin-bottom: 1rem;
 }
 
-#custom-fragrance-page .sheet .product__button,
-#custom-fragrance-page .sheet .product__button:hover .bx {
+#custom-fragrance-page .product__button,
+#custom-fragrance-page .product__button:hover .bx {
     color: #fff;
 }
 
-#custom-fragrance-page .sheet .product__button:hover {
+#custom-fragrance-page .product__button:hover {
     background-color: initial;
 }
 
-#custom-fragrance-page .sheet .product__action input {
+#custom-fragrance-page .product__action input {
     border: none;
     color: #fff;
     font-weight: bold;

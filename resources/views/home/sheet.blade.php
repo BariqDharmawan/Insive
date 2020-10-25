@@ -25,19 +25,10 @@
                       <img src="{{ asset('img/sheet/'.$item->sheet_img) }}" height="100" width="100"
                       class="rounded-circle p-3 bg--cream sheet__img" alt="Fragrance Item">
                       <figcaption class="text--cream sheet__detail">
-                          <input type="text" name="sheet[]" class="d-none sheet__select" value="{{ $item->id }}"
-                              id="sheet_{{Str::slug($item->sheet_name, '_')}}">
+                          <input type="text" name="sheet[]" class="d-none sheet__select" 
+                          value="{{ $item->id }}" id="sheet_{{Str::slug($item->sheet_name, '_')}}">
                           <label class="sheet__name">{{ $item->sheet_name }}</label>
-                          <div class="product__action bg--blue mt-auto">
-                              <a href="javascript:void(0);" class="product__button product__button--increase">
-                                  <i class="bx bx-plus"></i>
-                              </a>
-                              <input type="number" name="jumlah_sheet[]" min="0"
-                              class="order-0 mr-0 sheet__qty" required readonly>
-                              <a href="#" class="product__button product__button--decrease">
-                                  <i class="bx bx-minus"></i>
-                              </a>
-                          </div>
+                          @include('partial.changing-qty')
                       </figcaption>
                   </figure>
               </div>

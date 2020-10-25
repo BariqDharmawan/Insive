@@ -17,24 +17,24 @@ jQuery(function () {
 
     // script for #custom-fragrance-page
     const customFragrancePage = $("#custom-fragrance-page");
-    let pickFragrance;
+    // let pickFragrance;
 
-    customFragrancePage.find(".sheet").on('click', function () {
-        pickFragrance = $(this).children("figcaption").find("input[type='checkbox']");
+    // customFragrancePage.find(".sheet").on('click', function () {
+    //     pickFragrance = $(this).children("figcaption").find("input[type='checkbox']");
 
-        if ($(this).hasClass('selected')) {
-            //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-            $(this).removeClass("selected");
-            //saat sheet di klik, trigger input di dlm nya jd checked
-            pickFragrance.prop("checked", false);
-            console.log(pickFragrance.val());
-        } else {
-            //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
-            $(this).addClass("selected");
-            //saat sheet di klik, trigger input di dlm nya jd checked
-            pickFragrance.prop("checked", true);
-        }
-    });
+    //     if ($(this).hasClass('selected')) {
+    //         //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
+    //         $(this).removeClass("selected");
+    //         //saat sheet di klik, trigger input di dlm nya jd checked
+    //         pickFragrance.prop("checked", false);
+    //         console.log(pickFragrance.val());
+    //     } else {
+    //         //saat sheet di klik, tambah class selected dan hapus class selected di sheet lain
+    //         $(this).addClass("selected");
+    //         //saat sheet di klik, trigger input di dlm nya jd checked
+    //         pickFragrance.prop("checked", true);
+    //     }
+    // });
 
     // tambahin jumlah beli sheet
     let sheetQty = 0;
