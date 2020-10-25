@@ -5,6 +5,5 @@
 <script src="{{ asset('plugins/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
 <script type="module" src="{{ asset('js/dashboard.js') }}"></script>
 @yield('script')

@@ -15,7 +15,7 @@
         <div class="input-group-prepend">
             <div class="input-group-text">Rp. </div>
         </div>
-        <input class="form-control" 
+        <input class="form-control"
         id="product-price" name="price" type="number" placeholder="Price"
         value="{{ $product->price }}" aria-describedby="productPriceFeedback" required>
     </div>

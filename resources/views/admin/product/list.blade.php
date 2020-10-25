@@ -90,10 +90,9 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($product->discount_price > 0)
-                                            Rp
-                                        <var>
-                                            {{ number_format($product->discount_price) }}
-                                        </var>
+                                            <var>
+                                                {{ 'Rp ' . number_format($product->discount_price) }}
+                                            </var>
                                         @else
                                             <small>(None)</small>
                                         @endif
