@@ -88,7 +88,7 @@ jQuery(function () {
 
     //script for #face-result-page
     $("#btnNextCustom").on('click', function (e) {
-        if ($(".product__pick :checked").length === 0) {
+        if ($(".product__pick:checked").length === 0) {
             alert("you're not checked anything. Please check one")
             Helper.disableEvent(e);
         }
