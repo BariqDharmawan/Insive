@@ -8,7 +8,12 @@ jQuery(function () {
 
     //global script
     bsCustomFileInput.init();
+    const select2 = $(".select2");
 
+    select2.select2({
+        placeholder: select2.data('placeholder'),
+        allowClear: true
+    });
 
     //script for #manageCatalogPage '/admin/product'
 

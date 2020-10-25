@@ -22,18 +22,10 @@ function getSheetQtyInput(fromElement) {
 
 const disableEvent = (e) => e.preventDefault();
 
-const select2 = $(".select2");
-
-select2.select2({
-    placeholder: select2.data('placeholder'),
-    allowClear: true
-});
-
 export {
     getText,
     setValue,
     currentNav,
     disableEvent,
-    getSheetQtyInput,
-    select2
+    getSheetQtyInput
 };
