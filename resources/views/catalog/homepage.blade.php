@@ -33,12 +33,22 @@
             @foreach ($product as $item)
             <div class="col-12 col-md-6 col-lg-3">
                 <figure class="product">
-                    <img src="{{ asset('img/product.png') }}" alt="Our Product" class="mx-auto">
+                    <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="mx-auto">
                     <figcaption>
-                        <p class="text--cream">{{$item->product_name}}</p>
-                        <span class="text--cream text--price real--price" style="min-width:100px;">(Rp. {{number_format($item->price, 0)}})</span>
+                        <p class="text--cream">{{ $item->product_name }}</p>
+                        @if ($item->discount)
+                            <span class="text--cream text--price real--price" style="min-width:100px;">
+                                @currency($item->price)
+                            </span>
+                        @endif
                         <div class="product__price">
-                            <span class="text--cream text--price" style="min-width:100px;">Rp. {{number_format($item->price, 0)}}</span>
+                            <span class="text--cream text--price" style="min-width:100px;">
+                                @if ($item->discount)
+                                    @currency($item->discount->discount_price)
+                                @else
+                                    @currency($item->price)
+                                @endif
+                            </span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
                             <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{$item->price}}" value="{{$item->price}}" readonly>
                         </div>

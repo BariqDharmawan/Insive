@@ -106,6 +106,8 @@ textarea {
 .product img {
     display: block;
     max-width: 100%;
+    object-fit: cover;
+    height: 210px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -122,7 +124,7 @@ textarea {
 }
 
 .product__action {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -433,6 +435,18 @@ footer a {
 
 /*end of landing-page css*/
 /*catalog-page css*/
+#catalog-page main .product {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 1rem);
+}
+
+#catalog-page main .product figcaption {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+}
+
 #catalog-page aside .form-row .form-group .row .product {
     width: 100%;
     position: relative;
@@ -1550,6 +1564,7 @@ footer a {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: auto;
     }
 
     #catalog-page .product figcaption .product__price span {
