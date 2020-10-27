@@ -13,7 +13,7 @@
         </div>
         <div class="col-12 col-lg-8 d-flex d-lg-block flex-wrap justify-content-center">
           <p class="bg--cream my-4 my-lg-2 py-1 px-2 d-lg-inline-block">
-            Formula Code: <var class="font-weight-bold">#02139</var>
+            Formula Code: <var class="font-weight-bold">{{ $table->formula_code }}</var>
           </p>
           <p class="text--cream px-2 px-lg-0 mb-5 my-lg-4 w-100 text-center text-lg-left">
             Choose your sheet:
