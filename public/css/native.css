@@ -440,6 +440,7 @@ footer a {
     align-items: center;
     flex-direction: column;
     height: calc(100% - 1rem);
+    margin-bottom: 0;
 }
 
 #catalog-page main .product figcaption {
@@ -456,6 +457,10 @@ footer a {
 #catalog-page aside .product {
     display: flex;
     flex-wrap: wrap;
+}
+
+#catalog-page aside .product .product__stock {
+    display: none;
 }
 
 #catalog-page header #cartBtn {
@@ -482,6 +487,13 @@ footer a {
     padding: 20px 15px 10px;
     opacity: 0;
     visibility: hidden;
+}
+
+#catalog-page .product figcaption .product__price .product__stock {
+    position: absolute;
+    top: 0;
+    width: auto;
+    transform: translateY(-50%);
 }
 
 #catalog-page .product figcaption .product__price input {

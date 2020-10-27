@@ -87,13 +87,13 @@ class MainController extends Controller
             ]
         );
         CustomProduct::where([
-            ['cart_id', "=", $table->id], 
+            ['cart_id', "=", $table->id],
             ["fragrance_id", "<>", null]
         ])->delete();
 
         $data['fragrance'] = Fragrance::where('qty', '>', 0)->get();
         $data['table'] = $table;
-        
+
         return view('fragrance.custom')->with($data);
     }
 
@@ -146,8 +146,12 @@ class MainController extends Controller
                 'status' => 'waiting'
             ]
         );
+
         CustomProduct::where([['cart_id', "=", $table->id], ["sheet_id", "<>", null]])->delete();
+
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
+        $data['table'] = $table;
+
         return view('home.sheet')->with($data);
     }
 
@@ -322,7 +326,7 @@ class MainController extends Controller
 
             foreach ($sheet as $key => $value) {
                 $qty = $request->input('jumlah_sheet')[$key];
-                if($qty > 0) {
+                if ($qty > 0) {
                     $data[] = [
                         'cart_id' => $cart_id,
                         'sheet_id' => $value,
@@ -353,7 +357,7 @@ class MainController extends Controller
         $date_now = date('Y-m-d H:i:s');
         if ($fragrance !== null) {
             $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->firstOrFail()->id;
-            
+
             // $count_sheet = CustomProduct::where('cart_id', '=', $cart_id)->count();
             // $count_fragrance = count($fragrance);
             // if ($count_sheet > 0) {

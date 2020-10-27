@@ -20,7 +20,11 @@ body {
     overflow-x: hidden;
 }
 
-.visible-hidden {
+.bg-body {
+    background-color: #141313;
+}
+
+.hidden {
     display: none;
 }
 
@@ -76,6 +80,10 @@ input[type='number'] {
 
 .not-italic {
     font-style: normal;
+}
+
+.top-0 {
+    top: 0;
 }
 
 .scale-down {
