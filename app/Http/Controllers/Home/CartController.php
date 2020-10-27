@@ -46,11 +46,11 @@ class CartController extends Controller
     {
         $user_id = Auth::user()->id;
         $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->first();
-        if(empty($cart)) {
+        if (empty($cart)) {
             return redirect(url('/'));
         }
         $data['sub_cart'] = CustomProduct::where('cart_id', $cart->id)->get();
-        if(empty($data['sub_cart'])) {
+        if (empty($data['sub_cart'])) {
             return redirect(url('question'));
         }
         $data['sheet'] = Sheet::where('qty', '>', 0)->get();
@@ -71,10 +71,9 @@ class CartController extends Controller
         ]);
         $request = $client->get('https://api.rajaongkir.com/starter/city');
         $response = json_decode($request->getBody()->getContents(), true);
-        if($response['rajaongkir']['status']['code'] === 200) {
+        if ($response['rajaongkir']['status']['code'] === 200) {
             $data['allCities'] = $response['rajaongkir']['results'];
-        }
-        else {
+        } else {
             $data['allCities'] = Indonesia::allProvinces();
         }
         return view('shipping.custom-order')->with($data);
@@ -92,9 +91,9 @@ class CartController extends Controller
         ]);
         $request = $client->get('https://api.rajaongkir.com/starter/city');
         $response = json_decode($request->getBody()->getContents(), true);
-        if($response['rajaongkir']['status']['code'] === 200) {
+        if ($response['rajaongkir']['status']['code'] === 200) {
             $data['allCities'] = $response['rajaongkir']['results'];
-        }
+        } 
         else {
             $data['allCities'] = Indonesia::allProvinces();
         }
@@ -109,19 +108,31 @@ class CartController extends Controller
     public function indexPayment()
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where([['user_id', '=', $user_id],['type_cart', '=', 'custom'],['status', '=', 'waiting']])->firstOrFail();
+        $cart = Cart::where([
+            ['user_id', '=', $user_id],
+            ['type_cart', '=', 'custom'],
+            ['status', '=', 'waiting']
+        ])->firstOrFail();
         $shipping = Shipping::where('id', '=', $cart->shipping_id)->firstOrFail();
         $qty_package = CustomProduct::where('cart_id', $cart->id)->sum('qty');
-        $price_package = Pricing::where('min_qty' , '<=', (int)$qty_package)->orderBy('min_qty', 'DESC')->first()->price;
+        $price_package = Pricing::where('min_qty', '<=', (int)$qty_package)->orderBy('min_qty', 'DESC')->first()->price;
         $client = new GuzzleClient([
-            'headers' => ["content-type" => "application/x-www-form-urlencoded", 'key' => 'a9833b70a0d2e26d4f36024e66e6fdaa']
+            'headers' => [
+                "content-type" => "application/x-www-form-urlencoded",
+                'key' => 'a9833b70a0d2e26d4f36024e66e6fdaa'
+            ]
         ]);
 
         $request = $client->post('https://api.rajaongkir.com/starter/cost', [
-			'form_params' => ['origin' => 154, 'destination' => $shipping->city_id, 'weight' => '1000', 'courier' => 'jne']
-		]);
+            'form_params' => [
+                'origin' => 154,
+                'destination' => $shipping->city_id,
+                'weight' => '1000',
+                'courier' => 'jne'
+            ]
+        ]);
         $response = json_decode($request->getBody()->getContents(), true);
-        if($response['rajaongkir']['status']['code'] === 200) {
+        if ($response['rajaongkir']['status']['code'] === 200) {
             $ongkir = $response['rajaongkir']['results'];
             $city_name = $response['rajaongkir']['destination_details']['city_name'];
         } else {
@@ -129,20 +140,20 @@ class CartController extends Controller
             $city_name = "";
         }
         $data['formula_code'] = $cart->formula_code;
-        $data['price'] = $qty_package*$price_package;
-        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value']+10000);
+        $data['price'] = $qty_package * $price_package;
+        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value'] + 10000);
         $data['city_name'] = $city_name;
-        $data['total_price'] = ($data['price']+$data['shipping_cost']);
+        $data['total_price'] = ($data['price'] + $data['shipping_cost']);
         $cart->total_qty = $qty_package;
-        $cart->total_price = $qty_package*$price_package;
+        $cart->total_price = $qty_package * $price_package;
         $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
-        return view('home.payment_page')->with($data);
+        return view('custom.payment')->with($data);
     }
 
     public function postPayment(Request $request)
     {
-      \DB::transaction(function(){
+        \DB::transaction(function () {
             // Save donasi ke database
             $donation = Cart::create([
                 'user_id' => $request->donor_name,
@@ -160,9 +171,9 @@ class CartController extends Controller
                     'email' => Auth::user()->email,
                 ],
                 'item_details' => [
-                  [
-                    'price' => $donation->amount,
-                  ]
+                    [
+                        'price' => $donation->amount,
+                    ]
                 ]
             ];
             $donation->snap_token = Veritrans_Snap::getSnapToken($payload);
@@ -177,64 +188,56 @@ class CartController extends Controller
     public function notificationHandler(Request $request)
     {
         $notif = new Veritrans_Notification();
-        \DB::transaction(function() use($notif) {
+        \DB::transaction(function () use ($notif) {
 
-          $transaction = $notif->transaction_status;
-          $type = $notif->payment_type;
-          $orderId = $notif->order_id;
-          $fraud = $notif->fraud_status;
-          $donation = Donation::findOrFail($orderId);
+            $transaction = $notif->transaction_status;
+            $type = $notif->payment_type;
+            $orderId = $notif->order_id;
+            $fraud = $notif->fraud_status;
+            $donation = Donation::findOrFail($orderId);
 
-          if ($transaction == 'capture') {
- 
-            // For credit card transaction, we need to check whether transaction is challenge by FDS or not
-            if ($type == 'credit_card') {
+            if ($transaction == 'capture') {
 
-              if($fraud == 'challenge') {
-                // TODO set payment status in merchant's database to 'Challenge by FDS'
-                // TODO merchant should decide whether this transaction is authorized or not in MAP
-                // $donation->addUpdate("Transaction order_id: " . $orderId ." is challenged by FDS");
-                $donation->setPending();
-              } else {
-                // TODO set payment status in merchant's database to 'Success'
-                // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully captured using " . $type);
+                // For credit card transaction, we need to check whether transaction is challenge by FDS or not
+                if ($type == 'credit_card') {
+
+                    if ($fraud == 'challenge') {
+                        // TODO set payment status in merchant's database to 'Challenge by FDS'
+                        // TODO merchant should decide whether this transaction is authorized or not in MAP
+                        // $donation->addUpdate("Transaction order_id: " . $orderId ." is challenged by FDS");
+                        $donation->setPending();
+                    } else {
+                        // TODO set payment status in merchant's database to 'Success'
+                        // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully captured using " . $type);
+                        $donation->setSuccess();
+                    }
+                }
+            } elseif ($transaction == 'settlement') {
+
+                // TODO set payment status in merchant's database to 'Settlement'
+                // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully transfered using " . $type);
                 $donation->setSuccess();
-              }
+            } elseif ($transaction == 'pending') {
 
+                // TODO set payment status in merchant's database to 'Pending'
+                // $donation->addUpdate("Waiting customer to finish transaction order_id: " . $orderId . " using " . $type);
+                $donation->setPending();
+            } elseif ($transaction == 'deny') {
+
+                // TODO set payment status in merchant's database to 'Failed'
+                // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is Failed.");
+                $donation->setFailed();
+            } elseif ($transaction == 'expire') {
+
+                // TODO set payment status in merchant's database to 'expire'
+                // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is expired.");
+                $donation->setExpired();
+            } elseif ($transaction == 'cancel') {
+
+                // TODO set payment status in merchant's database to 'Failed'
+                // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is canceled.");
+                $donation->setFailed();
             }
-
-          } elseif ($transaction == 'settlement') {
-
-            // TODO set payment status in merchant's database to 'Settlement'
-            // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully transfered using " . $type);
-            $donation->setSuccess();
-
-          } elseif($transaction == 'pending'){
-
-            // TODO set payment status in merchant's database to 'Pending'
-            // $donation->addUpdate("Waiting customer to finish transaction order_id: " . $orderId . " using " . $type);
-            $donation->setPending();
-
-          } elseif ($transaction == 'deny') {
-
-            // TODO set payment status in merchant's database to 'Failed'
-            // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is Failed.");
-            $donation->setFailed();
-
-          } elseif ($transaction == 'expire') {
-
-            // TODO set payment status in merchant's database to 'expire'
-            // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is expired.");
-            $donation->setExpired();
-
-          } elseif ($transaction == 'cancel') {
-
-            // TODO set payment status in merchant's database to 'Failed'
-            // $donation->addUpdate("Payment using " . $type . " for transaction order_id: " . $orderId . " is canceled.");
-            $donation->setFailed();
-
-          }
-
         });
 
         return;
@@ -258,25 +261,25 @@ class CartController extends Controller
         $price_package = SubCart::where('cart_id', $cart->id)->sum('total_price');
         $client = new GuzzleClient([
             'headers' => [
-                "content-type" => "application/x-www-form-urlencoded", 
+                "content-type" => "application/x-www-form-urlencoded",
                 'key' => 'a9833b70a0d2e26d4f36024e66e6fdaa'
             ]
         ]);
 
         $request = $client->post('https://api.rajaongkir.com/starter/cost', [
-			'form_params' => [
-                'origin' => 154, 
-                'destination' => $shipping->city_id, 
-                'weight' => '1000', 
+            'form_params' => [
+                'origin' => 154,
+                'destination' => $shipping->city_id,
+                'weight' => '1000',
                 'courier' => 'jne'
             ]
         ]);
-        
+
         $response = json_decode($request->getBody()->getContents(), true);
         if ($response['rajaongkir']['status']['code'] === 200) {
             $ongkir = $response['rajaongkir']['results'];
             $city_name = $response['rajaongkir']['destination_details']['city_name'];
-        }
+        } 
         else {
             $ongkir = 0;
             $city_name = "";
@@ -284,16 +287,16 @@ class CartController extends Controller
 
         $data['formula_code'] = $cart->formula_code;
         $data['price'] = $price_package;
-        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value']+10000);
+        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value'] + 10000);
         $data['city_name'] = $city_name;
-        $data['total_price'] = ($data['price']+$data['shipping_cost']);
+        $data['total_price'] = ($data['price'] + $data['shipping_cost']);
 
         $cart->total_qty = $qty_package;
         $cart->total_price = $price_package;
         $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
-        
-        return view('home.payment_catalog_page')->with($data);
+
+        return view('catalog.payment')->with($data);
     }
 
     /**
@@ -320,10 +323,14 @@ class CartController extends Controller
         $fragrance_id = $request->input('fragrance_id');
         $qty_product = $request->input('qty_product');
         foreach ($product_id as $key => $value) {
-            if($qty_product[$key] > 0) {
-                CustomProduct::where('id', $value)
-                        ->update(['sheet_id' => $sheet_id[$key], 'fragrance_id' => $fragrance_id[$key], 'qty' => $qty_product[$key]]);
-            } else {
+            if ($qty_product[$key] > 0) {
+                CustomProduct::where('id', $value)->update([
+                    'sheet_id' => $sheet_id[$key], 
+                    'fragrance_id' => $fragrance_id[$key], 
+                    'qty' => $qty_product[$key]
+                ]);
+            } 
+            else {
                 CustomProduct::where('id', $value)->delete();
             }
         }
