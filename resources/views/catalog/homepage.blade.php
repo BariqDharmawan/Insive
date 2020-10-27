@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             @foreach ($product as $item)
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-5">
                 <figure class="product" data-is-cloned="false" data-product-id="{{ $item->id }}">
                     <img src="{{ Storage::url($item->product_img) }}" alt="Our Product" class="">
                     <figcaption class="fig--price">
@@ -47,6 +47,9 @@
                             </small>
                         @endif
                         <div class="product__price">
+                            <span class="text--cream bg-body py-1 px-2 rounded product__stock">
+                                Stok: <var class="not-italic">{{ $item->qty }}</var>
+                            </span>
                             <span class="text--cream text--price after--price" style="min-width:100px;">
                                 @if ($item->discount)
                                     @currency($item->discount->discount_price)
@@ -55,8 +58,9 @@
                                 @endif
                             </span>
                             <input type="hidden" name="product_id[]" value="{{ $item->id }}">
-                            <input type="number" class="input-price-cart" style="display: none" name="hargaproduct" data-price="{{($item->discount)? $item->discount->discount_price : $item->price}}" 
-                            value="{{($item->discount)? $item->discount->discount_price : $item->price}}" readonly>
+                            <input type="number" class="input-price-cart d-none" name="hargaproduct" 
+                            data-price="{{ ($item->discount)? $item->discount->discount_price : $item->price }}"
+                            value="{{ ($item->discount)? $item->discount->discount_price : $item->price }}" readonly>
                         </div>
                         <div class="product__action">
                             <a href="javascript:void(0);" class="btn bg--cream">
