@@ -23,10 +23,17 @@ class DiscountValidation extends FormRequest
      */
     public function rules()
     {
-        return [
-            'product_id' => ['required', 'integer', 'unique:product_discount'],
+
+        $rules = [
+            'product_id' => ['required', 'integer'],
             'discount_price' => ['required', 'integer', 'min:1000']
         ];
+
+        if ($this->isMethod('POST') or $this->isMethod('post')) {
+            $rules['product_id'][] = 'unique:product_discount';
+        }
+
+        return $rules;
     }
 
     /**

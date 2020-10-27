@@ -59,10 +59,14 @@ jQuery(function () {
 
     //script for #manageDiscountPage '/admin/product/manage-discount
     let discountProductName, discountProductPrice;
-    let discountProductId;
-    let discountUpdateUrl;
-    let findValueByName;
+    let discountProductId, discountUpdateUrl, findValueByName;
     const formAddEditDisc = '#formAddDisc';
+    const inputMethodPut = $(formAddEditDisc).find("input[name='_method'][value='PUT']");
+
+    $("#btn-add-discount").on('click', () => {
+        //disable input method put on create
+        $(formAddEditDisc).find("input[name='_method']").prop('disabled', true);
+    });
 
     $(".btn-confirm-delete, .btn-edit-discount").on('click', function () {
         const discountItem = $(this).parents(".discount")
@@ -75,7 +79,8 @@ jQuery(function () {
                 'action', `/admin/product/manage-discount/${discountProductId}`
             )
         } else {
-            // discountProductPrice = $(this).parents(".discount").find('.discount__product-price').text()
+            inputMethodPut.prop('disabled', false);
+
             discountProductPrice = Helper.getText(discountItem, '.discount__product-price')
             discountProductPrice = discountProductPrice.replace('Rp. ', '').replace(',', '').trim()
 
@@ -92,7 +97,7 @@ jQuery(function () {
     });
 
     $("#modal-add-disc").on('hidden.bs.modal', function () {
-        $(formAddEditDisc + " input, " + formAddEditDisc + " #product-name").val(null).trigger('change');
+        $(formAddEditDisc + " input:not([type='hidden']), " + formAddEditDisc + " #product-name").val(null).trigger('change');
     });
 
 });

@@ -24,17 +24,20 @@
                     <li>{{ $error }}</li>
                 @endforeach
             @endalert
-        @elseif(session('success'))
+        @endif
+        @if(session('success'))
             @alert(['type' => 'success', 'closeBtn' => true])
                 {{ session('success') }}
-            @endalert 
+            @endalert
         @endif
-        <div class="card">
+        
+        @if (count($discounts) > 0)
+            <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Managing discount</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                    data-target="#modal-add-disc">
+                    data-target="#modal-add-disc" id="btn-add-discount">
                         Add new discount
                     </button>
                 </div>
@@ -75,6 +78,17 @@
                 </table>
             </div>
         </div>
+        @else
+            @alert(['type' => 'secondary', 'closeBtn' => false])
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="mb-0">There is no discount set</p>
+                <button type="button" class="btn btn-primary btn-sm ml-3" data-toggle="modal"
+                data-target="#modal-add-disc" id="btn-add-discount">
+                        Add new discount
+                </button>
+            </div>
+            @endalert
+        @endif
     </div>
     <div class="modal fade" id="modalDelConfirm" tabindex="-1" 
     aria-labelledby="modalDelConfirmLabel" aria-hidden="true">
@@ -99,7 +113,7 @@
                         Close
                     </button>
                     <form method="POST" id="modalDelConfirm__form"
-                    action="{{ route('admin.product.manage-discount.destroy', $discount->id) }}">
+                    action="">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">
                             Yes, delete it!
@@ -121,7 +135,7 @@
                 <div class="modal-body pt-0">
                     <form action="{{ route('admin.product.manage-discount.store') }}" 
                     id="formAddDisc" method="POST" enctype="multipart/form-data">
-                        @csrf
+                        @csrf @method('PUT')
                         <div class="form-group">
                             <label for="product-name">Product name</label>
                             <select name="product_id" data-placeholder="Please select the product" id="product-name" class="form-control select2" required>

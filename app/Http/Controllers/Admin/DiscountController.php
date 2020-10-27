@@ -11,13 +11,17 @@ use App\Models\ProductDiscount;
 class DiscountController extends Controller
 {
 
-
-    protected function saveDiscount(Request $request, ProductDiscount $discount, $goTo, $successMessage)
+    /**
+     * saveDiscount for update or create new discount
+     *
+     * @return redirect
+     **/
+    protected function saveDiscount(Request $request, ProductDiscount $discount, $successMessage)
     {
         $discount->product_id = $request->product_id;
         $discount->discount_price = $request->discount_price;
         $discount->save();
-        return redirect()->route($goTo)->with('success', $successMessage);
+        return redirect()->back()->with('success', $successMessage);
     }
 
 
@@ -45,12 +49,7 @@ class DiscountController extends Controller
     public function store(DiscountValidation $request)
     {
         $newDiscount = new ProductDiscount;
-        $this->saveDiscount(
-            $request,
-            $newDiscount,
-            'admin.manage-account.index',
-            'Successfully delete discount'
-        );
+        return $this->saveDiscount($request, $newDiscount, 'Successfully delete discount');
     }
 
     /**
@@ -60,13 +59,12 @@ class DiscountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiscountValidation $request, $id)
     {
         $updateDiscount = ProductDiscount::findOrFail($id);
-        $this->saveDiscount(
+        return $this->saveDiscount(
             $request,
             $updateDiscount,
-            'admin.manage-account.index',
             'Successfully update discount on product ' . $updateDiscount->product->product_name
         );
     }
