@@ -7,8 +7,8 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-4">
-                <img src="{{ asset('img/product.png') }}" height="350" class="d-block mx-auto"
-                    alt="Product">
+                <img src="{{ asset('img/product.png') }}" height="350" 
+                class="d-block mx-auto" alt="Product">
             </div>
             <div class="col-12 col-md-8">
                 <form id="payment_method" method="post" onsubmit="return submitForm();">
