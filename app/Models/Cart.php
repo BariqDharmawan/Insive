@@ -18,6 +18,7 @@ class Cart extends Model
       'shipping_cost',
       'tracking_number',
       'status',
+      'checked_options',
       'type_cart',
       'snap_token'
     ];

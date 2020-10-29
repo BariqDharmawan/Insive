@@ -24,7 +24,7 @@
               <img src="{{ asset('img/fragrance/'.$item->fragrance_img) }}" height="100" width="100"
               alt="Fragrance Item" class="{{ ($item->fragrance_name == 'Unscented')? 'unscented-fragrance' : '' }}">
               <figcaption class="text--cream">
-                <input type="checkbox" name="fragrance[]" class="d-none" value="{{ $item->id }}"
+                <input type="text" name="fragrance[]" class="d-none" value="{{ $item->id }}"
                 id="fragrance_{{ Str::slug($item->fragrance_name, '_') }}">
                 <label class="mt-0 mb-4">
                   {{ $item->fragrance_name }}

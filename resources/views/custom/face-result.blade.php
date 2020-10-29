@@ -21,11 +21,13 @@
           </figcaption>
         </figure>
       </div>
+      <form action="{{ route('main.options_face_result') }}" method="post">
+      @csrf
       <div class="col-12 col-md-6 text-center">
         <h3 class="text--cream">Choose Your Products (you can tick both)</h3>
         <div class="row justify-content-between my-5">
           <div class="col-md-6 col-lg-5">
-            <input type="checkbox" class="product__pick" name="product__pick" required>
+            <input type="checkbox" class="product__pick" name="options[]" value="sheet">
             <figure class="product mb-0 position-relative">
               <img height="350" src="{{ asset('img/product.png') }}" style="height: auto">
               <figcaption class="product__detail">
@@ -34,7 +36,7 @@
           </figure>
           </div>
           <div class="col-md-6 col-lg-5">
-            <input type="checkbox" class="product__pick" name="product__pick" required>
+            <input type="checkbox" class="product__pick" name="options[]" value="serum">
             <figure class="product mb-0 position-relative">
               <img height="350" src="{{ asset('img/product.png') }}" style="height: auto">
               <figcaption class="product__detail">
@@ -47,11 +49,12 @@
           <span class="text--cream d-block">Special ingredients for you:</span>
           <span class="text-white d-block">{{ $result->special_ingredients }}</span>
         </p>
-        <a href="{{ route('main.sheet') }}" id="btnNextCustom"
+        <button id="btnNextCustom"
         class="btn bg--cream mt-5 d-inline-flex mx-auto text-capitalize">
           Next, Start to Customize <i class='bx bx-chevron-right' ></i>
-        </a>
+      </button>
       </div>
+      </form>
     </div>
   </div>
 </main>

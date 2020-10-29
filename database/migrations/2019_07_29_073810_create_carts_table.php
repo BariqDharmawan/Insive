@@ -18,6 +18,7 @@ class CreateCartsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('shipping_id')->unsigned()->nullable();
             $table->integer('logic_id')->unsigned()->nullable();
+            $table->string('checked_options')->nullable();
             $table->string('cart_code', 100);
             $table->string('formula_code', 100);
             $table->integer('total_qty')->default(0);
