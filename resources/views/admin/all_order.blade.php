@@ -57,35 +57,42 @@ Today's Order
                       Print Recipe & Invoice​
                     </a>
                   </li>
+                  
+                  <li class="bg--cream">
+                    @switch($order->status)
+                        @case('success')
+                            @php $colorText = 'forestgreen' @endphp
+                            @break
+                        @case('pending')
+                            @php $colorText = 'orange' @endphp
+                            @break
+                        @case('failed')
+                            @php $colorText = 'red' @endphp
+                          @break
+                        @case('expired')
+                            @php $colorText = 'red' @endphp
+                          @break
+                        @default
+                    @endswitch
+                    <a href="javascript:void(0)" class="font-weight-bold" style="color: {{ $colorText }}">
+                      Status Payment: {{ $order->status }}
+                    </a>
+                  </li>
                   @if ($order->status == 'success')
-                  <li style="border: 1px solid forestgreen">
-                    <a href="javascript:void(0)" style="color: forestgreen;">
-                      Status Payment: {{ $order->status }}
-                    </a>
-                  </li>
-                  @elseif($order->status == 'pending')
-                  <li style="border: 1px solid orange">
-                    <a href="javascript:void(0)" style="color: orange;">
-                      Status Payment: {{ $order->status }}
-                    </a>
-                  </li>
-                  @elseif($order->status == 'failed' || $order->status == 'expired')
-                  <li style="border: 1px solid red">
-                    <a href="javascript:void(0)" style="color: red;">
-                      Status Payment: {{ $order->status }}
-                    </a>
-                  </li>
+                      <li>
+                        Status terkirim: sudah terkirim
+                      </li>
+                  @endif
+                  @if(empty($order->tracking_number))
+                  <li class="bg--cream li-input-tracking-number">
+                    <a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark">
+                      <i class='bx bxs-truck' ></i> Input tracking number​</a></li>
                   @else
                   <li style="border: 1px solid #E2CCC1">
                     <a href="javascript:void(0)" class="text-light">
-                      Status Payment: {{ $order->status }}
+                      Tracking Number: {{$order->tracking_number}}
                     </a>
                   </li>
-                  @endif
-                  @if(empty($order->tracking_number))
-                  <li class="bg--cream li-input-tracking-number"><a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark"><i class='bx bxs-truck' ></i> Input tracking number​</a></li>
-                  @else
-                  <li style="border: 1px solid #E2CCC1"><a href="javascript:void(0)" class="text-light">Tracking Number: {{$order->tracking_number}}</a></li>
                   @endif
                 </ul>
               </div>
