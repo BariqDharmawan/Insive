@@ -65,6 +65,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::get('force/logout', 'MainController@logout');
 
   Route::prefix('custom')->name('main.')->group(function () {
+    Route::post('face_result', 'MainController@optionsFaceResult')->name('options_face_result');
     Route::get('sheet', 'MainController@sheet')->name('sheet');
     Route::post('sheet', 'MainController@storeSheet')->name('sheet.store');
     Route::get('fragrance', 'MainController@fragrance')->name('fragrance');

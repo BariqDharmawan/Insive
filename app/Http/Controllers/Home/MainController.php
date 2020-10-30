@@ -42,6 +42,25 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function optionsFaceResult(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $options = $request->input("options");
+        $table = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->firstOrFail();
+        // dd($table);
+        if($options[0] == "sheet") {
+            $table->checked_options = $options[0];
+            $table->save();
+            return redirect()->route('main.sheet');
+        } elseif($options[0] == "serum") {
+            $table->checked_options = $options[0];
+            $table->save();
+            return redirect()->route('main.fragrance');
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function fragrance()
     {
         $user_id = Auth::user()->id;
@@ -204,6 +223,27 @@ class MainController extends Controller
                 }
             }
             $data['result'] = Logic::where([['option_3', '=', $option_3], ['option_4', '=', $option_4]])->firstOrFail();
+            $code_cart = Cart::orderBy('id', 'desc')->first();
+            if (empty($code_cart)) {
+                $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', 1);
+            } else {
+                $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -1) + 1);
+            }
+            $table = Cart::firstOrCreate(
+                [
+                    'user_id' => $user_id,
+                    'type_cart' => 'custom',
+                    'status' => 'waiting'
+                ],
+                [
+                    'user_id' => $user_id,
+                    'logic_id' => $data['result']->id,
+                    'cart_code' => $code,
+                    'formula_code' => '#' . $data['result']->no_formula,
+                    'type_cart' => 'custom',
+                    'status' => 'waiting'
+                ]
+            );
             // dd($result);
             return view('custom.face-result')->with($data);
         }
@@ -313,22 +353,22 @@ class MainController extends Controller
     public function storeSheet(Request $request)
     {
         $sheet = $request->input('sheet');
-        $qty = $request->input('jumlah_sheet');
+        $qty = $request->input('jumlah_qty');
 
         if ($sheet !== null) {
-            $cart_id = Cart::where([
+            $cart = Cart::where([
                 ['user_id', Auth::id()],
                 ['type_cart', 'custom'],
                 ['status', 'waiting']
-            ])->firstOrFail()->id;
+            ])->firstOrFail();
 
             $data = [];
 
             foreach ($sheet as $key => $value) {
-                $qty = $request->input('jumlah_sheet')[$key];
+                $qty = $request->input('jumlah_qty')[$key];
                 if ($qty > 0) {
                     $data[] = [
-                        'cart_id' => $cart_id,
+                        'cart_id' => $cart->id,
                         'sheet_id' => $value,
                         'qty' =>  $qty,
                         'created_at' => now(),
@@ -337,7 +377,12 @@ class MainController extends Controller
                 }
             }
             $table = CustomProduct::insert($data);
-            return redirect()->route('main.fragrance');
+            
+            if($cart->checked_options == "sheet") {
+                return redirect()->route('main.fragrance');
+            } elseif ($cart->checked_options == "serum") {
+                return redirect()->route(url('/home/cart'));
+            }
         } else {
             return redirect()->back();
         }
@@ -351,12 +396,44 @@ class MainController extends Controller
      */
     public function storeFragrance(Request $request)
     {
-        echo "test";
-        $fragrance = $request->input('fragrance');
-        $user_id = Auth::user()->id;
-        $date_now = date('Y-m-d H:i:s');
-        if ($fragrance !== null) {
-            $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->firstOrFail()->id;
+        $sheet = $request->input('fragrance');
+        $qty = $request->input('jumlah_qty');
+
+        if ($sheet !== null) {
+            $cart = Cart::where([
+                ['user_id', Auth::id()],
+                ['type_cart', 'custom'],
+                ['status', 'waiting']
+            ])->firstOrFail();
+
+            $data = [];
+
+            foreach ($sheet as $key => $value) {
+                $qty = $request->input('jumlah_qty')[$key];
+                if ($qty > 0) {
+                    $data[] = [
+                        'cart_id' => $cart->id,
+                        'fragrance_id' => $value,
+                        'qty' =>  $qty,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                }
+            }
+            $table = CustomProduct::insert($data);
+            if($cart->checked_options == "sheet") {
+                return redirect()->route(url('/home/cart'));
+            } elseif ($cart->checked_options == "serum") {
+                return redirect()->route('main.sheet');
+            }
+        } else {
+            return redirect()->back();
+        }
+        // $fragrance = $request->input('fragrance');
+        // $user_id = Auth::user()->id;
+        // $date_now = date('Y-m-d H:i:s');
+        // if ($fragrance !== null) {
+        //     $cart_id = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->firstOrFail()->id;
 
             // $count_sheet = CustomProduct::where('cart_id', '=', $cart_id)->count();
             // $count_fragrance = count($fragrance);
@@ -386,9 +463,9 @@ class MainController extends Controller
             // } else {
             //     return redirect()->route('main.question');
             // }
-        } else {
-            return redirect()->back();
-        }
+        // } else {
+        //     return redirect()->back();
+        // }
     }
 
     /**
