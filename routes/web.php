@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('config-cache', function () {
+  Artisan::call('migrate:fresh --seed');
+  Artisan::call('cache:clear');
+  Artisan::call('config:clear');
+  Artisan::call('config:cache');
+});
 
 Route::get('receipt', function () {
   $order = App\Models\Cart::firstOrFail();
