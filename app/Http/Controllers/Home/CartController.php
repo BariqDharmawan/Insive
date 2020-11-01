@@ -115,7 +115,8 @@ class CartController extends Controller
         ])->firstOrFail();
         $shipping = Shipping::where('id', '=', $cart->shipping_id)->firstOrFail();
         $qty_package = CustomProduct::where('cart_id', $cart->id)->sum('qty');
-        $price_package = Pricing::where('min_qty', '<=', (int)$qty_package)->orderBy('min_qty', 'DESC')->first()->price;
+        $price_package = CustomProduct::where('cart_id', $cart->id)->sum('total_price');
+        // $price_package = Pricing::where('min_qty', '<=', (int)$qty_package)->orderBy('min_qty', 'DESC')->first()->price;
         $client = new GuzzleClient([
             'headers' => [
                 "content-type" => "application/x-www-form-urlencoded",
@@ -140,12 +141,12 @@ class CartController extends Controller
             $city_name = "";
         }
         $data['formula_code'] = $cart->formula_code;
-        $data['price'] = $qty_package * $price_package;
+        $data['price'] = $price_package;
         $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value'] + 10000);
         $data['city_name'] = $city_name;
         $data['total_price'] = ($data['price'] + $data['shipping_cost']);
         $cart->total_qty = $qty_package;
-        $cart->total_price = $qty_package * $price_package;
+        $cart->total_price = $price_package;
         $cart->shipping_cost = $data['shipping_cost'];
         $cart->save();
         return view('custom.payment')->with($data);

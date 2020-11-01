@@ -35,8 +35,11 @@ Today's Order
                   @if ($order->type_cart == 'custom')
                   @foreach ($order->item as $item)
                   <li>
-                    <span>Sheet Type: {{ $item->sheet_name }}</span>
-                    <span>Fragrance Type: {{ $item->fragrance_name }}</span>
+                    @if ($item->sheet_name != null)
+                    <span>Sheet Mask: {{ $item->sheet_name }}</span>
+                    @elseif($item->fragrance_name != null)
+                    <span>Serum: {{ $item->fragrance_name }}</span>
+                    @endif
                     <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
                   </li>
                   @endforeach

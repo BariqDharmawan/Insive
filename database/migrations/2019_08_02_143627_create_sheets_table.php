@@ -18,6 +18,7 @@ class CreateSheetsTable extends Migration
             $table->string('sheet_name');
             $table->string('sheet_img');
             $table->integer('qty')->default(1);
+            $table->integer('price');
             $table->timestamps();
         });
     }

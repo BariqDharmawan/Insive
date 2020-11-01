@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomProduct;
 use App\Mail\MessageFromCustomer;
 use Laravolt\Indonesia\Indonesia;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -35,6 +36,21 @@ class MainController extends Controller
     {
         $allCities = Indonesia::allProvinces();
         return view('question', compact('allCities'));
+    }
+
+    public function summaryOrder()
+    {
+        $user_id = Auth::id();
+        $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'custom'], ['status', '=', 'waiting']])->first();
+        if (empty($cart)) {
+            return redirect(url('/'));
+        }
+        $sub_cart = CustomProduct::select('custom_products.*', DB::raw('CASE WHEN sheets.id IS NULL THEN fragrances.fragrance_name ELSE sheets.sheet_name END as name'))
+                                ->leftJoin('sheets', 'sheets.id', '=', 'custom_products.sheet_id')
+                                ->leftJoin('fragrances', 'fragrances.id', '=', 'custom_products.fragrance_id')
+                                ->where('cart_id', $cart->id)->get();
+        $data['sub_cart'] = $sub_cart;
+        return view('home.summary-order')->with($data);
     }
 
     /**
@@ -366,11 +382,14 @@ class MainController extends Controller
 
             foreach ($sheet as $key => $value) {
                 $qty = $request->input('jumlah_qty')[$key];
+                $sheet = Sheet::where('id', $value)->firstOrFail();
                 if ($qty > 0) {
                     $data[] = [
                         'cart_id' => $cart->id,
                         'sheet_id' => $value,
                         'qty' =>  $qty,
+                        'price' => $sheet->price,
+                        'total_price' => $sheet->price * $qty,
                         'created_at' => now(),
                         'updated_at' => now()
                     ];
@@ -381,7 +400,7 @@ class MainController extends Controller
             if($cart->checked_options == "sheet") {
                 return redirect()->route('main.fragrance');
             } elseif ($cart->checked_options == "serum") {
-                return redirect()->route(url('/home/cart'));
+                return redirect()->route('main.summary.orders');
             }
         } else {
             return redirect()->back();
@@ -410,11 +429,14 @@ class MainController extends Controller
 
             foreach ($sheet as $key => $value) {
                 $qty = $request->input('jumlah_qty')[$key];
+                $fragrance = Fragrance::where('id', $value)->firstOrFail();
                 if ($qty > 0) {
                     $data[] = [
                         'cart_id' => $cart->id,
                         'fragrance_id' => $value,
                         'qty' =>  $qty,
+                        'price' => $fragrance->price,
+                        'total_price' => $fragrance->price * $qty,
                         'created_at' => now(),
                         'updated_at' => now()
                     ];
@@ -422,7 +444,7 @@ class MainController extends Controller
             }
             $table = CustomProduct::insert($data);
             if($cart->checked_options == "sheet") {
-                return redirect()->route(url('/home/cart'));
+                return redirect()->route('main.summary.orders');
             } elseif ($cart->checked_options == "serum") {
                 return redirect()->route('main.sheet');
             }
@@ -446,7 +468,7 @@ class MainController extends Controller
             //             CustomProduct::where([['cart_id', '=', $cart_id], ['sheet_id', '=', $sheet[$i]->sheet_id]])
             //                 ->update(['fragrance_id' => ($i <= ($count_fragrance - 1)) ? $fragrance[$i] : last($fragrance)]);
             //         }
-            //         return redirect(url('/home/cart'));
+            //         return redirect('main.summary.orders');
             //     } elseif ($count_sheet <= $count_fragrance) {
             //         for ($j = 0; $j < $count_fragrance; $j++) {
             //             if ($j <= ($count_sheet - 1)) {
@@ -456,7 +478,7 @@ class MainController extends Controller
             //                 CustomProduct::create(['cart_id' => $cart_id, 'sheet_id' => $last_sheet_id, 'fragrance_id' => $fragrance[$j], 'qty' => 1, 'created_at' => $date_now, 'updated_at' => $date_now]);
             //             }
             //         }
-            //         return redirect(url('/home/cart'));
+            //         return redirect('main.summary.orders');
             //     } else {
             //         return redirect(url('/'));
             //     }

@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title', $title)
+@section('title', "Summary Order")
 
-@section('page-title', $title)
+@section('page-title', "Summary Order")
 
 @section('body-id', 'custom-fragrance-page')
 
@@ -18,12 +18,34 @@
                     Formula code: <var>#02139</var>
                 </div>
                 <div class="h5">
-                    <p>Serum : <span>serum name</span></p>
-                    <p>Sheet mask: <span>sheet mask name</span></p>
+                    <p>Serum :
+                        <br>
+                        @php
+                         $total_price = 0;
+                        @endphp 
+                        @foreach ($sub_cart as $items)
+                        @php
+                         $total_price += $items->total_price;   
+                        @endphp
+                        @if ($items->fragrance_id != null)
+                        - <span>{{$items->name}}</span>, Qty: <span>{{$items->qty}}</span>, Price: <span>@currency($items->total_price)</span><br>
+                        @endif
+                        @endforeach
+                    </p>
+                    <p>Sheet mask : 
+                        <br> 
+                        @foreach ($sub_cart as $items)
+                        @if($items->sheet_id != null)
+                        - <span>{{$items->name}}</span>, Qty: <span>{{$items->qty}}</span>, Price: <span>@currency($items->total_price)</span><br>
+                        @endif
+                        @endforeach
+                    </p>
+                    {{-- <p>Qty : <span>{{$items->qty}}</span></p>
+                    <p>Price : <span>{{$items->total_price}}</span></p> --}}
                 </div>
                 <div class="mt-auto d-flex justify-content-between">
-                    <h2 class="font-weight-bold h4">Total price: <var class="not-italic">@currency(7000)</var></h2>
-                    <a href="" class="btn d-inline-flex font-weight-bold btn-sm bg--cream text-body">
+                    <h2 class="font-weight-bold h4">Total price: <var class="not-italic">@currency($total_price)</var></h2>
+                    <a href="{{route('cart.fill.address')}}" class="btn d-inline-flex font-weight-bold btn-sm bg--cream text-body">
                         Continue to Shipping & Payment
                     </a>
                 </div>

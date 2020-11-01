@@ -19,6 +19,8 @@ class CreateCustomProductsTable extends Migration
             $table->integer('sheet_id')->unsigned()->nullable();
             $table->integer('fragrance_id')->unsigned()->nullable();
             $table->integer('qty');
+            $table->integer('price');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class CreateFragrancesTable extends Migration
             $table->string('fragrance_name');
             $table->string('fragrance_img');
             $table->integer('qty')->default(1);
+            $table->integer('price');
             $table->timestamps();
         });
     }

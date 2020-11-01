@@ -51,15 +51,18 @@ class MidtransController extends Controller
     $customer->status = 'active';
     $customer->save();
     // Buat transaksi ke midtrans kemudian save snap tokennya.
-    $sub_cart = CustomProduct::where('cart_id', $cart->id)->get();
+    $sub_cart = CustomProduct::select('custom_products.*', DB::raw('CASE WHEN sheets.id IS NULL THEN fragrances.fragrance_name ELSE sheets.sheet_name END as name'))
+                                ->leftJoin('sheets', 'sheets.id', '=', 'custom_products.sheet_id')
+                                ->leftJoin('fragrances', 'fragrances.id', '=', 'custom_products.fragrance_id')
+                                ->where('cart_id', $cart->id)->get();
     $items = [];
-    $price = ($cart->total_price / $cart->total_qty);
+    // $price = ($cart->total_price / $cart->total_qty);
     foreach ($sub_cart as $key => $value) {
       $items[] = [
         'id' => $value->id,
-        'price' => $price,
+        'price' => $value->price,
         'quantity' => $value->qty,
-        'name' => Sheet::find($value->sheet_id)->sheet_name . ' with ' . Fragrance::find($value->fragrance_id)->fragrance_name
+        'name' => $value->name
       ];
     }
     $items[] = [

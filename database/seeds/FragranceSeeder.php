@@ -14,13 +14,15 @@ class FragranceSeeder extends Seeder
     {
         $fragrance_name = ['Rose', 'Strawberry', 'Coffe', 'Unscented'];
         $fragrance_img = ['rose3.png', 'strawberry.png', 'coffee.png', 'Unscented.png'];
-        $qty = 1;
+        
+        $prices = [29000, 30000, 25000, 45000, 16000, 27500];
 
         foreach ($fragrance_name as $key => $value) {
             DB::table('fragrances')->insert([
                 'fragrance_name' => $value,
                 'fragrance_img' => $fragrance_img[$key],
-                'qty' => $qty
+                'qty' => rand(10,100),
+                'price' => $prices[rand(0, count($prices) - 1)]
             ]);
         }
     }

@@ -26,13 +26,14 @@ class SheetSeeder extends Seeder
             'activated-charcoal.png',
             'activated-charcoal.png'
         ];
-        $qty = 1;
+        $prices = [29000, 30000, 25000, 45000, 16000, 27500];
 
         foreach ($sheet_name as $key => $value) {
             DB::table('sheets')->insert([
                 'sheet_name' => $value,
                 'sheet_img' => $sheet_img[$key],
-                'qty' => $qty
+                'qty' => rand(10,100),
+                'price' => $prices[rand(0, count($prices) - 1)]
             ]);
         }
     }
