@@ -80,6 +80,7 @@ Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::get('address/user', 'CartController@indexShipping')->name('cart.fill.address');
   Route::get('address/user/catalog', 'CartController@indexShippingCatalog')->name('cart.fill.address.catalog');
   Route::get('cart/payment', 'CartController@indexPayment')->name('cart.custom.payment');
+  Route::get('cart/send-mail', 'CartController@process')->name('cart.process');
 
   Route::permanentRedirect('finish/payment', '/');
 

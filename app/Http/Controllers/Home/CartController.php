@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\User;
 use Veritrans_Snap;
 use App\Models\Cart;
 use App\Models\Logic;
@@ -14,12 +15,14 @@ use App\Models\SubCart;
 use App\Models\Question;
 use App\Models\Shipping;
 use App\Models\Fragrance;
+use App\Mail\EmailCustomer;
 use Veritrans_Notification;
 use Illuminate\Http\Request;
+
 use App\Models\CustomProduct;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -93,8 +96,7 @@ class CartController extends Controller
         $response = json_decode($request->getBody()->getContents(), true);
         if ($response['rajaongkir']['status']['code'] === 200) {
             $data['allCities'] = $response['rajaongkir']['results'];
-        } 
-        else {
+        } else {
             $data['allCities'] = Indonesia::allProvinces();
         }
         return view('shipping.catalog-order')->with($data);
@@ -280,8 +282,7 @@ class CartController extends Controller
         if ($response['rajaongkir']['status']['code'] === 200) {
             $ongkir = $response['rajaongkir']['results'];
             $city_name = $response['rajaongkir']['destination_details']['city_name'];
-        } 
-        else {
+        } else {
             $ongkir = 0;
             $city_name = "";
         }
@@ -326,16 +327,29 @@ class CartController extends Controller
         foreach ($product_id as $key => $value) {
             if ($qty_product[$key] > 0) {
                 CustomProduct::where('id', $value)->update([
-                    'sheet_id' => $sheet_id[$key], 
-                    'fragrance_id' => $fragrance_id[$key], 
+                    'sheet_id' => $sheet_id[$key],
+                    'fragrance_id' => $fragrance_id[$key],
                     'qty' => $qty_product[$key]
                 ]);
-            } 
-            else {
+            } else {
                 CustomProduct::where('id', $value)->delete();
             }
         }
         return redirect(url('address/user'));
+    }
+
+    public function process(Request $request)
+    {
+        $to = 'sanchez77rodriguez@gmail.com';
+        $from = User::role('admin')->first()->email;
+        $data = [
+            'status' => 'process'
+        ];
+
+        Mail::send('email.email-customer', $data, function ($message) use ($to, $from, $data) {
+            $message->to($to)->subject('Your order is ' . $data['status']);
+            $message->from($from, 'Admin Insive');
+        });
     }
 
     /**
