@@ -11,20 +11,20 @@
 @component('mail::message')
 # Here's the detail of your customer purchase details
 
-<p>Customer name : <b>{{ $order->user_id->name }}</b></p>
-<p>Customer email : <b> {{ $order->user_id->email }}</b></p>
+<p>Customer name : <b>{{ '$order->user_id->name' }}</b></p>
+<p>Customer email : <b> {{ '$order->user_id->email' }}</b></p>
 
 What your customer buy
 @component('mail::table')
     | Product name | QTY |
     | ------------ |:--- |
-    @foreach ($order->item as $item)
-    | {{ $item->product_name }} | {{ $item->qty . ' PCS' }}
-    @endforeach
+    {{-- @foreach ($order->item as $item) --}}
+    | {{ '$item->product_name' }} | {{ '$item->qty' . ' PCS' }}
+    {{-- @endforeach --}}
 @endcomponent
     
 
-## Formula code : {{ $order->formula_code }}
-## Total Price : {{ 'Rp. ' . number_format($order->total_price) }}
+## Formula code : {{ '$order->formula_code' }}
+## Total Price : {{ 'Rp. ' . 'number_format($order->total_price)' }}
 
 @endcomponent
