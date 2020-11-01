@@ -24,6 +24,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -45,7 +46,8 @@ class AdminController extends Controller
     */
     public function indexOrder()
     {
-        $order = Cart::all();
+        $order = Cart::orderBy("updated_at", "DESC")->get();
+        
         $list_order = [];
         foreach ($order as $key => $value) {
             $value->user_id = User::find($value->user_id);
@@ -136,7 +138,7 @@ class AdminController extends Controller
             ->get();
         }
         else if ($order->type_cart == 'custom') {
-            $order->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+            $order->item = CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty', 'custom_products.total_price')
             ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
             ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
             ->where('custom_products.cart_id', $order->id)
@@ -250,6 +252,15 @@ class AdminController extends Controller
     public function updateTrackingOrder(Request $request, $id)
     {
         $cart = Cart::findOrFail($id);
+        $user = User::find($cart->user_id);
+        $mail_data = [];
+        $mail_data["user_name"] = $user->name;
+        $mail_data["user_email"] = $user->email;
+        $mail_data["user_cart_code"] = $cart->cart_code;
+        Mail::raw("Your order has been shipped.", function ($message) use ($mail_data)
+        {
+            $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+        });
         $cart->tracking_number = $request->tracking_number;
         $cart->save();
         return response()->json(['status' => 200, 'tracking_number' => $request->tracking_number, 'message' => 'Success input tracking number!']);

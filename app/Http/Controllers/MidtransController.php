@@ -161,6 +161,12 @@ class MidtransController extends Controller
       $fraud = $notif->fraud_status;
       $donation = Cart::where('cart_code', $orderId)->first();
 
+      $user = User::find($donation->user_id);
+      $mail_data = [];
+      $mail_data["user_name"] = $user->name;
+      $mail_data["user_email"] = $user->email;
+      $mail_data["user_cart_code"] = $donation->cart_code;
+
       if ($transaction == 'capture') {
 
         // For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -172,6 +178,11 @@ class MidtransController extends Controller
             // $donation->addUpdate("Transaction order_id: " . $orderId ." is challenged by FDS");
             $donation->setPending();
           } else {
+
+            Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data)
+            {
+                $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+            });
             // TODO set payment status in merchant's database to 'Success'
             // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully captured using " . $type);
             $donation->setSuccess();
@@ -179,11 +190,19 @@ class MidtransController extends Controller
         }
       } elseif ($transaction == 'settlement') {
 
+        Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data)
+        {
+            $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+        });
         // TODO set payment status in merchant's database to 'Settlement'
         // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully transfered using " . $type);
         $donation->setSuccess();
       } elseif ($transaction == 'pending') {
 
+        Mail::raw("Waiting for payment.", function ($message) use ($mail_data)
+        {
+            $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+        });
         // TODO set payment status in merchant's database to 'Pending'
         // $donation->addUpdate("Waiting customer to finish transaction order_id: " . $orderId . " using " . $type);
         $donation->setPending();

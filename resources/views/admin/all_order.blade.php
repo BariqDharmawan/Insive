@@ -9,6 +9,9 @@ Today's Order
 @endsection
 @section('content')
 <main>
+  @php
+      $colorText = "";
+  @endphp
   <div class="container">
     <div class="row pt-4">
       <div class="col-12">
@@ -61,7 +64,7 @@ Today's Order
                     </a>
                   </li>
                   
-                  <li class="bg--cream">
+                  <li style="border: 1px solid #E2CCC1">
                     @switch($order->status)
                         @case('success')
                             @php $colorText = 'forestgreen' @endphp

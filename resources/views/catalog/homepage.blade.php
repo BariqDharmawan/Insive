@@ -150,7 +150,7 @@
             $(this).next('input').val(parseInt($(this).next('input').val(), 10) + 1);
             let final_price = price * $(this).next('input').val();
             // label.text(`Rp. ${addCommas(final_price)}`);
-            total_price += (final_price - price);
+            total_price += price;
             triggerLabelTotalPrice();
             input.val(final_price);
             defaultValue += parseInt($(this).next('input').val(), 10) + 1;
@@ -165,7 +165,7 @@
                 $(this).prev('input').val(parseInt($(this).prev('input').val(), 10) - 1);
                 let final_price = price * $(this).prev('input').val();
                 // label.text(`Rp. ${addCommas(final_price)}`);
-                total_price -= final_price;
+                total_price -= price;
                 triggerLabelTotalPrice();
                 input.val(final_price);
                 defaultValue += parseInt($(this).prev('input').val(), 10) - 1;
@@ -175,6 +175,9 @@
         });
 
         $(document).on('click', '.btnRemove', function(){
+            let input = $(this).parents('figcaption').find('.input-price-cart');
+            total_price -= input.val();
+            triggerLabelTotalPrice();
             let productId = $(this).parents(".product").data('product-id')
             $(this).parents(".product").remove()
             $("main .product[data-product-id='" + productId + "']").attr('data-is-cloned', "false");

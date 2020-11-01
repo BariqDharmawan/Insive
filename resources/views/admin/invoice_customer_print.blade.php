@@ -12,7 +12,7 @@ Invoice Backend <br> Admin
     main .container > .row > .col-12 + button {
         border-radius: 0 0 .25rem .25rem;
     }
-    .border-warning-custom-custom {
+    .border-warning-custom {
         border: 1px solid #E2CCC1 !important;
     }
     button[type='submit'] {
@@ -38,7 +38,7 @@ Invoice Backend <br> Admin
                     @endif
                     <li>
                       Total Price  :
-                      <var>{{ 'Rp ' . $list_order->total_price }} ( exclude shipping cost {{ 'Rp ' . $list_order->shipping_cost }} )</var>
+                      <var>@currency($list_order->total_price) ( exclude shipping cost @currency($list_order->shipping_cost) )</var>
                     </li>
                     <li class="border-warning-custom" style="height: 2px;"><br></li>
                     <li>To :<span>{{ $list_order->shipping->name }}</span></li>
@@ -54,9 +54,15 @@ Invoice Backend <br> Admin
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
                         <li>Special Ingredients : <span>{{$list_order->logic->special_ingredients}}​</span></li>
+                        <li>Total Price : <span>@currency($item->total_price)​</span></li>
                         <li class="border-warning-custom" style="height: 2px;"><br></li>
-                        <li>Sheet Type / Fragrance :</span></li>
-                        <li><span>{{ $item->sheet_name.' / '.$item->fragrance_name.' ('.$item->qty.')' }}</span></li>
+                        @if ($item->sheet_name != null)
+                            <li>Sheet Mask :</span></li>
+                            <li><span>{{ $item->sheet_name.' ('.$item->qty.')' }}</span></li>
+                        @elseif($item->fragrance_name != null)
+                            <li>Serum :</span></li>
+                            <li><span>{{ $item->fragrance_name.' ('.$item->qty.')' }}</span></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -68,6 +74,7 @@ Invoice Backend <br> Admin
                     <ul>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
+                        <li>Total Price : <span>@currency($item->total_price)</span></li>
                         <li class="border-warning-custom" style="height: 2px;"><br></li>
                         <li>Catalog :</span></li>
                         <li><span>{{ $item->product_name.' ('.$item->qty.')' }}</span></li>
