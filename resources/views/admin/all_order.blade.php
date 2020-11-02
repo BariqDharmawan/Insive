@@ -64,7 +64,7 @@ Today's Order
                     </a>
                   </li>
                   
-                  <li style="border: 1px solid #E2CCC1">
+                  <li style="border: 1px solid #E2CCC1" class="status-order">
                     @switch($order->status)
                         @case('success')
                             @php $colorText = 'forestgreen' @endphp
@@ -84,15 +84,22 @@ Today's Order
                       Status Payment: {{ $order->status }}
                     </a>
                   </li>
-                  @if ($order->status == 'success')
-                      <li>
-                        Status terkirim: sudah terkirim
-                      </li>
-                  @endif
+                  @isset($order->tracking_number)
+                    <li class="status-terkirim">
+                      Status terkirim: Sudah terkirim
+                    </li>
+                  @else
+                    <li class="status-terkirim">
+                      Status terkirim: Belum terkirim
+                    </li>
+                  @endisset
                   @if(empty($order->tracking_number))
                   <li class="bg--cream li-input-tracking-number">
                     <a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark">
-                      <i class='bx bxs-truck' ></i> Input tracking number​</a></li>
+                      <i class='bx bxs-truck' ></i> 
+                      Input tracking number​
+                    </a>
+                  </li>
                   @else
                   <li style="border: 1px solid #E2CCC1">
                     <a href="javascript:void(0)" class="text-light">
@@ -148,7 +155,7 @@ Today's Order
         })
         .catch(error => {
           Swal.showValidationMessage(
-          `Request failed: ${error}`
+            `Request failed: ${error}`
           )
         })
       },
@@ -158,6 +165,7 @@ Today's Order
         Swal.fire(result.value.message);
         $(this).parents('li.li-input-tracking-number').remove();
         parent.append(`<li style="border: 1px solid #E2CCC1"><a href="javascript:void(0)" class="text-light">Tracking Number: ${result.value.tracking_number}</a></li>`);
+        location.reload();
       }
     })
   });

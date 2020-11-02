@@ -68,9 +68,8 @@
 </main>
 @endsection
 @section('script')
-<script
-    src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
-    data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+<script data-client-key="{{ config('services.midtrans.clientKey') }}"
+src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"></script>
 <script>
     function submitForm() {
         $.post("{{ route('submit.pay-catalog') }}", {
