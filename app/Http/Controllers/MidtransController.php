@@ -52,9 +52,9 @@ class MidtransController extends Controller
     $customer->save();
     // Buat transaksi ke midtrans kemudian save snap tokennya.
     $sub_cart = CustomProduct::select('custom_products.*', DB::raw('CASE WHEN sheets.id IS NULL THEN fragrances.fragrance_name ELSE sheets.sheet_name END as name'))
-                                ->leftJoin('sheets', 'sheets.id', '=', 'custom_products.sheet_id')
-                                ->leftJoin('fragrances', 'fragrances.id', '=', 'custom_products.fragrance_id')
-                                ->where('cart_id', $cart->id)->get();
+      ->leftJoin('sheets', 'sheets.id', '=', 'custom_products.sheet_id')
+      ->leftJoin('fragrances', 'fragrances.id', '=', 'custom_products.fragrance_id')
+      ->where('cart_id', $cart->id)->get();
     $items = [];
     // $price = ($cart->total_price / $cart->total_qty);
     foreach ($sub_cart as $key => $value) {
@@ -101,7 +101,7 @@ class MidtransController extends Controller
       ['type_cart', 'catalog'],
       ['status', 'waiting']
     ])->first();
-      // dd($cart);
+    // dd($cart);
     $customer = Shipping::where('user_id', Auth::id())->where('cart_id', $cart->id)->first();
     $customer->status = 'active';
     $customer->save();
@@ -179,9 +179,8 @@ class MidtransController extends Controller
             $donation->setPending();
           } else {
 
-            Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data)
-            {
-                $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+            Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data) {
+              $message->to($mail_data["user_email"])->subject($mail_data["user_name"] . ", Status for Your Order #" . $mail_data["user_cart_code"]);
             });
             // TODO set payment status in merchant's database to 'Success'
             // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully captured using " . $type);
@@ -190,18 +189,25 @@ class MidtransController extends Controller
         }
       } elseif ($transaction == 'settlement') {
 
-        Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data)
-        {
-            $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
-        });
+        Mail::raw(
+            "Payment with order id " . $mail_data["user_cart_code"] .
+            " was successful. The payment was success. Please check your admin account on Insive Dashboard",
+          function ($message) use ($mail_data) {
+            $message->to(User::role('admin')->first()->email)
+              ->subject(
+                "Status order for user " . $mail_data["user_email"]
+              );
+          }
+        );
         // TODO set payment status in merchant's database to 'Settlement'
         // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully transfered using " . $type);
         $donation->setSuccess();
       } elseif ($transaction == 'pending') {
 
-        Mail::raw("Waiting for payment.", function ($message) use ($mail_data)
-        {
-            $message->to($mail_data["user_email"])->subject($mail_data["user_name"].", Status for Your Order #".$mail_data["user_cart_code"]);
+        Mail::raw("Waiting for payment.", function ($message) use ($mail_data) {
+          $message->to($mail_data["user_email"])->subject(
+            $mail_data["user_name"] . ", Status for Your Order #" . $mail_data["user_cart_code"]
+          );
         });
         // TODO set payment status in merchant's database to 'Pending'
         // $donation->addUpdate("Waiting customer to finish transaction order_id: " . $orderId . " using " . $type);
