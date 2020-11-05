@@ -95,7 +95,7 @@ class QuestionSeeder extends Seeder
             ],
             [
                 'no_question' => 3,
-                'question' => "How many caffeinated benerages do you drink daily? (Coffee, tea, soda, and energy drinks count)",
+                'question' => "How many caffeinated beverages do you drink daily? (Coffee, tea, soda, and energy drinks count)",
                 'type' => 'lifestyle',
                 'category' => 'single',
                 'status' => 'dummy'
