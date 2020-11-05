@@ -40,7 +40,7 @@ class AdminController extends Controller
     }
 
     /**
-    * Display a listing of the resource.
+    * Display a listing of all order
     *
     * @return \Illuminate\Http\Response
     */
@@ -52,8 +52,13 @@ class AdminController extends Controller
         foreach ($order as $key => $value) {
             $value->user_id = User::find($value->user_id);
             if ($value->type_cart == 'catalog') {
-                $value->item = SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
-                ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+                $value->item = SubCart::select(
+                    'products.product_name', 
+                    'products.type', 
+                    'products.category', 
+                    'sub_carts.qty', 
+                    'sub_carts.total_price'
+                )->leftJoin('products', 'products.id', 'sub_carts.product_id')
                 ->where('sub_carts.cart_id', $value->id)
                 ->get();
             }

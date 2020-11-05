@@ -2,7 +2,7 @@
 @section('title', 'Invoice On Admin')
 @section('body-id', 'order-today-page-admin')
 @section('page-title')
-Today's Order
+All Order
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">
@@ -17,41 +17,52 @@ Today's Order
       <div class="col-12">
         <div class="accordion w-100" id="accordionExample">
           @foreach ($list_order as $order)
-          <div class="card">
-            <div class="card-header d-flex align-items-center" id="heading{{ $order->id }}">
+          <div class="card mb-4">
+            <div class="card-header d-flex flex-column align-items-center flex-lg-row" 
+            id="heading{{ $order->id }}">
               <h2 class="mb-0">
-                <button class="btn bg--cream" type="button" data-toggle="collapse" data-target="#collapse{{ $order->id }}"
-                  aria-expanded="@if($order->id == 1) true @else false @endif" aria-controls="collapse{{ $order->id }}">
+                <button class="btn bg--cream" type="button" data-toggle="collapse" 
+                data-target="#collapse{{ $order->id }}" aria-controls="collapse{{ $order->id }}"
+                aria-expanded="{{ $order->id == 1 ? 'true' : 'false' }}">
                   {{ $order->user_id->name }}
                 </button>
               </h2>
-              <var>{{ $order->total_qty . ' PCS' }}</var>
+              <div class="ml-lg-auto mt-3 mt-lg-0">
+                <time class="mr-3">{{ $order->updated_at->format('d M Y H:i') }}</time>
+                <var>{{ $order->total_qty . ' PCS' }}</var>
+              </div>
             </div>
-            <div id="collapse{{ $order->id }}" class="collapse @if($order->id == 1) show @endif" aria-labelledby="heading{{ $order->id }}"
-              data-parent="#accordionExample">
+            <div id="collapse{{ $order->id }}" class="collapse {{ $order->id == 1 ? 'show' : '' }}"
+            aria-labelledby="heading{{ $order->id }}" data-parent="#accordionExample">
               <div class="card-body row mx-0">
                 <div class="mb-4 col-12 px-0">
-                  <p class="mb-0">Formula Code: {{ $order->formula_code }}</p>
+                  <p class="mb-0">
+                    Formula Code: {{ $order->formula_code }}
+                  </p>
                   <p class="mb-0">Acne​</p>
                 </div>
                 <ul class="col-12 px-0">
                   @if ($order->type_cart == 'custom')
-                  @foreach ($order->item as $item)
+                  @forelse ($order->item as $item)
+                  tests
                   <li>
+                    <span>Product Name: {{ $item->name }}</span>
                     @if ($item->sheet_name != null)
                     <span>Sheet Mask: {{ $item->sheet_name }}</span>
-                    @elseif($item->fragrance_name != null)
+                    @elseif ($item->fragrance_name != null)
                     <span>Serum: {{ $item->fragrance_name }}</span>
                     @endif
                     <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
                   </li>
-                  @endforeach
+                  @empty
+                  <li>lah kosong</li>
+                  @endforelse
                   @elseif ($order->type_cart == 'catalog')
                   @foreach ($order->item as $item)
                   <li>
                     <span>Product Name: {{ $item->product_name }}</span>
                     <span>Category: {{ $item->category }}</span>
-                    <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
+                    <var class="float-lg-right">{{ $item->qty . ' PCS' }}</var>
                   </li>
                   @endforeach
                   @endif
@@ -95,7 +106,7 @@ Today's Order
                   @endisset
                   @if(empty($order->tracking_number))
                   <li class="bg--cream li-input-tracking-number">
-                    <a href="javascript:void(0)" data-id="{{$order->id}}" class="text-dark">
+                    <a href="javascript:void(0)" data-id="{{ $order->id }}" class="text-dark">
                       <i class='bx bxs-truck' ></i> 
                       Input tracking number​
                     </a>
@@ -103,7 +114,7 @@ Today's Order
                   @else
                   <li style="border: 1px solid #E2CCC1">
                     <a href="javascript:void(0)" class="text-light">
-                      Tracking Number: {{$order->tracking_number}}
+                      Tracking Number: {{ $order->tracking_number }}
                     </a>
                   </li>
                   @endif

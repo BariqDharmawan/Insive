@@ -1269,12 +1269,10 @@ footer a {
     background-color: #E2CCC1;
 }
 
-#order-today-page-admin main .container>.row>.col-12 .card-header var,
-#order-today-page-admin main .container>.row>.col-md-6 .card-header var {
+#order-today-page-admin main .container>.row>.col-12 .card-header var {
     color: #E2CCC1;
     justify-content: center;
     border: 1px solid #E2CCC1;
-    margin-left: auto;
     display: inline-flex;
     padding: 10px;
 }
