@@ -24,7 +24,7 @@
         <h4 class="text--cream">Let's Continue Shopping!</h4>
       </div>
       <div class="row justify-content-center mb-4">
-        <a href="{{ route('main.question') }}" class="btn bg--cream">Yapp, I wanna Custom Mask Again</a>
+        <a href="{{ route('main.question') }}" class="btn bg--cream">Yapp, I wanna custom again</a>
         <span class="text-secondary d-inline-flex align-items-center mx-4">or</span>
         <a href="{{ route('catalog.default') }}" class="btn bg--cream">Sure, Take Me To The Catalog</a>
       </div>
