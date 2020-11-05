@@ -130,7 +130,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
     Route::resource('manage-discount', 'DiscountController')->except(['create', 'edit', 'show']);
   });
 
-
+  Route::resource('logic', 'LogicController')->only('index', 'update');
   Route::resources([
     'pesan-dari-customer' => 'ContactusController',
     'admin' => 'AdminController',
@@ -139,7 +139,6 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
     'fragrance' => 'FragranceController',
     'sheet' => 'SheetController',
     'question' => 'QuestionController',
-    'logic' => 'LogicController',
     'faq' => 'FaqController',
     'how-to-order' => 'HowToOrderController'
   ]);
