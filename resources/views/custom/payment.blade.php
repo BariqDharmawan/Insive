@@ -30,11 +30,10 @@
           </p>
           <p class="text--cream px-2 px-md-0 mb-5 my-md-4">Total Payment:​</p>
           <div class="form-group form-row">
-            <label class="text--cream col-auto col-form-label">3 Days Package = </label>
             <div class="input-group col">
               <div class="input-group-prepend bg-transparent">
                 <div class="input-group-text bg-transparent text--cream pl-0">
-                  Rp. {{ number_format($price, 0) }}
+                  <span>Rp. <var>{{ number_format($price, 0) }}</var></span>
                   <input type="hidden" name="price" value="{{ number_format($price, 0) }}">
                 </div>
               </div>

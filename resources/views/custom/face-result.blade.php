@@ -21,9 +21,8 @@
           </figcaption>
         </figure>
       </div>
-      <form action="{{ route('main.options_face_result') }}" method="post">
+      <form action="{{ route('main.options_face_result') }}" method="post" class="col-12 col-md-6 text-center">
       @csrf
-      <div class="col-12 col-md-6 text-center">
         <h3 class="text--cream">Choose Your Products (you can tick both)</h3>
         <div class="row justify-content-between my-5">
           <div class="col-md-6 col-lg-5">
@@ -53,7 +52,6 @@
         class="btn bg--cream mt-5 d-inline-flex mx-auto text-capitalize">
           Next, Start to Customize <i class='bx bx-chevron-right' ></i>
       </button>
-      </div>
       </form>
     </div>
   </div>
