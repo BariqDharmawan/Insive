@@ -104,7 +104,7 @@ class MainController extends Controller
         if (empty($code_cart)) {
             $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', 1);
         } else {
-            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -1) + 1);
+            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -5) + 1);
         }
         $table = Cart::firstOrCreate(
             [
@@ -164,7 +164,7 @@ class MainController extends Controller
         if (empty($code_cart)) {
             $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', 1);
         } else {
-            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -1) + 1);
+            $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -5) + 1);
         }
         $table = Cart::firstOrCreate(
             [
@@ -243,7 +243,7 @@ class MainController extends Controller
             if (empty($code_cart)) {
                 $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', 1);
             } else {
-                $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -1) + 1);
+                $code = 'C' . date('HisYmd') . $user_id . sprintf('%05d', substr($code_cart->cart_code, -5) + 1);
             }
             $table = Cart::firstOrCreate(
                 [
