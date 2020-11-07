@@ -31,6 +31,7 @@ Invoice Backend <br> Admin
                 <p class="font-weight-bold">INSIVE​</p>
                 <time class="font-weight-bold">({{ date_format($list_order->created_at, 'd-m-Y') }})</time>
                 <ul>
+                    <li>Order ID : <span>{{ $list_order->cart_code }}</span></li>
                     <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                     <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
                     @if (!empty($list_order->logic))
@@ -51,6 +52,7 @@ Invoice Backend <br> Admin
             <div class="col-6 my-3">
                 <div class="col-12 text--cream border-warning-custom">
                     <ul>
+                        <li>Order ID : <span>{{ $list_order->cart_code }}</span></li>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
                         <li>Special Ingredients : <span>{{$list_order->logic->special_ingredients}}​</span></li>
@@ -72,6 +74,7 @@ Invoice Backend <br> Admin
             <div class="col-6 my-3">
                 <div class="col-12 text--cream border-warning-custom">
                     <ul>
+                        <li>Order ID : <span>{{ $list_order->cart_code }}</span></li>
                         <li>Customer Name : <span>{{ $list_order->user->name }}</span></li>
                         <li>Formula Code : <span>{{ $list_order->formula_code }}</span></li>
                         <li>Total Price : <span>@currency($item->total_price)</span></li>

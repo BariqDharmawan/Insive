@@ -28,7 +28,8 @@ All Order
                 </button>
               </h2>
               <div class="ml-lg-auto mt-3 mt-lg-0">
-                <time class="mr-3">{{ $order->updated_at->format('d M Y H:i') }}</time>
+                <var>{{ $order->updated_at->format('d F Y H:i') }}</var>
+                <var>#{{$order->cart_code}}</var>
                 <var>{{ $order->total_qty . ' PCS' }}</var>
               </div>
             </div>
@@ -44,7 +45,6 @@ All Order
                 <ul class="col-12 px-0">
                   @if ($order->type_cart == 'custom')
                   @forelse ($order->item as $item)
-                  tests
                   <li>
                     <span>Product Name: {{ $item->name }}</span>
                     @if ($item->sheet_name != null)
@@ -55,7 +55,6 @@ All Order
                     <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
                   </li>
                   @empty
-                  <li>lah kosong</li>
                   @endforelse
                   @elseif ($order->type_cart == 'catalog')
                   @foreach ($order->item as $item)
