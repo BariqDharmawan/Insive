@@ -199,6 +199,11 @@ class MidtransController extends Controller
               );
           }
         );
+        Mail::raw("Payment was successful, we have forwarded your order.", function ($message) use ($mail_data) {
+          $message->to($mail_data["user_email"])->subject(
+            $mail_data["user_name"] . ", Status for Your Order #" . $mail_data["user_cart_code"]
+          );
+        });
         // TODO set payment status in merchant's database to 'Settlement'
         // $donation->addUpdate("Transaction order_id: " . $orderId ." successfully transfered using " . $type);
         $donation->setSuccess();

@@ -61,6 +61,7 @@ Route::prefix('payment')->middleware(['auth', 'verified'])->name('payment.')->gr
 
 Route::namespace('Home')->middleware(['auth', 'verified'])->group(function () {
   Route::get('catalog', 'CatalogController@index')->name('catalog.default');
+  Route::get('catalog/summary/order', 'CatalogController@summaryOrder')->name('summary.orders.catalog');
   Route::resource('profile', 'ProfileController');
   Route::get('force/logout', 'MainController@logout');
 

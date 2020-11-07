@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductDiscount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
@@ -24,6 +25,21 @@ class CatalogController extends Controller
             'product' => $product,
             'discount' => ProductDiscount::all()
         ]);
+    }
+
+    public function summaryOrder()
+    {
+        $user_id = Auth::id();
+        $cart = Cart::where([['user_id', '=', $user_id], ['type_cart', '=', 'catalog'], ['status', '=', 'waiting']])->first();
+        if (empty($cart)) {
+            return redirect(url('/'));
+        }
+        $sub_cart = SubCart::select('sub_carts.*', 'products.product_name as product_name')
+                            ->leftJoin('products', 'products.id', '=', 'sub_carts.product_id')
+                            ->where('cart_id', $cart->id)->get();
+        $data['sub_cart'] = $sub_cart;
+        // dd($data);
+        return view('home.summary-order-catalog')->with($data);
     }
 
     public function store(Request $request)
@@ -69,7 +85,7 @@ class CatalogController extends Controller
             }
         }
 
-        return redirect()->route('cart.fill.address.catalog');
+        return redirect()->route('summary.orders.catalog');
     }
 
     public function cartIndex()

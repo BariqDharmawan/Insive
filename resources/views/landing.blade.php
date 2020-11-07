@@ -42,7 +42,7 @@
       @endguest
     </div>
     <div class="recommend-link">
-      <a href="{{ route('main.question') }}" class="text--cream">Custom your SHEET MASK!</a>
+      <a href="{{ route('main.question') }}" class="text--cream">Custom your SKIN CARE!</a>
       <small>or</small>
       <a href="{{ route('catalog.default') }}" class="text--cream">buy from our catalog!</a>
     </div>

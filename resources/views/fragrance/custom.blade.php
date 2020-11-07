@@ -38,7 +38,7 @@
       </div>
       <div class="row justify-content-center justify-content-lg-end py-5">
         <button type="submit" class="btn bg--cream">
-          <b>Next</b>, Go to cart <i class='bx bx-caret-right'></i>
+          <b>Next</b> <i class='bx bx-caret-right'></i>
         </button>
       </div>
     </form>
