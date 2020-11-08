@@ -272,6 +272,14 @@ class MainController extends Controller
      */
     public function question()
     {
+        $user_id = Auth::user()->id;
+        $answers = Answer::select('answers.question_id', 'answers.option_id', 'options.text')
+            ->join('options', 'options.id', 'answers.option_id')
+            ->where('answers.user_id', '=', $user_id)
+            ->get()->toArray();
+        if (count($answers) > 0) {
+            return redirect()->route('home.main.face.result');
+        }
         $data['question'] = Question::findOrfail(1);
         return view('custom.question')->with($data);
     }
