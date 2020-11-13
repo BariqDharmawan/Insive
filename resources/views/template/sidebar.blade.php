@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.order.all') }}" class="nav-link">
+                <a href="{{ route('admin.order.all') }}" class="nav-link" target="_blank">
                     <i class="nav-icon fas fa-scroll"></i>
                     <p>Order</p>
                 </a>
