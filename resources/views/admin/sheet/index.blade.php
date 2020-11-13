@@ -30,7 +30,8 @@
         <div class="card-header no-border">
             <div class="d-flex justify-content-between">
                 <h3 class="card-title">List of Sheet</h3>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                <button type="button" class="btn btn-primary" id="btn-add-sheet" 
+                data-toggle="modal" data-target="#addModal">
                     Add New Sheet
                 </button>
             </div>
@@ -116,16 +117,24 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-    let price, id, name, status, route;
+    let route;
+    const addModal = $("#addModal");
+    $("#btn-add-sheet").on('click', function() {
+       route = "{{ route('admin.sheet.store') }}";
+       addModal.find('input[name="sheet_img"]').prop('required', true)
+       addModal.find('form').attr('action', route);
+    });
+
+    let price, id, name, status;
     const editModal = $('#editModal');
     $('.btn-edit').on('click', function() {
         id = $(this).data('id');
         name = $(this).data('name');
         status = $(this).data('status');
         price = $(this).data('price');
-        console.log(id, name, status, price);
         route = "{{route('admin.sheet.update.api')}}/"+id;
         editModal.find('input[name="id"]').val(id);
+        editModal.find('input[name="sheet_img"]').prop('required', false);
         editModal.find('input[name="sheet_name"]').val(name);
         editModal.find('input[name="sheet_price"]').val(price);
         editModal.find('select[name="sheet_status"]').val(status);
