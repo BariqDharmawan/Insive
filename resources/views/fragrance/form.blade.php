@@ -5,24 +5,25 @@ action="{{-- routing on js --}}" class="modal-body" enctype="multipart/form-data
         @method('PUT')
     @endif
     <div class="col-12 mb-2">
-        <label>Fragrance Name<small class="text-danger">*</small></label>
+        <label>Serum Name<small class="text-danger">*</small></label>
         <input type="text" class="form-control" name="fragrance_name" required autocomplete="off">
     </div>
     <div class="col-12 mb-2">
-        <label>Fragrance Price<small class="text-danger">*</small></label>
-        <input type="number" class="form-control" name="fragrance_price" required autocomplete="off">
+        <label>Serum Price<small class="text-danger">*</small></label>
+        <input type="number" class="form-control" min="1000" max="999999999" 
+        name="fragrance_price" required autocomplete="off">
     </div>
     <div class="col-12 mb-2">
-        <label>Fragrance Image<small class="text-danger">*</small></label>
+        <label>Serum Image<small class="text-danger">*</small></label>
         <div class="custom-file">
             <input type="file" name="fragrance_img" class="custom-file-input" id="fragrance_img">
             <label class="custom-file-label" for="fragrance_img">
-                Choose Image For Your Fragrance
+                Choose Image For Your Serum
             </label>
         </div>
     </div>
     <div class="col-12 mb-2">
-        <label>Fragrance available<small class="text-danger">*</small></label>
+        <label>Serum available<small class="text-danger">*</small></label>
         <select name="is_available" class="form-control" id="" required>
             <option value="1">Yes</option>
             <option value="0">No</option>
