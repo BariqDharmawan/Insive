@@ -45,7 +45,7 @@ action="{{-- routing on js --}}" class="modal-body" enctype="multipart/form-data
         <label id="sheet_status_add">
             Sheet available <small class="text-danger">*</small>
         </label>
-        <select name="is_available" class="form-control" id="sheet_status_add" required>
+        <select name="is_available" class="custom-select" id="sheet_status_add" required>
             <option value="1">Yes</option>
             <option value="0">No</option>
         </select>

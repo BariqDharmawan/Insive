@@ -5,13 +5,25 @@ action="{{-- routing on js --}}" class="modal-body" enctype="multipart/form-data
         @method('PUT')
     @endif
     <div class="col-12 mb-2">
-        <label>Serum Name<small class="text-danger">*</small></label>
-        <input type="text" class="form-control" name="fragrance_name" required autocomplete="off">
+        @input([
+            'value' => '',
+            'name' => 'fragrance_name',
+            'placeholder' => 'Serum name',
+            'labelText' => 'Serum name',
+            'isRequired' => true,
+        ])
     </div>
     <div class="col-12 mb-2">
-        <label>Serum Price<small class="text-danger">*</small></label>
-        <input type="number" class="form-control" min="1000" max="999999999" 
-        name="fragrance_price" required autocomplete="off">
+        @input([
+            'type' => 'number',
+            'value' => '',
+            'name' => 'fragrance_price',
+            'placeholder' => 'Serum Price',
+            'labelText' => 'Serum Price',
+            'min' => 1000,
+            'max' => 999999999,
+            'isRequired' => true,
+        ])
     </div>
     <div class="col-12 mb-2">
         <label>Serum Image<small class="text-danger">*</small></label>
@@ -24,7 +36,7 @@ action="{{-- routing on js --}}" class="modal-body" enctype="multipart/form-data
     </div>
     <div class="col-12 mb-2">
         <label>Serum available<small class="text-danger">*</small></label>
-        <select name="is_available" class="form-control" id="" required>
+        <select name="is_available" class="custom-select" id="" required>
             <option value="1">Yes</option>
             <option value="0">No</option>
         </select>
