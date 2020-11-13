@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Sheet;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\CustomProduct;
-use File;
-use Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class SheetController extends Controller
 {
@@ -19,17 +19,7 @@ class SheetController extends Controller
     public function index()
     {
         $data['sheet'] = Sheet::all();
-        return view('admin.sheet.sheet_index')->with($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('admin.sheet.index')->with($data);
     }
 
     /**
@@ -40,39 +30,24 @@ class SheetController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['sheet_name' => 'required', 'sheet_img' => 'image|mimes:png,jpg,jpeg,gif|required']);
+        $request->validate([
+            'sheet_name' => 'required',
+            'sheet_img' => 'required|image|mimes:png,jpg,jpeg,gif',
+            'is_available' => 'required|digits_between:0,1',
+            'sheet_price' => 'required|integer|min:1000|max:999999999'
+        ]);
+
         $table = new Sheet;
         $table->sheet_name = $request->sheet_name;
-        $table->qty = $request->sheet_status;
+        $table->is_available = $request->is_available;
+        $table->price = $request->sheet_price;
         $file = $request->file('sheet_img');
-        $filename = date('Y_m_d_His').'_'.Str::slug($request->sheet_name, '_').".".$file->getClientOriginalExtension();
+        $filename = date('Y_m_d_His') . '_' . Str::slug($request->sheet_name, '_') . "." . $file->getClientOriginalExtension();
         $table->sheet_img = $filename;
         $table->save();
         $file->move("img/sheet/", $filename);
-        $request->session()->flash('success_message', "Success adding ".$table->sheet_name);
+        $request->session()->flash('success_message', "Success adding " . $table->sheet_name);
         return redirect()->route('admin.sheet.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -84,7 +59,6 @@ class SheetController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     /**
@@ -96,24 +70,34 @@ class SheetController extends Controller
      */
     public function updateApi(Request $request, $id)
     {
-        $request->validate(['sheet_name' => 'required', 'sheet_status' => 'integer|required']);
-        if(!empty($request->sheet_img)) {
+
+        $request->validate([
+            'sheet_name' => 'required',
+            'is_available' => 'required|digits_between:0,1',
+            'sheet_price' => 'required|integer|min:1000|max:999999999'
+        ]);
+
+        if (!empty($request->sheet_img)) {
             $request->validate(['sheet_img' => 'image|mimes:png,jpg,jpeg,gif|required']);
         }
+
         $table = Sheet::findOrfail($id);
         $oldFilename = $table->sheet_name;
         $table->sheet_name = $request->sheet_name;
-        $table->qty = $request->sheet_status;
-        if(!empty($request->sheet_img)) {
+        $table->is_available = $request->is_available;
+        $table->price = $request->sheet_price;
+        if (!empty($request->sheet_img)) {
             $file = $request->file('sheet_img');
-            $filename = date('Y_m_d_His').'_'.Str::slug($request->sheet_name, '_').".".$file->getClientOriginalExtension();
+            $filename = date('Y_m_d_His') . '_' . Str::slug($request->sheet_name, '_') . "." . $file->getClientOriginalExtension();
             $table->sheet_img = $filename;
-            File::delete('img/sheet/'.$oldFilename);
+            File::delete('img/sheet/' . $oldFilename);
             $file->move("img/sheet/", $filename);
         }
         $table->save();
-        $request->session()->flash('success_message', "Success update ".$table->sheet_name);
-        return redirect()->route('admin.sheet.index');
+        return redirect()->route('admin.sheet.index')->with(
+            'success_message',
+            "Success update " . $table->sheet_name
+        );
     }
 
     /**
@@ -127,12 +111,12 @@ class SheetController extends Controller
         $table = Sheet::findOrfail($id);
         $exist = CustomProduct::where('sheet_id', $id)->count();
         $name = $table->sheet_name;
-        if($exist > 0) {
-            $request->session()->flash('failed_message', "Failed delete ".$name." because has bought!");
+        if ($exist > 0) {
+            $request->session()->flash('failed_message', "Failed delete " . $name . " because has bought!");
             return redirect()->route('admin.sheet.index');
         }
         $table->delete();
-        $request->session()->flash('success_message', "Success delete ".$name);
+        $request->session()->flash('success_message', "Success delete " . $name);
         return redirect()->route('admin.sheet.index');
     }
 }

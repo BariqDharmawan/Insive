@@ -29,10 +29,10 @@ class SheetSeeder extends Seeder
         $prices = [29000, 30000, 25000, 45000, 16000, 27500];
 
         foreach ($sheet_name as $key => $value) {
-            DB::table('sheets')->insert([
+            DB::table('sheet')->insert([
                 'sheet_name' => $value,
                 'sheet_img' => $sheet_img[$key],
-                'qty' => rand(10,100),
+                'is_available' => false,
                 'price' => $prices[rand(0, count($prices) - 1)]
             ]);
         }
