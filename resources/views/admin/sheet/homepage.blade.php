@@ -60,23 +60,7 @@
                             <td>{{ $value->sheet_name }}</td>
                             <td>@currency($value->price)</td>
                             <td>
-                                @if ($value->is_available === true)
-                                    @php
-                                        $badgeClass = 'success';
-                                        $icon = 'fa-check';
-                                        $status = 'available';
-                                    @endphp
-                                @else
-                                    @php
-                                        $badgeClass = 'danger';
-                                        $icon = 'fa-times';
-                                        $status = 'not available';
-                                    @endphp
-                                @endif
-                                <small class="badge badge-{{ $badgeClass }}">
-                                    <i class="fa {{ $icon }}"></i>
-                                    <span>{{ $status }}</span>
-                                </small>
+                                @include('admin.frag-sheet-status')
                             </td>
                             <td style="width:180px">
                                 <button class="btn btn-sm btn-warning btn-edit" data-id="{{$value->id}}" 
@@ -100,10 +84,8 @@
     </div>
 </div>
 
-<!-- Modal Add -->
-@include('admin.sheet.create')
-<!-- Modal Edit -->
-@include('admin.sheet.edit')
+{{-- modal add and edit sheet --}}
+@include('admin.sheet.add-edit')
 
 @endsection
 

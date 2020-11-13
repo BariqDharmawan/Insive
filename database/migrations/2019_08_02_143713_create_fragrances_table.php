@@ -13,11 +13,11 @@ class CreateFragrancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fragrances', function (Blueprint $table) {
+        Schema::create('fragrance', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fragrance_name');
             $table->string('fragrance_img');
-            $table->integer('qty')->default(1);
+            $table->boolean('is_available')->default(true);
             $table->integer('price');
             $table->timestamps();
         });

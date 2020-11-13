@@ -1,6 +1,9 @@
 <form onsubmit="return confirm('Are you sure?')" method="post" id="{{ $idForm }}"
 action="{{-- routing on js --}}" class="modal-body" enctype="multipart/form-data">
     @csrf
+    @if ($idForm == 'form-edit-sheet')
+        @method('PUT')
+    @endif
     <div class="col-12 mb-2">
         @input([
             'value' => '',

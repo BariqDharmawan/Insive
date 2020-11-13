@@ -2,137 +2,119 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Fragrance;
-use App\Models\CustomProduct;
-use Str;
-use File;
 use Date;
+use App\Models\Fragrance;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\CustomProduct;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class FragranceController extends Controller
 {
+
+    protected function saveFragrance(Fragrance $fragrance, Request $request)
+    {
+        $fragranceName = $request->fragrance_name;
+
+        $fragrance->fragrance_name = $fragranceName;
+        $fragrance->price = $request->fragrance_price;
+        $fragrance->is_available = $request->is_available;
+
+        if ($request->has('fragrance_img')) {
+            $file = $request->file('fragrance_img');
+            $filename = str_replace(' ', '_', Carbon::now()) . '_' . $file->getClientOriginalName();
+            $file->move("img/fragrance/", $filename);
+
+            $fragrance->fragrance_img = $filename;
+        }
+        $fragrance->save();
+    }
+
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $data['fragrance'] = Fragrance::all();
         return view('fragrance.homepage')->with($data);
     }
-    
+
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-    
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $request->validate(['fragrance_name' => 'required', 'fragrance_status' => 'integer|required', 'fragrance_img' => 'image|mimes:png,jpg,jpeg,gif|required']);
-        $table = new Fragrance;
-        $table->fragrance_name = $request->fragrance_name;
-        $table->qty = $request->fragrance_status;
-        $file = $request->file('fragrance_img');
-        $filename = date('Y_m_d_His').'_'.Str::slug($request->fragrance_name, '_').".".$file->getClientOriginalExtension();
-        $table->fragrance_img = $filename;
-        $table->save();
-        $file->move("img/fragrance/", $filename);
-        $request->session()->flash('success_message', "Success adding ".$table->fragrance_name);
-        return redirect()->route('admin.fragrance.index');
+        $request->validate([
+            'fragrance_name' => 'required|max:255',
+            'is_available' => 'required|digits_between:0,1',
+            'fragrance_price' => 'required|integer|min:1000|max:999999999',
+            'fragrance_img' => 'required|image|mimes:png,jpg,jpeg,gif'
+        ]);
+
+        $fragrance = new Fragrance;
+
+        $this->saveFragrance($fragrance, $request);
+
+        return redirect()->route('admin.fragrance.index')->with(
+            'success_message',
+            "Success adding " . $fragrance->fragrance_name
+        );
     }
-    
+
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-        //
-    }
-    
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
-    {
-        //
-    }
-    
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-    }
-    
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function updateApi(Request $request, $id)
     {
-        $request->validate(['fragrance_name' => 'required', 'fragrance_status' => 'integer|required']);
-        if(!empty($request->fragrance_img)) {
-            $request->validate(['fragrance_img' => 'image|mimes:png,jpg,jpeg,gif|required']);
+        $request->validate([
+            'fragrance_name' => 'required|max:255',
+            'is_available' => 'required|digits_between:0,1',
+            'fragrance_price' => 'required|integer|min:1000|max:999999999',
+            'fragrance_img' => 'nullable|mimes:png,jpg,jpeg,gif'
+        ]);
+
+        $fragrance = Fragrance::findOrfail($id);
+        if ($request->has('fragrance_img')) {
+            File::delete('img/fragrance/' . $fragrance->fragrance_img);
         }
-        $table = Fragrance::findOrfail($id);
-        $oldFilename = $table->fragrance_name;
-        $table->fragrance_name = $request->fragrance_name;
-        $table->qty = $request->fragrance_status;
-        if(!empty($request->fragrance_img)) {
-            $file = $request->file('fragrance_img');
-            $filename = date('Y_m_d_His').'_'.Str::slug($request->fragrance_name, '_').".".$file->getClientOriginalExtension();
-            $table->fragrance_img = $filename;
-            File::delete('img/fragrance/'.$oldFilename);
-            $file->move("img/fragrance/", $filename);
-        }
-        $table->save();
-        $request->session()->flash('success_message', "Success update ".$table->fragrance_name);
-        return redirect()->route('admin.fragrance.index');
+        $this->saveFragrance($fragrance, $request);
+
+
+
+        return redirect()->route('admin.fragrance.index')->with(
+            'success_message',
+            "Success update " . $fragrance->fragrance_name
+        );
     }
-    
+
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request, $id)
     {
         $table = Fragrance::findOrfail($id);
         $exist = CustomProduct::where('fragrance_id', $id)->count();
         $name = $table->fragrance_name;
-        if($exist > 0) {
-            $request->session()->flash('failed_message', "Failed delete ".$name." because has bought!");
+        if ($exist > 0) {
+            $request->session()->flash('failed_message', "Failed delete " . $name . " because has bought!");
             return redirect()->route('admin.fragrance.index');
         }
         $table->delete();
-        $request->session()->flash('success_message', "Success delete ".$name);
+        $request->session()->flash('success_message', "Success delete " . $name);
         return redirect()->route('admin.fragrance.index');
     }
 }

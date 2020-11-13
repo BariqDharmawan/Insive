@@ -19,7 +19,7 @@ class SheetController extends Controller
     public function index()
     {
         $data['sheet'] = Sheet::all();
-        return view('admin.sheet.index')->with($data);
+        return view('admin.sheet.homepage')->with($data);
     }
 
     /**
