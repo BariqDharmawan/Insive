@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title-page', 'Fragrance')
+@section('title-page', 'Serum')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
@@ -15,7 +15,7 @@
 </style>
 @endsection
 
-@section ('title-body', 'Manage')
+@section ('title-body', 'Manage Serum')
 
 @section('content')
 
@@ -40,10 +40,10 @@
     <div class="card">
         <div class="card-header no-border">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">List of Fragrance</h3>
+                <h3 class="card-title">List of Serum</h3>
                 <button type="button" class="btn btn-primary" id="btn-add-fragrance" 
                 data-toggle="modal" data-target="#addModal">
-                    Add New Fragrance
+                    Add New Serum
                 </button>
             </div>
         </div>
@@ -82,7 +82,7 @@
                                 data-placement="bottom" title="Edit Fragrance">
                                     <i class="fa fa-edit"></i> Edit
                                 </button>
-                                <form action="{{ route('admin.fragrance.destroy', ['fragrance' => $value->id]) }}"
+                                <form action="{{ route('admin.serum.destroy', ['fragrance' => $value->id]) }}"
                                 onsubmit="return confirm('Are you sure?')" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-danger" data-toggle="tooltip" 
@@ -119,7 +119,7 @@
     const editModal = $('#editModal'), addModal = $('#addModal');
 
     $("#btn-add-fragrance").on('click', function() {
-        route = "{{ route('admin.fragrance.store') }}";
+        route = "{{ route('admin.serum.store') }}";
 
         addModal.find('input[name="fragrance_img"]').prop('required', true);
         addModal.find('form').attr('action', route);
@@ -130,7 +130,7 @@
         name = $(this).data('name');
         status = $(this).data('status');
         price = $(this).data('price');
-        route = "{{route('admin.fragrance.update.api')}}/"+id;
+        route = "{{route('admin.serum.update.api')}}/"+id;
 
         editModal.find('input[name="id"]').val(id);
         editModal.find('input[name="fragrance_price"]').val(price);

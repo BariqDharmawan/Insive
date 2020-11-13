@@ -111,7 +111,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::get('order/all', 'AdminController@indexOrder')->name('order.all');
   Route::get('order/print/invoice/{id}', 'AdminController@getInvoice')->name('order.print.invoice');
   Route::post('order/input/tracking/{id?}', 'AdminController@updateTrackingOrder')->name('order.tracking.update');
-  Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('fragrance.update.api');
+  Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('serum.update.api');
 
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
   Route::prefix('about-us')->name('about-us.')->group(function () {
@@ -139,7 +139,7 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
     'admin' => 'AdminController',
     'pricing' => 'PricingController',
     'cart' => 'CartController',
-    'fragrance' => 'FragranceController',
+    'serum' => 'FragranceController',
     'sheet' => 'SheetController',
     'question' => 'QuestionController',
     'faq' => 'FaqController',

@@ -62,7 +62,7 @@ class FragranceController extends Controller
 
         $this->saveFragrance($fragrance, $request);
 
-        return redirect()->route('admin.fragrance.index')->with(
+        return redirect()->route('admin.serum.index')->with(
             'success_message',
             "Success adding " . $fragrance->fragrance_name
         );
@@ -92,7 +92,7 @@ class FragranceController extends Controller
 
 
 
-        return redirect()->route('admin.fragrance.index')->with(
+        return redirect()->route('admin.serum.index')->with(
             'success_message',
             "Success update " . $fragrance->fragrance_name
         );
@@ -111,10 +111,10 @@ class FragranceController extends Controller
         $name = $table->fragrance_name;
         if ($exist > 0) {
             $request->session()->flash('failed_message', "Failed delete " . $name . " because has bought!");
-            return redirect()->route('admin.fragrance.index');
+            return redirect()->route('admin.serum.index');
         }
         $table->delete();
         $request->session()->flash('success_message', "Success delete " . $name);
-        return redirect()->route('admin.fragrance.index');
+        return redirect()->route('admin.serum.index');
     }
 }

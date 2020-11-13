@@ -14,9 +14,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.fragrance.index') }}" class="nav-link">
+                <a href="{{ route('admin.serum.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-credit-card"></i>
-                    <p>Fragrance</p>
+                    <p>Serum</p>
                 </a>
             </li>
             <li class="nav-item">
