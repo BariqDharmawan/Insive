@@ -18,7 +18,7 @@ class ProductController extends Controller
     $product->price = $request->price;
     $product->qty = $request->qty;
     $product->category = $request->input('category', 'mask');
-    $product->type = strtolower($request->type);
+    // $product->type = strtolower($request->type);
     if ($request->hasFile('product_img')) {
       $getProductImg = $request->file('product_img');
       $path = $getProductImg->store('public/files');
@@ -35,9 +35,9 @@ class ProductController extends Controller
   public function index()
   {
     $catalog = Product::leftJoin('product_discount as prod_d', 'products.id', '=', 'prod_d.product_id')
-                        ->select('products.*', DB::raw('IFNULL(`prod_d`.`discount_price`, 0) as discount_price'))
-                        ->latest()
-                        ->paginate(10);
+      ->select('products.*', DB::raw('IFNULL(`prod_d`.`discount_price`, 0) as discount_price'))
+      ->latest()
+      ->paginate(10);
     // dd($catalog);
     return view('admin.product.list', [
       'catalog' => $catalog,

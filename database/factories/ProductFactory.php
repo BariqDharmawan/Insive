@@ -16,7 +16,7 @@ $factory->define(Product::class, function (Faker $faker) {
         ]),
         'price' => $faker->randomElement([19900, 20900, 39999]),
         'qty' => random_int(1, 99),
-        'type' => $faker->randomElement(['a', 'b', 'c']),
+        // 'type' => $faker->randomElement(['a', 'b', 'c']),
         'category' => 'mask'
     ];
 });

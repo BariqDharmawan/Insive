@@ -35,7 +35,7 @@
     ])
 
 </div>
-<div class="form-group">
+{{-- <div class="form-group">
     <label for="product-type">Product Type</label>
     <select class="form-control select2" name="type" 
     aria-describedby="typeFeedback" data-placeholder="Select a type" required>
@@ -44,7 +44,7 @@
         <option value="B">B</option>
         <option value="C">C</option>
     </select>
-</div>
+</div> --}}
 <div class="form-group">
     <div class="custom-file">
         <input type="file" name="product_img" id="product_image"

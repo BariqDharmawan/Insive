@@ -27,7 +27,7 @@ jQuery(function () {
         let productName = Helper.getText(product, '.product__name');
         let productQty = Helper.getText(product, '.product__qty');
         let productPrice = product.find('td:nth-child(2) .product__price').data('price');
-        let productTypeVal = Helper.getText(product, '.product__type');
+        // let productTypeVal = Helper.getText(product, '.product__type');
         let formTarget = `formEditProduct${productId}`;
         // let inputPrice = modalEditProduct.find("input[name='price']")[0];
 
@@ -40,7 +40,7 @@ jQuery(function () {
         Helper.setValue(modalEditProduct, "input[name='price']", productPrice);
         // formattingCurrency(inputPrice, productPrice);
         Helper.setValue(modalEditProduct, "input[name='qty']", productQty);
-        Helper.setValue(modalEditProduct, ".select2", productTypeVal);
+        // Helper.setValue(modalEditProduct, ".select2", productTypeVal);
 
         modalEditProduct.find('button').attr('form', formTarget);
         modalEditProduct.find(".select2").trigger('change');

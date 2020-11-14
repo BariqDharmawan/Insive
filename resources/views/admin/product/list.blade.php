@@ -78,7 +78,7 @@
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Disc. Price</th>
                                 <th class="text-center">Quantity</th>
-                                <th class="text-center">Type</th>
+                                {{-- <th class="text-center">Type</th> --}}
                                 <th class="text-center">Date Created</th>
                                 <th class="text-center" colspan="2">Action</th>
                             </tr>
@@ -107,11 +107,11 @@
                                         @endif
                                     </td>
                                     <td class="text-center product__qty">{{ $product->qty }}</td>
-                                    <td class="text-center product__type">
+                                    {{-- <td class="text-center product__type">
                                         <a href="#" class="text-muted">
                                             {{ $product->type }}
                                         </a>
-                                    </td>
+                                    </td> --}}
                                     <td class="text-center product__created-at">{{ $product->created_at }}</td>
                                     <td>
                                         <button type="button" class="btn btn-link text-warning btn-show-modal-edit"
