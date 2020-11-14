@@ -41,11 +41,12 @@
                             <th>Option 3</th>
                             <th>Option 4</th>
                             <th>Face Result</th>
-                            <th>Face Description</th>
                             <th>Special Ingredients</th>
                             <th>No Formula</th>
+                            <th>Face title</th>
                             <th>Face Icon</th>
                             <th>Action</th>
+                            <th>Face Description</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,9 +56,9 @@
                             <td>{{ $value->option_3 }}</td>
                             <td>{{ $value->option_4 }}</td>
                             <td>{{ $value->face_result }}</td>
-                            <td>{{ $value->face_description }}</td>
                             <td>{{ $value->special_ingredients }}</td>
                             <td>{{ $value->no_formula }}</td>
+                            <td style="min-width: 250px;">{{ $value->face_title }}</td>
                             <td>
                                 <img src="{{ asset('img/muka/'.$value->face_icon) }}" height="150" 
                                 width="150" alt="{{$value->face_icon}}">
@@ -65,9 +66,10 @@
                             <td>
                                 <a href="javascript:void(0);" class="btn btn-link text-warning" 
                                 data-toggle="modal" data-target="#editLogic{{ $loop->index + 1 }}">
-                                    Edit
+                                Edit
                                 </a>
                             </td>
+                            <td style="min-width: 250px;">{{ $value->face_description }}</td>
                         </tr>
                         @endforeach
                     </tbody>

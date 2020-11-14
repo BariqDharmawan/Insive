@@ -144,7 +144,7 @@ class CartController extends Controller
         }
         $data['formula_code'] = $cart->formula_code;
         $data['price'] = $price_package;
-        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value'] + 10000);
+        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value']);
         $data['city_name'] = $city_name;
         $data['total_price'] = ($data['price'] + $data['shipping_cost']);
         $cart->total_qty = $qty_package;
@@ -289,7 +289,7 @@ class CartController extends Controller
 
         $data['formula_code'] = $cart->formula_code;
         $data['price'] = $price_package;
-        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value'] + 10000);
+        $data['shipping_cost'] = ($ongkir[0]['costs'][0]['cost'][0]['value']);
         $data['city_name'] = $city_name;
         $data['total_price'] = ($data['price'] + $data['shipping_cost']);
 

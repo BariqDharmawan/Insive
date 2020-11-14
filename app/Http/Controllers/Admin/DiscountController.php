@@ -33,6 +33,7 @@ class DiscountController extends Controller
     public function index()
     {
         $products = Product::select('id', 'product_name')->get();
+        // dd($products);
         return view('catalog.discount', [
             'title' => 'Manage Discount',
             'products' => $products,
@@ -49,7 +50,7 @@ class DiscountController extends Controller
     public function store(DiscountValidation $request)
     {
         $newDiscount = new ProductDiscount;
-        return $this->saveDiscount($request, $newDiscount, 'Successfully delete discount');
+        return $this->saveDiscount($request, $newDiscount, 'Successfully add discount');
     }
 
     /**

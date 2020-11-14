@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductValidation;
 use App\Models\Product;
+use App\Models\ProductDiscount;
 
 class ProductController extends Controller
 {
@@ -86,6 +87,7 @@ class ProductController extends Controller
   {
     $softDelete = Product::findOrFail($id);
     $softDelete->delete();
+    $deleteDiscount = ProductDiscount::where('product_id', $id)->delete();
     return redirect()->back()->with('success');
   }
 

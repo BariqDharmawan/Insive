@@ -42,6 +42,14 @@
 
     <div class="col-12">
         @if(count($catalog) == 0)
+        @if(app('request')->input('page') > 1)
+            @alert(['type' => 'secondary', 'addClass' => 'text-center', 'closeBtn' => false])
+            No catalog in page {{app('request')->input('page')}}. Let's
+                <a href="{{route('admin.product.index')}}" class="text-primary text-no-decoration">
+                    go to page 1
+                </a>
+            @endalert
+        @else
             @alert(['type' => 'secondary', 'addClass' => 'text-center', 'closeBtn' => false])
                 No catalog created. Let's
                 <button type="button" class="text-primary text-no-decoration" 
@@ -49,6 +57,7 @@
                     Add New catalog
                 </button>
             @endalert
+        @endif
         @else
             <div class="card">
                 <div class="card-header border-0">

@@ -17,7 +17,7 @@
         </div>
         <input class="form-control"
         id="product-price" name="price" type="number" placeholder="Price"
-        value="{{ $product->price }}" aria-describedby="productPriceFeedback" required>
+        value="{{ $product->price ?? old('price') }}" aria-describedby="productPriceFeedback" required>
     </div>
 </div>
 <div class="form-group">
