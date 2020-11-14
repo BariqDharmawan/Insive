@@ -1,24 +1,14 @@
 @extends('template.main')
 
-@section('title-page', 'Serum')
+@section('title-page', 'Sheet')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
-<style media="screen">
-  td {
-    width: 50px;
-    height: 50px;
-  }
-  td:last-child {
-    width: 180px;
-  }
-</style>
 @endsection
 
-@section ('title-body', 'Manage Serum')
+@section ('title-body', 'Manage')
 
 @section('content')
-
 @if (Session::has('success_message') || Session::has('failed_message'))
 <div class="col-12 message-session">
     <div class="alert alert-{{(Session::has('success_message'))? 'success' : 'danger'}} text-center">
@@ -35,15 +25,14 @@
         </ul>
     </div>
 @endif
-
 <div class="col-12">
     <div class="card">
         <div class="card-header no-border">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">List of Serum</h3>
-                <button type="button" class="btn btn-primary" id="btn-add-fragrance" 
+                <h3 class="card-title">List of Sheet</h3>
+                <button type="button" class="btn btn-primary" id="btn-add-sheet" 
                 data-toggle="modal" data-target="#addModal">
-                    Add New Serum
+                    Add New Sheet
                 </button>
             </div>
         </div>
@@ -61,32 +50,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($fragrance as $key => $value)
+                        @foreach($sheet as $key => $value)
                         <tr>
-                            <td>{{$key+1}}</td>
+                            <td>{{ $key + 1 }}</td>
                             <td>
-                                <img class="bg-success img-fluid" 
-                                width="50" height="50"
-                                src="{{ asset('img/fragrance/'.$value->fragrance_img) }}" 
-                                alt="{{$value->fragrance_img}}">
+                                <img class="bg-success" src="{{ asset('img/sheet/'.$value->sheet_img) }}" 
+                                width="50" height="50" alt="{{$value->sheet_img}}">
                             </td>
-                            <td>{{ $value->fragrance_name }}</td>
+                            <td>{{ $value->sheet_name }}</td>
                             <td>@currency($value->price)</td>
                             <td>
                                 @include('admin.frag-sheet-status')
                             </td>
-                            <td>
-                                <button class="btn btn-sm btn-warning btn-edit" data-price="{{ $value->price }}"
-                                data-id="{{$value->id}}" data-name="{{$value->fragrance_name}}" 
-                                data-status="{{$value->qty}}" data-toggle="tooltip" 
-                                data-placement="bottom" title="Edit Fragrance">
+                            <td style="width:180px">
+                                <button class="btn btn-sm btn-warning btn-edit" data-id="{{$value->id}}" 
+                                    data-name="{{$value->sheet_name}}" data-price="{{ $value->price }}"
+                                    data-status="{{ $value->is_available }}" data-toggle="tooltip" data-placement="bottom" title="Edit Sheet">
                                     <i class="fa fa-edit"></i> Edit
                                 </button>
-                                <form action="{{ route('admin.serum.destroy', ['fragrance' => $value->id]) }}"
-                                onsubmit="return confirm('Are you sure?')" method="POST" class="d-inline">
+                                <form action="{{ route('admin.sheet.destroy', ['sheet' => $value->id]) }}" onsubmit="return confirm('Are you sure?')" method="POST" style="display:inline">
                                     @csrf @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" data-toggle="tooltip" 
-                                    data-placement="bottom" title="Delete Fragrance">
+                                    <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Sheet">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>
@@ -100,8 +84,8 @@
     </div>
 </div>
 
-{{-- modal add and edit fragrance --}}
-@include('fragrance.add-edit')
+{{-- modal add and edit sheet --}}
+@include('admin.sheet.add-edit')
 
 @endsection
 
@@ -114,29 +98,28 @@
         $('.message-session').delay(3000).slideUp(600);
         $('[data-toggle="tooltip"]').tooltip();
     });
-    
-    let id, name, status, price, route;
-    const editModal = $('#editModal'), addModal = $('#addModal');
 
-    $("#btn-add-fragrance").on('click', function() {
-        route = "{{ route('admin.serum.store') }}";
-
-        addModal.find('input[name="fragrance_img"]').prop('required', true);
-        addModal.find('form').attr('action', route);
+    let route;
+    const addModal = $("#addModal");
+    $("#btn-add-sheet").on('click', function() {
+       route = "{{ route('admin.sheet.store') }}";
+       addModal.find('input[name="sheet_img"]').prop('required', true)
+       addModal.find('form').attr('action', route);
     });
-    
+
+    let price, id, name, status;
+    const editModal = $('#editModal');
     $('.btn-edit').on('click', function() {
         id = $(this).data('id');
         name = $(this).data('name');
         status = $(this).data('status');
         price = $(this).data('price');
-        route = "{{route('admin.serum.update.api')}}/"+id;
-
+        route = "{{route('admin.sheet.update.api')}}/"+id;
         editModal.find('input[name="id"]').val(id);
-        editModal.find('input[name="fragrance_price"]').val(price);
-        editModal.find('input[name="fragrance_name"]').val(name);
-        editModal.find('select[name="fragrance_status"]').val(status);
-        editModal.find('input[name="fragrance_img"]').prop('required', false);
+        editModal.find('input[name="sheet_img"]').prop('required', false);
+        editModal.find('input[name="sheet_name"]').val(name);
+        editModal.find('input[name="sheet_price"]').val(price);
+        editModal.find('select[name="sheet_status"]').val(status);
         editModal.find('form').attr('action', route);
         editModal.modal();
     });

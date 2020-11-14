@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fragrance extends Model
 {
-    protected $table = 'fragrances';
-    protected $primaryKey = 'id';
+    protected $table = 'fragrance';
+    protected $casts = [
+        'is_available' => 'boolean',
+    ];
 }

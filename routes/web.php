@@ -111,12 +111,13 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
   Route::get('order/all', 'AdminController@indexOrder')->name('order.all');
   Route::get('order/print/invoice/{id}', 'AdminController@getInvoice')->name('order.print.invoice');
   Route::post('order/input/tracking/{id?}', 'AdminController@updateTrackingOrder')->name('order.tracking.update');
-  Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('fragrance.update.api');
-  Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
+  Route::put('/fragrance/update/{id?}', 'FragranceController@updateApi')->name('serum.update.api');
+
   Route::post('question/soal/ajax/{id?}', 'QuestionController@getSoal')->name('question.get.soal');
   Route::prefix('about-us')->name('about-us.')->group(function () {
     Route::post('update-contact', 'AboutContactController')->name('update');
   });
+
   Route::prefix('setting')->name('setting.')->group(function () {
     Route::get('/', 'AdminController@setting')->name('index');
     Route::put('update', 'AdminController@updateAccount')->name('update');
@@ -131,13 +132,14 @@ Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'role.admin'])->
     Route::resource('manage-discount', 'DiscountController')->except(['create', 'edit', 'show']);
   });
 
-  Route::resource('logic', 'LogicController')->only('index', 'update');
+  Route::put('/sheet/update/{id?}', 'SheetController@updateApi')->name('sheet.update.api');
   Route::resources([
+    'logic' => 'LogicController',
     'pesan-dari-customer' => 'ContactusController',
     'admin' => 'AdminController',
     'pricing' => 'PricingController',
     'cart' => 'CartController',
-    'fragrance' => 'FragranceController',
+    'serum' => 'FragranceController',
     'sheet' => 'SheetController',
     'question' => 'QuestionController',
     'faq' => 'FaqController',
