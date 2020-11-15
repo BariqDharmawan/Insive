@@ -10,3 +10,4 @@ npm-debug.log
 yarn-error.log
 !/storage/app/public/files/people.png
 !/storage/app/public/files/product.png
+*.zip
