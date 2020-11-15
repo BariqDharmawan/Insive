@@ -42,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
 
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Sven\ArtisanView\ServiceProvider::class);
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
         Blade::directive('currency', function ($number) {
