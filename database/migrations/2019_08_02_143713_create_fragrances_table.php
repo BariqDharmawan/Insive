@@ -13,7 +13,7 @@ class CreateFragrancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fragrance', function (Blueprint $table) {
+        Schema::create('fragrances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fragrance_name');
             $table->string('fragrance_img');

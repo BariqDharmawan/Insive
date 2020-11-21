@@ -11,25 +11,25 @@ if (config('app.env') == 'local') {
     Artisan::call('config:clear');
     Artisan::call('config:cache');
   });
-}
 
-Route::get('receipt', function () {
-  $order = App\Models\Cart::firstOrFail();
-  $order->user_id = App\User::find($order->user_id);
-  if ($order->type_cart == 'catalog') {
-    $order->item = App\Models\SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
-      ->leftJoin('products', 'products.id', 'sub_carts.product_id')
-      ->where('sub_carts.cart_id', $order->id)
-      ->get();
-  } else if ($order->type_cart == 'custom') {
-    $order->item = App\Models\CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
-      ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
-      ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
-      ->where('custom_products.cart_id', $order->id)
-      ->get();
-  }
-  return new App\Mail\ReceiptPayment($order);
-});
+  Route::get('receipt', function () {
+    $order = App\Models\Cart::firstOrFail();
+    $order->user_id = App\User::find($order->user_id);
+    if ($order->type_cart == 'catalog') {
+      $order->item = App\Models\SubCart::select('products.product_name', 'products.type', 'products.category', 'sub_carts.qty', 'sub_carts.total_price')
+        ->leftJoin('products', 'products.id', 'sub_carts.product_id')
+        ->where('sub_carts.cart_id', $order->id)
+        ->get();
+    } else if ($order->type_cart == 'custom') {
+      $order->item = App\Models\CustomProduct::select('sheets.sheet_name', 'fragrances.fragrance_name', 'custom_products.qty')
+        ->leftJoin('sheets', 'sheets.id', 'custom_products.sheet_id')
+        ->leftJoin('fragrances', 'fragrances.id', 'custom_products.fragrance_id')
+        ->where('custom_products.cart_id', $order->id)
+        ->get();
+    }
+    return new App\Mail\ReceiptPayment($order);
+  });
+}
 
 Route::view('order/summary', 'home.summary-order', ['title' => 'Summary Order']);
 

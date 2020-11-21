@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('product_name', 100);
             $table->integer('price');
             $table->integer('qty');
-            // $table->string('type');
+            $table->string('type')->nullable();
             $table->string('category');
             $table->string('product_img')->default('files/product.png');
             $table->softDeletes();

@@ -43,28 +43,30 @@ All Order
                   <p class="mb-0">Acne​</p>
                 </div>
                 <ul class="col-12 px-0">
-                  @if ($order->type_cart == 'custom')
-                  @forelse ($order->item as $item)
-                  <li>
-                    <span>Product Name: {{ $item->name }}</span>
-                    @if ($item->sheet_name != null)
-                    <span>Sheet Mask: {{ $item->sheet_name }}</span>
-                    @elseif ($item->fragrance_name != null)
-                    <span>Serum: {{ $item->fragrance_name }}</span>
-                    @endif
-                    <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
-                  </li>
-                  @empty
-                  @endforelse
-                  @elseif ($order->type_cart == 'catalog')
-                  @foreach ($order->item as $item)
-                  <li>
-                    <span>Product Name: {{ $item->product_name }}</span>
-                    <span>Category: {{ $item->category }}</span>
-                    <var class="float-lg-right">{{ $item->qty . ' PCS' }}</var>
-                  </li>
-                  @endforeach
-                  @endif
+                  @switch($order->type_cart)
+                      @case('custom')
+                          @foreach ($order->item as $item)
+                          <li>
+                            <span>Product Name: {{ $item->name }}</span>
+                            @if ($item->sheet_name != null)
+                            <span>Sheet Mask: {{ $item->sheet_name }}</span>
+                            @elseif ($item->fragrance_name != null)
+                            <span>Serum: {{ $item->fragrance_name }}</span>
+                            @endif
+                            <var class="float-md-right">{{ $item->qty . ' PCS' }}</var>
+                          </li>
+                          @endforeach
+                      @break
+                      @case('catalog')
+                          @foreach ($order->item as $item)
+                          <li>
+                            <span>Product Name: {{ $item->product_name }}</span>
+                            <span>Category: {{ $item->category }}</span>
+                            <var class="float-lg-right">{{ $item->qty . ' PCS' }}</var>
+                          </li>
+                          @endforeach
+                      @break
+                  @endswitch
                 </ul>
                 <ul class="col-12 px-0 footer-action-order">
                   <li class="bg--cream">

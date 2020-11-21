@@ -12,9 +12,10 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.1",
-        "veritrans/veritrans-php": "dev-master",
         "laravel/tinker": "^1.0",
-        "laravolt/indonesia": "^0.10.0"
+        "laravelcollective/errors": "^1.1",
+        "laravolt/indonesia": "^0.10.0",
+        "veritrans/veritrans-php": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
