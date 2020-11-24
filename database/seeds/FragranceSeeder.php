@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fragrance;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class FragranceSeeder extends Seeder
         $prices = [29000, 30000, 25000, 45000, 16000, 27500];
 
         foreach ($fragrance_name as $key => $value) {
-            DB::table('fragrance')->insert([
+            Fragrance::create([
                 'fragrance_name' => $value,
                 'fragrance_img' => $fragrance_img[$key],
                 'is_available' => true,

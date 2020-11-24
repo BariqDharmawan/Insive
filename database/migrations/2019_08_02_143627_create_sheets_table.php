@@ -13,7 +13,7 @@ class CreateSheetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sheet', function (Blueprint $table) {
+        Schema::create('sheets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('sheet_name');
             $table->string('sheet_img');

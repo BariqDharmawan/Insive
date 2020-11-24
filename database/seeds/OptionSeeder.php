@@ -137,7 +137,7 @@ class OptionSeeder extends Seeder
         ];
 
         foreach ($opt1 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 1,
                 'value' => ($key + 1),
                 'text' => $value
@@ -145,7 +145,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt2 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 2,
                 'value' => ($key + 1),
                 'text' => $value
@@ -153,7 +153,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt3 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 3,
                 'value' => ($key + 1),
                 'text' => $value
@@ -161,7 +161,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt4 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 4,
                 'value' => ($key + 1),
                 'text' => $value
@@ -169,7 +169,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt5 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 5,
                 'value' => ($key + 1),
                 'text' => $value
@@ -177,7 +177,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt6 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 6,
                 'value' => ($key + 1),
                 'text' => $value
@@ -185,7 +185,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt7 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 7,
                 'value' => ($key + 1),
                 'text' => $value
@@ -193,7 +193,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt8 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 8,
                 'value' => ($key + 1),
                 'text' => $value
@@ -201,7 +201,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt9 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 9,
                 'value' => ($key + 1),
                 'text' => $value
@@ -209,7 +209,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt10 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 10,
                 'value' => ($key + 1),
                 'text' => $value
@@ -217,7 +217,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt11 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 11,
                 'value' => ($key + 1),
                 'text' => $value
@@ -225,7 +225,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt12 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 12,
                 'value' => ($key + 1),
                 'text' => $value
@@ -233,7 +233,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt13 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 13,
                 'value' => ($key + 1),
                 'text' => $value
@@ -241,7 +241,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt14 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 14,
                 'value' => ($key + 1),
                 'text' => $value
@@ -249,7 +249,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt15 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 15,
                 'value' => ($key + 1),
                 'text' => $value
@@ -257,7 +257,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt16 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 16,
                 'value' => ($key + 1),
                 'text' => $value
@@ -265,7 +265,7 @@ class OptionSeeder extends Seeder
         }
 
         foreach ($opt17 as $key => $value) {
-            DB::table('options')->insert([
+            Option::insert([
                 'question_id' => 17,
                 'value' => ($key + 1),
                 'text' => $value
